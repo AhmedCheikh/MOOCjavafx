@@ -7,9 +7,9 @@ public class Cours {
     private String video ;
     private int idQuiz ;
     private int cinFormateur;
-    private String [] chapitres ;
+    private Chapitre [] chapitres ;
 
-    public Cours(String description, String video, int idQuiz, int cinFormateur, String[] chapitres) {
+    public Cours(String description, String video, int idQuiz, int cinFormateur, Chapitre[] chapitres) {
        
         this.description = description;
         this.video = video;
@@ -38,7 +38,7 @@ public class Cours {
         return cinFormateur;
     }
 
-    public String[] getChapitres() {
+    public Chapitre[] getChapitres() {
         return chapitres;
     }
 
@@ -62,7 +62,7 @@ public class Cours {
         this.cinFormateur = cinFormateur;
     }
 
-    public void setChapitres(String[] chapitres) {
+    public void setChapitres(Chapitre[] chapitres) {
         this.chapitres = chapitres;
     }
 
