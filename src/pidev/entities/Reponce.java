@@ -11,19 +11,28 @@ import java.util.Objects;
  *
  * @author Gumus
  */
-public class Réponce {
+public class Reponce {
     private int id;
     private String etat;
+    private String video ;
 
-    public Réponce(int id, String etat) {
+    public Reponce(int id, String etat, String video) {
         this.id = id;
         this.etat = etat;
+        this.video = video;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 
     public int getId() {
         return id;
     }
-
     public String getEtat() {
         return etat;
     }
@@ -51,7 +60,7 @@ public class Réponce {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Réponce other = (Réponce) obj;
+        final Reponce other = (Reponce) obj;
         if (this.id != other.id) {
             return false;
         }

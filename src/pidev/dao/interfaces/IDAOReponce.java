@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package pidev.dao.interfaces;
-import pidev.entities.Réponce;
+import pidev.entities.Reponce;
 
 /**
  *
  * @author Gumus
  */
 public interface IDAOReponce {
-    void add(Réponce réponce);
-    void remove(Réponce réponce);
-    void update(Réponce réponce);
+    void add(Reponce réponce);
+    void remove(Reponce réponce);
+    void update(Reponce réponce);
     
 }
