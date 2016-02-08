@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ControllerAffichageCours">
+   <children>
+      <Button layoutX="480.0" layoutY="21.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Recherche">
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow color="#607fee" />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#71bdd0" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <TextField layoutX="219.0" layoutY="21.0" prefHeight="29.0" prefWidth="244.0" />
+      <Label layoutX="47.0" layoutY="25.0" prefHeight="17.0" prefWidth="57.0" text="Cours" />
+      <MediaView fx:id="video" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="90.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MediaView>
+      <TextArea layoutX="238.0" layoutY="90.0" prefHeight="217.0" prefWidth="343.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <effect>
+            <InnerShadow color="#ee0808" />
+         </effect>
+      </TextArea>
+      <Hyperlink fx:id="Formateur" layoutX="46.0" layoutY="342.0" text="Formateur" textFill="#4d01ff">
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </Hyperlink>
+      <Hyperlink layoutX="421.0" layoutY="342.0" text="Telecharger Cours" textFill="#4d01ff">
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </Hyperlink>
+      <Button disable="true" layoutX="219.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Faire Quiz">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

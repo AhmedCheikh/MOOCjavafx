@@ -9,14 +9,26 @@ public class CoursSuivie {
     private String Commentaire ;
     private double note ;
     private Date dateDebut ;
+    private String appreciation;
 
-    public CoursSuivie(int idCours, int cinApprenant, String Commentaire, double note, Date dateDebut) {
+    public CoursSuivie(int idCours, int cinApprenant, String Commentaire, double note, Date dateDebut, String appreciation) {
         this.idCours = idCours;
         this.cinApprenant = cinApprenant;
         this.Commentaire = Commentaire;
         this.note = note;
         this.dateDebut = dateDebut;
+        this.appreciation = appreciation;
     }
+
+    public String getAppreciation() {
+        return appreciation;
+    }
+
+    public void setAppreciation(String appreciation) {
+        this.appreciation = appreciation;
+    }
+
+    
 
     public int getIdCours() {
         return idCours;

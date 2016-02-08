@@ -10,7 +10,7 @@ public class Cours {
     private Chapitre [] chapitres ;
     private String difficulte ;
     private String objectif ;
-    private String appreciation;
+    
     
     public Cours(String description, String video, int idQuiz, int cinFormateur,String difficulte,String objectif) {
        
@@ -55,9 +55,7 @@ public class Cours {
         return objectif;
     }
 
-    public String getAppreciation() {
-        return appreciation;
-    }
+   
 
     public void setDifficulte(String dificulte) {
         this.difficulte = dificulte;
@@ -67,9 +65,7 @@ public class Cours {
         this.objectif = objectif;
     }
 
-    public void setAppreciation(String appreciation) {
-        this.appreciation = appreciation;
-    }
+    
 
     public void setIdCours(int idCours) {
         this.idCours = idCours;
@@ -119,7 +115,7 @@ public class Cours {
 
     @Override
     public String toString() {
-        return "Cours{" + "idCours=" + idCours + ", description=" + description + ", video=" + video + ", idQuiz=" + idQuiz + ", cinFormateur=" + cinFormateur + ", chapitres=" + chapitres + ", difficulte=" + difficulte + ", objectif=" + objectif + ", appreciation=" + appreciation + '}';
+        return "Cours{" + "idCours=" + idCours + ", description=" + description + ", video=" + video + ", idQuiz=" + idQuiz + ", cinFormateur=" + cinFormateur + ", chapitres=" + chapitres + ", difficulte=" + difficulte + ", objectif=" + objectif +  '}';
     }
 
 

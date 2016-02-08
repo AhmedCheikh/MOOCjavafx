@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pidev.Controller;
 
 import java.io.IOException;
@@ -24,19 +20,19 @@ import javafx.stage.Stage;
  *
  * @author akoubi
  */
-public class loginController implements Initializable {
+public class ControllerAthentification implements Initializable {
     
     @FXML
     private Label lblmessage;
     @FXML
-    private TextField txtlogin;
+    private TextField login;
     @FXML
-    private PasswordField txtpassword;
+    private PasswordField password;
     
     @FXML
     private void btnConnexionAction(ActionEvent event) throws IOException {
         
-        System.out.println("je suis zied");
+        
     }
     
     @Override
