@@ -5,52 +5,74 @@
  */
 package pidev.entities;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  *
  * @author Gumus
  */
 public class Quiz {
     private int id;
+    private String titre;
     private String type;
-    private Set mvQuestion = new HashSet(0);
+    private Question[] Questions;
+    private Cours idcours;
+    private Chapitre idchapitre;
 
-    public Quiz(int id, String type) {
+    public Quiz(int id, String titre, String type, Question[] Questions, Cours idcours, Chapitre idchapitre) {
         this.id = id;
+        this.titre = titre;
         this.type = type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Set getMvQuestion() {
-        return mvQuestion;
+        this.Questions = Questions;
+        this.idcours = idcours;
+        this.idchapitre = idchapitre;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
 
-    public void setMvQuestion(Set mvQuestion) {
-        this.mvQuestion = mvQuestion;
+    public void setQuestions(Question[] Questions) {
+        this.Questions = Questions;
     }
 
-    @Override
-    public String toString() {
-        return "Quiz{" + "id=" + id + ", type=" + type + ", mvQuestion=" + mvQuestion + '}';
+    public void setIdcours(Cours idcours) {
+        this.idcours = idcours;
+    }
+
+    public void setIdchapitre(Chapitre idchapitre) {
+        this.idchapitre = idchapitre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Question[] getQuestions() {
+        return Questions;
+    }
+
+    public Cours getIdcours() {
+        return idcours;
+    }
+
+    public Chapitre getIdchapitre() {
+        return idchapitre;
     }
     
-   
     
 }
