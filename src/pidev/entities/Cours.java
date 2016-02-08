@@ -3,6 +3,7 @@ package pidev.entities;
 
 public class Cours {
     private int idCours ;
+    private String nomCours;
     private String description;
     private String video ;
     private int idQuiz ;
@@ -10,19 +11,27 @@ public class Cours {
     private Chapitre [] chapitres ;
     private String difficulte ;
     private String objectif ;
-    
-    
-    public Cours(String description, String video, int idQuiz, int cinFormateur,String difficulte,String objectif) {
-       
+
+    public Cours(int idCours, String nomCours, String description, String video, int idQuiz, int cinFormateur, Chapitre[] chapitres, String difficulte, String objectif) {
+        this.idCours = idCours;
+        this.nomCours = nomCours;
         this.description = description;
         this.video = video;
         this.idQuiz = idQuiz;
-        this.cinFormateur=cinFormateur ;
-        this.difficulte=difficulte;
-        this.objectif=objectif;
-        
+        this.cinFormateur = cinFormateur;
+        this.chapitres = chapitres;
+        this.difficulte = difficulte;
+        this.objectif = objectif;
     }
 
+    public String getNomCours() {
+        return nomCours;
+    }
+
+    public void setNomCours(String nomCours) {
+        this.nomCours = nomCours;
+    }
+    
     public int getIdCours() {
         return idCours;
     }
