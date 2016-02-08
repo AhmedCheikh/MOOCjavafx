@@ -50,21 +50,57 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Region layoutX="14.0" layoutY="213.0" prefHeight="355.0" prefWidth="143.0" style="-fx-background-color: #EFECCA; -fx-border-color: #A7A37E; -fx-border-width: 3px;" />
-      <Button layoutX="24.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Ajouter Cour">
+      <Region layoutX="14.0" layoutY="213.0" prefHeight="355.0" prefWidth="173.0" style="-fx-background-color: #EEEEC6; -fx-border-color: black; -fx-border-width: 1px;" />
+      <Pane layoutX="194.0" layoutY="213.0" prefHeight="355.0" prefWidth="567.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;" />
+      <Button layoutX="22.0" layoutY="263.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes Cours">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button layoutX="24.0" layoutY="305.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Liste Cours">
+      <Button layoutX="23.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Publier Cour">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
-      </Button>
-      <Button layoutX="24.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Liste Organismes">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="22.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Liste Cours" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
-      </Button>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="22.0" layoutY="384.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Liste Organisme">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="22.0" layoutY="425.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Demmande Integration">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="22.0" layoutY="466.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Integration Comité">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="22.0" layoutY="508.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FFA420; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes invitations">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
