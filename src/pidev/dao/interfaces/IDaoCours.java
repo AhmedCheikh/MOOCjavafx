@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pidev.dao.interfaces;
 
 import java.util.List;
@@ -23,4 +19,6 @@ public interface IDaoCours {
     Cours findCoursById(int id);
 
     Cours findCoursByFormateur(int cinFormateur);
+    
+    Cours findCoursByDifficulte (String difficulte) ;
 }
