@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #B5DED0; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.dao.gui.ProfilFormateurController">
+   <children>
+      <MenuBar layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="608.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TitledPane animated="false" layoutX="626.0" layoutY="5.0" prefHeight="99.0" prefWidth="139.0" text="Mon Profil " textOverrun="CLIP">
+        <content>
+          <AnchorPane cache="true" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="112.0">
+               <children>
+                  <Hyperlink layoutX="13.0" layoutY="7.0" prefHeight="23.0" prefWidth="113.0" text="Edit Profil" />
+                  <Button layoutX="15.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Se déconnecter" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <ImageView fitHeight="143.0" fitWidth="159.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/defaut.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="16.0" layoutY="184.0" prefHeight="17.0" prefWidth="143.0" text="Akoubi Zied">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TreeTableView layoutX="32.0" layoutY="241.0" prefHeight="317.0" prefWidth="714.0">
+        <columns>
+          <TreeTableColumn prefWidth="75.0" text="Id cour" />
+          <TreeTableColumn prefWidth="133.0" text="Nom Cour" />
+            <TreeTableColumn prefWidth="141.0" text="Description" />
+            <TreeTableColumn minWidth="1.0" prefWidth="124.0" text="video" />
+            <TreeTableColumn minWidth="0.0" prefWidth="102.0" text="idQuiz" />
+            <TreeTableColumn prefWidth="138.0" text="CIN Formateur" />
+        </columns>
+      </TreeTableView>
+   </children>
+</AnchorPane>
