@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #B5DED0; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.dao.gui.ProfilFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #B5DED0; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
    <children>
       <MenuBar layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="608.0">
         <menus>
@@ -50,15 +50,21 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TreeTableView layoutX="32.0" layoutY="241.0" prefHeight="317.0" prefWidth="714.0">
-        <columns>
-          <TreeTableColumn prefWidth="75.0" text="Id cour" />
-          <TreeTableColumn prefWidth="133.0" text="Nom Cour" />
-            <TreeTableColumn prefWidth="141.0" text="Description" />
-            <TreeTableColumn minWidth="1.0" prefWidth="124.0" text="video" />
-            <TreeTableColumn minWidth="0.0" prefWidth="102.0" text="idQuiz" />
-            <TreeTableColumn prefWidth="138.0" text="CIN Formateur" />
-        </columns>
-      </TreeTableView>
+      <Region layoutX="14.0" layoutY="213.0" prefHeight="355.0" prefWidth="143.0" style="-fx-background-color: #EFECCA; -fx-border-color: #A7A37E; -fx-border-width: 3px;" />
+      <Button layoutX="24.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Ajouter Cour">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="24.0" layoutY="305.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Liste Cours">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="24.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Liste Organismes">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
