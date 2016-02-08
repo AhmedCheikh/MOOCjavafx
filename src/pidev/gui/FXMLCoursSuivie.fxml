@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Label layoutX="509.0" layoutY="14.0" prefHeight="17.0" prefWidth="71.0" text="Apprenant" />
+      <Label layoutX="21.0" layoutY="14.0" prefHeight="17.0" prefWidth="77.0" text="Cours" />
+      <DatePicker layoutX="119.0" layoutY="55.0" promptText="date debut" />
+      <Label layoutX="36.0" layoutY="59.0" text="Date_Debut" />
+      <Label layoutX="37.0" layoutY="96.0" text="Date_Fin" />
+      <DatePicker layoutX="119.0" layoutY="92.0" promptText="date fin" />
+      <Label layoutX="54.0" layoutY="131.0" text="Il vous reste *** jours .." textFill="#ff0101">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="53.0" layoutY="167.0" prefHeight="67.0" prefWidth="471.0" promptText="Vos Commentaires ..." />
+      <Label layoutX="46.0" layoutY="259.0" text="Quand vous passez le quiz finale votre note sera affiché ici : " />
+      <Label layoutX="46.0" layoutY="313.0" text="Notez-nous :)" />
+      <RadioButton layoutX="169.0" layoutY="313.0" mnemonicParsing="false" text="Mauvais" />
+      <RadioButton layoutX="282.0" layoutY="313.0" mnemonicParsing="false" text="Moyen" />
+      <RadioButton layoutX="385.0" layoutY="313.0" mnemonicParsing="false" text="Exelent" />
+      <TextField layoutX="370.0" layoutY="255.0" prefHeight="25.0" prefWidth="30.0" />
+      <Label layoutX="406.0" layoutY="259.0" text="/ 30">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

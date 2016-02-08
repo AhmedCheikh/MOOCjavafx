@@ -40,7 +40,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </MediaView>
-                        <TextArea layoutX="304.0" layoutY="69.0" prefHeight="217.0" prefWidth="343.0">
+                        <TextArea layoutX="304.0" layoutY="69.0" prefHeight="217.0" prefWidth="343.0" promptText="Description ...">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
@@ -48,7 +48,6 @@
                               <InnerShadow color="#ee0808" />
                            </effect>
                         </TextArea>
-                        <Label layoutX="304.0" layoutY="52.0" prefHeight="17.0" prefWidth="84.0" text="Description" />
                         <Label layoutX="23.0" layoutY="60.0" prefHeight="17.0" prefWidth="125.0" text="Titre du video" />
                      </children>
                   </AnchorPane>
@@ -59,13 +58,13 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Hyperlink layoutX="65.0" layoutY="41.0" text="Chapitre1" />
-                        <Hyperlink layoutX="65.0" layoutY="100.0" text="Chapitre2" />
-                        <Hyperlink layoutX="65.0" layoutY="168.0" text="Chapitre3" />
-                        <Hyperlink layoutX="65.0" layoutY="239.0" text="Chapitre4" />
-                        <TextArea layoutX="169.0" layoutY="27.0" prefHeight="51.0" prefWidth="351.0" />
-                        <TextArea layoutX="169.0" layoutY="225.0" prefHeight="51.0" prefWidth="351.0" />
-                        <TextArea layoutX="169.0" layoutY="154.0" prefHeight="51.0" prefWidth="351.0" />
-                        <TextArea layoutX="169.0" layoutY="86.0" prefHeight="51.0" prefWidth="351.0" />
+                        <Hyperlink layoutX="65.0" layoutY="112.0" text="Chapitre2" />
+                        <Hyperlink layoutX="65.0" layoutY="180.0" text="Chapitre3" />
+                        <Hyperlink layoutX="65.0" layoutY="251.0" text="Chapitre4" />
+                        <TextArea layoutX="169.0" layoutY="27.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TextArea layoutX="169.0" layoutY="237.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TextArea layoutX="169.0" layoutY="166.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TextArea layoutX="169.0" layoutY="98.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
                      </children>
                   </AnchorPane>
             </content>
