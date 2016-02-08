@@ -17,15 +17,8 @@ import javafx.stage.Stage;
 
 
 public class ControllerAffichageCours implements Initializable {
-    @FXML
-    private void OnClick(ActionEvent event)
-    {
-        Stage window =new Stage() ;
-        AnchorPane layout= new AnchorPane();
-        Scene scene= new Scene(layout);
-        window.setScene(scene);
-        window.show();
-    }
+    
+   
     
  @FXML
      private void btnRecherche(ActionEvent event)  {
