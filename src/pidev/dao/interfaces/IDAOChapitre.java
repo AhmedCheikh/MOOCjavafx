@@ -8,7 +8,7 @@ import pidev.entities.Chapitre;
  * @author Gumus
  */
 public interface IDAOChapitre {
-
+    
     void addChapitre(Chapitre chapitre);
 
     void removeChapitre(Chapitre chapitre);
