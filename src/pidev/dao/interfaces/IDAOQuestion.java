@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.interfaces;
+import java.util.List;
 import pidev.entities.Question;
 
 /**
@@ -11,7 +12,8 @@ import pidev.entities.Question;
  * @author Gumus
  */
 public interface IDAOQuestion {
-    void add(Question question);
-    void remove(Question question);
-    void update(Question question);
+    void addQuestion(Question question);
+    void removeQuestion(Question question);
+    void updateQuestion(Question question);
+    Question findQuestionById(int id);
 }

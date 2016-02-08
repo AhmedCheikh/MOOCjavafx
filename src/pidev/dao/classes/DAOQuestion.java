@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.util.List;
 import pidev.dao.interfaces.IDAOQuestion;
 import pidev.entities.Question;
 
@@ -14,17 +15,22 @@ import pidev.entities.Question;
 public class DAOQuestion implements IDAOQuestion{
 
     @Override
-    public void add(Question question) {
+    public void addQuestion(Question question) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Question question) {
+    public void removeQuestion(Question question) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Question question) {
+    public void updateQuestion(Question question) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Question findQuestionById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.util.List;
 import pidev.dao.interfaces.IDAOReponce;
 import pidev.entities.Reponce;
 
@@ -14,19 +15,30 @@ import pidev.entities.Reponce;
 public class DAOReponce implements IDAOReponce {
 
     @Override
-    public void add(Reponce réponce) {
+    public void addReponce(Reponce réponce) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(Reponce réponce) {
+    public void removeReponce(Reponce réponce) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Reponce réponce) {
+    public void updateReponce(Reponce réponce) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Reponce findReponceById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Reponce> findReponceByEtat(boolean etat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
    
 }

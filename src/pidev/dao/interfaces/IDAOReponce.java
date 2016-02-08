@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.interfaces;
+import java.util.List;
 import pidev.entities.Reponce;
 
 /**
@@ -11,8 +12,9 @@ import pidev.entities.Reponce;
  * @author Gumus
  */
 public interface IDAOReponce {
-    void add(Reponce réponce);
-    void remove(Reponce réponce);
-    void update(Reponce réponce);
-    
+    void addReponce(Reponce réponce);
+    void removeReponce(Reponce réponce);
+    void updateReponce(Reponce réponce);
+    Reponce findReponceById(int id);
+   List<Reponce> findReponceByEtat(boolean etat);
 }

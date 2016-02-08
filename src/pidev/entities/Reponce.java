@@ -5,7 +5,6 @@
  */
 package pidev.entities;
 
-import java.util.Objects;
 
 /**
  *
@@ -13,67 +12,49 @@ import java.util.Objects;
  */
 public class Reponce {
     private int id;
-    private String etat;
-    private String video ;
+    private boolean etat;
+    private String reponce;
+    private  Question idQuestion ;
 
-    public Reponce(int id, String etat, String video) {
+    public Reponce(int id, boolean etat, String reponce, Question idQuestion) {
         this.id = id;
         this.etat = etat;
-        this.video = video;
+        this.reponce = reponce;
+        this.idQuestion = idQuestion;
     }
 
-    public String getVideo() {
-        return video;
+    public String getReponce() {
+        return reponce;
     }
 
-    public void setVideo(String video) {
-        this.video = video;
+    public void setReponce(String reponce) {
+        this.reponce = reponce;
     }
 
     public int getId() {
         return id;
     }
-    public String getEtat() {
+
+    public boolean isEtat() {
         return etat;
+    }
+
+    public Question getIdQuestion() {
+        return idQuestion;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setEtat(String etat) {
+    public void setEtat(boolean etat) {
         this.etat = etat;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 13 * hash + this.id;
-        return hash;
+    public void setIdQuestion(Question idQuestion) {
+        this.idQuestion = idQuestion;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Reponce other = (Reponce) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.etat, other.etat)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Réponce{" + "id=" + id + ", etat=" + etat + '}';
-    }
     
     
 }
