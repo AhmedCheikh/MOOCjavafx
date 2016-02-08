@@ -10,48 +10,79 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ControllerAffichageCours">
+<AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="677.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ControllerAffichageCours">
    <children>
-      <Button layoutX="480.0" layoutY="21.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Recherche">
-         <font>
-            <Font name="Comic Sans MS" size="13.0" />
-         </font>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow color="#607fee" />
-               </bumpInput>
-               <light>
-                  <Light.Distant color="#71bdd0" />
-               </light>
-            </Lighting>
-         </effect></Button>
-      <TextField layoutX="219.0" layoutY="21.0" prefHeight="29.0" prefWidth="244.0" />
-      <Label layoutX="47.0" layoutY="25.0" prefHeight="17.0" prefWidth="57.0" text="Cours" />
-      <MediaView fx:id="video" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="90.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </MediaView>
-      <TextArea layoutX="238.0" layoutY="90.0" prefHeight="217.0" prefWidth="343.0">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-         <effect>
-            <InnerShadow color="#ee0808" />
-         </effect>
-      </TextArea>
-      <Hyperlink fx:id="Formateur" layoutX="46.0" layoutY="342.0" text="Formateur" textFill="#4d01ff">
+      <TabPane layoutX="1.0" prefHeight="341.0" prefWidth="676.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Cours">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="649.0" prefWidth="676.0">
+                     <children>
+                        <Button layoutX="475.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Recherche">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow color="#607fee" />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#71bdd0" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font>
+                        </Button>
+                        <TextField layoutX="216.0" layoutY="14.0" prefHeight="29.0" prefWidth="244.0" />
+                        <Label layoutX="57.0" layoutY="20.0" prefHeight="17.0" prefWidth="57.0" text="Cours" />
+                        <MediaView fx:id="video1" fitHeight="200.0" fitWidth="200.0" layoutX="57.0" layoutY="77.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MediaView>
+                        <TextArea layoutX="304.0" layoutY="69.0" prefHeight="217.0" prefWidth="343.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow color="#ee0808" />
+                           </effect>
+                        </TextArea>
+                        <Label layoutX="304.0" layoutY="52.0" prefHeight="17.0" prefWidth="84.0" text="Description" />
+                        <Label layoutX="23.0" layoutY="60.0" prefHeight="17.0" prefWidth="125.0" text="Titre du video" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Chapitres">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Hyperlink layoutX="65.0" layoutY="41.0" text="Chapitre1" />
+                        <Hyperlink layoutX="65.0" layoutY="100.0" text="Chapitre2" />
+                        <Hyperlink layoutX="65.0" layoutY="168.0" text="Chapitre3" />
+                        <Hyperlink layoutX="65.0" layoutY="239.0" text="Chapitre4" />
+                        <TextArea layoutX="169.0" layoutY="27.0" prefHeight="51.0" prefWidth="351.0" />
+                        <TextArea layoutX="169.0" layoutY="225.0" prefHeight="51.0" prefWidth="351.0" />
+                        <TextArea layoutX="169.0" layoutY="154.0" prefHeight="51.0" prefWidth="351.0" />
+                        <TextArea layoutX="169.0" layoutY="86.0" prefHeight="51.0" prefWidth="351.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Hyperlink layoutX="510.0" layoutY="344.0" text="Telecharger Cours" textFill="#4d01ff">
          <cursor>
             <Cursor fx:constant="CROSSHAIR" />
          </cursor>
       </Hyperlink>
-      <Hyperlink layoutX="421.0" layoutY="342.0" text="Telecharger Cours" textFill="#4d01ff">
+      <Hyperlink fx:id="Formateur1" layoutX="34.0" layoutY="343.0" text="Formateur" textFill="#4d01ff">
          <cursor>
             <Cursor fx:constant="CROSSHAIR" />
          </cursor>
       </Hyperlink>
-      <Button disable="true" layoutX="219.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Faire Quiz">
+      <Button disable="true" layoutX="237.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Faire Quiz">
          <font>
             <Font size="15.0" />
          </font>

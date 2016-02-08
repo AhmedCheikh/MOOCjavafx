@@ -11,15 +11,24 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Ahmed
- */
+
 public class ControllerAffichageCours implements Initializable {
+    @FXML
+    private void OnClick(ActionEvent event)
+    {
+        Stage window =new Stage() ;
+        AnchorPane layout= new AnchorPane();
+        Scene scene= new Scene(layout);
+        window.setScene(scene);
+        window.show();
+    }
+    
  @FXML
-     private void btnRecherche(ActionEvent event) throws IOException {
+     private void btnRecherche(ActionEvent event)  {
         
         
     }
