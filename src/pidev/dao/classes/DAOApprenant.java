@@ -35,14 +35,13 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     @Override
     public void add(Apprenant a) {
         try {
-            String req="insert into apprenant (cin,nom,prenom,email,login,motDePasse) values (?,?,?,?,?,?)";
+            String req="insert into apprenant (cin,nom,prenom,email) values (?,?,?,?)";
             pst=connection.prepareStatement(req);
             pst.setInt(1, a.getCin());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
-            pst.setString(5, a.getLogin());
-            pst.setString(6, a.getMotDePasse());
+            
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,14 +51,14 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     @Override
     public void update(Apprenant a, int cin) {
-         String requete = "update apprenant set nom=?, prenom=?, email=?, login=? where cin=?";
+         String requete = "update apprenant set nom=?, prenom=?, email=? where cin=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getEmail());
-            pst.setString(4, a.getLogin());
-            pst.setInt(5, cin);
+            
+            pst.setInt(4, cin);
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {

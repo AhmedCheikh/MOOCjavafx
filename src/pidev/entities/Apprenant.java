@@ -16,21 +16,21 @@ public class Apprenant {
     private String nom;
     private String prenom;
     private String email;
-    private String login;
-    private String motDePasse;
+//    private String login;
+//    private String motDePasse;
     private String avatar;
     
 
     public Apprenant() {
     }
 
-    public Apprenant(int cin, String nom, String prenom, String email, String login, String motDePasse) {
+    public Apprenant(int cin, String nom, String prenom, String email) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.login = login;
-        this.motDePasse = motDePasse;
+//        this.login = login;
+//        this.motDePasse = motDePasse;
     }
 
     public int getCin() {
@@ -49,13 +49,13 @@ public class Apprenant {
         return email;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getMotDePasse() {
-        return motDePasse;
-    }
+//    public String getLogin() {
+//        return login;
+//    }
+//
+//    public String getMotDePasse() {
+//        return motDePasse;
+//    }
 
     public void setCin(int cin) {
         this.cin = cin;
@@ -73,13 +73,13 @@ public class Apprenant {
         this.email = email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
+//    public void setLogin(String login) {
+//        this.login = login;
+//    }
+//
+//    public void setMotDePasse(String motDePasse) {
+//        this.motDePasse = motDePasse;
+//    }
 
     public String getAvatar() {
         return avatar;
@@ -96,7 +96,7 @@ public class Apprenant {
         int hash = 7;
         hash = 59 * hash + this.cin;
         hash = 59 * hash + Objects.hashCode(this.email);
-        hash = 59 * hash + Objects.hashCode(this.login);
+//        hash = 59 * hash + Objects.hashCode(this.login);
         return hash;
     }
 
@@ -118,15 +118,15 @@ public class Apprenant {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
+//        if (!Objects.equals(this.login, other.login)) {
+//            return false;
+//        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Apprenant{" + "cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", Email=" + email + ", login=" + login + '}';
+        return "Apprenant{" + "cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", Email=" + email + ",}";
     }
     
     
