@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+
+
+<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="301.0" fitWidth="335.0" layoutX="140.0" layoutY="99.0" opacity="0.17">
+         <image>
+            <Image url="@img/membre.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="61.0" layoutY="195.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Valider vidéos" wrapText="true">
+         <effect>
+            <Lighting diffuseConstant="1.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button layoutX="61.0" layoutY="295.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Valider descriptions">
+         <effect>
+            <Lighting diffuseConstant="1.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button layoutX="410.0" layoutY="95.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Valider cours">
+         <effect>
+            <Lighting diffuseConstant="1.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button layoutX="410.0" layoutY="195.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Valider Quiz">
+         <effect>
+            <Lighting diffuseConstant="1.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button layoutX="410.0" layoutY="295.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Intégration comité">
+         <effect>
+            <Lighting diffuseConstant="1.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button layoutX="61.0" layoutY="95.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Gérer candidatures">
+         <effect>
+            <Lighting diffuseConstant="1.2">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Pane prefHeight="48.0" prefWidth="600.0" style="-fx-background-color: #2A82D4;">
+         <effect>
+            <Glow level="0.73" />
+         </effect>
+         <children>
+            <ImageView layoutX="13.0" layoutY="7.0">
+               <image>
+                  <Image url="@../../../../../../Desktop/Profile.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="55.0" layoutY="16.0" text="Ahmed Cheikh" />
+            <Button layoutX="483.0" layoutY="11.0" mnemonicParsing="false" text="Déconnexion" />
+         </children>
+      </Pane>
+
+   </children>
+</AnchorPane>
