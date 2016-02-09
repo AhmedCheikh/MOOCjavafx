@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="6.0" prefHeight="359.0" prefWidth="601.0" style="-fx-background-color: #e5f2ff;">
+         <children>
+            <Label layoutX="56.0" layoutY="49.0" text="Chercher quiz par type" />
+            <ComboBox layoutX="226.0" layoutY="45.0" prefWidth="150.0" />
+            <TableView depthTest="ENABLE" editable="true" layoutX="4.0" layoutY="93.0" prefHeight="261.0" prefWidth="424.0" tableMenuButtonVisible="true">
+              <columns>
+                <TableColumn prefWidth="248.0" text="Quiz" />
+                <TableColumn prefWidth="209.0" text="Type" />
+                  <TableColumn prefWidth="131.0" text="Action" />
+              </columns>
+            </TableView>
+            <Button layoutX="470.0" layoutY="224.0" mnemonicParsing="false" text="Modifier Quiz" />
+            <Button layoutX="470.0" layoutY="268.0" mnemonicParsing="false" text="Supprimer Quiz" />
+            <Button layoutX="470.0" layoutY="180.0" mnemonicParsing="false" text="Ajouter Quiz" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
