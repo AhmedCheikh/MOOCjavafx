@@ -7,12 +7,12 @@ public class Cours {
     private String description;
     private String video ;
     private int idQuiz ;
-    private int cinFormateur;
-    private Chapitre [] chapitres ;
+    private String cinFormateur;
+    private int [] chapitres ;
     private String difficulte ;
     private String objectif ;
 
-    public Cours(int idCours, String nomCours, String description, String video, int idQuiz, int cinFormateur, Chapitre[] chapitres, String difficulte, String objectif) {
+    public Cours(int idCours, String nomCours, String description, String video, int idQuiz, String cinFormateur, int[] chapitres, String difficulte, String objectif) {
         this.idCours = idCours;
         this.nomCours = nomCours;
         this.description = description;
@@ -22,6 +22,10 @@ public class Cours {
         this.chapitres = chapitres;
         this.difficulte = difficulte;
         this.objectif = objectif;
+    }
+
+    public Cours() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getNomCours() {
@@ -48,11 +52,11 @@ public class Cours {
         return idQuiz;
     }
 
-    public int getCinFormateur() {
+    public String getCinFormateur() {
         return cinFormateur;
     }
 
-    public Chapitre[] getChapitres() {
+    public int[] getChapitres() {
         return chapitres;
     }
 
@@ -92,11 +96,11 @@ public class Cours {
         this.idQuiz = idQuiz;
     }
 
-     public void setCinFormateur(int cinFormateur) {
+     public void setCinFormateur(String cinFormateur) {
         this.cinFormateur = cinFormateur;
     }
 
-    public void setChapitres(Chapitre[] chapitres) {
+    public void setChapitres(int[] chapitres) {
         this.chapitres = chapitres;
     }
 
