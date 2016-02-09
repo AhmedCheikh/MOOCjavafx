@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+   <children>
+      <Pane layoutX="16.0" layoutY="74.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
+         <children>
+            <Label layoutX="90.0" layoutY="86.0" text="Cin: ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="122.0" text="Nom:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="163.0" text="Prenom:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="199.0" text="Email:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="171.0" />
+            <Label layoutX="90.0" layoutY="234.0" text="Login:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="86.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="122.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="239.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="199.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="163.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="279.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="277.0" text="Password:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="492.0" layoutY="322.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="492.0" layoutY="362.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="88.0" layoutY="315.0" text="Confirmer Password:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="266.0" layoutY="232.0" prefHeight="25.0" prefWidth="184.0" promptText="khoubaib" />
+            <TextField layoutX="266.0" layoutY="195.0" prefHeight="25.0" prefWidth="184.0" promptText="khoubaib@esprit.tn" />
+            <TextField layoutX="266.0" layoutY="159.0" prefHeight="25.0" prefWidth="184.0" promptText="khoubaib" />
+            <TextField layoutX="266.0" layoutY="119.0" prefHeight="25.0" prefWidth="184.0" promptText="chamekh" />
+            <TextField layoutX="266.0" layoutY="82.0" prefHeight="25.0" prefWidth="184.0" promptText="09874589" />
+            <PasswordField layoutX="266.0" layoutY="275.0" prefHeight="25.0" prefWidth="184.0" promptText="**********" />
+            <PasswordField layoutX="266.0" layoutY="313.0" prefHeight="25.0" prefWidth="184.0" promptText="**********" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="36.0" stroke="BLACK" strokeType="INSIDE" width="744.0" />
+            <Label layoutX="316.0" layoutY="3.0" text="Inscription" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="266.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Valider">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button layoutX="384.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Annuler">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </Pane>
+      <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="670.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Exit">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>
