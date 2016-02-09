@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane  id="AnchorPane" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="118.0" layoutY="29.0" prefHeight="294.0" prefWidth="364.0">
         <columnConstraints>
@@ -39,6 +39,7 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
            
             <Label text="Nom:" />
+            <Button mnemonicParsing="false" text="..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <GridPane layoutX="125.0" layoutY="376.0" prefHeight="30.0" prefWidth="453.0">
@@ -50,8 +51,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" fx:id="verifier_button"  text="Verifier" />
-            <Button mnemonicParsing="false" fx:id="Annuler_button"  text="Annuler" GridPane.columnIndex="1" />
+            <Button fx:id="verifier_button" mnemonicParsing="false" text="Verifier" />
+            <Button fx:id="Annuler_button" mnemonicParsing="false" text="Annuler" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

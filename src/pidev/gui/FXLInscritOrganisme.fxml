@@ -24,15 +24,15 @@
       <GridPane layoutX="45.0" layoutY="13.0" prefHeight="414.0" prefWidth="577.0">
          <children>
             <Label text="Logo:" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Site Web:" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Video:" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="description" GridPane.rowIndex="4" />
             <Label text="Telephone:" />
             <TextField GridPane.columnIndex="1" />
             <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
