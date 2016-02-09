@@ -18,6 +18,8 @@ public class Apprenant {
     private String email;
     private String login;
     private String motDePasse;
+    private String avatar;
+    
 
     public Apprenant() {
     }
@@ -78,6 +80,16 @@ public class Apprenant {
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
+    
 
     @Override
     public int hashCode() {

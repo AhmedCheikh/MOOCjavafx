@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="734.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Back" />
+      <Label layoutX="39.0" layoutY="20.0" prefHeight="74.0" prefWidth="218.0" text="List Cours">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="25.0" layoutY="80.0" prefHeight="484.0" prefWidth="798.0" style="-fx-border-color: #D9EFF5; -fx-border-width: 5px;">
+         <children>
+            <TableView layoutX="5.0" layoutY="4.0" prefHeight="477.0" prefWidth="788.0">
+              <columns>
+                <TableColumn prefWidth="187.0" text="Nom" />
+                <TableColumn prefWidth="161.0" text="Niveau de difficulté " />
+                  <TableColumn prefWidth="185.0" text="Date de debut" />
+                  <TableColumn prefWidth="254.0" text="Commentaire" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
