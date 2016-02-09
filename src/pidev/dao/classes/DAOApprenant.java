@@ -9,10 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOApprenant;
 import pidev.entities.Apprenant;
+import pidev.entities.Cours;
 import pidev.techniques.DataSource;
 
 /**
@@ -63,6 +65,21 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         } catch (SQLException ex) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
         }
+    }
+
+    @Override
+    public List<Cours> listCoursSuivi(int cin) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void commetCours(String c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void apprecierCours() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
