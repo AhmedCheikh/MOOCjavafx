@@ -16,6 +16,6 @@ public interface IDAOApprenant<T> {
     void add(T t);
     void update(T t, int cin);
     List<Cours> listCoursSuivi(int cin);
-    void commetCours(String c);
+    void commenterCours(String c);
     void apprecierCours();
 }

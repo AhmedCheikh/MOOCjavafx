@@ -73,7 +73,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     }
 
     @Override
-    public void commetCours(String c) {
+    public void commenterCours(String c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
