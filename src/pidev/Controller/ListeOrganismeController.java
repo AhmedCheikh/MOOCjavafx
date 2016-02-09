@@ -9,22 +9,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
-
-
 /**
  * FXML Controller class
  *
  * @author akoubi
  */
-public class InscriptionFormateurController implements Initializable {
+public class ListeOrganismeController implements Initializable {
 
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-     // TODO
-    }
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
-    
-    
-
 }
