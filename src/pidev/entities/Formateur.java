@@ -17,10 +17,23 @@ public class Formateur {
     private String cv;
     private int etat;
 
-    public Formateur() {
+     public Formateur() {
     
     }
 
+    public Formateur(int id, String nom, String prenom, String mail, String adresse, String login, String password, String avatar, String cv, int etat) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.adresse = adresse;
+        this.login = login;
+        this.password = password;
+        this.avatar = avatar;
+        this.cv = cv;
+        this.etat = etat;
+    }
+    
     public int getId() {
         return id;
     }

@@ -10,7 +10,7 @@ public interface IDaoCours {
 
     void updateCours(Cours cours);
 
-    void removeCoursByFormateur(int cinFormateur);
+    void removeCoursByFormateur(String cinFormateur);
 
     void removeCoursById(int id);
 
@@ -18,7 +18,7 @@ public interface IDaoCours {
 
     Cours findCoursById(int id);
 
-    Cours findCoursByFormateur(int cinFormateur);
+    Cours findCoursByFormateur(String cinFormateur);
     
     Cours findCoursByDifficulte (String difficulte) ;
 }

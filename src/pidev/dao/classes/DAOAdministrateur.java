@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.sql.Connection;
 import pidev.dao.interfaces.IDAOAdministrateur ; 
+import pidev.techniques.DataSource;
 
 /**
  *
@@ -12,9 +14,13 @@ import pidev.dao.interfaces.IDAOAdministrateur ;
  */
 public class DAOAdministrateur implements IDAOAdministrateur{
 
+    public DAOAdministrateur() {
+        Connection connection = DataSource.getInstance().getConnection();
+    }
+
     @Override
     public void validerPreinscriOrganisme() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

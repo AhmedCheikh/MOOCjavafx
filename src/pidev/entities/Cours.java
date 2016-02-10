@@ -3,26 +3,39 @@ package pidev.entities;
 
 public class Cours {
     private int idCours ;
+    private String nomCours;
     private String description;
     private String video ;
     private int idQuiz ;
-    private int cinFormateur;
-    private Chapitre [] chapitres ;
+    private String cinFormateur;
+    private int [] chapitres ;
     private String difficulte ;
     private String objectif ;
-    private String appreciation;
-    
-    public Cours(String description, String video, int idQuiz, int cinFormateur,String difficulte,String objectif) {
-       
+
+    public Cours(int idCours, String nomCours, String description, String video, int idQuiz, String cinFormateur, int[] chapitres, String difficulte, String objectif) {
+        this.idCours = idCours;
+        this.nomCours = nomCours;
         this.description = description;
         this.video = video;
         this.idQuiz = idQuiz;
-        this.cinFormateur=cinFormateur ;
-        this.difficulte=difficulte;
-        this.objectif=objectif;
-        
+        this.cinFormateur = cinFormateur;
+        this.chapitres = chapitres;
+        this.difficulte = difficulte;
+        this.objectif = objectif;
     }
 
+    public Cours() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getNomCours() {
+        return nomCours;
+    }
+
+    public void setNomCours(String nomCours) {
+        this.nomCours = nomCours;
+    }
+    
     public int getIdCours() {
         return idCours;
     }
@@ -39,11 +52,11 @@ public class Cours {
         return idQuiz;
     }
 
-    public int getCinFormateur() {
+    public String getCinFormateur() {
         return cinFormateur;
     }
 
-    public Chapitre[] getChapitres() {
+    public int[] getChapitres() {
         return chapitres;
     }
 
@@ -55,9 +68,7 @@ public class Cours {
         return objectif;
     }
 
-    public String getAppreciation() {
-        return appreciation;
-    }
+   
 
     public void setDifficulte(String dificulte) {
         this.difficulte = dificulte;
@@ -67,9 +78,7 @@ public class Cours {
         this.objectif = objectif;
     }
 
-    public void setAppreciation(String appreciation) {
-        this.appreciation = appreciation;
-    }
+    
 
     public void setIdCours(int idCours) {
         this.idCours = idCours;
@@ -87,11 +96,11 @@ public class Cours {
         this.idQuiz = idQuiz;
     }
 
-     public void setCinFormateur(int cinFormateur) {
+     public void setCinFormateur(String cinFormateur) {
         this.cinFormateur = cinFormateur;
     }
 
-    public void setChapitres(Chapitre[] chapitres) {
+    public void setChapitres(int[] chapitres) {
         this.chapitres = chapitres;
     }
 
@@ -119,7 +128,7 @@ public class Cours {
 
     @Override
     public String toString() {
-        return "Cours{" + "idCours=" + idCours + ", description=" + description + ", video=" + video + ", idQuiz=" + idQuiz + ", cinFormateur=" + cinFormateur + ", chapitres=" + chapitres + ", difficulte=" + difficulte + ", objectif=" + objectif + ", appreciation=" + appreciation + '}';
+        return "Cours{" + "idCours=" + idCours + ", description=" + description + ", video=" + video + ", idQuiz=" + idQuiz + ", cinFormateur=" + cinFormateur + ", chapitres=" + chapitres + ", difficulte=" + difficulte + ", objectif=" + objectif +  '}';
     }
 
 

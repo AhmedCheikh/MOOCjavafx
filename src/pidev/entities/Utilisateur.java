@@ -3,9 +3,9 @@ package pidev.entities;
 
 
 public class Utilisateur {
-    private String login ;
-    private String password ;
-    private String role ;
+    protected String login ;
+    protected String password ;
+    protected String role ;
 
     public Utilisateur(String login, String password, String role) {
         this.login = login;
