@@ -12,12 +12,11 @@ import java.util.Objects;
  * @author Khoubaib
  */
 public class Apprenant extends Utilisateur{
+
     private String cinApprenant;
     private String nom;
     private String prenom;
     private String email;
-    private String login;
-    private String motDePasse;
     private String avatar;
     private int idUser;
 
