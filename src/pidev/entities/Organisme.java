@@ -5,30 +5,29 @@
  */
 package pidev.entities;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 /**
  *
  * @author Rimy Jeljeli
  */
-public class Organisme extends Utilisateur{
-     private int id;
+public class Organisme extends Utilisateur {
+
+    private int id;
     private String nom;
     private String email;
-     private String siteweb;
-     private String adresse;
-     private Number telephone;
-     private String description;
-     private String document;
-     private String logo;
-    private String [] Formateur ;
+    private String siteweb;
+    private String adresse;
+    private Number telephone;
+    private String description;
+    private File document;
+    private File logo;
+    private int cinFormateur;
+    private int idUser;
 
-    public Organisme(String login, String password, String role) {
-        super(login, password, role);
-    }
-
-    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, String document, String logo, String[] Formateur, String login, String password, String role) {
-        super(login, password, role);
+    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, File document, File logo, int cinFormateur, int idUser, String login, String password, String role) {
+        super(idUser, login, password, role);
         this.id = id;
         this.nom = nom;
         this.email = email;
@@ -38,9 +37,8 @@ public class Organisme extends Utilisateur{
         this.description = description;
         this.document = document;
         this.logo = logo;
-        this.Formateur = Formateur;
+        this.cinFormateur = cinFormateur;
     }
-    
 
     public int getId() {
         return id;
@@ -70,16 +68,16 @@ public class Organisme extends Utilisateur{
         return description;
     }
 
-    public String getDocument() {
+    public File getDocument() {
         return document;
     }
 
-    public String getLogo() {
+    public File getLogo() {
         return logo;
     }
 
-    public String[] getFormateur() {
-        return Formateur;
+    public int getCinFormateur() {
+        return cinFormateur;
     }
 
     public void setId(int id) {
@@ -110,23 +108,23 @@ public class Organisme extends Utilisateur{
         this.description = description;
     }
 
-    public void setDocument(String document) {
+    public void setDocument(File document) {
         this.document = document;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(File logo) {
         this.logo = logo;
     }
 
-    public void setFormateur(String[] Formateur) {
-        this.Formateur = Formateur;
+    public void setCinFormateur(int cinFormateur) {
+        this.cinFormateur = cinFormateur;
     }
 
     @Override
     public String toString() {
-        return "Organisme{" + "id=" + id + ", nom=" + nom + ", email=" + email + ", siteweb=" + siteweb + ", adresse=" + adresse + ", telephone=" + telephone + ", description=" + description + ", document=" + document + ", logo=" + logo + ", Formateur=" + Formateur + '}';
+        return "Organisme{" + "id=" + id + ", nom=" + nom + ", email=" + email + ", siteweb=" + siteweb + ", adresse=" + adresse + ", telephone=" + telephone + ", description=" + description + ", document=" + document + ", logo=" + logo + ", cinFormateur=" + cinFormateur + ", idUser=" + idUser + '}';
     }
     
+
     
-   
 }

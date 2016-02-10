@@ -1,85 +1,38 @@
-
 package pidev.entities;
 
+import java.io.File;
 
 public class Chapitre {
 
-    private int id;
+    private int idChapitre;
     private String titre;
-    private String presentation;
-    private String video;
+    private File presentation;
     private String objectif;
-    private boolean etat;
-    private Quiz Quiz;
+    private int etat;
+    private Quiz idQuiz;
     private Cours idCours;
+    private int idVideo;
 
-    public Chapitre(int id, String titre, String presentation, String video, String objectif, boolean etat, Quiz Quiz, Cours idCours) {
-        this.id = id;
+    public Chapitre(int idChapitre, String titre, File presentation, String objectif, int etat, Quiz idQuiz, Cours idCours, int idVideo) {
+        this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
-        this.video = video;
         this.objectif = objectif;
         this.etat = etat;
-        this.Quiz = Quiz;
+        this.idQuiz = idQuiz;
         this.idCours = idCours;
+        this.idVideo = idVideo;
     }
 
- 
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-   
-    
-
-    public void setTb_Quiz(Quiz Quiz) {
-        this.Quiz = Quiz;
-    }
-
-
-    public void setVideo(String video) {
-        this.video = video;
-    }
-
-    public int getId() {
-        return id;
+    public int getIdChapitre() {
+        return idChapitre;
     }
 
     public String getTitre() {
         return titre;
     }
 
-   
-
-    public Quiz getQuiz() {
-        return Quiz;
-    }
-
-    public String getVideo() {
-        return video;
-    }
-    public boolean isEtat() {
-        return etat;
-    }
-
-    public Cours getIdCours() {
-        return idCours;
-    }
-
-    public void setEtat(boolean etat) {
-        this.etat = etat;
-    }
-
-    public void setIdCours(Cours idCours) {
-        this.idCours = idCours;
-    }
-
-    public String getPresentation() {
+    public File getPresentation() {
         return presentation;
     }
 
@@ -87,7 +40,31 @@ public class Chapitre {
         return objectif;
     }
 
-    public void setPresentation(String presentation) {
+    public int getEtat() {
+        return etat;
+    }
+
+    public Quiz getIdQuiz() {
+        return idQuiz;
+    }
+
+    public Cours getIdCours() {
+        return idCours;
+    }
+
+    public int getIdVideo() {
+        return idVideo;
+    }
+
+    public void setIdChapitre(int idChapitre) {
+        this.idChapitre = idChapitre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public void setPresentation(File presentation) {
         this.presentation = presentation;
     }
 
@@ -95,13 +72,26 @@ public class Chapitre {
         this.objectif = objectif;
     }
 
-    public void setQuiz(Quiz Quiz) {
-        this.Quiz = Quiz;
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
+    public void setIdQuiz(Quiz idQuiz) {
+        this.idQuiz = idQuiz;
+    }
+
+    public void setIdCours(Cours idCours) {
+        this.idCours = idCours;
+    }
+
+    public void setIdVideo(int idVideo) {
+        this.idVideo = idVideo;
     }
 
     @Override
     public String toString() {
-        return "Chapitre{" + "id=" + id + ", titre=" + titre + ", presentation=" + presentation + ", video=" + video + ", objectif=" + objectif + ", etat=" + etat + ", Quiz=" + Quiz + ", idCours=" + idCours + '}';
+        return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif + ", etat=" + etat + ", idQuiz=" + idQuiz + ", idCours=" + idCours + ", idVideo=" + idVideo + '}';
     }
+
     
 }

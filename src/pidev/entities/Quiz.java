@@ -2,69 +2,74 @@
 package pidev.entities;
 
 public class Quiz {
-    private int id;
+    private int idQuiz;
     private String titre;
-    private String type;
-    private Question[] Questions;
-    private Cours idcours;
-    private Chapitre idchapitre;
+    private int type;
+    private int etat;
+    private int idCours;
+    private int idChapitre;
 
-    public Quiz(int id, String titre, String type, Question[] Questions, Cours idcours, Chapitre idchapitre) {
-        this.id = id;
+    public Quiz(int idQuiz, String titre, int type, int etat, int idCours, int idChapitre) {
+        this.idQuiz = idQuiz;
         this.titre = titre;
         this.type = type;
-        this.Questions = Questions;
-        this.idcours = idcours;
-        this.idchapitre = idchapitre;
+        this.etat = etat;
+        this.idCours = idCours;
+        this.idChapitre = idChapitre;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setQuestions(Question[] Questions) {
-        this.Questions = Questions;
-    }
-
-    public void setIdcours(Cours idcours) {
-        this.idcours = idcours;
-    }
-
-    public void setIdchapitre(Chapitre idchapitre) {
-        this.idchapitre = idchapitre;
-    }
-
-    public int getId() {
-        return id;
+    public int getIdQuiz() {
+        return idQuiz;
     }
 
     public String getTitre() {
         return titre;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public Question[] getQuestions() {
-        return Questions;
+    public int getEtat() {
+        return etat;
     }
 
-    public Cours getIdcours() {
-        return idcours;
+    public int getIdCours() {
+        return idCours;
     }
 
-    public Chapitre getIdchapitre() {
-        return idchapitre;
+    public int getIdChapitre() {
+        return idChapitre;
     }
-    
-    
+
+    public void setIdQuiz(int idQuiz) {
+        this.idQuiz = idQuiz;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
+    public void setIdCours(int idCours) {
+        this.idCours = idCours;
+    }
+
+    public void setIdChapitre(int idChapitre) {
+        this.idChapitre = idChapitre;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz{" + "idQuiz=" + idQuiz + ", titre=" + titre + ", type=" + type + ", etat=" + etat + ", idCours=" + idCours + ", idChapitre=" + idChapitre + '}';
+    }
+
+   
 }

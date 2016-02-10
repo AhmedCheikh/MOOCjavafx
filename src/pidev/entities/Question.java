@@ -3,50 +3,44 @@ package pidev.entities;
 
 
 public class Question {
-    private  int id;
+    private  int idQuestion;
     private String question;
-    private Reponce[] mvReponce;
-    private Quiz idquiz;
+    private int idQuiz;  
 
-    public Question(int id, String question, Reponce[] mvReponce, Quiz idquiz) {
-        this.id = id;
+    public Question(int idQuestion, String question, int idQuiz) {
+        this.idQuestion = idQuestion;
         this.question = question;
-        this.mvReponce = mvReponce;
-        this.idquiz = idquiz;
-    }
-    
-    public Quiz getIdquiz() {
-        return idquiz;
+        this.idQuiz = idQuiz;
     }
 
-    public void setIdquiz(Quiz idquiz) {
-        this.idquiz = idquiz;
-    }
-    public int getId() {
-        return id;
+    public int getIdQuestion() {
+        return idQuestion;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public Reponce[] getMvReponce() {
-        return mvReponce;
+    public int getIdQuiz() {
+        return idQuiz;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdQuestion(int idQuestion) {
+        this.idQuestion = idQuestion;
     }
 
     public void setQuestion(String question) {
         this.question = question;
     }
 
-    public void setMvReponce(Reponce[] mvReponce) {
-        this.mvReponce = mvReponce;
+    public void setIdQuiz(int idQuiz) {
+        this.idQuiz = idQuiz;
     }
 
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Question{" + "idQuestion=" + idQuestion + ", question=" + question + ", idQuiz=" + idQuiz + '}';
+    }
+
+  
 }
