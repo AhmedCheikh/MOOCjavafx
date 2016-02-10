@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.InscrireFormateurController">
    <children>
       <Pane layoutX="16.0" layoutY="74.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
@@ -77,42 +77,42 @@
                   <TextField fx:id="txtLogin" prefHeight="25.0" prefWidth="184.0" promptText="votre pseudo" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <PasswordField fx:id="txtRepaet" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label fx:id="er1" prefHeight="3.0" prefWidth="211.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2">
+                  <Label fx:id="er1" prefHeight="3.0" prefWidth="211.0" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er2" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="er2" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er3" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label fx:id="er3" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er4" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label fx:id="er4" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er5" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Label fx:id="er5" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er6" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Label fx:id="er6" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er7" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <Label fx:id="er7" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er8" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <Label fx:id="er8" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
