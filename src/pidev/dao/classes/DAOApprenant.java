@@ -9,12 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOApprenant;
 import pidev.entities.Apprenant;
-import pidev.entities.Cours;
+import pidev.entities.CoursSuivie;
 import pidev.techniques.DataSource;
 
 /**
@@ -37,10 +38,12 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         try {
             String req="insert into apprenant (cin,nom,prenom,email) values (?,?,?,?)";
             pst=connection.prepareStatement(req);
+
             pst.setString(1, a.getCinApprenant());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
+           
             
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -50,7 +53,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     }
 
     @Override
-    public void update(Apprenant a, int cin) {
+    public void update(Apprenant a, String cin) {
          String requete = "update apprenant set nom=?, prenom=?, email=? where cin=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
@@ -58,7 +61,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getEmail());
             
-            pst.setInt(4, cin);
+            pst.setString(4, cin);
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -67,20 +70,23 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     }
 
     @Override
-    public List<Cours> listCoursSuivi(int cin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void commetCours(String c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void apprecierCours() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
+    public List<CoursSuivie> listCoursSuivi(String cin) {
+        String req = "select from coursuivi where cin == cin ";
+        List<CoursSuivie> listCours=new ArrayList<>();
+        
+        try {
+            pst=connection.prepareStatement(req);
+            rs=pst.executeQuery();
+            
+            while(rs.next()){
+                CoursSuivie cs =new CoursSuivie(rs.getInt("idCours"), rs.getInt("cinApprenant"), rs.getString("Commentaire"), rs.getDouble("note"), rs.getDate("dateDebut"), rs.getString("appreciation"));
+                
+                listCours.add(cs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOCours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listCours;
+        }
     
 }

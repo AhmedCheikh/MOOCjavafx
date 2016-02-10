@@ -6,7 +6,8 @@
 package pidev.dao.interfaces;
 
 import java.util.List;
-import pidev.entities.Cours;
+
+import pidev.entities.CoursSuivie;
 
 /**
  *
@@ -14,8 +15,6 @@ import pidev.entities.Cours;
  */
 public interface IDAOApprenant<T> {
     void add(T t);
-    void update(T t, int cin);
-    List<Cours> listCoursSuivi(int cin);
-    void commetCours(String c);
-    void apprecierCours();
+    void update(T t, String cin);
+    List<CoursSuivie> listCoursSuivi(String cin);
 }

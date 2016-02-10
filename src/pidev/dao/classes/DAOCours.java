@@ -34,7 +34,7 @@ Connection connection;
             
             pst.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOCours.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
