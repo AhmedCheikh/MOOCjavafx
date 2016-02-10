@@ -6,7 +6,7 @@
 package pidev.dao.classes;
 import java.util.List;
 import pidev.dao.interfaces.IDAOReponce;
-import pidev.entities.Reponce;
+import pidev.entities.Reponse;
 
 /**
  *
@@ -15,27 +15,27 @@ import pidev.entities.Reponce;
 public class DAOReponce implements IDAOReponce {
 
     @Override
-    public void addReponce(Reponce réponce) {
+    public void addReponce(Reponse réponce) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeReponce(Reponce réponce) {
+    public void removeReponce(Reponse réponce) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateReponce(Reponce réponce) {
+    public void updateReponce(Reponse réponce) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Reponce findReponceById(int id) {
+    public Reponse findReponceById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Reponce> findReponceByEtat(boolean etat) {
+    public List<Reponse> findReponceByEtat(boolean etat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -1,12 +1,12 @@
 
 package pidev.dao.interfaces;
 import java.util.List;
-import pidev.entities.Reponce;
+import pidev.entities.Reponse;
 
 public interface IDAOReponce {
-    void addReponce(Reponce réponce);
-    void removeReponce(Reponce réponce);
-    void updateReponce(Reponce réponce);
-    Reponce findReponceById(int id);
-   List<Reponce> findReponceByEtat(boolean etat);
+    void addReponce(Reponse réponce);
+    void removeReponce(Reponse réponce);
+    void updateReponce(Reponse réponce);
+    Reponse findReponceById(int id);
+   List<Reponse> findReponceByEtat(boolean etat);
 }

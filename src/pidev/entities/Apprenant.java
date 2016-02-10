@@ -11,30 +11,26 @@ import java.util.Objects;
  *
  * @author Khoubaib
  */
-public class Apprenant {
-    private int cin;
+public class Apprenant extends Utilisateur{
+
+    private String cinApprenant;
     private String nom;
     private String prenom;
     private String email;
-//    private String login;
-//    private String motDePasse;
     private String avatar;
-    
+    private int idUser;
 
-    public Apprenant() {
-    }
-
-    public Apprenant(int cin, String nom, String prenom, String email) {
-        this.cin = cin;
+    public Apprenant(String cinApprenant, String nom, String prenom, String email, String avatar, int idUser, String login, String password, String role) {
+        super(idUser, login, password, role);
+        this.cinApprenant = cinApprenant;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-//        this.login = login;
-//        this.motDePasse = motDePasse;
+        this.avatar = avatar;
     }
 
-    public int getCin() {
-        return cin;
+    public String getCinApprenant() {
+        return cinApprenant;
     }
 
     public String getNom() {
@@ -49,16 +45,12 @@ public class Apprenant {
         return email;
     }
 
-//    public String getLogin() {
-//        return login;
-//    }
-//
-//    public String getMotDePasse() {
-//        return motDePasse;
-//    }
+    public String getAvatar() {
+        return avatar;
+    }
 
-    public void setCin(int cin) {
-        this.cin = cin;
+    public void setCinApprenant(String cinApprenant) {
+        this.cinApprenant = cinApprenant;
     }
 
     public void setNom(String nom) {
@@ -73,61 +65,9 @@ public class Apprenant {
         this.email = email;
     }
 
-//    public void setLogin(String login) {
-//        this.login = login;
-//    }
-//
-//    public void setMotDePasse(String motDePasse) {
-//        this.motDePasse = motDePasse;
-//    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-    
-    
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.cin;
-        hash = 59 * hash + Objects.hashCode(this.email);
-//        hash = 59 * hash + Objects.hashCode(this.login);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Apprenant other = (Apprenant) obj;
-        if (this.cin != other.cin) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-//        if (!Objects.equals(this.login, other.login)) {
-//            return false;
-//        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Apprenant{" + "cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", Email=" + email + ",}";
-    }
-    
-    
+   
 }

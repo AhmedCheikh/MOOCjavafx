@@ -37,7 +37,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         try {
             String req="insert into apprenant (cin,nom,prenom,email) values (?,?,?,?)";
             pst=connection.prepareStatement(req);
-            pst.setInt(1, a.getCin());
+            pst.setString(1, a.getCinApprenant());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
