@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -9,14 +8,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="48.0" prefWidth="600.0" style="-fx-background-color: #2A82D4;">
          <children>
             <ImageView layoutX="13.0" layoutY="7.0">
                <image>
-                  <Image url="@../../../../../../Desktop/Profile.png" />
+                  <Image url="@../img/Profile.png" />
                </image>
             </ImageView>
             <Label layoutX="55.0" layoutY="16.0" text="Administrateur" />
