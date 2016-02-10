@@ -1,13 +1,24 @@
 
 package pidev.tests;
-import pidev.entities.* ;
-import pidev.dao.classes.*;
-import pidev.dao.interfaces.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class test {
-    public static void main(String[] args) {
-//        Apprenant app = new Apprenant("83569", "ahmed", "ahmed", "ahmed@esprit.tn");
-//        IDAOApprenant appdao = new DAOApprenant();
-//        appdao.add(app);
+public class test extends Application{
+
+    @Override
+    public void start(Stage stage) throws Exception {
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/InscrireFormateur.fxml"));
+        Scene scene = new Scene(root);        
+        stage.setScene(scene);
+        stage.setTitle("Inscrirption Formateur");
+        stage.show();
     }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+   
 }
