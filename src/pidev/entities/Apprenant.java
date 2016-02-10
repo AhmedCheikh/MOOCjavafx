@@ -12,19 +12,19 @@ import java.util.Objects;
  * @author Khoubaib
  */
 public class Apprenant {
-    private int cin;
+    private String cin;
     private String nom;
     private String prenom;
     private String email;
-//    private String login;
-//    private String motDePasse;
+    private String login;
+    private String motDePasse;
     private String avatar;
     
 
     public Apprenant() {
     }
 
-    public Apprenant(int cin, String nom, String prenom, String email) {
+    public Apprenant(String cin, String nom, String prenom, String email) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
@@ -33,7 +33,7 @@ public class Apprenant {
 //        this.motDePasse = motDePasse;
     }
 
-    public int getCin() {
+    public String getCin() {
         return cin;
     }
 
@@ -49,15 +49,15 @@ public class Apprenant {
         return email;
     }
 
-//    public String getLogin() {
-//        return login;
-//    }
-//
-//    public String getMotDePasse() {
-//        return motDePasse;
-//    }
+    public String getLogin() {
+        return login;
+    }
 
-    public void setCin(int cin) {
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setCin(String cin) {
         this.cin = cin;
     }
 
@@ -73,13 +73,13 @@ public class Apprenant {
         this.email = email;
     }
 
-//    public void setLogin(String login) {
-//        this.login = login;
-//    }
-//
-//    public void setMotDePasse(String motDePasse) {
-//        this.motDePasse = motDePasse;
-//    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
 
     public String getAvatar() {
         return avatar;
@@ -88,15 +88,13 @@ public class Apprenant {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-    
-    
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.cin;
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.cin);
         hash = 59 * hash + Objects.hashCode(this.email);
-//        hash = 59 * hash + Objects.hashCode(this.login);
+        hash = 59 * hash + Objects.hashCode(this.login);
         return hash;
     }
 
@@ -112,17 +110,21 @@ public class Apprenant {
             return false;
         }
         final Apprenant other = (Apprenant) obj;
-        if (this.cin != other.cin) {
+        if (!Objects.equals(this.cin, other.cin)) {
             return false;
         }
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-//        if (!Objects.equals(this.login, other.login)) {
-//            return false;
-//        }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
         return true;
     }
+    
+    
+
+  
 
     @Override
     public String toString() {
