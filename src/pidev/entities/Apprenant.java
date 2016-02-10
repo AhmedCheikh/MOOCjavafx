@@ -69,5 +69,39 @@ public class Apprenant extends Utilisateur{
         this.avatar = avatar;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.cinApprenant);
+        hash = 71 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Apprenant other = (Apprenant) obj;
+        if (!Objects.equals(this.cinApprenant, other.cinApprenant)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Apprenant{" + "cinApprenant=" + cinApprenant + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + '}';
+    }
+
    
 }
