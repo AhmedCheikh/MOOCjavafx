@@ -11,44 +11,31 @@ package pidev.entities;
  */
 public class Administrateur extends Utilisateur {
     
-    private int id ; 
+    private int idAdmin ; 
+    private int idUser;
 
-    public Administrateur(int id, String login, String password, String role) {
-        super(login, password, role);
-        this.id = id;
+
+
+    public Administrateur(int idAdmin, int idUser, String login, String password, String role) {
+        super(idUser, login, password, role);
+        this.idAdmin = idAdmin;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdAdmin() {
+        return idAdmin;
     }
 
-    public int getId() {
-        return id;
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     @Override
     public String toString() {
-        return "Administrateur{" + "id=" + id + '}';
+        return "Administrateur{" + "idAdmin=" + idAdmin + ", idUser=" + idUser + '}';
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.id;
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Administrateur other = (Administrateur) obj;
-        return true;
-    }
-    
+
+
     
 }

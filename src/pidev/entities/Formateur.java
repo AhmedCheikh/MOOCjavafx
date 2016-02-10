@@ -1,149 +1,102 @@
 package pidev.entities;
 
+import java.io.File;
+
 /**
  *
  * @author akoubi
  */
-public class Formateur {
+public class Formateur extends Utilisateur{
 
-    private int id;
+    private int cinFormateur;
     private String nom;
     private String prenom;
     private String mail;
     private String adresse;
-    private String login;
-    private String password;
-    private String avatar;
+    private int idUser;
+    private File avatar;
     private String cv;
-    private int etat;
+    private File etat;
 
-     public Formateur() {
-    
-    }
-
-    public Formateur(int id, String nom, String prenom, String mail, String adresse, String login, String password, String avatar, String cv, int etat) {
-        this.id = id;
+    public Formateur(int cinFormateur, String nom, String prenom, String mail, String adresse, File avatar, String cv, File etat, int idUser, String login, String password, String role) {
+        super(idUser, login, password, role);
+        this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
         this.adresse = adresse;
-        this.login = login;
-        this.password = password;
         this.avatar = avatar;
         this.cv = cv;
         this.etat = etat;
     }
-    
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCinFormateur() {
+        return cinFormateur;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public String getPrenom() {
         return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public String getMail() {
         return mail;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public String getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatar() {
+    public File getAvatar() {
         return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
     public String getCv() {
         return cv;
     }
 
+    public File getEtat() {
+        return etat;
+    }
+
+    public void setCinFormateur(int cinFormateur) {
+        this.cinFormateur = cinFormateur;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setAvatar(File avatar) {
+        this.avatar = avatar;
+    }
+
     public void setCv(String cv) {
         this.cv = cv;
     }
 
-    public int getEtat() {
-        return etat;
-    }
-
-    public void setEtat(int etat) {
+    public void setEtat(File etat) {
         this.etat = etat;
-    }
-
-   
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Formateur other = (Formateur) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
     }
 
     @Override
     public String toString() {
-        return "Formateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", adresse=" + adresse + ", login=" + login + ", password=" + password + ", avatar=" + avatar + ", cv=" + cv + ", etat=" + etat + '}';
+        return "Formateur{" + "cinFormateur=" + cinFormateur + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", adresse=" + adresse + ", idUser=" + idUser + ", avatar=" + avatar + ", cv=" + cv + ", etat=" + etat + '}';
     }
 
   
