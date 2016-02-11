@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pidev.tests.test;
+import pidev.entities.*;
 /**
  *
  * @author akoubi
@@ -23,23 +24,27 @@ import pidev.tests.test;
 public class ControllerAthentification implements Initializable {
     
     @FXML
-    private Label lblmessage;
+    private Label message;
     @FXML
     private TextField login;
     @FXML
     private PasswordField password;
-    
+    private Administrateur ad ;
     
     @FXML
     private void btnConnexionAction(ActionEvent event) throws IOException  {
+//        if (login.toString().equals(ad.getLoginAdmin()) && password.toString().equals(ad.getPasswordAdmin()))
+//        {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-                 Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/modifierCours.fxml"));
+                 Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilAdministrateur.fxml"));
             Stage stage =  new Stage();
             Scene scene = new Scene(parent);
             stage.setScene(scene);
-            stage.setTitle("modifier");
+            stage.setTitle("Profil");
             stage.show();
-        
+//        }
+//        else
+//            message.setText("mot de passe ou login erroné");
     }
     
     @Override

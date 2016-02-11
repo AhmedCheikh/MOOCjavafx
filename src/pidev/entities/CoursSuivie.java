@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class CoursSuivie {
     private int idCours ;
-    private int cinApprenant ;
+    private String cinApprenant ;
     private String Commentaire ;
     private double note ;
-    private Date dateDebut ;
+    private String dateDebut ;
     private String appreciation;
 
-    public CoursSuivie(int idCours, int cinApprenant, String Commentaire, double note, Date dateDebut, String appreciation) {
+    public CoursSuivie(int idCours, String cinApprenant, String Commentaire, double note, String dateDebut, String appreciation) {
         this.idCours = idCours;
         this.cinApprenant = cinApprenant;
         this.Commentaire = Commentaire;
@@ -34,9 +34,7 @@ public class CoursSuivie {
         return idCours;
     }
 
-    public int getCinApprenant() {
-        return cinApprenant;
-    }
+    
 
     public String getCommentaire() {
         return Commentaire;
@@ -46,17 +44,25 @@ public class CoursSuivie {
         return note;
     }
 
-    public Date getDateDebut() {
+    public String getDateDebut() {
         return dateDebut;
     }
+
+    
 
     public void setIdCours(int idCours) {
         this.idCours = idCours;
     }
 
-    public void setCinApprenant(int cinApprenant) {
+    public String getCinApprenant() {
+        return cinApprenant;
+    }
+
+    public void setCinApprenant(String cinApprenant) {
         this.cinApprenant = cinApprenant;
     }
+
+    
 
     public void setCommentaire(String Commentaire) {
         this.Commentaire = Commentaire;
@@ -66,8 +72,10 @@ public class CoursSuivie {
         this.note = note;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
+
+    
     
 }

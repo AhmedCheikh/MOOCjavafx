@@ -12,7 +12,7 @@ import pidev.entities.*;
 import pidev.dao.classes.*;
 import pidev.techniques.DataSource;
 
-public class test {
+public class test extends Application{
 
 //    @Override
 //    public void start(Stage stage) throws Exception {
@@ -31,7 +31,7 @@ public class test {
     }
     
     public static void main(String[] args) {
-//        launch(args);
+        launch();
         
     
         

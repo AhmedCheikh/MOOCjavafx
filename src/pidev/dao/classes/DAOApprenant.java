@@ -79,7 +79,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             rs=pst.executeQuery();
             
             while(rs.next()){
-                CoursSuivie cs =new CoursSuivie(rs.getInt("idCours"), rs.getInt("cinApprenant"), rs.getString("Commentaire"), rs.getDouble("note"), rs.getDate("dateDebut"), rs.getString("appreciation"));
+                CoursSuivie cs =new CoursSuivie(rs.getInt("idCours"), rs.getString("cinApprenant"), rs.getString("Commentaire"), rs.getDouble("note"), rs.getString("dateDebut"), rs.getString("appreciation"));
                 
                 listCours.add(cs);
             }
