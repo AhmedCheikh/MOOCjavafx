@@ -6,13 +6,16 @@
 package pidev.entities;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
  *
  * @author Rimy Jeljeli
  */
-public class Organisme {
+
+public class Organisme  {
+
 
     private int id;
     private String nom;
@@ -26,8 +29,20 @@ public class Organisme {
     private int cinFormateur;
     private int idUser;
 
-    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, File document, File logo, int cinFormateur) {
-        
+
+    public Organisme(String nom, String email, String adresse) {
+       
+        this.nom = nom;
+        this.email = email;
+        this.adresse = adresse;
+    }
+
+    
+    
+    
+    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, File document, File logo, int cinFormateur, int idUser, String login, String password, String role) {
+//        super(idUser, login, password, role);
+
         this.id = id;
         this.nom = nom;
         this.email = email;
@@ -123,6 +138,33 @@ public class Organisme {
     @Override
     public String toString() {
         return "Organisme{" + "id=" + id + ", nom=" + nom + ", email=" + email + ", siteweb=" + siteweb + ", adresse=" + adresse + ", telephone=" + telephone + ", description=" + description + ", document=" + document + ", logo=" + logo + ", cinFormateur=" + cinFormateur + ", idUser=" + idUser + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + Objects.hashCode(this.telephone);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Organisme other = (Organisme) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return true;
     }
     
 

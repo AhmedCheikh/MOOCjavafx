@@ -6,7 +6,7 @@
 package pidev.dao.interfaces;
 
 import java.util.List;
-import pidev.entities.Organisme;
+import pidev.entities.*;
 
 /**
  *
@@ -14,12 +14,17 @@ import pidev.entities.Organisme;
  */
 public interface IDAOOrganisme {
     void addOrganisme(Organisme organisme);
+    
+    void updateOrganismeInscription(Organisme organisme);
+    
+    void updateOrganisme(String nom);
 
-    void updateOrganisme(Organisme organisme);
-
-    void removeOrganismeByName(String adresse);
+    void removeOrganismeByName(String nom);
 
     void removeOrganismeById(int id);
+    
+    void removeFormateurFromOrganisme(int idFormateur);
+    
     
      void envoyerInvitation(String email1,String email2);
      

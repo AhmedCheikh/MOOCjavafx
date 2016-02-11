@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  * @author akoubi
  */
 public class InscrireFormateurController implements Initializable {
-@FXML
+    @FXML
     private TextField txtCin;
     @FXML
     private TextField txtNom;

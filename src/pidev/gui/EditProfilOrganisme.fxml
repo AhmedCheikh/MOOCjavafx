@@ -60,20 +60,20 @@
                </font>
             </Label>
             <Button fx:id="btnModifier" layoutX="273.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
             <Button fx:id="btnAnuller" layoutX="391.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
             <Label fx:id="er9" layoutX="500.0" layoutY="397.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
                <font>
@@ -254,9 +254,6 @@
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -270,11 +267,11 @@
                </light>
             </Lighting>
          </effect>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </Button>
       <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -288,6 +285,9 @@
                </light>
             </Lighting>
          </effect>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>
