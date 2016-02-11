@@ -5,6 +5,9 @@
  */
 package pidev.dao.classes;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,18 +39,24 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     @Override
     public void add(Apprenant a) {
         try {
-            String req="insert into apprenant (cin,nom,prenom,email) values (?,?,?,?)";
+            String req="insert into apprenant (cin,nom,prenom,email,login,password) values (?,?,?,?,?,?)";
             pst=connection.prepareStatement(req);
 
-            pst.setString(1, a.getCinApprenant());
+            pst.setString(1, a.getCin());
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
+            pst.setString(5, a.getLogin());
+            pst.setString(6, a.getPassword());
            
+//            InputStream inputStream = new FileInputStream(a.getAvatar());                                             
+//            pst.setBlob(5,inputStream);
             
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -56,13 +65,12 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     public void update(Apprenant a, String cin) {
          String requete = "update apprenant set nom=?, prenom=?, email=? where cin=?";
         try {
-            PreparedStatement ps = connection.prepareStatement(requete);
+            PreparedStatement pst = connection.prepareStatement(requete);
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getEmail());
-            
             pst.setString(4, cin);
-            ps.executeUpdate();
+            pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
@@ -88,5 +96,21 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         }
         return listCours;
         }
+
+    @Override
+    public boolean authentification(String login, String password) {
+            int rowCount = 0;
+        try {
+            String req = "select from apprenant where login == ? and password=? ";
+            pst=connection.prepareStatement(req);
+            pst.setString(1, login);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+            rowCount = rs.getRow();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rowCount != 0;
+    }
     
 }

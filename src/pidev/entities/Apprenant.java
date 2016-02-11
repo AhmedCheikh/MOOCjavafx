@@ -11,26 +11,31 @@ import java.util.Objects;
  *
  * @author Khoubaib
  */
-public class Apprenant {
+public class Apprenant{
 
-    private String cinApprenant;
+    private String cin;
     private String nom;
     private String prenom;
     private String email;
     private String avatar;
-    private int idUser;
+    private String login;
+    private String password;
 
-    public Apprenant(String cinApprenant, String nom, String prenom, String email, String avatar) {
-        
-        this.cinApprenant = cinApprenant;
+    public Apprenant() {
+    }
+
+    public Apprenant(String cin, String nom, String prenom, String email, String avatar, String login, String password) {
+        this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.avatar = avatar;
+        this.login = login;
+        this.password = password;
     }
 
-    public String getCinApprenant() {
-        return cinApprenant;
+    public String getCin() {
+        return cin;
     }
 
     public String getNom() {
@@ -49,8 +54,16 @@ public class Apprenant {
         return avatar;
     }
 
-    public void setCinApprenant(String cinApprenant) {
-        this.cinApprenant = cinApprenant;
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
     public void setNom(String nom) {
@@ -69,11 +82,20 @@ public class Apprenant {
         this.avatar = avatar;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.cinApprenant);
-        hash = 71 * hash + Objects.hashCode(this.email);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.cin);
+        hash = 23 * hash + Objects.hashCode(this.email);
+        hash = 23 * hash + Objects.hashCode(this.login);
         return hash;
     }
 
@@ -89,10 +111,13 @@ public class Apprenant {
             return false;
         }
         final Apprenant other = (Apprenant) obj;
-        if (!Objects.equals(this.cinApprenant, other.cinApprenant)) {
+        if (!Objects.equals(this.cin, other.cin)) {
             return false;
         }
         if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.login, other.login)) {
             return false;
         }
         return true;
@@ -100,8 +125,8 @@ public class Apprenant {
 
     @Override
     public String toString() {
-        return "Apprenant{" + "cinApprenant=" + cinApprenant + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + '}';
+        return "Apprenant{" + "cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + '}';
     }
+      
 
-   
 }
