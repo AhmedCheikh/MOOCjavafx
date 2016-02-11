@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package pidev.dao.interfaces;
-
+import pidev.entities.Organisme;
 /**
  *
  * @author WiKi
  */
 public interface IDAOAdministrateur {
     
-    void validerPreinscriOrganisme() ; 
+    void validerPreinscriOrganisme(Organisme o) ; 
     
 }

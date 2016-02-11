@@ -8,13 +8,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.gui.ProfilAdministrateurController">
    <children>
       <Pane prefHeight="48.0" prefWidth="600.0" style="-fx-background-color: #2A82D4;">
          <children>
             <ImageView layoutX="13.0" layoutY="7.0">
                <image>
-                  <Image url="@../img/Profile.png" />
+                  <Image url="@img/Profile.png" />
                </image>
             </ImageView>
             <Label layoutX="55.0" layoutY="16.0" text="Administrateur" />

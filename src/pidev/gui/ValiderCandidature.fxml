@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.gui.ValiderCandidatureController">
    <center>
       <SplitPane dividerPositions="0.520066889632107" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
@@ -32,7 +32,7 @@
                <children>
                   <ImageView fitHeight="373.0" fitWidth="295.0" layoutX="-5.0" layoutY="38.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/cv.png" />
+                        <Image url="@img/cv.png" />
                      </image>
                   </ImageView>
                   <Button layoutX="75.0" layoutY="48.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="135.0" text="Télécharger CV" />

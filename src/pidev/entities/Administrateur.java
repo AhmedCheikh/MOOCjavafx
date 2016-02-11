@@ -5,37 +5,83 @@
  */
 package pidev.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author WiKi
  */
 public class Administrateur  {
     
-    private int idAdmin ; 
-    private int idUser;
+    private int id ; 
+    private String loginAdmin ; 
+    private String passwordAdmin ; 
 
-
-
-    public Administrateur(int idAdmin) {
-        
-        this.idAdmin = idAdmin;
+    public Administrateur(int id, String loginAdmin, String passwordAdmin) {
+        this.id = id;
+        this.loginAdmin = loginAdmin;
+        this.passwordAdmin = passwordAdmin;
     }
 
-    public int getIdAdmin() {
-        return idAdmin;
+    public int getId() {
+        return id;
     }
 
-    public void setIdAdmin(int idAdmin) {
-        this.idAdmin = idAdmin;
+    public String getLoginAdmin() {
+        return loginAdmin;
+    }
+
+    public String getPasswordAdmin() {
+        return passwordAdmin;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLoginAdmin(String loginAdmin) {
+        this.loginAdmin = loginAdmin;
+    }
+
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + this.id;
+        hash = 19 * hash + Objects.hashCode(this.loginAdmin);
+        hash = 19 * hash + Objects.hashCode(this.passwordAdmin);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Administrateur other = (Administrateur) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.loginAdmin, other.loginAdmin)) {
+            return false;
+        }
+        if (!Objects.equals(this.passwordAdmin, other.passwordAdmin)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Administrateur{" + "idAdmin=" + idAdmin + ", idUser=" + idUser + '}';
+        return "Administrateur{" + "id=" + id + ", loginAdmin=" + loginAdmin + ", passwordAdmin=" + passwordAdmin + '}';
     }
-
-
-
-
+    
+    
     
 }

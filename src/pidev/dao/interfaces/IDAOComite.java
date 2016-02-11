@@ -14,8 +14,8 @@ import pidev.entities.* ;
  */
 public interface IDAOComite {
     void validerCandidature(Formateur formateur) ; 
-    void validerVideo() ; 
-    void validerDescription() ;
+    void validerVideo(Cours cours) ; 
+    void validerDescription(Cours cours) ;
     void validerCours(Cours cours) ;
     void validerQuiz(Quiz quiz) ; 
     void validerIntegrationComite(Formateur formateur);

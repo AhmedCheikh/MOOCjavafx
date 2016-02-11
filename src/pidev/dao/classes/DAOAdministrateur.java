@@ -5,7 +5,11 @@
  */
 package pidev.dao.classes;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import pidev.dao.interfaces.IDAOAdministrateur ; 
+import pidev.entities.Organisme;
 import pidev.techniques.DataSource;
 
 /**
@@ -14,12 +18,29 @@ import pidev.techniques.DataSource;
  */
 public class DAOAdministrateur implements IDAOAdministrateur{
 
-    public DAOAdministrateur() {
-        Connection connection = DataSource.getInstance().getConnection();
+    Connection connection;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+        public DAOAdministrateur() {
+        connection =(DataSource.getInstance()).getConnection();
     }
-
+    
+    
     @Override
-    public void validerPreinscriOrganisme() {
+    public void validerPreinscriOrganisme(Organisme o) {
+        
+        String requete = "update organisme set etat=1 where idorganisme=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1, o.getId());
+            ps.executeUpdate();
+            System.out.println("Validation effectuée avec succès");
+        } catch (SQLException ex) {
+            System.out.println("Erreur de validation " + ex.getMessage());
+        }
+
+        
         
     }
     

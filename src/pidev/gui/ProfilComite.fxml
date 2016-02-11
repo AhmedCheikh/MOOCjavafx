@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilComiteController">
    <children>
       <ImageView fitHeight="301.0" fitWidth="335.0" layoutX="140.0" layoutY="99.0" opacity="0.17">
          <image>
@@ -76,7 +76,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button layoutX="61.0" layoutY="95.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Gérer candidatures">
+      <Button fx:id="gererCandidature" layoutX="61.0" layoutY="95.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Gérer candidatures">
          <effect>
             <Lighting diffuseConstant="1.2">
                <bumpInput>
