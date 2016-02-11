@@ -9,15 +9,15 @@ import pidev.entities.Chapitre;
  */
 public interface IDAOChapitre {
     
-    void addChapitre(Chapitre chapitre);
+    void addChapitre(Chapitre c);
 
-    void removeChapitre(Chapitre chapitre);
+    void removeChapitre(Chapitre c);
 
-    void updateChapitre(Chapitre chapitre);
+    void updateChapitre(Chapitre c);
 
-    Chapitre findQuizByChapitre(int id);
+    List<Chapitre> findChapitreByEtat(int id);
 
-    Chapitre findQuizByTitre(String titre);
+    List<Chapitre> findChapitreByTitre(String titre);
 
-    List<Chapitre> findQuizByEtat(boolean etat);
+    List<Chapitre> findChapitreById(int id);
 }

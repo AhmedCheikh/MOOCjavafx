@@ -1,19 +1,19 @@
 package pidev.entities;
 
-import java.io.File;
+import java.sql.Blob;
 
 public class Chapitre {
 
     private int idChapitre;
     private String titre;
-    private File presentation;
+    private Blob presentation;
     private String objectif;
     private int etat;
-    private Quiz idQuiz;
-    private Cours idCours;
-    private int idVideo;
-
-    public Chapitre(int idChapitre, String titre, File presentation, String objectif, int etat, Quiz idQuiz, Cours idCours, int idVideo) {
+    private int idQuiz;
+    private int idCours;
+    private Blob Video;
+    
+    public Chapitre(int idChapitre, int idCours, int idQuiz,String titre, Blob presentation, String objectif, int etat,Blob Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
@@ -21,40 +21,33 @@ public class Chapitre {
         this.etat = etat;
         this.idQuiz = idQuiz;
         this.idCours = idCours;
-        this.idVideo = idVideo;
+        this.Video = Video;
     }
 
-    public int getIdChapitre() {
-        return idChapitre;
+    public Chapitre(int idChapitre,int idCours, String titre, String objectif, int etat) {
+        this.idChapitre = idChapitre;
+        this.titre = titre;
+        this.objectif = objectif;
+        this.etat = etat;
+        this.idCours = idCours;
+    }
+    
+
+    public Chapitre(int idChapitre, int idCours, int idQuiz,String titre, String objectif, int etat,Blob Video) {
+        this.titre = titre;
+        this.objectif = objectif;
+        this.etat = etat;
+        this.idQuiz = idQuiz;
+        this.idCours = idCours;
+        this.Video = Video;
     }
 
-    public String getTitre() {
-        return titre;
+    @Override
+    public String toString() {
+        return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif + ", etat=" + etat + ", idQuiz=" + idQuiz + ", idCours=" + idCours + ", Video=" + Video + '}';
     }
 
-    public File getPresentation() {
-        return presentation;
-    }
-
-    public String getObjectif() {
-        return objectif;
-    }
-
-    public int getEtat() {
-        return etat;
-    }
-
-    public Quiz getIdQuiz() {
-        return idQuiz;
-    }
-
-    public Cours getIdCours() {
-        return idCours;
-    }
-
-    public int getIdVideo() {
-        return idVideo;
-    }
+ 
 
     public void setIdChapitre(int idChapitre) {
         this.idChapitre = idChapitre;
@@ -64,10 +57,15 @@ public class Chapitre {
         this.titre = titre;
     }
 
-    public void setPresentation(File presentation) {
-        this.presentation = presentation;
+    public Blob getPresentation() {
+        return presentation;
     }
 
+    public Blob getVideo() {
+        return Video;
+    }
+
+ 
     public void setObjectif(String objectif) {
         this.objectif = objectif;
     }
@@ -76,22 +74,52 @@ public class Chapitre {
         this.etat = etat;
     }
 
-    public void setIdQuiz(Quiz idQuiz) {
+    public void setIdQuiz(int idQuiz) {
         this.idQuiz = idQuiz;
     }
 
-    public void setIdCours(Cours idCours) {
+    public void setIdCours(int idCours) {
         this.idCours = idCours;
     }
 
-    public void setIdVideo(int idVideo) {
-        this.idVideo = idVideo;
+
+
+    public int getIdChapitre() {
+        return idChapitre;
     }
 
-    @Override
-    public String toString() {
-        return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif + ", etat=" + etat + ", idQuiz=" + idQuiz + ", idCours=" + idCours + ", idVideo=" + idVideo + '}';
+    public String getTitre() {
+        return titre;
     }
 
+    public void setPresentation(Blob presentation) {
+        this.presentation = presentation;
+    }
+
+    public void setVideo(Blob Video) {
+        this.Video = Video;
+    }
+
+    
+    public String getObjectif() {
+        return objectif;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public int getIdQuiz() {
+        return idQuiz;
+    }
+
+    public int getIdCours() {
+        return idCours;
+    }
+
+
+  
+
+   
     
 }
