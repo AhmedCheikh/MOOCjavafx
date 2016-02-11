@@ -1,5 +1,8 @@
 package pidev.entities;
 
+import java.io.File;
+import java.util.Objects;
+
 public class Cours {
 
     private int idCours;
@@ -8,18 +11,24 @@ public class Cours {
     private String cinFormateur;
     private String difficulte;
     private String objectif;
-    private int idVideo;
+    private File video;
     private int idQuiz;
+    private int etatVideo;
 
-    public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idVideo, int idQuiz) {
+    public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, File video, int idQuiz,int etatVideo) {
         this.idCours = idCours;
         this.nomCours = nomCours;
         this.description = description;
         this.cinFormateur = cinFormateur;
         this.difficulte = difficulte;
         this.objectif = objectif;
-        this.idVideo = idVideo;
+        this.video = video;
         this.idQuiz = idQuiz;
+        this.etatVideo=etatVideo;
+    }
+
+    public Cours() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getIdCours() {
@@ -46,9 +55,7 @@ public class Cours {
         return objectif;
     }
 
-    public int getIdVideo() {
-        return idVideo;
-    }
+   
 
     public int getIdQuiz() {
         return idQuiz;
@@ -78,18 +85,60 @@ public class Cours {
         this.objectif = objectif;
     }
 
-    public void setIdVideo(int idVideo) {
-        this.idVideo = idVideo;
-    }
+   
 
     public void setIdQuiz(int idQuiz) {
         this.idQuiz = idQuiz;
     }
 
+    public void setVideo(File video) {
+        this.video = video;
+    }
+
+    public void setEtatVideo(int etatVideo) {
+        this.etatVideo = etatVideo;
+    }
+
+    public File getVideo() {
+        return video;
+    }
+
+    public int getEtatVideo() {
+        return etatVideo;
+    }
+
     @Override
     public String toString() {
-        return "Cours{" + "idCours=" + idCours + ", nomCours=" + nomCours + ", description=" + description + ", cinFormateur=" + cinFormateur + ", difficulte=" + difficulte + ", objectif=" + objectif + ", idVideo=" + idVideo + ", idQuiz=" + idQuiz + '}';
+        return "Cours{" + "idCours=" + idCours + ", nomCours=" + nomCours + ", description=" + description + ", cinFormateur=" + cinFormateur + ", difficulte=" + difficulte + ", objectif=" + objectif  + ", idQuiz=" + idQuiz +'}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.idCours;
+        hash = 29 * hash + Objects.hashCode(this.nomCours);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cours other = (Cours) obj;
+        if (this.idCours != other.idCours) {
+            return false;
+        }
+        if (!Objects.equals(this.nomCours, other.nomCours)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     
     
 

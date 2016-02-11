@@ -25,13 +25,13 @@ Connection connection;
     @Override
     public void addCours(Cours cours) {
        try {
-            String req="insert into cours (nom_cours,description,difficulte,objectif) values (?,?,?,?)";
+            String req="insert into cours (nom_cours,description,difficulte,objectif,cinformateur) values (?,?,?,?,?)";
             pst=connection.prepareStatement(req);
             pst.setString(1, cours.getNomCours());
             pst.setString(2, cours.getDescription());
             pst.setString(3, cours.getDifficulte());
             pst.setString(4, cours.getObjectif());
-            
+            pst.setString(5, cours.getCinFormateur());
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOCours.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,7 +56,7 @@ Connection connection;
 
     @Override
     public void removeCoursByFormateur(String cinFormateur) {
-        String requete = "delete from cours where id_cours=?";
+        String requete = "delete from cours where cinformateur=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, cinFormateur);
@@ -68,11 +68,11 @@ Connection connection;
     }
 
     @Override
-    public void removeCoursById(int id) {
-        String requete = "delete from cours where id_cours=?";
+    public void removeCoursByName(String nomCours) {
+        String requete = "delete from cours where nom_cours=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, id);
+            ps.setString(1, nomCours);
             ps.executeUpdate();
             System.out.println("Cours supprimé");
         } catch (SQLException ex) {
@@ -80,133 +80,114 @@ Connection connection;
         }
     }
 
-//    @Override
-//    public List<Cours> findAll() {
-//         List<Cours> listecours = new ArrayList<>();
-//        String requete = "select * from cours";
-//        try {
-//            Statement statement = connection
-//                    .createStatement();
-//            ResultSet resultat = statement.executeQuery(requete);
-//
-//            while (resultat.next()) {
-//                Cours cours = new Cours();
-//                cours.setIdCours(resultat.getInt(1));
-//                cours.setNomCours(resultat.getString(2));
-//                cours.setCinFormateur(resultat.getString(3));
-//                cours.setIdQuiz(resultat.getInt(4));
-//                cours.setDescription(resultat.getString(5));
-//                cours.setVideo(resultat.getString(6));
-//                cours.setDifficulte(resultat.getString(7));
-//                cours.setObjectif(resultat.getString(8));
-//                listecours.add(cours);
-//            }
-//            return listecours;
-//        } catch (SQLException ex) {
-//            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
-//            return null;
-//        }
-//    }
-//
-//    @Override
-//    public Cours findCoursById(int id) {
-//        Cours cours = new Cours(id, null, null, null, null, null, id, id);
-//        String requete = "select * from cours where id_cours=?";
-//        try {
-//            PreparedStatement ps = connection.prepareStatement(requete);
-//            ps.setInt(1, id);
-//            ResultSet resultat = ps.executeQuery();
-//            while (resultat.next()) {
-//                cours.setIdCours(resultat.getInt(1));
-//                cours.setNomCours(resultat.getString(2));
-//                cours.setCinFormateur(resultat.getString(3));
-//                cours.setIdQuiz(resultat.getInt(4));
-//                cours.setDescription(resultat.getString(5));
-//                cours.setVideo(resultat.getString(6));
-//                cours.setDifficulte(resultat.getString(7));
-//                cours.setObjectif(resultat.getString(8));
-//                
-//            }
-//            return cours;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
-//            return null;
-//        }
-//    }
-//
-//    @Override
-//    public Cours findCoursByFormateur(String cinFormateur) {
-//       Cours cours = new Cours();
-//        String requete = "select * from cours where cinformateur=?";
-//        try {
-//            PreparedStatement ps = connection.prepareStatement(requete);
-//            ps.setString(1, cinFormateur);
-//            ResultSet resultat = ps.executeQuery();
-//            while (resultat.next()) {
-//                cours.setIdCours(resultat.getInt(1));
-//                cours.setNomCours(resultat.getString(2));
-//                cours.setCinFormateur(resultat.getString(3));
-//                cours.setIdQuiz(resultat.getInt(4));
-//                cours.setDescription(resultat.getString(5));
-//                cours.setVideo(resultat.getString(6));
-//                cours.setDifficulte(resultat.getString(7));
-//                cours.setObjectif(resultat.getString(8));
-//                
-//            }
-//            return cours;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
-//            return null;
-//        }
-//    }
-//
-//    @Override
-//    public Cours findCoursByDifficulte(String difficulte) {
-//        Cours cours = new Cours();
-//        String requete = "select * from cours where difficulte=?";
-//        try {
-//            PreparedStatement ps = connection.prepareStatement(requete);
-//            ps.setString(1, difficulte);
-//            ResultSet resultat = ps.executeQuery();
-//            while (resultat.next()) {
-//                cours.setIdCours(resultat.getInt(1));
-//                cours.setNomCours(resultat.getString(2));
-//                cours.setCinFormateur(resultat.getString(3));
-//                cours.setIdQuiz(resultat.getInt(4));
-//                cours.setDescription(resultat.getString(5));
-//                cours.setVideo(resultat.getString(6));
-//                cours.setDifficulte(resultat.getString(7));
-//                cours.setObjectif(resultat.getString(8));
-//                
-//            }
-//            return cours;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
-//            return null;
-//        }
-//    }
-
     @Override
     public List<Cours> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         List<Cours> listecours = new ArrayList<>();
+        String requete = "select * from cours";
+        try {
+            Statement statement = connection
+                    .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while (resultat.next()) {
+                Cours cours = new Cours();
+                cours.setIdCours(resultat.getInt(1));
+                cours.setNomCours(resultat.getString(2));
+                cours.setCinFormateur(resultat.getString(3));
+                cours.setIdQuiz(resultat.getInt(4));
+                cours.setDescription(resultat.getString(5));
+               
+                cours.setDifficulte(resultat.getString(6));
+                cours.setObjectif(resultat.getString(7));
+                listecours.add(cours);
+            }
+            return listecours;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
     }
 
     @Override
-    public Cours findCoursById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cours findCoursByName(String nomCours) {
+        Cours cours = new Cours();
+        String requete = "select * from cours where nom_cours=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, nomCours);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                cours.setIdCours(resultat.getInt(1));
+                cours.setNomCours(resultat.getString(2));
+                cours.setCinFormateur(resultat.getString(3));
+                cours.setIdQuiz(resultat.getInt(4));
+                cours.setDescription(resultat.getString(5));
+                
+                cours.setDifficulte(resultat.getString(7));
+                cours.setObjectif(resultat.getString(8));
+                
+            }
+            return cours;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Cours findCoursByFormateur(String cinFormateur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Cours cours = new Cours();
+        String requete = "select * from cours where cinformateur=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, cinFormateur);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                cours.setIdCours(resultat.getInt(1));
+                cours.setNomCours(resultat.getString(2));
+                cours.setCinFormateur(resultat.getString(3));
+                cours.setIdQuiz(resultat.getInt(4));
+                cours.setDescription(resultat.getString(5));
+               
+                cours.setDifficulte(resultat.getString(7));
+                cours.setObjectif(resultat.getString(8));
+                
+            }
+            return cours;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Cours findCoursByDifficulte(String difficulte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cours cours = new Cours();
+        String requete = "select * from cours where difficulte=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, difficulte);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                cours.setIdCours(resultat.getInt(1));
+                cours.setNomCours(resultat.getString(2));
+                cours.setCinFormateur(resultat.getString(3));
+                cours.setIdQuiz(resultat.getInt(4));
+                cours.setDescription(resultat.getString(5));
+                
+                cours.setDifficulte(resultat.getString(7));
+                cours.setObjectif(resultat.getString(8));
+                
+            }
+            return cours;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            return null;
+        }
     }
-    
+
+ 
 }

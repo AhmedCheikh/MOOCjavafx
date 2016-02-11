@@ -14,14 +14,11 @@ import javafx.fxml.Initializable;
  *
  * @author Khoubaib
  */
-public class ProfilApprenantController implements Initializable {
+public class ProfilApprenantController  {
 
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+   
     
 }

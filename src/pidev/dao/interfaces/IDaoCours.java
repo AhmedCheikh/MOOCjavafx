@@ -12,11 +12,11 @@ public interface IDaoCours {
 
     void removeCoursByFormateur(String cinFormateur);
 
-    void removeCoursById(int id);
+    void removeCoursByName(String nomCours);
 
     List<Cours> findAll();
 
-    Cours findCoursById(int id);
+    Cours findCoursByName(String nomCours);
 
     Cours findCoursByFormateur(String cinFormateur);
     

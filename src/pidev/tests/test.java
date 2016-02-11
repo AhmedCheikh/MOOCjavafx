@@ -10,10 +10,10 @@ public class test extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/InscrireFormateur.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
         Scene scene = new Scene(root);        
         stage.setScene(scene);
-        stage.setTitle("Inscrirption Formateur");
+        stage.setTitle("Authentification");
         stage.show();
     }
     
