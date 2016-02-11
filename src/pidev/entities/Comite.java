@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author WiKi
  */
-public class Comite extends Utilisateur {
+public class Comite {
     
     private String cinComite ; 
     private String nom ; 
@@ -19,8 +19,8 @@ public class Comite extends Utilisateur {
     private String email ; 
     private int idUser;
 
-    public Comite(String cinComite, String nom, String prenom, String email, int idUser, String login, String password, String role) {
-        super(idUser, login, password, role);
+    public Comite(String cinComite, String nom, String prenom, String email) {
+        
         this.cinComite = cinComite;
         this.nom = nom;
         this.prenom = prenom;

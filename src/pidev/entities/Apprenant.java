@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Khoubaib
  */
-public class Apprenant extends Utilisateur{
+public class Apprenant {
 
     private String cinApprenant;
     private String nom;
@@ -20,8 +20,8 @@ public class Apprenant extends Utilisateur{
     private String avatar;
     private int idUser;
 
-    public Apprenant(String cinApprenant, String nom, String prenom, String email, String avatar, int idUser, String login, String password, String role) {
-        super(idUser, login, password, role);
+    public Apprenant(String cinApprenant, String nom, String prenom, String email, String avatar) {
+        
         this.cinApprenant = cinApprenant;
         this.nom = nom;
         this.prenom = prenom;

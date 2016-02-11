@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author Rimy Jeljeli
  */
-public class Organisme extends Utilisateur {
+public class Organisme {
 
     private int id;
     private String nom;
@@ -26,8 +26,8 @@ public class Organisme extends Utilisateur {
     private int cinFormateur;
     private int idUser;
 
-    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, File document, File logo, int cinFormateur, int idUser, String login, String password, String role) {
-        super(idUser, login, password, role);
+    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, File document, File logo, int cinFormateur) {
+        
         this.id = id;
         this.nom = nom;
         this.email = email;

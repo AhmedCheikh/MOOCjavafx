@@ -9,15 +9,15 @@ package pidev.entities;
  *
  * @author WiKi
  */
-public class Administrateur extends Utilisateur {
+public class Administrateur  {
     
     private int idAdmin ; 
     private int idUser;
 
 
 
-    public Administrateur(int idAdmin, int idUser, String login, String password, String role) {
-        super(idUser, login, password, role);
+    public Administrateur(int idAdmin) {
+        
         this.idAdmin = idAdmin;
     }
 

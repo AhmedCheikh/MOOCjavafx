@@ -6,7 +6,7 @@ import java.io.File;
  *
  * @author akoubi
  */
-public class Formateur extends Utilisateur{
+public class Formateur{
 
     private int cinFormateur;
     private String nom;
@@ -18,8 +18,8 @@ public class Formateur extends Utilisateur{
     private String cv;
     private File etat;
 
-    public Formateur(int cinFormateur, String nom, String prenom, String mail, String adresse, File avatar, String cv, File etat, int idUser, String login, String password, String role) {
-        super(idUser, login, password, role);
+    public Formateur(int cinFormateur, String nom, String prenom, String mail, String adresse, File avatar, String cv, File etat) {
+       
         this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
