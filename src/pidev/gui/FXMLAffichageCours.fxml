@@ -10,15 +10,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="677.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.AffichageCoursController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.AffichageCoursController">
    <children>
-      <TabPane layoutX="1.0" prefHeight="341.0" prefWidth="676.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="13.0" prefHeight="486.0" prefWidth="748.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Cours">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="649.0" prefWidth="676.0">
                      <children>
-                        <Button fx:id="btnrech" layoutX="475.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnrechAction" prefHeight="25.0" prefWidth="84.0" text="Recherche">
+                        <Button fx:id="btnrech" layoutX="549.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnrechAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Recherche">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -33,14 +33,14 @@
                               <Font name="Comic Sans MS" size="13.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="idtextrech" layoutX="216.0" layoutY="14.0" prefHeight="29.0" prefWidth="244.0" />
+                        <TextField fx:id="idtextrech" layoutX="294.0" layoutY="14.0" prefHeight="29.0" prefWidth="244.0" />
                         <Label layoutX="57.0" layoutY="20.0" prefHeight="17.0" prefWidth="57.0" text="Cours" />
-                        <MediaView fx:id="video1" fitHeight="200.0" fitWidth="200.0" layoutX="57.0" layoutY="77.0">
+                        <MediaView fx:id="video1" fitHeight="200.0" fitWidth="200.0" layoutX="57.0" layoutY="129.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </MediaView>
-                        <TextArea fx:id="description" layoutX="304.0" layoutY="69.0" prefHeight="217.0" prefWidth="343.0" promptText="Description ...">
+                        <TextArea fx:id="description" layoutX="353.0" layoutY="120.0" prefHeight="217.0" prefWidth="343.0" promptText="Description ...">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
@@ -48,7 +48,6 @@
                               <InnerShadow color="#ee0808" />
                            </effect>
                         </TextArea>
-                        <Label layoutX="23.0" layoutY="60.0" prefHeight="17.0" prefWidth="125.0" text="Titre du video" />
                      </children>
                   </AnchorPane>
             </content>
@@ -57,31 +56,37 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Hyperlink fx:id="chapitre1" layoutX="65.0" layoutY="41.0" onAction="#chapitre1Action" text="Chapitre" />
-                        <Hyperlink fx:id="chapitre2" layoutX="65.0" layoutY="112.0" text="Chapitre2" />
-                        <Hyperlink fx:id="chapitre3" layoutX="65.0" layoutY="180.0" text="Chapitre3" />
-                        <Hyperlink fx:id="chapitre5" layoutX="65.0" layoutY="251.0" text="Chapitre4" />
-                        <TextArea fx:id="desc1" layoutX="169.0" layoutY="27.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
-                        <TextArea fx:id="desc4" layoutX="169.0" layoutY="237.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
-                        <TextArea fx:id="desc3" layoutX="169.0" layoutY="166.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
-                        <TextArea fx:id="desc2" layoutX="169.0" layoutY="98.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <Hyperlink fx:id="chapitre1" layoutX="69.0" layoutY="55.0" onAction="#chapitre1Action" text="Chapitre" />
+                        <Hyperlink fx:id="chapitre2" layoutX="65.0" layoutY="126.0" text="Chapitre2" />
+                        <Hyperlink fx:id="chapitre3" layoutX="65.0" layoutY="194.0" text="Chapitre3" />
+                        <Hyperlink fx:id="chapitre5" layoutX="65.0" layoutY="254.0" text="Chapitre4" />
+                        <TextArea fx:id="desc1" layoutX="216.0" layoutY="41.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TextArea fx:id="desc4" layoutX="216.0" layoutY="251.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TextArea fx:id="desc3" layoutX="216.0" layoutY="180.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TextArea fx:id="desc2" layoutX="216.0" layoutY="112.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Hyperlink fx:id="telecharger" layoutX="510.0" layoutY="344.0" onAction="#telechargerAction" text="Telecharger Cours" textFill="#4d01ff">
+      <Hyperlink fx:id="telecharger" layoutX="576.0" layoutY="512.0" onAction="#telechargerAction" text="Telecharger Cours" textFill="#4d01ff">
          <cursor>
             <Cursor fx:constant="CROSSHAIR" />
          </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Hyperlink>
-      <Hyperlink fx:id="Formateur1" layoutX="34.0" layoutY="343.0" onAction="#Formateur1Action" text="Formateur" textFill="#4d01ff">
+      <Hyperlink fx:id="Formateur1" layoutX="60.0" layoutY="512.0" onAction="#Formateur1Action" text="Formateur" textFill="#4d01ff">
          <cursor>
             <Cursor fx:constant="CROSSHAIR" />
          </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Hyperlink>
-      <Button fx:id="faireQuiz" disable="true" layoutX="237.0" layoutY="339.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" text="Faire Quiz">
+      <Button fx:id="faireQuiz" disable="true" layoutX="318.0" layoutY="514.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Faire Quiz">
          <font>
             <Font size="15.0" />
          </font>

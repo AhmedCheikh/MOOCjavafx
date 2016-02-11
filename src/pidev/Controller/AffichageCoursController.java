@@ -73,8 +73,14 @@ private Hyperlink telecharger;
         
    }
 @FXML
-private void Formateur1Action(ActionEvent event)  {
-        
+private void Formateur1Action(ActionEvent event) throws IOException  {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+            Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
+            Stage stage =  new Stage();
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+            stage.setTitle("Profil Formateur");
+            stage.show();
    }
 
 @FXML

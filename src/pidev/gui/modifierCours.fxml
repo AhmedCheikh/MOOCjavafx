@@ -42,33 +42,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txttitre" prefHeight="25.0" prefWidth="184.0" promptText="titre....." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
-                  <Label fx:id="er1" prefHeight="3.0" prefWidth="211.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er2" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er5" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er7" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er8" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" promptText="les objectifs......" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txttitre" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
+                 
+                  <TextArea fx:id="textDescription" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="btnChoisirCv1" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir video ..." GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <Lighting>
@@ -91,6 +67,10 @@
                         <Font name="Times New Roman Bold" size="16.0" />
                      </font>
                   </Label>
+                  <Label fx:id="titre" prefHeight="17.0" prefWidth="125.0" GridPane.columnIndex="2" />
+                  <Label fx:id="Description" prefHeight="17.0" prefWidth="137.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="difficulte" prefHeight="17.0" prefWidth="137.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label prefHeight="17.0" prefWidth="119.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -171,7 +151,7 @@
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Desktop/images.jpg" />
+                  <Image url="@img/flech.jpg" />
                </image>
             </ImageView>
          </graphic>

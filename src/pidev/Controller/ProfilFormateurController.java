@@ -11,8 +11,22 @@ import javafx.scene.control.TextField;
 
 public class ProfilFormateurController implements Initializable {
 
-    
-
+    @FXML
+    private void btnPasserQuizAction(ActionEvent event) {
+        
+    }
+@FXML
+    private void  btnTelechargerAction(ActionEvent event) {
+        
+    }
+   @FXML
+    private void  btnexitAction(ActionEvent event) {
+        
+    }
+          @FXML
+    private void   btnbackAction(ActionEvent event) {
+        
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

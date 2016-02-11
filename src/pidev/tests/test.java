@@ -23,7 +23,7 @@ public class test extends Application{
 //        stage.show();
 //    }
     public void start(Stage stage) throws Exception {
-     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
         Scene scene = new Scene(root);        
         stage.setScene(scene);
         stage.setTitle("Authentification");
