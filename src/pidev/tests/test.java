@@ -22,7 +22,6 @@ public class test {
 //        stage.setTitle("Inscrirption Formateur");
 //        stage.show();
 //    }
-    @Override
     public void start(Stage stage) throws Exception {
      Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
         Scene scene = new Scene(root);        
