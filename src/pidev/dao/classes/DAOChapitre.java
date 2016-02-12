@@ -92,7 +92,7 @@ public class DAOChapitre implements IDAOChapitre {
     @Override
     public List<Chapitre> findChapitreById(int id) {
 
-        String req = "select * from chapitre where id == id ";
+        String req = "select * from chapitre where id = "+id;
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {

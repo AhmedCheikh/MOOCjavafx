@@ -56,14 +56,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Hyperlink fx:id="chapitre1" layoutX="69.0" layoutY="55.0" onAction="#chapitre1Action" text="Chapitre" />
-                        <Hyperlink fx:id="chapitre2" layoutX="65.0" layoutY="126.0" text="Chapitre2" />
-                        <Hyperlink fx:id="chapitre3" layoutX="65.0" layoutY="194.0" text="Chapitre3" />
-                        <Hyperlink fx:id="chapitre5" layoutX="65.0" layoutY="254.0" text="Chapitre4" />
-                        <TextArea fx:id="desc1" layoutX="216.0" layoutY="41.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
-                        <TextArea fx:id="desc4" layoutX="216.0" layoutY="251.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
-                        <TextArea fx:id="desc3" layoutX="216.0" layoutY="180.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
-                        <TextArea fx:id="desc2" layoutX="216.0" layoutY="112.0" prefHeight="51.0" prefWidth="351.0" promptText="Description .." />
+                        <TableView fx:id="tableChapites" layoutX="7.0" layoutY="6.0" prefHeight="434.0" prefWidth="649.0">
+                          <columns>
+                            <TableColumn fx:id="chapitreId" prefWidth="256.0" text="Chapitres" />
+                            <TableColumn fx:id="objectifId" minWidth="0.0" prefWidth="392.0" text="objectifs" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
             </content>
