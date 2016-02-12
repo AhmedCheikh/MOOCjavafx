@@ -37,7 +37,7 @@ public class DAOChapitre implements IDAOChapitre {
     public void addChapitre(Chapitre c) {
 
         try {
-            String req = "insert into chapitre (id,idcours,titre,objectif,etat) values (?,?,?,?,?)";
+            String req = "insert into chapitre (id,idcours,idQuiz,titre,presentation,objectif,etat,video) values (?,?,?,?,?,?,?,?)";
             pst = connection.prepareStatement(req);
             pst.setInt(1, c.getIdChapitre());
             pst.setInt(2, c.getIdCours());
@@ -57,27 +57,27 @@ public class DAOChapitre implements IDAOChapitre {
 
     @Override
     public void removeChapitre(Chapitre c) {
-               String requete = "delete from chapitre where id=?";
+        String requete = "delete from chapitre where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1,c.getIdChapitre());
+            ps.setInt(1, c.getIdChapitre());
             ps.executeUpdate();
             System.out.println("Chapitre supprimé");
         } catch (SQLException ex) {
-             System.out.println("erreur lors de la suppression " + ex.getMessage());
+            System.out.println("erreur lors de la suppression " + ex.getMessage());
 
         }
     }
 
     public void updateChapitre(Chapitre c) {
 
-        String requete = "update apprenant set idcours=?, idquiz=?, titre=? ,presentation=? ,objectif=?, etat=?, video=?  where c.getId=?";
+        String requete = "update apprenant set idcours=?, idquiz=?, titre=? ,presentation=? ,objectif=?, etat=?, video=?  where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             pst.setInt(1, c.getIdCours());
             pst.setInt(2, c.getIdQuiz());
             pst.setString(3, c.getTitre());
-            pst.setBlob(4,c.getPresentation());
+            pst.setBlob(4, c.getPresentation());
             pst.setString(5, c.getObjectif());
             pst.setInt(2, c.getEtat());
             pst.setBlob(3, c.getVideo());
@@ -92,7 +92,7 @@ public class DAOChapitre implements IDAOChapitre {
     @Override
     public List<Chapitre> findChapitreById(int id) {
 
-        String req = "select * from chapitre where id == id ";
+        String req = "select * from chapitre where id= '"+id+"'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {
@@ -105,7 +105,7 @@ public class DAOChapitre implements IDAOChapitre {
 
                 listChapitres.add(c);
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
         }
@@ -114,7 +114,7 @@ public class DAOChapitre implements IDAOChapitre {
 
     @Override
     public List<Chapitre> findChapitreByEtat(int etat) {
-          String req = "select * from chapitre where etat == etat ";
+        String req = "select * from chapitre where etat= '"+etat+"'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {
@@ -127,7 +127,7 @@ public class DAOChapitre implements IDAOChapitre {
 
                 listChapitres.add(c);
             }
-           
+
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
         }
@@ -136,7 +136,7 @@ public class DAOChapitre implements IDAOChapitre {
 
     @Override
     public List<Chapitre> findChapitreByTitre(String titre) {
-        String req = "select * from chapitre where titre == titre ";
+        String req = "select * from chapitre where titre= '"+titre+"'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {

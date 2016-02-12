@@ -1,11 +1,12 @@
 
 package pidev.dao.interfaces;
+import java.util.List;
 import pidev.entities.Question;
 
 
 public interface IDAOQuestion {
-    void addQuestion(Question question);
-    void removeQuestion(Question question);
-    void updateQuestion(Question question);
-    Question findQuestionById(int id);
+    void addQuestion(Question q);
+    void removeQuestion(Question q);
+    void updateQuestion(Question q);
+    List<Question> findQuestionById(int id);
 }

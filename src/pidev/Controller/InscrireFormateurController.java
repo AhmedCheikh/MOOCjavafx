@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  * @author akoubi
  */
 public class InscrireFormateurController implements Initializable {
+
     @FXML
     private TextField txtCin;
     @FXML
@@ -59,65 +60,70 @@ public class InscrireFormateurController implements Initializable {
 
     public void btnValiderAction(ActionEvent event) throws IOException {
         if (txtCin.getText().equals("")) {
-        er1.setText("Vous devez Renseigez ce champs");
-        }else{
-        er1.setText(" ");
+            er1.setText("Vous devez Renseigez ce champs");
+        } else {
+            er1.setText(" ");
         }
         if (txtNom.getText().equals("")) {
-        er2.setText(" ");
-        }else{
-        er2.setText("Vous devez Renseigez ce champs");
+            er2.setText(" ");
+        } else {
+            er2.setText("Vous devez Renseigez ce champs");
         }
         if (txtMail.getText().equals("")) {
-        er3.setText("Vous devez Renseigez ce champs");
-        }else{
-        er3.setText(" ");
+            er3.setText("Vous devez Renseigez ce champs");
+        } else {
+            er3.setText(" ");
         }
         if (txtMail.getText().equals("")) {
-        er4.setText("Vous devez Renseigez ce champs");
-        }else{
-        er4.setText(" ");
+            er4.setText("Vous devez Renseigez ce champs");
+        } else {
+            er4.setText(" ");
         }
         if (txtLogin.getText().equals("")) {
-        er5.setText("Vous devez Renseigez ce champs");
-        }else{
-        er5.setText(" ");
+            er5.setText("Vous devez Renseigez ce champs");
+        } else {
+            er5.setText(" ");
         }
         if (txtPassword.getText().equals("")) {
-        er6.setText("Vous devez Renseigez ce champs");
-        }else{
-        er6.setText(" ");
+            er6.setText("Vous devez Renseigez ce champs");
+        } else {
+            er6.setText(" ");
         }
         if (txtRepaet.getText().equals("")) {
-        er7.setText("Vous devez Renseigez ce champs");
-        }else{
-        er7.setText(" ");
+            er7.setText("Vous devez Renseigez ce champs");
+        } else {
+            er7.setText(" ");
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
-            Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
-            Stage stage =  new Stage();
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-            stage.setTitle("Profil Formateur");
-            stage.show();
+        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setTitle("Profil Formateur");
+        stage.show();
     }
-    public void btnAnullerAction(ActionEvent event){
-    
+
+    @FXML
+    public void btnAnullerAction(ActionEvent event) {
+
     }
-     public void btnexitAction(ActionEvent event){
-    
+
+    @FXML
+    public void btnexitAction(ActionEvent event) {
+
     }
-    public void btnbackAction(ActionEvent event){
-    
+
+    @FXML
+    public void btnbackAction(ActionEvent event) {
+
     }
-    
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
