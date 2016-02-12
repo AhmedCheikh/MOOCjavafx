@@ -27,74 +27,62 @@ import javafx.stage.Stage;
  *
  * @author Gumus
  */
-public class AjouterChapitreController implements Initializable {
+public class AjouterChapitreController  {
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
     @FXML
     private TextField txtTitre;
     @FXML
     private TextArea txtAObjectif;
-    @FXML
-    private ComboBox CmbQuiz;
+  
 
     //
     @FXML
     private Label er1;
     @FXML
     private Label er2;
-    @FXML
-    private Label er3;
-    @FXML
-    private Label er4;
-    @FXML
-    private Label er5;
+  
+    
 
     public void btnAjouterAction(ActionEvent event) throws IOException {
-        if (txtTitre.getText().equals("")) {
+        if (txtTitre.getText().isEmpty()) {
             er1.setText("Vous devez Renseigez ce champs");
         } else {
             er1.setText(" ");
         }
-        if (txtAObjectif.getText().equals("")) {
-            er2.setText(" ");
-        } else {
+        if (txtAObjectif.getText().isEmpty()) {
             er2.setText("Vous devez Renseigez ce champs");
-        }
-        if (CmbQuiz.getValue().equals("")) {
-            er3.setText("Vous devez Renseigez ce champs");
         } else {
-            er3.setText(" ");
+            er2.setText(" ");
         }
+       
 
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.setTitle("AjouterChapitre");
-        stage.show();
+//        ((Node) (event.getSource())).getScene().getWindow().hide();
+//        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(parent);
+//        stage.setScene(scene);
+//        stage.setTitle("AjouterChapitre");
+//        stage.show();
     }
-
+@FXML
     public void btnAnullerAction(ActionEvent event) {
 
     }
-
+@FXML
     public void btnChoisirDocAction(ActionEvent event) {
 
         
     }
-
+@FXML
     public void btnChoisirVideoAction(ActionEvent event) {
 
     }
-
+@FXML
     public void btnexitAction(ActionEvent event) {
 
     }
-
+@FXML
     public void btnbackAction(ActionEvent event) {
 
     }

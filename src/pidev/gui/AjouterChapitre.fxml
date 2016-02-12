@@ -41,27 +41,17 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtTitre" prefHeight="25.0" prefWidth="184.0" promptText="titre....." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
-                  <Label fx:id="er1" prefHeight="3.0" prefWidth="211.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2">
+                  <Label fx:id="er1" prefHeight="3.0" prefWidth="211.0" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er2" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="er2" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er5" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er7" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er8" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Label style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -97,7 +87,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="CmbQuiz" prefHeight="25.0" prefWidth="179.0" style="-fx-border-width: 2px; -fx-border-color: #77ABD6;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox prefHeight="25.0" prefWidth="179.0" style="-fx-border-width: 2px; -fx-border-color: #77ABD6;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label fx:id="LVideo" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="74.0" text="video.mp4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="Times New Roman Bold" size="16.0" />
