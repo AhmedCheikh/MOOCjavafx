@@ -5,11 +5,11 @@ import pidev.entities.Quiz;
 
 
 public interface IDAOQuiz {
-    void addQuiz(Quiz quiz);
-    void removeQuiz(Quiz quiz);
-    void updateQuiz(Quiz quiz);
-     Quiz findQuizById(int id);
-     Quiz findQuizByTitre(String titre);
+    void addQuiz(Quiz q);
+    void removeQuiz(Quiz q);
+    void updateQuiz(Quiz q);
+     List<Quiz> findQuizById(int id);
+     List<Quiz> findQuizByTitre(String titre);
    List<Quiz> findQuizByType(boolean type);
     
 }
