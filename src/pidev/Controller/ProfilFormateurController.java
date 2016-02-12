@@ -1,24 +1,19 @@
 package pidev.Controller;
 
-import java.awt.Desktop;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 public class ProfilFormateurController implements Initializable {
-
     @FXML
-    private void btnPasserQuizAction(ActionEvent event) {
-        
-    }
-@FXML
-    private void  btnTelechargerAction(ActionEvent event) {
-        
-    }
+    private Button btnexit;
+    @FXML
+    private Button btnback;
+
+    
    @FXML
     private void  btnexitAction(ActionEvent event) {
         
