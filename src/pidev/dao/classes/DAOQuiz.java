@@ -166,16 +166,18 @@ public class DAOQuiz implements IDAOQuiz {
 //        }
     @Override
     public int findQuizByTitreSelonId(String titre) {
-//        String req = "select id from quiz where titre= '" + titre + "'";
-//        try {
-//            pst = connection.prepareStatement(req);
-//            rs = pst.executeQuery();
-//            
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return rs.getI;
-return 0;
+        String req = "select * from quiz where titre= '" + titre + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getInt(1);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+       
+
   }
 
     

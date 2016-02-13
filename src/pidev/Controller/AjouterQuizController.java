@@ -137,8 +137,9 @@ public class AjouterQuizController {
         daoq.addQuiz(q);
         
          int id=daoq.findQuizByTitreSelonId(txtTitre.getText());
+         
         Question qe = new Question();
-        Question qe1 = new Question(qe.getIdQuestion(), Q1.getText(), q.getIdQuiz());
+        Question qe1 = new Question(qe.getIdQuestion(), Q1.getText(), id);
         DAOQuestion daoqe1 = new DAOQuestion();
         daoqe1.addQuestion(qe1);
 
