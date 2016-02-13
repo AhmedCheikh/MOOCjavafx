@@ -36,17 +36,64 @@ public class DAOChapitre implements IDAOChapitre {
     @Override
     public void addChapitre(Chapitre c) {
 
-        try {
-            String req = "insert into chapitre (id,idcours,idQuiz,titre,presentation,objectif,etat,video) values (?,?,?,?,?,?,?,?)";
-            pst = connection.prepareStatement(req);
-            pst.setInt(1, c.getIdChapitre());
-            pst.setInt(2, c.getIdCours());
-            pst.setInt(3, c.getIdQuiz());
-            pst.setString(4, c.getTitre());
-            pst.setBlob(5, c.getPresentation());
-            pst.setString(6, c.getObjectif());
-            pst.setInt(7, c.getEtat());
-            pst.setBlob(8, c.getVideo());
+//        try {
+//            String req = "insert into chapitre (id,idcours,idQuiz,titre,presentation,objectif,etat,video) values (?,?,?,?,?,?,?,?)";
+//            pst = connection.prepareStatement(req);
+//            pst.setInt(1, c.getIdChapitre());
+//            pst.setInt(2, c.getIdCours());
+//            pst.setInt(3, c.getIdQuiz());
+//            pst.setString(4, c.getTitre());
+//            pst.setBlob(5, c.getPresentation());
+//            pst.setString(6, c.getObjectif());
+//            pst.setInt(7, c.getEtat());
+//            pst.setBlob(8, c.getVideo());
+//
+//            pst.executeUpdate();
+//            System.out.println("Ajout effectuée avec succès");
+//        } catch (SQLException ex) {
+//            System.out.println("erreur lors de l'ajout " + ex.getMessage());
+//        }
+//    }
+//
+//    @Override
+//    public void removeChapitre(Chapitre c) {
+//        String requete = "delete from chapitre where id=?";
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(requete);
+//            ps.setInt(1, c.getIdChapitre());
+//            ps.executeUpdate();
+//            System.out.println("Chapitre supprimé");
+//        } catch (SQLException ex) {
+//            System.out.println("erreur lors de la suppression " + ex.getMessage());
+//
+//        }
+//    }
+//
+//    public void updateChapitre(Chapitre c) {
+//
+//        String requete = "update apprenant set idcours=?, idquiz=?, titre=? ,presentation=? ,objectif=?, etat=?, video=?  where id=?";
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(requete);
+//            pst.setInt(1, c.getIdCours());
+//            pst.setInt(2, c.getIdQuiz());
+//            pst.setString(3, c.getTitre());
+//            pst.setBlob(4, c.getPresentation());
+//            pst.setString(5, c.getObjectif());
+//            pst.setInt(2, c.getEtat());
+//            pst.setBlob(3, c.getVideo());
+//
+//            ps.executeUpdate();
+//            System.out.println("Mise à jour effectuée avec succès");
+//        } catch (SQLException ex) {
+//            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+//        }
+         try {
+            String req = "insert into chapitre (titre,objectif) values (?,?)";
+            pst = connection.prepareStatement(req);      
+            pst.setString(1, c.getTitre());
+            
+            pst.setString(2, c.getObjectif());
+           
 
             pst.executeUpdate();
             System.out.println("Ajout effectuée avec succès");

@@ -7,11 +7,18 @@ public class Quiz {
     private int type;
     private int etat;
 
+    public Quiz() {
+    }
+
     public Quiz(int idQuiz,String titre, int type, int etat) {
         this.idQuiz = idQuiz;
         this.titre = titre;
         this.type = type;
         this.etat = etat;
+    }
+
+    public Quiz(int idQuiz) {
+        this.idQuiz = idQuiz;
     }
 
     public int getIdQuiz() {

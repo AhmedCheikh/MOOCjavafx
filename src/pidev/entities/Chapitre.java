@@ -12,8 +12,17 @@ public class Chapitre {
     private int idQuiz;
     private int idCours;
     private Blob Video;
-    
-    public Chapitre(int idChapitre, int idCours, int idQuiz,String titre, Blob presentation, String objectif, int etat,Blob Video) {
+
+    public Chapitre() {
+    }
+
+    public Chapitre(int idCours, String titre, String objectif) {
+        this.idCours = idCours;
+        this.titre = titre;
+        this.objectif = objectif;
+    }
+
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, Blob presentation, String objectif, int etat, Blob Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
@@ -24,16 +33,15 @@ public class Chapitre {
         this.Video = Video;
     }
 
-    public Chapitre(int idChapitre,int idCours, String titre, String objectif, int etat) {
+    public Chapitre(int idChapitre, int idCours, String titre, String objectif, int etat) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.objectif = objectif;
         this.etat = etat;
         this.idCours = idCours;
     }
-    
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz,String titre, String objectif, int etat,Blob Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, String objectif, int etat, Blob Video) {
         this.titre = titre;
         this.objectif = objectif;
         this.etat = etat;
@@ -46,8 +54,6 @@ public class Chapitre {
     public String toString() {
         return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif + ", etat=" + etat + ", idQuiz=" + idQuiz + ", idCours=" + idCours + ", Video=" + Video + '}';
     }
-
- 
 
     public void setIdChapitre(int idChapitre) {
         this.idChapitre = idChapitre;
@@ -65,7 +71,6 @@ public class Chapitre {
         return Video;
     }
 
- 
     public void setObjectif(String objectif) {
         this.objectif = objectif;
     }
@@ -81,8 +86,6 @@ public class Chapitre {
     public void setIdCours(int idCours) {
         this.idCours = idCours;
     }
-
-
 
     public int getIdChapitre() {
         return idChapitre;
@@ -100,7 +103,6 @@ public class Chapitre {
         this.Video = Video;
     }
 
-    
     public String getObjectif() {
         return objectif;
     }
@@ -117,9 +119,4 @@ public class Chapitre {
         return idCours;
     }
 
-
-  
-
-   
-    
 }

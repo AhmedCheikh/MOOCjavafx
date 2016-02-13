@@ -6,7 +6,7 @@
 package pidev.dao.classes;
 
 import java.util.List;
-import pidev.dao.interfaces.IDAOReponce;
+import pidev.dao.interfaces.IDAOReponse;
 import pidev.entities.Reponse;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOChapitre;
 import pidev.dao.interfaces.IDAOQuestion;
+import pidev.dao.interfaces.IDAOReponse;
 import pidev.entities.Chapitre;
 import pidev.entities.Cours;
 import pidev.entities.Question;
@@ -29,66 +30,66 @@ import pidev.techniques.DataSource;
  *
  * @author Gumus
  */
-public class DAOReponce implements IDAOReponce {
+public class DAOReponse implements IDAOReponse{
 
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
 
-    public DAOReponce() {
+    public DAOReponse() {
         connection = DataSource.getInstance().getConnection();
     }
 
     @Override
-    public void addReponce(Reponse r) {
+    public void addReponse(Reponse r) {
         try {
             String req = "insert into reponse(id,etat,reponse,idquestion) values (?,?,?,?)";
             pst = connection.prepareStatement(req);
             pst.setInt(1, r.getIdReponse());
             pst.setInt(2, r.getEtat());
-            pst.setString(3, r.getReponce());
+            pst.setString(3, r.getReponse());
             pst.setInt(4, r.getIdQuestion());
             pst.executeUpdate();
-            System.out.println("Ajout effectuée avec succès");
+            System.out.println("Ajout reponse effectuée avec succès");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de l'ajout " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     @Override
-    public void removeReponce(Reponse r) {
-        String requete = "delete from reponce where id=?";
+    public void removeReponse(Reponse r) {
+        String requete = "delete from reponse where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, r.getIdQuestion());
             ps.executeUpdate();
             System.out.println("Reponse supprimé");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la suppression " + ex.getMessage());
+            ex.printStackTrace();
 
         }
     }
 
     @Override
-    public void updateReponce(Reponse r) {
+    public void updateReponse(Reponse r) {
 
         String requete = "update reponse set etat=?, reponse=?, idquestion=? where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             pst.setInt(1, r.getIdReponse());
             pst.setInt(2, r.getEtat());
-            pst.setString(3, r.getReponce());
+            pst.setString(3, r.getReponse());
             pst.setInt(4, r.getIdQuestion());
 
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     @Override
-    public List<Reponse> findReponceById(int id) {
+    public List<Reponse> findReponseById(int id) {
         String req = "select * from reponse where id= '"+id+"'";
         List<Reponse> listReponse = new ArrayList<Reponse>();
 
@@ -104,14 +105,14 @@ public class DAOReponce implements IDAOReponce {
             }
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
+            ex.printStackTrace();
         }
         return listReponse;
     }
 
     @Override
-    public List<Reponse> findReponceByEtat(int etat) {
-               String req = "select * from quiz where etat= '"+etat+"'"; 
+    public List<Reponse> findReponseByEtat(int etat) {
+               String req = "select * from reponse where etat= '"+etat+"'"; 
         List<Reponse> listReponse = new ArrayList<Reponse>();
 
         try {
@@ -126,7 +127,7 @@ public class DAOReponce implements IDAOReponce {
             }
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
+           ex.printStackTrace();
         }
         return listReponse;
     }

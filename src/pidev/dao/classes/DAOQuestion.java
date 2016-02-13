@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package pidev.dao.classes;
 
 import java.sql.Blob;
 import java.sql.Connection;
@@ -19,66 +15,70 @@ import pidev.entities.Chapitre;
 import pidev.entities.Cours;
 import pidev.entities.Question;
 import pidev.techniques.DataSource;
+
 /**
  *
  * @author Gumus
  */
-public class DAOQuestion implements IDAOQuestion{
- Connection connection;
+public class DAOQuestion implements IDAOQuestion {
+
+    Connection connection;
     PreparedStatement pst;
     ResultSet rs;
 
     public DAOQuestion() {
         connection = DataSource.getInstance().getConnection();
     }
+
     @Override
     public void addQuestion(Question q) {
-          try {
+        try {
             String req = "insert into question(id,question,idQuiz) values (?,?,?)";
             pst = connection.prepareStatement(req);
             pst.setInt(1, q.getIdQuestion());
             pst.setString(2, q.getQuestion());
             pst.setInt(3, q.getIdQuiz());
             pst.executeUpdate();
-            System.out.println("Ajout effectuée avec succès");
+            System.out.println("Ajout question effectuée avec succès");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de l'ajout " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     @Override
     public void removeQuestion(Question q) {
-             String requete = "delete from question where id=?";
+        String requete = "delete from question where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, q.getIdQuestion());
             ps.executeUpdate();
             System.out.println("Question supprimé");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la suppression " + ex.getMessage());
+            ex.printStackTrace();
 
         }
     }
 
     @Override
     public void updateQuestion(Question q) {
-              
-                String requete = "update question set question=?, idquiz=?  where id=?";
+
+        String requete = "update question set question=?, idquiz=?  where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             pst.setInt(1, q.getIdQuestion());
             pst.setString(2, q.getQuestion());
             pst.setInt(3, q.getIdQuiz());
-            
+
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
+
     @Override
     public List<Question> findQuestionById(int id) {
-             String req = "select * from question where id= '"+id+"'";
+        String req = "select * from question where id= '" + id + "'";
         List<Question> listQuestion = new ArrayList<Question>();
 
         try {
@@ -93,10 +93,9 @@ public class DAOQuestion implements IDAOQuestion{
             }
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
+            ex.printStackTrace();
         }
         return listQuestion;
     }
 
-    
 }
