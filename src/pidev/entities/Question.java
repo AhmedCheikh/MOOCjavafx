@@ -7,6 +7,9 @@ public class Question {
     private String question;
     private int idQuiz;  
 
+    public Question() {
+    }
+
     public Question(int idQuestion, String question, int idQuiz) {
         this.idQuestion = idQuestion;
         this.question = question;

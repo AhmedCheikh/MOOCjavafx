@@ -20,31 +20,32 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import pidev.dao.classes.DAOChapitre;
+import pidev.entities.Chapitre;
 
 /**
  *
  * @author Gumus
  */
-public class AjouterChapitreController  {
+public class AjouterChapitreController {
 
-  
     @FXML
     private TextField txtTitre;
     @FXML
     private TextArea txtAObjectif;
-  
 
-    //
     @FXML
     private Label er1;
     @FXML
     private Label er2;
-  
-    
 
     public void btnAjouterAction(ActionEvent event) throws IOException {
+
         if (txtTitre.getText().isEmpty()) {
             er1.setText("Vous devez Renseigez ce champs");
         } else {
@@ -55,34 +56,49 @@ public class AjouterChapitreController  {
         } else {
             er2.setText(" ");
         }
-       
 
-//        ((Node) (event.getSource())).getScene().getWindow().hide();
-//        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(parent);
-//        stage.setScene(scene);
-//        stage.setTitle("AjouterChapitre");
-//        stage.show();
+//         Chapitre c = new Chapitre(1, 1, 1, txtTitre.getText(), null, txtAObjectif.getText(), 1, null);
+        Chapitre c1 = new Chapitre();
+        Chapitre c = new Chapitre(c1.getIdChapitre(), txtTitre.getText(), txtAObjectif.getText());
+
+        DAOChapitre daoc = new DAOChapitre();
+        daoc.addChapitre(c);
     }
-@FXML
+
+    @FXML
     public void btnAnullerAction(ActionEvent event) {
+        txtTitre.setText("");
+        txtAObjectif.setText("");
 
     }
-@FXML
+
+    @FXML
     public void btnChoisirDocAction(ActionEvent event) {
+        FileChooser fileshoser = new FileChooser();
+        File f = fileshoser.showOpenDialog(null);
 
-        
+        if (fileshoser != null) {
+            System.out.println(f.getName());
+        }
+
     }
-@FXML
+
+    @FXML
     public void btnChoisirVideoAction(ActionEvent event) {
 
     }
-@FXML
+
+    @FXML
+    public void btnAjouterQuizAction(ActionEvent event) {
+
+    }
+
+    @FXML
     public void btnexitAction(ActionEvent event) {
 
     }
-@FXML
+
+    @FXML
     public void btnbackAction(ActionEvent event) {
 
     }

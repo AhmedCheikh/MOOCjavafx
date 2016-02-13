@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -96,6 +97,32 @@
                   <Label fx:id="LPresentation" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="119.0" text="présentation.ppt" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnAjouterQuiz" layoutX="19.0" mnemonicParsing="false" onAction="#btnAjouterQuizAction" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #77ABD6; -fx-alignment: right;" text="Ajouter Quiz " textAlignment="RIGHT" translateX="40.0" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Label fx:id="LVideo1" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="26.0" text="ou" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
                      </font>
                   </Label>
                </children>

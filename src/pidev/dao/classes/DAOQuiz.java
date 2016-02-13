@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOQuiz;
 import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
@@ -35,14 +37,14 @@ public class DAOQuiz implements IDAOQuiz {
             String req = "insert into quiz (id,titre,type,etat) values (?,?,?,?)";
             pst = connection.prepareStatement(req);
             pst.setInt(1, q.getIdQuiz());
-            pst.setString(1, q.getTitre());
-            pst.setInt(1, q.getType());
-            pst.setInt(1, q.getEtat());
+            pst.setString(2, q.getTitre());
+            pst.setInt(3, q.getType());
+            pst.setInt(4, q.getEtat());
 
             pst.executeUpdate();
-            System.out.println("Ajout effectuée avec succès");
+            System.out.println("Ajout quiz effectuée avec succès");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de l'ajout " + ex.getMessage());
+            ex.printStackTrace();
         }
 
     }
@@ -57,33 +59,33 @@ public class DAOQuiz implements IDAOQuiz {
             ps.executeUpdate();
             System.out.println("Quiz supprimé");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la suppression " + ex.getMessage());
+            ex.printStackTrace();
 
         }
     }
 
     @Override
     public void updateQuiz(Quiz q) {
-       
-                String requete = "update quiz set titre=?, type=? ,etat=? where id=?";
+
+        String requete = "update quiz set titre=?, type=? ,etat=? where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             pst.setInt(1, q.getIdQuiz());
             pst.setString(2, q.getTitre());
             pst.setInt(3, q.getType());
             pst.setInt(4, q.getEtat());
-          
+
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     @Override
     public List<Quiz> findQuizById(int id) {
-      
-         String req = "select * from quiz where id= '"+id+"'";
+
+        String req = "select * from quiz where id= '" + id + "'";
         List<Quiz> listQuiz = new ArrayList<Quiz>();
 
         try {
@@ -98,15 +100,15 @@ public class DAOQuiz implements IDAOQuiz {
             }
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
+            ex.printStackTrace();
         }
         return listQuiz;
     }
 
     @Override
     public List<Quiz> findQuizByTitre(String titre) {
-       
-        String req = "select * from quiz where titre= '"+titre+"'";
+
+        String req = "select * from quiz where titre= '" + titre + "'";
         List<Quiz> listQuiz = new ArrayList<Quiz>();
 
         try {
@@ -115,19 +117,20 @@ public class DAOQuiz implements IDAOQuiz {
 
             while (rs.next()) {
 
-                   Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
+                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
 
                 listQuiz.add(q);
             }
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
+            ex.printStackTrace();
         }
         return listQuiz;
     }
+
     @Override
     public List<Quiz> findQuizByType(boolean type) {
-        String req = "select * from quiz where type= '"+type+"'"; 
+        String req = "select * from quiz where type= '" + type + "'";
         List<Quiz> listQuiz = new ArrayList<Quiz>();
 
         try {
@@ -136,15 +139,44 @@ public class DAOQuiz implements IDAOQuiz {
 
             while (rs.next()) {
 
-                   Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
+                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
 
                 listQuiz.add(q);
             }
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
+            ex.printStackTrace();
         }
         return listQuiz;
     }
 
+//        @Override
+//    public int findQuizByTitreSelonId(String titre) {
+//        int m;
+//        try {
+//            String requete = "select id from quiz where titre= '" + titre + "'";
+//            
+//            PreparedStatement ps = connection.prepareStatement(requete);
+//            m= ps.executeQuery().getRow();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DAOQuiz.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return m;
+//        
+//        }
+    @Override
+    public int findQuizByTitreSelonId(String titre) {
+//        String req = "select id from quiz where titre= '" + titre + "'";
+//        try {
+//            pst = connection.prepareStatement(req);
+//            rs = pst.executeQuery();
+//            
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        return rs.getI;
+return 0;
+  }
+
+    
 }

@@ -1,17 +1,19 @@
-
 package pidev.entities;
 
-
 public class Reponse {
+
     private int idReponse;
     private int etat;
-    private String reponce;
-    private int  idQuestion ;
+    private String reponse;
+    private int idQuestion;
 
-    public Reponse(int idReponse, int etat, String reponce, int idQuestion) {
+    public Reponse() {
+    }
+
+    public Reponse(int idReponse, int etat, String reponse, int idQuestion) {
         this.idReponse = idReponse;
         this.etat = etat;
-        this.reponce = reponce;
+        this.reponse = reponse;
         this.idQuestion = idQuestion;
     }
 
@@ -23,8 +25,8 @@ public class Reponse {
         return etat;
     }
 
-    public String getReponce() {
-        return reponce;
+    public String getReponse() {
+        return reponse;
     }
 
     public int getIdQuestion() {
@@ -39,9 +41,11 @@ public class Reponse {
         this.etat = etat;
     }
 
-    public void setReponce(String reponce) {
-        this.reponce = reponce;
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
     }
+
+
 
     public void setIdQuestion(int idQuestion) {
         this.idQuestion = idQuestion;
@@ -49,8 +53,7 @@ public class Reponse {
 
     @Override
     public String toString() {
-        return "Reponse{" + "idReponse=" + idReponse + ", etat=" + etat + ", reponce=" + reponce + ", idQuestion=" + idQuestion + '}';
+        return "Reponse{" + "idReponse=" + idReponse + ", etat=" + etat + ", reponse=" + reponse + ", idQuestion=" + idQuestion + '}';
     }
 
-   
 }
