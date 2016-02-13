@@ -5,6 +5,7 @@
  */
 package pidev.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import pidev.dao.classes.DAOOrganisme;
+import pidev.entities.*;
 
 /**
  *
@@ -58,35 +61,37 @@ public class PreInscrireOrganismeController implements Initializable {
    
     @Override
     public void initialize(URL location, ResourceBundle resources) { }
-        public void btnValiderAction(ActionEvent event) throws IOException{
+
+
+        public void btnValiderAction(ActionEvent event){
     
     
-        if (txtNom.getText().equals("")) {
+        if (txtNom.getText().isEmpty()) {
         l1.setText("Vous devez Renseigez ce champs");
         }else{
         l1.setText(" ");
         }
-        if (txtAdresse.getText().equals("")) {
+        if (txtAdresse.getText().isEmpty()) {
         l2.setText(" ");
         }else{
         l2.setText("Vous devez Renseigez ce champs");
         }
-        if (txtEmail.getText().equals("")) {
+        if (txtEmail.getText().isEmpty()) {
         l3.setText("Vous devez Renseigez ce champs");
         }else{
         l3.setText(" ");
         }
-        if (txtLogin.getText().equals("")) {
+        if (txtLogin.getText().isEmpty()) {
         l4.setText("Vous devez Renseigez ce champs");
         }else{
         l4.setText(" ");
         }
-        if (txtPassword.getText().equals("")) {
+        if (txtPassword.getText().isEmpty()) {
         l5.setText("Vous devez Renseigez ce champs");
         }else{
         l5.setText(" ");
         }
-        if (txtPassword2.getText().equals("")) {
+        if (txtPassword2.getText().isEmpty()) {
         l6.setText("Vous devez Renseigez ce champs");
         }else{
         l6.setText(" ");
@@ -97,15 +102,37 @@ public class PreInscrireOrganismeController implements Initializable {
         }else{
         l6.setText(" ");
         }
-         ((Node) (event.getSource())).getScene().getWindow().hide();
-            Parent parent;
-     
-            parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilOrganismeA.fxml"));
-      
-            Stage stage =  new Stage();
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-            stage.setTitle("Profil Organisme");
-            stage.show();
+         
+                Organisme o1 = new Organisme(3,txtNom.getText(),txtLogin.getText(),txtPassword.getText(),txtEmail.getText(),null,txtAdresse.getText(),null,null,null,null,10);
+                DAOOrganisme d1 = new DAOOrganisme();
+                d1.addOrganisme(o1);
+                 
+
+//         ((Node) (event.getSource())).getScene().getWindow().hide();
+//            Parent parent;
+//     
+//            parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
+//      
+//            Stage stage =  new Stage();
+//            Scene scene = new Scene(parent);
+//            stage.setScene(scene);
+//            stage.setTitle("Profil Organisme");
+//            stage.show();
+    }
+
+  public void btnAnullerAction(ActionEvent event){
+    txtNom.setText("");
+    txtLogin.setText("");
+    txtPassword.setText("");
+    txtPassword2.setText("");
+    txtEmail.setText("");
+    txtAdresse.setText("");
+    }
+     public void btnexitAction(ActionEvent event){
+    
+    }
+    public void btnbackAction(ActionEvent event){
+    
     }
 }
+

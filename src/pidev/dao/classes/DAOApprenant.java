@@ -30,6 +30,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
+    private Object organisme;
 
     public DAOApprenant() {
         connection =(DataSource.getInstance()).getConnection();
@@ -38,7 +39,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     @Override
     public void add(Apprenant a) {
-        try {
+       try {
             String req="insert into apprenant (cin,nom,prenom,email,login,password) values (?,?,?,?,?,?)";
             pst=connection.prepareStatement(req);
 
@@ -55,8 +56,6 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
