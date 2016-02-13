@@ -13,38 +13,29 @@ import java.util.logging.Logger;
  *
  * @author Rimy Jeljeli
  */
-
 public class Organisme  {
 
-
     private int id;
-    private String nom;
+    public String nom;
+    private String login;
+    private String password;
     private String email;
     private String siteweb;
     private String adresse;
-    private Number telephone;
+    private String telephone;
     private String description;
     private File document;
     private File logo;
     private int cinFormateur;
-    private int idUser;
 
-
-    public Organisme(String nom, String email, String adresse) {
-       
-        this.nom = nom;
-        this.email = email;
-        this.adresse = adresse;
+    public Organisme() {
     }
 
-    
-    
-    
-    public Organisme(int id, String nom, String email, String siteweb, String adresse, Number telephone, String description, File document, File logo, int cinFormateur, int idUser, String login, String password, String role) {
-//        super(idUser, login, password, role);
-
+    public Organisme(int id, String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo, int cinFormateur) {
         this.id = id;
         this.nom = nom;
+        this.login = login;
+        this.password = password;
         this.email = email;
         this.siteweb = siteweb;
         this.adresse = adresse;
@@ -53,99 +44,13 @@ public class Organisme  {
         this.document = document;
         this.logo = logo;
         this.cinFormateur = cinFormateur;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSiteweb() {
-        return siteweb;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public Number getTelephone() {
-        return telephone;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public File getDocument() {
-        return document;
-    }
-
-    public File getLogo() {
-        return logo;
-    }
-
-    public int getCinFormateur() {
-        return cinFormateur;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setSiteweb(String siteweb) {
-        this.siteweb = siteweb;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public void setTelephone(Number telephone) {
-        this.telephone = telephone;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setDocument(File document) {
-        this.document = document;
-    }
-
-    public void setLogo(File logo) {
-        this.logo = logo;
-    }
-
-    public void setCinFormateur(int cinFormateur) {
-        this.cinFormateur = cinFormateur;
-    }
-
-    @Override
-    public String toString() {
-        return "Organisme{" + "id=" + id + ", nom=" + nom + ", email=" + email + ", siteweb=" + siteweb + ", adresse=" + adresse + ", telephone=" + telephone + ", description=" + description + ", document=" + document + ", logo=" + logo + ", cinFormateur=" + cinFormateur + ", idUser=" + idUser + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + Objects.hashCode(this.email);
-        hash = 47 * hash + Objects.hashCode(this.telephone);
+        int hash = 5;
+        hash = 23 * hash + this.id;
+        hash = 23 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -166,6 +71,104 @@ public class Organisme  {
         }
         return true;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSiteweb() {
+        return siteweb;
+    }
+
+    public void setSiteweb(String siteweb) {
+        this.siteweb = siteweb;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public File getDocument() {
+        return document;
+    }
+
+    public void setDocument(File document) {
+        this.document = document;
+    }
+
+    public File getLogo() {
+        return logo;
+    }
+
+    public void setLogo(File logo) {
+        this.logo = logo;
+    }
+
+    public int getCinFormateur() {
+        return cinFormateur;
+    }
+
+    public void setCinFormateur(int cinFormateur) {
+        this.cinFormateur = cinFormateur;
+    }
+
+    
     
 
     

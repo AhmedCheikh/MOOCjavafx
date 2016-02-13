@@ -17,7 +17,7 @@ public interface IDAOOrganisme {
     
     void updateOrganismeInscription(Organisme organisme);
     
-    void updateOrganisme(String nom);
+    void updateOrganisme(Organisme organisme);
 
     void removeOrganismeByName(String nom);
 
@@ -26,18 +26,15 @@ public interface IDAOOrganisme {
     void removeFormateurFromOrganisme(int idFormateur);
     
     
-     void envoyerInvitation(String email1,String email2);
+     void envoyerInvitation(String nom1,String nom2);
      
-     void accepterInvitation();
+     void accepterInvitation(int idorganisme);
      
      void refuserInvitation();
-     
+     void getIdOrganismeByName(String nom);     
      void findFormateurByOrganisme(String nom);
 
     List<Organisme> findAll();
 
-    Organisme findOrganismeById(int id);
-
-    Organisme findOrganismeByAdresse(String adresse);
 
 }

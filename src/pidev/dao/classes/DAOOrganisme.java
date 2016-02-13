@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,116 +32,193 @@ public class DAOOrganisme implements IDAOOrganisme{
   @Override
     public void addOrganisme(Organisme organisme) {
    try {
-          String req1="insert into organisme (nom,adresse,email) values (?,?,?)";
+          String req1="insert into organisme (nom,login,password,email,adresse) values (?,?,?,?,?)";
+//        String req1="insert into organisme (nom,login,password,email,adresse,document) values (?,?,?,?,?,?)";
+
+          pst = connection.prepareStatement(req1);
           pst.setString(1, organisme.getNom());
-          pst.setString(2, organisme.getAdresse());
-          pst.setString(3, organisme.getEmail());
-//          String req2="insert into utilisateur (login,password,role) values (?,?,?)";
-//           pst.setString(1, utilisateur.getLogin());
-//          pst.setString(2, utilisateur.getPassword());
-//          pst.setString(3, utilisateur.getRole());
-      } catch (SQLException ex) {
-      }    }
+          pst.setString(2, organisme.getLogin());
+          pst.setString(3, organisme.getPassword());
+          pst.setString(4, organisme.getEmail());
+          pst.setString(5, organisme.getAdresse());
+        
+//          pst.setBlob(6, (Blob) organisme.getDocument());
+           pst.executeUpdate();
+           rs = pst.executeQuery();
+
+    
+       
+//           System.out.println(rs.getRow());
+           } catch (SQLException ex) {
+                  Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+      } 
+  
+     
+        }
     
     
     @Override
     public void updateOrganismeInscription(Organisme organisme) {
-        
-    }
-    
-    
-    
+//        try {
+//          String req1="update  organisme set (siteweb,telephone,description) values (?,?,?) where nom=?";
+//          //né9ess logo
+//          pst.setString(1, organisme.getSiteweb());
+//          pst.setString(2, organisme.getTelephone());
+//          pst.setString(3, organisme.getDescription());
+////          pst.setString(4, organisme.getLogo());
+//         pst.setString(4, organisme.getNom());
+//           } catch (SQLException ex) {
+//      } 
+     
+        }
+
     @Override
-    public void updateOrganisme(String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateOrganisme(Organisme organisme) {
+//      try {
+//          String req1="update  organisme set (nom,login,password,email,adresse,siteweb,telephone,description) values (?,?,?,?,?,?,?,?) where nom=?";
+//          
+//          pst.setString(1, organisme.getNom());
+//          pst.setString(2, organisme.getLogin());
+//          pst.setString(3, organisme.getPassword());
+//          pst.setString(4, organisme.getEmail());
+//          pst.setString(5, organisme.getAdresse());
+//           pst.setString(6, organisme.getSiteweb());
+//          pst.setString(7, organisme.getTelephone());
+//          pst.setString(8, organisme.getDescription());
+//           pst.setString(9, organisme.getNom());
+//      } catch (SQLException ex) {
+//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+//      }
     }
 
     @Override
     public void removeOrganismeByName(String nom) {
-        String requete = "delete from Organisme where nom=?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setString(1,nom);
-            ps.executeUpdate();
-            System.out.println("Organisme supprimé");
-        } catch (SQLException ex) {
-             System.out.println("erreur lors de la suppression " + ex.getMessage());
+//  String requete = "delete from Organisme where nom=?";
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(requete);
+//            ps.setString(1,nom);
+//            ps.executeUpdate();
+//            System.out.println("Organisme supprimé");
+//        } catch (SQLException ex) {
+//             System.out.println("erreur lors de la suppression " + ex.getMessage());
+//    }
+//    }
+//    @Override
+//    public void removeOrganismeById(int id) {
+//  String requete = "delete from Organisme where idorganisme=?";
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(requete);
+//            ps.setInt(1,id);
+//            ps.executeUpdate();
+//            System.out.println("Organisme supprimé");
+//        } catch (SQLException ex) {
+//             System.out.println("erreur lors de la suppression " + ex.getMessage());
+//             
+//    }
+    }
+    @Override
+    public void removeFormateurFromOrganisme(int cin) {
+//      try {
+//          String req1="update  Formateur set (idOrganisme) values (null) where cin=?";
+//          PreparedStatement ps = connection.prepareStatement(req1);
+//          ps.setInt(1,cin);
+//          ps.executeUpdate();
+//      } catch (SQLException ex) {
+//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+//      }
 
-        }   
     }
 
     @Override
-    public void removeOrganismeById(int id) {
-          String requete = "delete from Organisme where idorganisme=?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-           
-            ps.setInt(1,id);
-            ps.executeUpdate();
-            System.out.println("Organisme supprimé");
-        } catch (SQLException ex) {
-             System.out.println("erreur lors de la suppression " + ex.getMessage());
-
-        } 
-     }
-
-       @Override
-    public void removeFormateurFromOrganisme(int idFormateur) {
-        ////////fama idorganisme 3and formateur???!!!
-         String requete = "delete idOrganisme from Organisme where idformateur=?";
-          try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            
-            ps.setInt(1,idFormateur);
-            ps.executeUpdate();
-            System.out.println("Formateur supprimé");
-        } catch (SQLException ex) {
-             System.out.println("erreur lors de la suppression " + ex.getMessage());
-
-        } 
-    }
-    
-    
-    
-    @Override
-    public void envoyerInvitation(String email1, String email2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void envoyerInvitation(String nom1, String nom2) {
+//      try {
+//          String req1="insert into invitation (nom_exp,nom_des,date_invit,etat) values (?,?,?,?)";
+//          
+//          PreparedStatement ps = connection.prepareStatement(req1);
+//          ps.setString(1,nom1);
+//           ps.setString(2,nom2);
+//          // ps.setDate(i, 1/22/2012);
+//          ps.executeUpdate();
+//      } catch (SQLException ex) {
+//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+//      }
     }
 
     @Override
-    public void accepterInvitation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void accepterInvitation(int idorganisme) {
+//      try {
+//          String req1="update  invitation set (etat) values (?) where cin=?";
+//          PreparedStatement ps = connection.prepareStatement(req1);
+//          ps.setString(1,"lu");
+//          ps.executeUpdate();
+//          try {
+//              String req2="update  Formateur set (idOrganisme) values (?) where cin=?";
+//              PreparedStatement ps2 = connection.prepareStatement(req2);
+//              ps2.setInt(1,idorganisme);
+//              ps2.executeUpdate();
+//          } catch (SQLException ex) {
+//              Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+//      } catch (SQLException ex) {
+//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+//      }
+//      //ne3lmou el formateur
     }
 
     @Override
     public void refuserInvitation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+     
+      try {
+          String req1="update  invitation set (etat) values (?) where cin=?";
+          PreparedStatement ps = connection.prepareStatement(req1);
+          ps.setString(1,"lu");
+          ps.executeUpdate();
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+      }
+          
+         
+    }           @Override
+          public void findFormateurByOrganisme(String nom) {
+//      try {
+//          String req1="select * from  formateur where idorganisme=?";
+//          PreparedStatement ps = connection.prepareStatement(req1);
+//          
+//         // ps.setint(1,id);
+//          ps.executeUpdate();
+//      } catch (SQLException ex) {
+//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+//      }
+          }
+        @Override
+        public List<Organisme> findAll() {
+        return null;
+              
+          }
+
+    @Override
+    public void getIdOrganismeByName(String nom) {
+        String req1="select idorgansme from  Organisme where nom=?";
     }
 
     @Override
-    public void findFormateurByOrganisme(String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void removeOrganismeById(int id) {
 
-    @Override
-    public List<Organisme> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+ 
 
-    @Override
-    public Organisme findOrganismeById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
     }
-
-    @Override
-    public Organisme findOrganismeByAdresse(String adresse) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
+    
+    
 
  
 
 
   
 
-    
-}
+  

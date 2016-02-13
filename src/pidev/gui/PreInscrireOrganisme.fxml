@@ -92,14 +92,7 @@
                   </Label>
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir document ..." GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
+                       
                      </effect>
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -131,38 +124,15 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="btnValider" layoutX="267.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Valider" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
+            <Button fx:id="btnValider" layoutX="267.0" layoutY="441.0" mnemonicParsing="false" onMouseClicked="#btnValiderAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Valider" textFill="WHITE">
+              
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <Button fx:id="btnAnuller" layoutX="400.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
+               
+              
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -177,20 +147,21 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Hyperlink>
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="295.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/inscrit.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+         
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
       <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+        
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

@@ -12,28 +12,39 @@ import pidev.entities.*;
 import pidev.dao.classes.*;
 import pidev.techniques.DataSource;
 
-public class test extends Application{
+public class test extends Application
+{
 
-//    @Override
-//    public void start(Stage stage) throws Exception {
-//     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/InscrireFormateur.fxml"));
-//        Scene scene = new Scene(root);        
-//        stage.setScene(scene);
-//        stage.setTitle("Inscrirption Formateur");
-//        stage.show();
-//    }
+    @Override
     public void start(Stage stage) throws Exception {
-     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/PreInscrireOrganisme.fxml"));
         Scene scene = new Scene(root);        
         stage.setScene(scene);
-        stage.setTitle("Authentification");
+        stage.setTitle("Inscrirption organisme");
         stage.show();
     }
+//    public void start(Stage stage) {
+////            throws Exception {
+////     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/PreInscrireOrganisme.fxml"));
+////        Scene scene = new Scene(root);        
+////        stage.setScene(scene);
+////        stage.setTitle("Pre-Inscription Organisme");
+////        stage.show();
+//    }
     
     public static void main(String[] args) {
-        launch();
+        launch(args);
+//        launch();
         
-    
-        
-    }
+//    try {
+//        DAOOrganisme d = new DAOOrganisme();
+//        Organisme o = new Organisme(3,"zzzz","sdsd","String password","String email","String siteweb","String adresse","String telephone","String description",null,null,8);
+//        d.addOrganisme(o); 
+//          
+//        } catch (Exception e) {
+//            System.out.println("lerreur est "+e.getMessage());
+//        }
+//        
+//    }
+}
 }

@@ -251,6 +251,11 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
+            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="273.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/edit.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
