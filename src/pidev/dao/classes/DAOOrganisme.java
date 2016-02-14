@@ -32,19 +32,20 @@ public class DAOOrganisme implements IDAOOrganisme{
   @Override
     public void addOrganisme(Organisme organisme) {
    try {
-          String req1="insert into organisme (nom,login,password,email,adresse) values (?,?,?,?,?)";
+//       String req1="insert into orga (nom) values (?)";
+        String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
 //        String req1="insert into organisme (nom,login,password,email,adresse,document) values (?,?,?,?,?,?)";
 
           pst = connection.prepareStatement(req1);
-          pst.setString(1, organisme.getNom());
-          pst.setString(2, organisme.getLogin());
-          pst.setString(3, organisme.getPassword());
-          pst.setString(4, organisme.getEmail());
-          pst.setString(5, organisme.getAdresse());
-        
+         pst.setInt(1,organisme.getId());
+          pst.setString(2, organisme.getNom());
+          pst.setString(3, organisme.getLogin());
+          pst.setString(4, organisme.getPassword());
+          pst.setString(5, organisme.getEmail());
+          pst.setString(6, organisme.getAdresse());
 //          pst.setBlob(6, (Blob) organisme.getDocument());
            pst.executeUpdate();
-           rs = pst.executeQuery();
+           //rs = pst.executeUpdate();
 
     
        
@@ -61,15 +62,18 @@ public class DAOOrganisme implements IDAOOrganisme{
     public void updateOrganismeInscription(Organisme organisme) {
 //        try {
 //          String req1="update  organisme set (siteweb,telephone,description) values (?,?,?) where nom=?";
-//          //né9ess logo
+//        //né9ess logo
+//          
+//          pst = connection.prepareStatement(req1);
 //          pst.setString(1, organisme.getSiteweb());
 //          pst.setString(2, organisme.getTelephone());
 //          pst.setString(3, organisme.getDescription());
 ////          pst.setString(4, organisme.getLogo());
 //         pst.setString(4, organisme.getNom());
+//           pst.executeUpdate();
 //           } catch (SQLException ex) {
 //      } 
-     
+//     
         }
 
     @Override
@@ -205,6 +209,23 @@ public class DAOOrganisme implements IDAOOrganisme{
     @Override
     public void removeOrganismeById(int id) {
 
+    }
+
+    @Override
+    public boolean authentificationOrganisme(String login, String password) {
+
+       int rowCount = 0;
+        try {
+            String req = "select from organisme where login == ? and password=? ";
+            pst=connection.prepareStatement(req);
+            pst.setString(1, login);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+            rowCount = rs.getRow();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rowCount != 0;
     }
     
  

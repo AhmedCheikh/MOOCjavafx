@@ -26,12 +26,11 @@ public class Organisme  {
     private String description;
     private File document;
     private File logo;
-    private int cinFormateur;
 
     public Organisme() {
     }
 
-    public Organisme(int id, String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo, int cinFormateur) {
+    public Organisme(int id, String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo) {
         this.id = id;
         this.nom = nom;
         this.login = login;
@@ -43,14 +42,34 @@ public class Organisme  {
         this.description = description;
         this.document = document;
         this.logo = logo;
-        this.cinFormateur = cinFormateur;
+    }
+
+    public Organisme(String nom) {
+        this.nom = nom;
+    }
+
+    public Organisme(int id, String siteweb, String telephone, String description) {
+        this.id = id;
+        this.siteweb = siteweb;
+        this.telephone = telephone;
+        this.description = description;
+    }
+    
+    
+
+    public Organisme(int Id,String nom, String login, String password, String email, String adresse) {
+        this.id=id;
+        this.nom = nom;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.adresse = adresse;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + this.id;
-        hash = 23 * hash + Objects.hashCode(this.email);
+        int hash = 7;
+        hash = 89 * hash + this.id;
         return hash;
     }
 
@@ -64,9 +83,6 @@ public class Organisme  {
         }
         final Organisme other = (Organisme) obj;
         if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         return true;
@@ -159,14 +175,7 @@ public class Organisme  {
     public void setLogo(File logo) {
         this.logo = logo;
     }
-
-    public int getCinFormateur() {
-        return cinFormateur;
-    }
-
-    public void setCinFormateur(int cinFormateur) {
-        this.cinFormateur = cinFormateur;
-    }
+ 
 
     
     

@@ -33,6 +33,8 @@ public interface IDAOOrganisme {
      void refuserInvitation();
      void getIdOrganismeByName(String nom);     
      void findFormateurByOrganisme(String nom);
+     
+    boolean authentificationOrganisme(String login,String password);
 
     List<Organisme> findAll();
 

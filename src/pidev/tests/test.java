@@ -17,7 +17,7 @@ public class test extends Application
 
     @Override
     public void start(Stage stage) throws Exception {
-     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/PreInscrireOrganisme.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/InscrireOrganisme.fxml"));
         Scene scene = new Scene(root);        
         stage.setScene(scene);
         stage.setTitle("Inscrirption organisme");

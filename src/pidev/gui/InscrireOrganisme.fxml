@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.InscrireOrganismeController">
    <children>
       <AnchorPane id="AnchorPane" layoutY="-6.0" prefHeight="590.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;">
          <children>
@@ -18,11 +18,6 @@
                   <GridPane layoutX="78.0" layoutY="65.0" prefHeight="354.0" prefWidth="624.0">
                      <children>
                         <Label text="Telephone:">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="Video:" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -42,34 +37,29 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtNom" prefHeight="25.0" prefWidth="184.0" promptText="+21672568458" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
-                        <TextField fx:id="txtLogin" prefHeight="25.0" prefWidth="184.0" promptText="www.organisme.com" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="er2" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2">
+                        <TextField fx:id="txtTel" prefHeight="25.0" prefWidth="184.0" promptText="+21672568458" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtSite" prefHeight="25.0" prefWidth="184.0" promptText="www.organisme.com" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="l1" textFill="#fc0000" GridPane.columnIndex="2">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="er6" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Label fx:id="l2" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="er7" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label fx:id="l3" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="er8" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Label fx:id="l4" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="er91" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir image ..." GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button fx:id="btnChoisireImg" mnemonicParsing="false" onAction="#btnChoisireImgAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir image ..." GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -84,22 +74,12 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Organisme créé en ..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir video ..." GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <effect>
-                              <Lighting>
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
+                        <TextArea fx:id="txtDesc" prefHeight="200.0" prefWidth="200.0" promptText="Organisme créé en ..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="l5" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="Times New Roman" size="14.0" />
                            </font>
-                        </Button>
+                        </Label>
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -124,7 +104,7 @@
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btnModifier" layoutX="267.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Valider" textFill="WHITE">
+                  <Button fx:id="btnValider" layoutX="267.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Valider" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
