@@ -38,18 +38,18 @@
         <content>
           <AnchorPane cache="true" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="112.0">
                <children>
-                  <Hyperlink layoutX="13.0" layoutY="7.0" prefHeight="23.0" prefWidth="113.0" text="Edit Profil" />
-                  <Button layoutX="15.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Se déconnecter" />
+                  <Hyperlink fx:id="lblEditerProfil" layoutX="13.0" layoutY="7.0" prefHeight="23.0" prefWidth="113.0" text="Edit Profil" />
+                  <Button fx:id="btnDeconnecter" layoutX="15.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="25.0" prefWidth="100.0" text="Se déconnecter" />
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
-      <ImageView fitHeight="143.0" fitWidth="159.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgAvatar" fitHeight="143.0" fitWidth="159.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/defaut.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="16.0" layoutY="184.0" prefHeight="17.0" prefWidth="143.0" text="Akoubi Zied">
+      <Label fx:id="lblLoginPrenom" layoutX="16.0" layoutY="184.0" prefHeight="17.0" prefWidth="143.0" text="Akoubi Zied">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -78,7 +78,7 @@
                </font>
             </Label>
             <Label layoutX="30.0" layoutY="171.0" />
-            <Label layoutX="93.0" layoutY="264.0" text="Adresse">
+            <Label layoutX="93.0" layoutY="264.0" text="Login">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -98,27 +98,27 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Label layoutX="222.0" layoutY="113.0" text="07950625" underline="true">
+            <Label fx:id="lblCin" layoutX="222.0" layoutY="113.0" text="07950625" underline="true">
                <font>
                   <Font name="Times New Roman Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="222.0" layoutY="149.0" text="zied" underline="true">
+            <Label fx:id="lblNom" layoutX="222.0" layoutY="149.0" text="zied" underline="true">
                <font>
                   <Font name="Times New Roman Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="222.0" layoutY="266.0" text="cité ghazela ariana tunis" underline="true">
+            <Label fx:id="lblLogin" layoutX="222.0" layoutY="266.0" text="zidaine" underline="true">
                <font>
                   <Font name="Times New Roman Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="222.0" layoutY="226.0" text="Zied.agoubi@esprit.tn" underline="true">
+            <Label fx:id="lblEmail" layoutX="222.0" layoutY="226.0" text="Zied.agoubi@esprit.tn" underline="true">
                <font>
                   <Font name="Times New Roman Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="222.0" layoutY="190.0" text="Agoubi" underline="true">
+            <Label fx:id="lblPrenom" layoutX="222.0" layoutY="190.0" text="Agoubi" underline="true">
                <font>
                   <Font name="Times New Roman Italic" size="14.0" />
                </font>

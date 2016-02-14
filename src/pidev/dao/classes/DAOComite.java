@@ -35,7 +35,7 @@ public class DAOComite implements IDAOComite{
        String requete = "update formateur set etat=1 where cin=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1,f.getCinFormateur());
+            ps.setString(1,f.getCinFormateur());
             ps.executeUpdate();
             System.out.println("Validation du formateur effectuée avec succès");
         } catch (SQLException ex) {
@@ -106,7 +106,7 @@ public class DAOComite implements IDAOComite{
          String requete = "insert into comite (cin,nom,prenom,email,login,password) values (select cin,nom,prenom,email,login,password from formateur where cin=?) ";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1,formateur.getCinFormateur());
+            ps.setString(1,formateur.getCinFormateur());
             ps.executeUpdate();
             System.out.println("Intégration à la comité effectuée avec succès");
         } catch (SQLException ex) {

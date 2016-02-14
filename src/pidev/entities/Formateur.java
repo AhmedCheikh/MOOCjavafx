@@ -1,104 +1,146 @@
 package pidev.entities;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  *
  * @author akoubi
  */
-public class Formateur{
+public class Formateur {
 
-    private int cinFormateur;
+    private String cinFormateur;
     private String nom;
     private String prenom;
     private String mail;
-    private String adresse;
-    private int idUser;
+    private String login;
+    private String password;
     private File avatar;
-    private String cv;
-    private File etat;
+    private File cv;
+    private int etat;
 
-    public Formateur(int cinFormateur, String nom, String prenom, String mail, String adresse, File avatar, String cv, File etat) {
-       
+    public Formateur() {
+    }
+
+    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar, File cv, int etat) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
-        this.adresse = adresse;
+        this.login = login;
+        this.password = password;
         this.avatar = avatar;
         this.cv = cv;
         this.etat = etat;
     }
 
-    public int getCinFormateur() {
+    public String getCinFormateur() {
         return cinFormateur;
+    }
+
+    public void setCinFormateur(String cinFormateur) {
+        this.cinFormateur = cinFormateur;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public File getAvatar() {
-        return avatar;
-    }
-
-    public String getCv() {
-        return cv;
-    }
-
-    public File getEtat() {
-        return etat;
-    }
-
-    public void setCinFormateur(int cinFormateur) {
-        this.cinFormateur = cinFormateur;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
     public void setMail(String mail) {
         this.mail = mail;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public File getAvatar() {
+        return avatar;
     }
 
     public void setAvatar(File avatar) {
         this.avatar = avatar;
     }
 
-    public void setCv(String cv) {
+    public File getCv() {
+        return cv;
+    }
+
+    public void setCv(File cv) {
         this.cv = cv;
     }
 
-    public void setEtat(File etat) {
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
         this.etat = etat;
     }
 
     @Override
-    public String toString() {
-        return "Formateur{" + "cinFormateur=" + cinFormateur + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", adresse=" + adresse + ", idUser=" + idUser + ", avatar=" + avatar + ", cv=" + cv + ", etat=" + etat + '}';
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.cinFormateur);
+        hash = 59 * hash + Objects.hashCode(this.mail);
+        return hash;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Formateur other = (Formateur) obj;
+        if (!Objects.equals(this.cinFormateur, other.cinFormateur)) {
+            return false;
+        }
+        if (!Objects.equals(this.mail, other.mail)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Formateur{" + "cinFormateur=" + cinFormateur + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", login=" + login + '}';
+    }
+
+   
   
     
 }

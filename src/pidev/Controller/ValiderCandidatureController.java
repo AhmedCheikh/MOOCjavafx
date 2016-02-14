@@ -65,7 +65,7 @@ public class ValiderCandidatureController implements Initializable {
             ResultSet rs = ps.executeQuery();
             data = FXCollections.observableArrayList();
              while (rs.next()) {
-                data.add(new Formateur(rs.getInt("cin"), rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("etat"), null,rs.getString("login"),null));
+//                data.add(new Formateur(rs.getInt("cin"), rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("etat"), null,rs.getString("login"),null));
             }
         
         Nom.setCellValueFactory(new PropertyValueFactory("nom"));

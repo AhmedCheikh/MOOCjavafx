@@ -15,16 +15,16 @@ public class Cours {
     private int idQuiz;
     private int etatVideo;
 
-    public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, File video, int idQuiz,int etatVideo) {
+    public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idQuiz) {
         
         this.nomCours = nomCours;
         this.description = description;
         this.cinFormateur = cinFormateur;
         this.difficulte = difficulte;
         this.objectif = objectif;
-        this.video = video;
+       
         this.idQuiz = idQuiz;
-        this.etatVideo=etatVideo;
+  
     }
 
     public Cours() {
