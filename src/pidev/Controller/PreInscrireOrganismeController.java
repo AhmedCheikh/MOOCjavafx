@@ -51,7 +51,11 @@ public class PreInscrireOrganismeController implements Initializable {
     private Image tick1;
 
     @FXML
-    private File document;
+    public static File document;
+    public void setCv(File dacument) {
+        this.document = document;
+    }
+
     @FXML
     private TextField txtNom;
     @FXML
@@ -109,10 +113,11 @@ public class PreInscrireOrganismeController implements Initializable {
             l6.setText(" ");
         }
         System.out.println(txtNom.getText());
-        Organisme o = new Organisme();
-        Organisme o1 = new Organisme(o.getId(), txtNom.getText(), txtLogin.getText(), txtPassword.getText(), txtEmail.getText(), txtAdresse.getText());
-        DAOOrganisme d1 = new DAOOrganisme();
-        d1.addOrganisme(o1);
+         Organisme o2=new Organisme();
+       Organisme o1 = new Organisme(o2.getId(),txtNom.getText(), txtLogin.getText(), txtPassword.getText(), txtEmail.getText(), txtAdresse.getText(),document,0);
+      
+       DAOOrganisme d1 = new DAOOrganisme();
+       d1.addOrganisme(o1);
 
 //         ((Node) (event.getSource())).getScene().getWindow().hide();
 //            Parent parent;
@@ -152,13 +157,12 @@ public class PreInscrireOrganismeController implements Initializable {
 
         if (selectedFile != null) {
 
-            
-          
             fileChooser.setTitle("Open resource file");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
             Organisme o = new Organisme();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
+                document=path;
                 l7.setText("File selected: " + selectedFile.getName());
                o.setDocument(path);
             }

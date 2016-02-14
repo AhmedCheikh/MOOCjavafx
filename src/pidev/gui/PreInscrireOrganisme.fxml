@@ -90,7 +90,7 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnChoisire" mnemonicParsing="false" onAction="#btnChoisireImgAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisire document" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Button fx:id="btnChoisire" mnemonicParsing="false" onAction="#btnChoisireAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisire document" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <effect>
                        
                      </effect>

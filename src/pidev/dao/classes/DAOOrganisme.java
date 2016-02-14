@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,24 +35,31 @@ public class DAOOrganisme implements IDAOOrganisme{
   @Override
     public void addOrganisme(Organisme organisme) {
    try {
-        
+        InputStream is;
+       try {
+           is = new FileInputStream(organisme.getDocument());
+      
+
 //       String req1="insert into orga (nom) values (?)";
-        String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
-//        String req1="insert into organisme (nom,login,password,email,adresse,document) values (?,?,?,?,?,?)";
+   //     String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
+      String req1="insert into organisme (id_organisme,nom,login,password,email,adresse,document) values (?,?,?,?,?,?,?)";
 
           pst = connection.prepareStatement(req1);
-         pst.setInt(1,organisme.getId());
+         pst.setInt(1, organisme.getId());
           pst.setString(2, organisme.getNom());
           pst.setString(3, organisme.getLogin());
           pst.setString(4, organisme.getPassword());
           pst.setString(5, organisme.getEmail());
           pst.setString(6, organisme.getAdresse());
-//          pst.setBlob(6, (Blob) organisme.getDocument());
+          pst.setBlob(7,is);
+
            pst.executeUpdate();
            //rs = pst.executeUpdate();
 
     
-       
+        } catch (FileNotFoundException ex) {
+           Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+       }
 //           System.out.println(rs.getRow());
            } catch (SQLException ex) {
                   Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
