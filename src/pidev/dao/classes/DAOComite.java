@@ -120,4 +120,29 @@ public class DAOComite implements IDAOComite{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+     public boolean authentification(String login, String password) {
+         boolean res = false ; 
+        String requete = "select * from comite where login=? and password=?" ; 
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, login);
+            ps.setString(2, password);
+            ResultSet resultat = ps.executeQuery();
+            if (resultat.next()) {
+                System.out.println("Authentification réussie ! ");
+                res = true ; 
+            } else {
+                System.out.println("Echec !");
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            
+        }
+         return res ;  
+         
+     }
+    
 }

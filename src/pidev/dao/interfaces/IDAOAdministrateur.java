@@ -12,5 +12,6 @@ import pidev.entities.Organisme;
 public interface IDAOAdministrateur {
     
     void validerPreinscriOrganisme(Organisme o) ; 
+    boolean authentification(String login, String password);
     
 }

@@ -5,9 +5,14 @@
  */
 package pidev.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import pidev.gui.Main;
+import pidev.gui.Main;
 
 /**
  * FXML Controller class
@@ -16,9 +21,17 @@ import javafx.fxml.Initializable;
  */
 public class ProfilComiteController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    private Main main ; 
+    
+    @FXML
+    private Button gererCandidature ;
+    
+    private void goCandidature() throws IOException {
+        
+   
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

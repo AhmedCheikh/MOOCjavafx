@@ -20,4 +20,5 @@ public interface IDAOComite {
     void validerQuiz(Quiz quiz) ; 
     void validerIntegrationComite(Formateur formateur);
     List<Comite> findAll() ; 
+    boolean authentification(String login, String password);
 }
