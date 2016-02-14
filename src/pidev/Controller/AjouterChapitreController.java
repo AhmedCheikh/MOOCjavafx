@@ -74,15 +74,22 @@ public class AjouterChapitreController {
 
     @FXML
     public void btnChoisirDocAction(ActionEvent event) {
-        FileChooser fileshoser = new FileChooser();
-        File f = fileshoser.showOpenDialog(null);
-
-        if (fileshoser != null) {
-            System.out.println(f.getName());
+         FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open resource file");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null){
+        File path = selectedFile.getAbsoluteFile();
+        //er8.setText(selectedFile.getAbsolutePath());
+        
+       Chapitre ch=new Chapitre();
+        ch.setPresentation(path);
+        }else{
+           //er8.setText("File Invalide");
+            System.out.println("File Invalide");
         }
-
     }
-
     @FXML
     public void btnChoisirVideoAction(ActionEvent event) {
 

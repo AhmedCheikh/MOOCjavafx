@@ -1,12 +1,13 @@
 package pidev.entities;
 
+import java.io.File;
 import java.sql.Blob;
 
 public class Chapitre {
 
     private int idChapitre;
     private String titre;
-    private Blob presentation;
+    private File presentation;
     private String objectif;
     private int etat;
     private int idQuiz;
@@ -22,7 +23,7 @@ public class Chapitre {
         this.objectif = objectif;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, Blob presentation, String objectif, int etat, Blob Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, Blob Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
@@ -63,7 +64,7 @@ public class Chapitre {
         this.titre = titre;
     }
 
-    public Blob getPresentation() {
+    public File getPresentation() {
         return presentation;
     }
 
@@ -95,7 +96,7 @@ public class Chapitre {
         return titre;
     }
 
-    public void setPresentation(Blob presentation) {
+    public void setPresentation(File presentation) {
         this.presentation = presentation;
     }
 
