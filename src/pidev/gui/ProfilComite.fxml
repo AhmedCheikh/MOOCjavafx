@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilComiteController">
+<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="600.0" style="-fx-background-color: #e5f2ff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="301.0" fitWidth="335.0" layoutX="140.0" layoutY="99.0" opacity="0.17">
          <image>
@@ -23,7 +23,7 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  
                </light>
             </Lighting>
          </effect>
@@ -35,7 +35,7 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  
                </light>
             </Lighting>
          </effect>
@@ -47,7 +47,7 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  
                </light>
             </Lighting>
          </effect>
@@ -59,7 +59,7 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  
                </light>
             </Lighting>
          </effect>
@@ -71,19 +71,19 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  
                </light>
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="gererCandidature" layoutX="61.0" layoutY="95.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="130.0" text="Gérer candidatures">
+      <Button fx:id="gererCandidature" layoutX="61.0" layoutY="95.0" mnemonicParsing="false"  prefHeight="75.0" prefWidth="130.0" text="Gérer candidatures">
          <effect>
             <Lighting diffuseConstant="1.2">
                <bumpInput>
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant />
+                  
                </light>
             </Lighting>
          </effect>
@@ -95,7 +95,7 @@
          <children>
             <ImageView layoutX="13.0" layoutY="7.0">
                <image>
-                  <Image url="@../../../../../../Desktop/Profile.png" />
+                  <Image url="@img/Profile.png" />
                </image>
             </ImageView>
             <Label layoutX="55.0" layoutY="16.0" text="Ahmed Cheikh" />

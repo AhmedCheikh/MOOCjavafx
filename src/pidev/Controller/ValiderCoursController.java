@@ -7,7 +7,10 @@ package pidev.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -15,6 +18,12 @@ import javafx.fxml.Initializable;
  * @author WiKi
  */
 public class ValiderCoursController implements Initializable {
+    @FXML
+    private Button btnback;
+    @FXML
+    private Button btnexit;
+    @FXML
+    
 
     /**
      * Initializes the controller class.
@@ -23,5 +32,13 @@ public class ValiderCoursController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void btnbackAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnexitAction(ActionEvent event) {
+    }
     
 }
