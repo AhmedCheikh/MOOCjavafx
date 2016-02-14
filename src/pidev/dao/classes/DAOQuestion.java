@@ -98,4 +98,20 @@ public class DAOQuestion implements IDAOQuestion {
         return listQuestion;
     }
 
+    @Override
+    public int findQuestionSelonId(String ques) {
+               String req = "select * from question where question= '" + ques + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getInt(1);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+       
+
+  }
+
 }

@@ -49,6 +49,7 @@ public class DAOReponse implements IDAOReponse{
             pst.setInt(2, r.getEtat());
             pst.setString(3, r.getReponse());
             pst.setInt(4, r.getIdQuestion());
+            System.out.println(pst);
             pst.executeUpdate();
             System.out.println("Ajout reponse effectuée avec succès");
         } catch (SQLException ex) {
@@ -56,6 +57,7 @@ public class DAOReponse implements IDAOReponse{
         }
     }
 
+       
     @Override
     public void removeReponse(Reponse r) {
         String requete = "delete from reponse where id=?";
