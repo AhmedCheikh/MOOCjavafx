@@ -34,21 +34,29 @@ public class ControllerAthentification implements Initializable {
     private PasswordField password;
     
     public ComboBox roleAuth ;
+    
+    private String info;
     @FXML
     private void btnConnexionAction(ActionEvent event) throws IOException  {
        if(roleAuth.getValue().toString().equals("apprenant"))
        {
            DAOApprenant app= new DAOApprenant();
+           info = login.getText();
           if(app.authentification(login.getText(), password.getText()))
           {
-              ((Node) (event.getSource())).getScene().getWindow().hide();
-                 Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
-            Stage stage =  new Stage();
-            Scene scene = new Scene(parent);
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
             stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-            stage.setScene(scene);
             stage.setTitle("Profil Apprenant");
+            ProfilApprenantController pac  = loader.getController();
+            pac.setInfo(info);
             stage.show();
+           
           }
           else
           {

@@ -34,12 +34,12 @@ public class DAOQuiz implements IDAOQuiz {
     @Override
     public void addQuiz(Quiz q) {
         try {
-            String req = "insert into quiz (id,titre,type,etat) values (?,?,?,?)";
+            String req = "insert into quiz (titre,type,etat) values (?,?,?)";
             pst = connection.prepareStatement(req);
-            pst.setInt(1, q.getIdQuiz());
-            pst.setString(2, q.getTitre());
-            pst.setInt(3, q.getType());
-            pst.setInt(4, q.getEtat());
+
+            pst.setString(1, q.getTitre());
+            pst.setInt(2, q.getType());
+            pst.setInt(3, q.getEtat());
 
             pst.executeUpdate();
             System.out.println("Ajout quiz effectuée avec succès");
