@@ -33,11 +33,10 @@ public class DAOQuestion implements IDAOQuestion {
     @Override
     public void addQuestion(Question q) {
         try {
-            String req = "insert into question(id,question,idQuiz) values (?,?,?)";
+            String req = "insert into question(question,idQuiz) values (?,?)";
             pst = connection.prepareStatement(req);
-            pst.setInt(1, q.getIdQuestion());
-            pst.setString(2, q.getQuestion());
-            pst.setInt(3, q.getIdQuiz());
+            pst.setString(1, q.getQuestion());
+            pst.setInt(2, q.getIdQuiz());
             pst.executeUpdate();
             System.out.println("Ajout question effectuée avec succès");
         } catch (SQLException ex) {

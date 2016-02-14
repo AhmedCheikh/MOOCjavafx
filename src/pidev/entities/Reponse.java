@@ -10,6 +10,13 @@ public class Reponse {
     public Reponse() {
     }
 
+    public Reponse(int etat, String reponse, int idQuestion) {
+        this.etat = etat;
+        this.reponse = reponse;
+        this.idQuestion = idQuestion;
+    }
+    
+
     public Reponse(int idReponse, int etat, String reponse, int idQuestion) {
         this.idReponse = idReponse;
         this.etat = etat;
