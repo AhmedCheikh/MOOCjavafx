@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Ahmed
  */
-public class AfficherQuizApprenantController implements Initializable {
+public class AfficherQuizController implements Initializable {
 
     /**
      * Initializes the controller class.
