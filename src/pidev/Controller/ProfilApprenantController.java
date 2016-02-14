@@ -51,7 +51,7 @@ public class ProfilApprenantController implements Initializable {
     private Hyperlink btnEditProfil;
     @FXML
     private Button btnDeconnecter;
-    Apprenant ap;
+    Apprenant apprenant;
 
 
     /**
@@ -64,23 +64,32 @@ public class ProfilApprenantController implements Initializable {
     }    
 
     @FXML
-    private void btnListCoursSuivisAction(ActionEvent event) throws IOException {
+    private void btnListCoursSuivisAction(ActionEvent event) throws IOException { 
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        AfficheListCoursSuivisController ALCS  = loader.getController();
+        ALCS.setApprenant(apprenant);
         stage.setTitle("List Cours Suivis");
         stage.show();
+        
     }
 
     @FXML
-    private void btnRechCoursAction(ActionEvent event) throws IOException {
+    private void btnRechCoursAction(ActionEvent event) throws IOException {       
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/RechercherCour.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/RechercherCour.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        RechercherCourController RCC  = loader.getController();
+        RCC.setApprenant(apprenant);
         stage.setTitle("Rechercher Cours");
         stage.show();
     }
@@ -88,12 +97,12 @@ public class ProfilApprenantController implements Initializable {
     public void setInfo(String info) {
         
         DAOApprenant da = new DAOApprenant();
-        ap= da.getApprenantByEmail(info);
-        txtCin.setText(ap.getCin());
-        txtNom.setText(ap.getNom());
-        txtPrenom.setText(ap.getPrenom());
-        txtEmail.setText(ap.getEmail());
-        txtLogin.setText(ap.getLogin());
+        apprenant = da.getApprenantByLogin(info);
+        txtCin.setText(apprenant.getCin());
+        txtNom.setText(apprenant.getNom());
+        txtPrenom.setText(apprenant.getPrenom());
+        txtEmail.setText(apprenant.getEmail());
+        txtLogin.setText(apprenant.getLogin());
         
         this.info = info;
     }
@@ -117,21 +126,37 @@ public class ProfilApprenantController implements Initializable {
             Stage stage =new Stage();
             stage.setScene(new Scene(p));
             EditProfilApprenantController epac  = loader.getController();
-            epac.setAp(ap);
+            epac.setApprenant(apprenant);
+            stage.setTitle("Editer Mon Profil");
             stage.show();
         
     }
 
     @FXML
     private void btnDeconnecterAction(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.setTitle("Authentification");
-        stage.show();
+//        ((Node) (event.getSource())).getScene().getWindow().hide();
+//        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(parent);
+//        stage.setScene(scene);
+//        stage.setTitle("Authentification");
+//        stage.show();
+        Stage stage = (Stage) btnDeconnecter.getScene().getWindow();
+        stage.close();
         
     }
+
+
+
+    public void setApprenant(Apprenant apprenant) {
+        txtCin.setText(apprenant.getCin());
+        txtNom.setText(apprenant.getNom());
+        txtPrenom.setText(apprenant.getPrenom());
+        txtEmail.setText(apprenant.getEmail());
+        txtLogin.setText(apprenant.getLogin());
+        this.apprenant = apprenant;
+    }
+    
+    
     
 }

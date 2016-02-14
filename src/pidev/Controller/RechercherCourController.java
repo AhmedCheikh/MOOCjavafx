@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import pidev.entities.Apprenant;
 
 /**
  * FXML Controller class
@@ -29,6 +30,7 @@ public class RechercherCourController implements Initializable {
     private Button btnExit;
     @FXML
     private Button btnBack;
+    private Apprenant apprenant;
 
     /**
      * Initializes the controller class.
@@ -47,12 +49,22 @@ public class RechercherCourController implements Initializable {
     @FXML
     private void btnBackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
         stage.setTitle("Profil Apprenant");
+        ProfilApprenantController pac  = loader.getController();
+        pac.setApprenant(apprenant);
         stage.show();
     }
+
+    public void setApprenant(Apprenant apprenant) {
+        this.apprenant = apprenant;
+    }
+    
+    
     
 }

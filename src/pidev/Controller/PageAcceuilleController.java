@@ -46,7 +46,7 @@ private ComboBox role ;
     public void clickAction(Event event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
-AnchorPane frame = fxmlLoader.load();
+        AnchorPane frame = fxmlLoader.load();
 
 //            ((Node) (event.getSource())).getScene().getWindow().hide();
 //            Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
