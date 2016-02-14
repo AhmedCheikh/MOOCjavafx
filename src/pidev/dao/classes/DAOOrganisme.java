@@ -32,6 +32,7 @@ public class DAOOrganisme implements IDAOOrganisme{
   @Override
     public void addOrganisme(Organisme organisme) {
    try {
+        
 //       String req1="insert into orga (nom) values (?)";
         String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
 //        String req1="insert into organisme (nom,login,password,email,adresse,document) values (?,?,?,?,?,?)";
@@ -226,6 +227,26 @@ public class DAOOrganisme implements IDAOOrganisme{
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rowCount != 0;
+    }
+
+    @Override
+    public int getEtat(String login) {
+        Organisme o1=new Organisme();
+                
+        String req2="select * from  Organisme where login='"+login+"'";
+      try {
+          PreparedStatement  pst2 = connection.prepareStatement(req2);
+          ResultSet rs = pst2.executeQuery();
+          while (rs.next()) {
+                
+             return rs.getInt("etat") ;
+              
+              
+          }
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+      }
+return 0;
     }
     
  

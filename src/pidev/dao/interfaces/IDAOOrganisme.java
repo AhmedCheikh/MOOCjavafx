@@ -35,7 +35,7 @@ public interface IDAOOrganisme {
      void findFormateurByOrganisme(String nom);
      
     boolean authentificationOrganisme(String login,String password);
-
+    int getEtat(String login);
     List<Organisme> findAll();
 
 

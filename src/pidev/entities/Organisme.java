@@ -26,8 +26,13 @@ public class Organisme  {
     private String description;
     private File document;
     private File logo;
+    private int etat;
 
     public Organisme() {
+    }
+
+    public Organisme(int etat) {
+        this.etat = etat;
     }
 
     public Organisme(int id, String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo) {
@@ -174,6 +179,14 @@ public class Organisme  {
 
     public void setLogo(File logo) {
         this.logo = logo;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
     }
  
 
