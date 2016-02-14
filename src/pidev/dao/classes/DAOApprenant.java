@@ -63,10 +63,9 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     @Override
     public void update(Apprenant a, String cin) {
-         String requete = "update apprenant set  nom=?, prenom=?, login=? , password= ? where cin =?";
+         String requete = "update apprenant set  nom = ?, prenom = ?, login = ? , password = ? where cin = ?";
         try {
-            PreparedStatement pst = connection.prepareStatement(requete);
-            
+            pst = connection.prepareStatement(requete);
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getLogin());
@@ -139,6 +138,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
                 a.setPrenom(rs.getString(3));
                 a.setEmail(rs.getString(4));
                 a.setLogin(rs.getString(6));
+                a.setPassword(rs.getString(7));
                 
                // a = new Apprenant(rs.getString("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("login"));
             }
@@ -148,6 +148,34 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         }
         return null;
     }
+    
+    public Apprenant getApprenantByLogin(String login) {
+         
+            Apprenant a = new Apprenant();
+            String req = "select * from apprenant where login = ?";
+        try {
+            
+            pst=connection.prepareStatement(req);
+            pst.setString(1, login);
+            rs = pst.executeQuery();
+            while(rs.next()){
+               
+                a.setCin(rs.getString(1));
+                a.setNom(rs.getString(2));
+                a.setPrenom(rs.getString(3));
+                a.setEmail(rs.getString(4));
+                a.setLogin(rs.getString(6));
+                a.setPassword(rs.getString(7));
+                
+               // a = new Apprenant(rs.getString("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("login"));
+            }
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 
     
 }
