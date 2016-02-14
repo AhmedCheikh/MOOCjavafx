@@ -14,14 +14,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import pidev.dao.classes.DAOChapitre;
-import pidev.entities.Chapitre ;
+import pidev.dao.classes.*;
+import pidev.entities.* ;
 
 
 public class AffichageCoursController  {
@@ -38,17 +39,24 @@ private TextArea description ;
 
    @FXML
 private Hyperlink telecharger;
-   
+  @FXML
+  private Label labelCours;
   @FXML private TableView<DAOChapitre> tableChapites;
   @FXML private TableColumn chapitreId ;
   @FXML private TableColumn objectifId ;
     ObservableList<Chapitre> chap ;
     
  @FXML
-     private void btnrechAction(ActionEvent event)  {
+     private void btnrechAction(ActionEvent event) throws IOException  {
         if (idtextrech.getText().isEmpty())
         {
             idtextrech.setStyle("-fx-background-color: red;");
+        }
+        else
+        {
+            DAOCours d= new DAOCours();
+            int id=d.findIdCoursByTitre(idtextrech.getText());
+            
         }
         
     }

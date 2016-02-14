@@ -19,7 +19,7 @@ Connection connection;
     PreparedStatement pst;
     ResultSet rs;
     public DAOCours() {
-        Connection connection = DataSource.getInstance().getConnection();
+       connection = DataSource.getInstance().getConnection();
     }
 
     @Override
@@ -188,6 +188,21 @@ Connection connection;
             return null;
         }
     }
+    
+     public int findIdCoursByTitre(String titre) {
+        String req = "select * from cours where nom_cours= '" + titre + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getInt(1);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+       
+
+  }
 
  
 }

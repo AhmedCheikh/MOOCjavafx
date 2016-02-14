@@ -203,4 +203,25 @@ public class DAOChapitre implements IDAOChapitre {
         }
         return listChapitres;
     }
+    
+    public List<Chapitre> findChapitreByCours(int id)
+    {
+       String req = "select * from chapitre where id_cours= '"+id+"'";
+        List<Chapitre> listChapitres = new ArrayList<Chapitre>();
+
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                Chapitre c = new Chapitre(rs.getInt("id"), rs.getInt("idcours"), rs.getInt("idquiz"), rs.getString("titre"), rs.getBlob("presentation"), rs.getString("objectif"), rs.getInt("etat"), rs.getBlob("video"));
+
+                listChapitres.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche " + ex.getMessage());
+        }
+        return listChapitres;
+    }
 }

@@ -34,7 +34,7 @@
                            </font>
                         </Button>
                         <TextField fx:id="idtextrech" layoutX="294.0" layoutY="14.0" prefHeight="29.0" prefWidth="244.0" />
-                        <Label layoutX="57.0" layoutY="20.0" prefHeight="17.0" prefWidth="57.0" text="Cours" />
+                        <Label fx:id="labelCours" layoutX="57.0" layoutY="20.0" prefHeight="17.0" prefWidth="57.0" text="Cours" />
                         <MediaView fx:id="video1" fitHeight="200.0" fitWidth="200.0" layoutX="57.0" layoutY="129.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />

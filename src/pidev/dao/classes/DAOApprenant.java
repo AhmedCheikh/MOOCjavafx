@@ -100,7 +100,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     public boolean authentification(String login, String password) {
             int rowCount = 0;
         try {
-            String req = "select from apprenant where login == ? and password=? ";
+            String req = "select * from apprenant where login = ? and password=? ";
             pst=connection.prepareStatement(req);
             pst.setString(1, login);
             pst.setString(2, password);
