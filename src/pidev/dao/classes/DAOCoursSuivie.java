@@ -21,9 +21,9 @@ public class DAOCoursSuivie implements IDAOCoursSuivie{
         try {
             String req="insert into coursuivi (id_cours,cinapprenant,date_debut) values (?,?,?)";
             pst=connection.prepareStatement(req);
-            pst.setInt(1, c.getIdCours());
-            pst.setString(2, c.getCinApprenant());
-            pst.setString(3, c.getDateDebut());
+            pst.setInt(1, c.getId_cours());
+            pst.setString(2, c.getCinapprenant());
+            pst.setString(3, c.getDate_debut());
       
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -37,7 +37,7 @@ public class DAOCoursSuivie implements IDAOCoursSuivie{
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
            pst.setString(1, c.getCommentaire());
-            pst.setString(2, c.getCinApprenant());
+            pst.setString(2, c.getCinapprenant());
          
          
             ps.executeUpdate();
@@ -54,7 +54,7 @@ public class DAOCoursSuivie implements IDAOCoursSuivie{
             PreparedStatement ps = connection.prepareStatement(requete);
            
             pst.setDouble(1, c.getNote());
-            pst.setString(2, c.getCinApprenant());
+            pst.setString(2, c.getAppreciation());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -67,8 +67,8 @@ public class DAOCoursSuivie implements IDAOCoursSuivie{
        String requete = "update coursuivi set appreciation=? where cinapprenant=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-           pst.setString(1, c.getAppreciation());
-            pst.setString(2, c.getCinApprenant());
+            pst.setString(1, c.getAppreciation());
+            pst.setString(2, c.getCinapprenant());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {

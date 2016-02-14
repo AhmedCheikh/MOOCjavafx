@@ -5,6 +5,7 @@
  */
 package pidev.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +18,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import pidev.dao.classes.DAOFormateur;
+import pidev.entities.Formateur;
 
 /**
  * FXML Controller class
@@ -57,73 +61,84 @@ public class InscrireFormateurController implements Initializable {
     private Label er7;
     @FXML
     private Label er8;
-
+    
     public void btnValiderAction(ActionEvent event) throws IOException {
-        if (txtCin.getText().equals("")) {
+
+        if (txtCin.getText().equals("") == true) {
             er1.setText("Vous devez Renseigez ce champs");
         } else {
             er1.setText(" ");
         }
-        if (txtNom.getText().equals("")) {
-            er2.setText(" ");
-        } else {
+        if (txtNom.getText().equals("") == true) {
             er2.setText("Vous devez Renseigez ce champs");
+        } else {
+            er2.setText(" ");
         }
-        if (txtMail.getText().equals("")) {
+        if (txtPrenom.getText().equals("") == true) {
             er3.setText("Vous devez Renseigez ce champs");
         } else {
             er3.setText(" ");
         }
-        if (txtMail.getText().equals("")) {
+        if (txtMail.getText().equals("") == true) {
             er4.setText("Vous devez Renseigez ce champs");
         } else {
             er4.setText(" ");
         }
-        if (txtLogin.getText().equals("")) {
+        if (txtLogin.getText().equals("") == true) {
             er5.setText("Vous devez Renseigez ce champs");
         } else {
             er5.setText(" ");
         }
-        if (txtPassword.getText().equals("")) {
+        if (txtPassword.getText().equals("") == true) {
             er6.setText("Vous devez Renseigez ce champs");
         } else {
             er6.setText(" ");
         }
-        if (txtRepaet.getText().equals("")) {
+        if (txtRepaet.getText().equals("") == true) {
             er7.setText("Vous devez Renseigez ce champs");
         } else {
             er7.setText(" ");
         }
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.setTitle("Profil Formateur");
-        stage.show();
-    }
+   
+//                Formateur f1 = new Formateur(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText(), null, null, 0);
+                DAOFormateur daof = new DAOFormateur();
+//                daof.inscrire(f1);
+            }
 
-    @FXML
-    public void btnAnullerAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void btnexitAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void btnbackAction(ActionEvent event) {
-
-    }
-
-    /**
-     * Initializes the controller class.
-     */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL location, ResourceBundle resources) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+        }
+//    }
 
-}
+//    public void btnAnullerAction(ActionEvent event) {
+//        txtCin.setText("");
+//        txtNom.setText("");
+//        txtPrenom.setText("");
+//        txtMail.setText("");
+//        txtLogin.setText("");
+//        txtPassword.setText("");
+//        txtRepaet.setText("");
+//    }
+//    public void btnChoisirCvAction(ActionEvent event){
+//
+//    }
+//    
+//    public void btnexitAction(ActionEvent event) {
+//    
+//    }
+//
+//    public void btnbackAction(ActionEvent event) {
+//
+//    }
+//
+//    /**
+//     * Initializes the controller class.
+//     */
+//    @Override
+//    public void initialize(URL url, ResourceBundle rb) {
+//        // TODO
+//    }
+
+//}

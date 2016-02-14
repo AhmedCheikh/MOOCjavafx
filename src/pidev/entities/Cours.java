@@ -15,8 +15,8 @@ public class Cours {
     private int idQuiz;
     private int etatVideo;
 
-    public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, File video, int idQuiz,int etatVideo) {
-        this.idCours = idCours;
+    public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, File video, int idQuiz,int etatVideo) {
+        
         this.nomCours = nomCours;
         this.description = description;
         this.cinFormateur = cinFormateur;
@@ -28,7 +28,7 @@ public class Cours {
     }
 
     public Cours() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     public int getIdCours() {

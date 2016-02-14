@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
@@ -24,66 +25,11 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Label fx:id="er1" layoutX="501.0" layoutY="116.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er2" layoutX="501.0" layoutY="152.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er5" layoutX="502.0" layoutY="235.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er3" layoutX="501.0" layoutY="193.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er6" layoutX="502.0" layoutY="275.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er7" layoutX="499.0" layoutY="318.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er8" layoutX="499.0" layoutY="358.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnModifier" layoutX="273.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnAnuller" layoutX="391.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label fx:id="er9" layoutX="500.0" layoutY="397.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <GridPane layoutX="106.0" layoutY="62.0" prefHeight="353.0" prefWidth="371.0">
+            <GridPane layoutX="92.0" layoutY="60.0" prefHeight="361.0" prefWidth="572.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -100,7 +46,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtCin" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtCin" editable="false" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px; -fx-background-color: #e4e4e4;" GridPane.columnIndex="1" />
                   <Label text="Nom:" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -124,21 +70,92 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" text="******************" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Confirmer Password:" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="txtRepaet" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" text="******************" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <PasswordField fx:id="txtRepaet" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Choisir Avatar:" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                   <TextField fx:id="txtPrenom1" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" text="zied.JPG" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="er1" prefHeight="17.0" prefWidth="190.0" textFill="RED" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="er2" prefHeight="17.0" prefWidth="190.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="er3" prefHeight="17.0" prefWidth="192.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="er4" prefHeight="17.0" prefWidth="193.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="er5" prefHeight="17.0" prefWidth="192.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="er6" prefHeight="17.0" prefWidth="199.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="er7" prefHeight="17.0" prefWidth="191.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
+            <Button fx:id="btnAnnuller" layoutX="416.0" layoutY="437.0" mnemonicParsing="false" onAction="#btnAnnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Annuller" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnModifier" layoutX="284.0" layoutY="437.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">

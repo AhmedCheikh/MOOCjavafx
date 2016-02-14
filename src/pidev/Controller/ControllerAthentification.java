@@ -67,10 +67,26 @@ public class ControllerAthentification implements Initializable {
            DAOFormateur formateur= new DAOFormateur() ;
            
        }
-       else
+       else if (roleAuth.getValue().toString().equals("organisme"))
        {
            DAOOrganisme org=new DAOOrganisme() ;
-           
+           if(org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText())==1)
+           {
+              ((Node) (event.getSource())).getScene().getWindow().hide();
+                 Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilOrganismeA.fxml"));
+            Stage stage =  new Stage();
+            Scene scene = new Scene(parent);
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+            stage.setScene(scene);
+            stage.setTitle("Profil Organisme");
+            stage.show();
+          }
+           else
+          {
+               message.setText("mot de passe ou login erroné");
+               login.setText("");
+               password.setText("");
+          }
        }
        
         

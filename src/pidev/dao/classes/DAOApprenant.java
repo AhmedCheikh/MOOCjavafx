@@ -30,7 +30,6 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
-    private Object organisme;
 
     public DAOApprenant() {
         connection =(DataSource.getInstance()).getConnection();
@@ -39,7 +38,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     @Override
     public void add(Apprenant a) {
-       try {
+        try {
             String req="insert into apprenant (cin,nom,prenom,email,login,password) values (?,?,?,?,?,?)";
             pst=connection.prepareStatement(req);
 
@@ -56,19 +55,24 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
 
     @Override
     public void update(Apprenant a, String cin) {
-         String requete = "update apprenant set nom=?, prenom=?, email=? where cin=?";
+         String requete = "update apprenant set  nom=?, prenom=?, login=? , password= ? where cin =?";
         try {
             PreparedStatement pst = connection.prepareStatement(requete);
+            
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
-            pst.setString(3, a.getEmail());
-            pst.setString(4, cin);
+            pst.setString(3, a.getLogin());
+            pst.setString(4, a.getPassword());
+            pst.setString(5, cin);
+            
             pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -78,17 +82,18 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     @Override
     public List<CoursSuivie> listCoursSuivi(String cin) {
-        String req = "select from coursuivi where cin == cin ";
+        String req = "select from coursuivi where cin = ? ";
         List<CoursSuivie> listCours=new ArrayList<>();
         
         try {
             pst=connection.prepareStatement(req);
+             pst.setString(1, cin);
             rs=pst.executeQuery();
             
             while(rs.next()){
-                CoursSuivie cs =new CoursSuivie(rs.getInt("idCours"), rs.getString("cinApprenant"), rs.getString("Commentaire"), rs.getDouble("note"), rs.getString("dateDebut"), rs.getString("appreciation"));
+                //CoursSuivie cs =new CoursSuivie(rs.getInt("idCours"), rs.getString("cinApprenant"), rs.getString("Commentaire"), rs.getDouble("note"), rs.getString("dateDebut"), rs.getString("appreciation"));
                 
-                listCours.add(cs);
+                //listCours.add(cs);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOCours.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,18 +103,51 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     @Override
     public boolean authentification(String login, String password) {
-            int rowCount = 0;
+        boolean res = false;
         try {
-            String req = "select * from apprenant where login = ? and password=? ";
+            String req = "select * from apprenant where login = ? and password = ? ";
             pst=connection.prepareStatement(req);
             pst.setString(1, login);
             pst.setString(2, password);
             rs = pst.executeQuery();
-            rowCount = rs.getRow();
+            if(rs.next())
+            {
+                System.out.println("Authentification reussie");
+                res = true;
+                
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rowCount != 0;
+        return res;
     }
+    
+    public Apprenant getApprenantByEmail(String email) {
+         
+            Apprenant a = new Apprenant();
+            String req = "select * from apprenant where email = ?";
+        try {
+            
+            pst=connection.prepareStatement(req);
+            pst.setString(1, email);
+            rs = pst.executeQuery();
+            while(rs.next()){
+               
+                a.setCin(rs.getString(1));
+                a.setNom(rs.getString(2));
+                a.setPrenom(rs.getString(3));
+                a.setEmail(rs.getString(4));
+                a.setLogin(rs.getString(6));
+                
+               // a = new Apprenant(rs.getString("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("login"));
+            }
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     
 }

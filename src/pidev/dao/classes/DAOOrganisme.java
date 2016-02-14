@@ -215,18 +215,24 @@ public class DAOOrganisme implements IDAOOrganisme{
     @Override
     public boolean authentificationOrganisme(String login, String password) {
 
-       int rowCount = 0;
+      boolean res = false;
         try {
-            String req = "select from organisme where login == ? and password=? ";
+            String req = "select * from organisme where login = ? and password = ? ";
             pst=connection.prepareStatement(req);
             pst.setString(1, login);
             pst.setString(2, password);
             rs = pst.executeQuery();
-            rowCount = rs.getRow();
+            if(rs.next())
+            {
+                System.out.println("Authentification reussie");
+                res = true;
+                
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rowCount != 0;
+        return res;
     }
 
     @Override

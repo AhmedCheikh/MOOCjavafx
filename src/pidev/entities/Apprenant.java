@@ -24,6 +24,24 @@ public class Apprenant{
     public Apprenant() {
     }
 
+    public Apprenant(String cin, String nom, String prenom, String email, String login) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.login = login;
+    }
+    
+
+    public Apprenant(String cin, String nom, String prenom, String email, String login, String password) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.login = login;
+        this.password = password;
+    }
+    
     public Apprenant(String cin, String nom, String prenom, String email, String avatar, String login, String password) {
         this.cin = cin;
         this.nom = nom;
