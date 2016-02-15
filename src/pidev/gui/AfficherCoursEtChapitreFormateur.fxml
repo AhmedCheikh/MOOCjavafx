@@ -24,17 +24,25 @@
             </Text>
             <TableView fx:id="table" layoutX="9.0" layoutY="63.0" prefHeight="359.0" prefWidth="735.0">
               <columns>
-                <TableColumn fx:id="nom" prefWidth="312.0" text="cours" />
-                  <TableColumn fx:id="description" prefWidth="422.0" text="description" />
+                <TableColumn fx:id="Nom" prefWidth="203.0" text="cours" />
+                  <TableColumn fx:id="Description" prefWidth="251.0" text="description" />
+                  <TableColumn fx:id="Formateur" prefWidth="279.0" text="Formateur" />
               </columns>
             </TableView>
-            <Button fx:id="btnback" layoutX="23.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="39.0" prefWidth="39.0" textFill="WHITE">
+            <Button fx:id="btnback" layoutX="23.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="39.0" prefWidth="35.0" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/flechBack.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button fx:id="btnexit" layoutX="702.0" layoutY="-2.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="39.0" prefWidth="39.0" textFill="WHITE">
                <cursor>
@@ -43,6 +51,13 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/exit.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <ImageView fitHeight="106.0" fitWidth="300.0" layoutX="249.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
               

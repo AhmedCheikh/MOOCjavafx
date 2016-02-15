@@ -15,6 +15,8 @@ public class Cours {
     private int idQuiz;
     private int etatVideo;
 
+ 
+
     public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idQuiz) {
         
         this.nomCours = nomCours;
@@ -26,7 +28,12 @@ public class Cours {
         this.idQuiz = idQuiz;
   
     }
-
+public Cours(String nomCours,String description,String cinFormateur)
+{
+    this.nomCours=nomCours;
+    this.description=description;
+  this.cinFormateur=cinFormateur;
+}
     public Cours() {
        
     }
