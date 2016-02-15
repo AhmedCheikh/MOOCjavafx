@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ModifierChapitreController">
    <children>
       <Pane layoutX="16.0" layoutY="74.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
@@ -40,34 +41,24 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtCin" prefHeight="25.0" prefWidth="184.0" promptText="titre....." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
-                  <Label fx:id="er1" prefHeight="3.0" prefWidth="211.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2">
+                  <TextField fx:id="txtTitre" prefHeight="25.0" prefWidth="184.0" promptText="titre....." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
+                  <Label prefHeight="3.0" prefWidth="211.0" style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er2" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er5" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er7" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er8" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" promptText="les objectifs......" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="btnChoisirCv1" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir video ..." GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextArea fx:id="txtAObjectif" prefHeight="200.0" prefWidth="200.0" promptText="les objectifs...." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnChoisirVideo" mnemonicParsing="false" onAction="#btnChoisirVideoAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir video ..." GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <Lighting>
                            <bumpInput>
@@ -82,7 +73,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnChoisirCv2" mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir document ..." GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Button fx:id="btnChoisirDoc" mnemonicParsing="false" onAction="#btnChoisirDocAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir document ..." GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <effect>
                         <Lighting>
                            <bumpInput>
@@ -97,15 +88,41 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ComboBox prefHeight="25.0" prefWidth="179.0" style="-fx-border-width: 2px; -fx-border-color: #77ABD6;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="74.0" text="video.mp4" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <ComboBox fx:id="CmbQuiz" prefHeight="25.0" prefWidth="179.0" style="-fx-border-width: 2px; -fx-border-color: #77ABD6;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="LVideo" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="245.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Times New Roman Bold" size="16.0" />
+                        <Font name="Times New Roman Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="119.0" text="présentation.ppt" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label fx:id="LPresentation" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="244.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
-                        <Font name="Times New Roman Bold" size="16.0" />
+                        <Font name="Times New Roman Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnAjouterQuiz" layoutX="19.0" mnemonicParsing="false" onAction="#btnAjouterQuizAction" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #77ABD6;" text="Ajouter Quiz " textAlignment="RIGHT" translateX="40.0" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Label fx:id="LVideo1" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="26.0" text="ou" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
                      </font>
                   </Label>
                </children>
@@ -127,12 +144,12 @@
                   <Image url="@img/bgmenu.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="288.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Chapitre" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="288.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier chapitre" textAlignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="btnValider" layoutX="267.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
+            <Button fx:id="btnModifier" layoutX="267.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
