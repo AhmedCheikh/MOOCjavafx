@@ -1,17 +1,11 @@
 
 package pidev.tests;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import pidev.entities.*;
-import pidev.dao.classes.*;
-import pidev.techniques.DataSource;
 
 public class test extends Application
 {
