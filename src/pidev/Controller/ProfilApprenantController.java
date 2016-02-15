@@ -5,12 +5,10 @@
  */
 package pidev.Controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOApprenant;
 import pidev.entities.Apprenant;
@@ -53,6 +53,8 @@ public class ProfilApprenantController implements Initializable {
     private Button btnDeconnecter;
     Apprenant apprenant;
     private String info;
+    @FXML
+    public ImageView imageView;
 
 
     /**
@@ -95,11 +97,16 @@ public class ProfilApprenantController implements Initializable {
         stage.show();
     }
 
-    public void setInfo(String info) {
-        
+    public void setInfo(String info) throws IOException {
+       // System.out.println("111");
         DAOApprenant da = new DAOApprenant();
+       // System.out.println("222");
         apprenant = da.getApprenantByLogin(info);
+        String filename = apprenant.getNom();
+       // System.out.println("3333");
+        //imageView.setImage(new Image(getClass().getResourceAsStream("C:\\Users\\Khoubaib\\Desktop\\" + filename+".jpg")));
         txtCin.setText(apprenant.getCin());
+        //System.out.println("444");
         txtNom.setText(apprenant.getNom());
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
@@ -110,15 +117,7 @@ public class ProfilApprenantController implements Initializable {
 
     @FXML
     private void btnEditProfilAction(ActionEvent event) throws IOException {
-        
-//        ((Node) (event.getSource())).getScene().getWindow().hide();
-//        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/EditProfilApprenant.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(parent);
-//        stage.setScene(scene);
-//        stage.setTitle("Editer Profil");
-//        stage.show();
-            
+           
             ((Node) (event.getSource())).getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/pidev/gui/EditProfilApprenant.fxml"));
@@ -155,9 +154,8 @@ public class ProfilApprenantController implements Initializable {
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
         txtLogin.setText(apprenant.getLogin());
+       
         this.apprenant = apprenant;
     }
-    
-    
-    
+
 }

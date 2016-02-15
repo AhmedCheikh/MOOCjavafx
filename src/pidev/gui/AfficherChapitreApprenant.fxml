@@ -12,7 +12,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.gui.AfficherChapitreApprenantController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.AfficherChapitreApprenantController">
    <children>
       <Pane layoutX="16.0" layoutY="75.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
@@ -59,7 +59,7 @@
             </Button>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e6fa" height="221.0" layoutX="32.0" layoutY="208.0" stroke="#77abd6" strokeType="INSIDE" strokeWidth="2.0" width="688.0" />
             <MediaView fx:id="mvVideo" fitHeight="200.0" fitWidth="600.0" layoutX="79.0" layoutY="219.0" />
-            <TextArea fx:id="txtObjectives" layoutX="152.0" layoutY="131.0" prefHeight="60.0" prefWidth="386.0" promptText="les objectifs..............." style="-fx-background-color: #DCDCDC; -fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <TextArea fx:id="txtObjectives" editable="false" layoutX="152.0" layoutY="131.0" prefHeight="60.0" prefWidth="386.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #84CECC; -fx-border-width: 2px;" />
             <Label layoutX="46.0" layoutY="131.0" text="Les objectifs:">
                <font>
                   <Font name="System Bold" size="15.0" />

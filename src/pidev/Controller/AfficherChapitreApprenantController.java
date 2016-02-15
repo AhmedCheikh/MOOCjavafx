@@ -5,7 +5,7 @@
  */
 package pidev.Controller;
 
-
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,14 +14,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Ahmed
+ * @author Gumus
  */
 public class AfficherChapitreApprenantController implements Initializable {
+
     @FXML
     private Button btnPasserQuiz;
     @FXML
@@ -44,8 +48,13 @@ public class AfficherChapitreApprenantController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+
+        final File file = new File("E:\\---iPhone 7 Trailer 2016.mp4");
+        final Media media = new Media(file.toURI().toString());
+        final MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mvVideo = new MediaView(mediaPlayer);
+        mediaPlayer.play();
+    }
 
     @FXML
     private void btnPasserQuizAction(ActionEvent event) {
@@ -57,11 +66,12 @@ public class AfficherChapitreApprenantController implements Initializable {
 
     @FXML
     private void btnexitAction(ActionEvent event) {
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void btnbackAction(ActionEvent event) {
     }
-    
 
 }

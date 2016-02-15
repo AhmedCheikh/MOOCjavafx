@@ -8,7 +8,10 @@ package pidev.dao.classes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,6 +74,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 
     
     
+    @Override
     public void update(Apprenant a, String cin ) {
          String requete = "update apprenant set  nom = ?, prenom = ?, login = ? , password = ? , avatar = ? where cin = ?";
         try {
@@ -161,7 +165,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         return null;
     }
     
-    public Apprenant getApprenantByLogin(String login) {
+    public Apprenant getApprenantByLogin(String login) throws FileNotFoundException, IOException {
          
             Apprenant a = new Apprenant();
             String req = "select * from apprenant where login = ?";
@@ -177,9 +181,17 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
                 a.setPrenom(rs.getString(3));
                 a.setEmail(rs.getString(4));
                 a.setLogin(rs.getString(6));
-                a.setPassword(rs.getString(7));
+                a.setPassword(rs.getString(7));  
                 
-               // a = new Apprenant(rs.getString("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("login"));
+                String filename = rs.getString(2);
+                Blob blob = rs.getBlob(5);
+                InputStream is = blob.getBinaryStream();
+                FileOutputStream fos = new FileOutputStream("C:\\Users\\Khoubaib\\Desktop\\" + filename+".jpg");
+                
+                int b = 0;
+                while ((b = is.read()) != -1) {
+                    fos.write(b); 
+                }
             }
             return a;
         } catch (SQLException ex) {
@@ -188,13 +200,42 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         return null;
     }
 
-    @Override
-    public void update(Apprenant t, String cin, File file) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+//public void DisplayAll() throws SQLException {
+//        String req = "SELECT * FROM produit";
+//        try {
+//            pst = connection.prepareStatement(req);
+//            rs = pst.executeQuery();
+//            while (rs.next() == true) {
+//                Produit c = new Produit();
+//                c.setIdproduit(rs.getInt(1));
+//                c.setLibelleproduit(rs.getString(2));
+//                c.setNbrePointFidelite(rs.getInt(3));
+//                c.setTauxReduc(rs.getInt(4));
+//
+//                String filename = rs.getString(2);
+//                Blob blob = rs.getBlob(5);
+//                InputStream is = blob.getBinaryStream();
+//                FileOutputStream fos = new FileOutputStream("C:\\Users\\Moham\\Desktop\\" + "\\" + filename+".jpg");
+//                
+//                int b = 0;
+//                while ((b = is.read()) != -1) {
+//                    fos.write(b);   
+//                }
+//                //à modifier
+//                c.setMediaproduit(new File("C:\\Users\\Moham\\Desktop\\" + "\\" + filename+".jpg"));
+//                c.setPrix(rs.getInt(6));
+//                c.setIdstock(rs.getInt(7));
+//                c.setQuantite(rs.getInt(8));
+//                System.out.println(c + "\n");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(StockDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(ProduitDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(ProduitDao.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+ //   }
  
-  
 
-    
 }
