@@ -15,6 +15,12 @@ public class Reponse {
         this.reponse = reponse;
         this.idQuestion = idQuestion;
     }
+
+    public Reponse(int idReponse, int etat, String reponse) {
+        this.idReponse = idReponse;
+        this.etat = etat;
+        this.reponse = reponse;
+    }
     
 
     public Reponse(int idReponse, int etat, String reponse, int idQuestion) {

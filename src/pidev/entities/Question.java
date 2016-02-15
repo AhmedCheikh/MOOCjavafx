@@ -16,6 +16,11 @@ public class Question {
         this.idQuiz = idQuiz;
     }
 
+    public Question(int idQuestion, String question) {
+        this.idQuestion = idQuestion;
+        this.question = question;
+    }
+
     public Question(String question, int idQuiz) {
         this.question = question;
         this.idQuiz = idQuiz;
