@@ -5,6 +5,8 @@
  */
 package pidev.Controller;
 
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOApprenant;
 import pidev.entities.Apprenant;
@@ -54,8 +57,6 @@ public class EditProfilApprenantController implements Initializable {
     private TextField txtLogin;
     @FXML
     private TextField txtPassword;
-    @FXML
-    private TextField txtAvatar;
 
     @FXML
     private Button btnexit;
@@ -67,7 +68,11 @@ public class EditProfilApprenantController implements Initializable {
     private Button btnAnnuller;
     
     private Apprenant apprenant;
-    private Apprenant newApprenant;
+    public Apprenant newApprenant;
+    @FXML
+    private Button btnChoisirImage;
+    
+    public File file;
 
     /**
      * Initializes the controller class.
@@ -92,17 +97,7 @@ public class EditProfilApprenantController implements Initializable {
     private void btnModifierAction(ActionEvent event) throws IOException {
          
         int test = 0;
-        
-//        Pattern p = Pattern.compile("[0-9]{8}");
-//        Matcher m = p.matcher(txtCin.getText());
-//        boolean b = m.matches();
-//        if(b == false){
-//        er1.setText("Cin non valide");
-//            test -=1;
-//        } else {
-//            er1.setText("");
-//            test +=1;
-//        }
+
         if (txtNom.getText().isEmpty() || (txtNom.getText().matches("[a-zA-Z]+")==false)) {
             er2.setText("Ce champ est obligatoire");
             test -=1;
@@ -132,14 +127,17 @@ public class EditProfilApprenantController implements Initializable {
             er5.setText("");
             test +=1;
         }
-
-        
+              
+            System.out.println("1111");
+            
         if( test == 4 ){
-            newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail() ,txtLogin.getText(), txtPassword.getText());
+            newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), file , txtLogin.getText(), txtPassword.getText());
             DAOApprenant da = new DAOApprenant();
             da.update(newApprenant , apprenant.getCin());
-        }
-    }
+
+        }   
+        
+ }
 
     @FXML
     private void btnAnnullerAction(ActionEvent event) {
@@ -175,6 +173,31 @@ public class EditProfilApprenantController implements Initializable {
         pac.setApprenant(newApprenant);
         stage.show();
         
+    }
+
+    @FXML
+    private void btnChoisirImageAction(ActionEvent event) {
+        
+        FileChooser fileChooser = new FileChooser();
+
+        FileChooser.ExtensionFilter extFilterJPG = 
+                    new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg = 
+                    new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG = 
+                    new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng = 
+                    new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+
+        file = fileChooser.showOpenDialog(null);
+        if(file != null){
+            er6.setText(file.getAbsolutePath());
+        }
+        
+        
+ 
+                
     }
     
     

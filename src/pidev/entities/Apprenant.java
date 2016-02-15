@@ -5,6 +5,7 @@
  */
 package pidev.entities;
 
+import java.io.File;
 import java.util.Objects;
 
 /**
@@ -17,7 +18,7 @@ public class Apprenant{
     private String nom;
     private String prenom;
     private String email;
-    private String avatar;
+    private File avatar;
     private String login;
     private String password;
 
@@ -42,7 +43,7 @@ public class Apprenant{
         this.password = password;
     }
     
-    public Apprenant(String cin, String nom, String prenom, String email, String avatar, String login, String password) {
+    public Apprenant(String cin, String nom, String prenom, String email, File avatar, String login, String password) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
@@ -68,7 +69,7 @@ public class Apprenant{
         return email;
     }
 
-    public String getAvatar() {
+    public File getAvatar() {
         return avatar;
     }
 
@@ -96,7 +97,7 @@ public class Apprenant{
         this.email = email;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(File avatar) {
         this.avatar = avatar;
     }
 

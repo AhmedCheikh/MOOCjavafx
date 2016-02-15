@@ -5,6 +5,7 @@
  */
 package pidev.dao.interfaces;
 
+import java.io.File;
 import java.util.List;
 
 import pidev.entities.CoursSuivie;
@@ -15,7 +16,7 @@ import pidev.entities.CoursSuivie;
  */
 public interface IDAOApprenant<T> {
     void add(T t);
-    void update(T t, String cin);
+    void update(T t, String cin, File file);
     List<CoursSuivie> listCoursSuivi(String cin);
     boolean authentification(String login,String password);
 }
