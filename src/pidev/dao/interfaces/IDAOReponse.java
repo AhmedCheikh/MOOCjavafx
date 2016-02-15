@@ -5,6 +5,7 @@
  */
 package pidev.dao.interfaces;
 import java.util.List;
+import pidev.entities.Question;
 import pidev.entities.Reponse;
 /**
  *
@@ -16,4 +17,6 @@ public interface IDAOReponse {
     void updateReponse(Reponse r);
     List<Reponse> findReponseById(int id);
    List<Reponse> findReponseByEtat(int etat);
+   List<Reponse> FindIdReponsebyQuestion(int q);
+   int findEtatReponse(String r);
 }

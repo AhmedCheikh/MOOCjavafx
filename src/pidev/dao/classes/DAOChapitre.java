@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOChapitre;
 import pidev.entities.Chapitre;
 import pidev.entities.Cours;
+import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
 
 /**
@@ -55,13 +56,13 @@ public class DAOChapitre implements IDAOChapitre {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    Connection connection;
-//    PreparedStatement pst;
-//    ResultSet rs;
-//
-//    public DAOChapitre() {
-//        connection = DataSource.getInstance().getConnection();
-//    }
+    Connection connection;
+    PreparedStatement pst;
+    ResultSet rs;
+
+    public DAOChapitre() {
+        connection = DataSource.getInstance().getConnection();
+    }
 //
 //    @Override
 //    public void addChapitre(Chapitre c) {
@@ -254,4 +255,30 @@ public class DAOChapitre implements IDAOChapitre {
 //        }
 //        return listChapitres;
 //    }
+
+    @Override
+    public int FindIdQuizbychapitre(int id) {
+           {
+       String req = "select * from chapitre where etat=1 and id= '"+id+"'";
+        Quiz Quiz = new Quiz();
+
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                 return rs.getInt(3);}
+                  
+                
+            }
+         catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+    }
+    
+    
+       
 }

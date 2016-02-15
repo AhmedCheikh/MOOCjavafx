@@ -2,6 +2,7 @@ package pidev.dao.interfaces;
 
 import java.util.List;
 import pidev.entities.Chapitre;
+import pidev.entities.Quiz;
 
 /**
  *
@@ -20,4 +21,7 @@ public interface IDAOChapitre {
     List<Chapitre> findChapitreByTitre(String titre);
 
     List<Chapitre> findChapitreById(int id);
+             
+    int FindIdQuizbychapitre(int id);
+    
 }

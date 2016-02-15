@@ -23,6 +23,10 @@ public class Chapitre {
         this.objectif = objectif;
     }
 
+    public Chapitre(int idQuiz) {
+        this.idQuiz = idQuiz;
+    }
+
     public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, Blob Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;

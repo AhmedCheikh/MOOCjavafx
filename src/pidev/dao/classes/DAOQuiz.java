@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOQuiz;
+import pidev.entities.Question;
 import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
 
@@ -105,6 +106,7 @@ public class DAOQuiz implements IDAOQuiz {
         return listQuiz;
     }
 
+    
     @Override
     public List<Quiz> findQuizByTitre(String titre) {
 
@@ -165,6 +167,32 @@ public class DAOQuiz implements IDAOQuiz {
        
 
   }
+    
+    
+    
+        @Override
+    public String findTitreQuizByTitreSelonId(int id) {
+        String req = "select * from quiz where id= '" + id + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getString(2);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return "";
+       
 
+  }
+
+    
+    
+  
+    
+    
+
+    
+    
     
 }

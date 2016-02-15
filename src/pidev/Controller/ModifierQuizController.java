@@ -5,29 +5,22 @@
  */
 package pidev.Controller;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 import pidev.dao.classes.DAOChapitre;
 import pidev.dao.classes.DAOQuestion;
 import pidev.dao.classes.DAOQuiz;
 import pidev.dao.classes.DAOReponse;
-import pidev.entities.Chapitre;
 import pidev.entities.Question;
 import pidev.entities.Quiz;
 import pidev.entities.Reponse;
@@ -37,7 +30,7 @@ import pidev.entities.Reponse;
  *
  * @author Gumus
  */
-public class AfficherQuizController implements Initializable {
+public class ModifierQuizController implements Initializable {
 
     @FXML
     private TextArea Q1;
@@ -130,25 +123,30 @@ public class AfficherQuizController implements Initializable {
     @FXML
     private CheckBox C54;
     @FXML
-    private Button btnValiderQuiz;
+    private TextField txtTitre;
     @FXML
-    private Label Note;
+    private RadioButton btrChronometre;
+    @FXML
+    private RadioButton btrNonChronometre;
+    @FXML
+    private Button btnAjouterQuizAction;
+
+    @FXML
+    private Button btnModifierQuiz;
+    @FXML
+    private Label er1;
     @FXML
     private Label ltitre;
-    public int note;
-    int f = 0;
+    @FXML
+    private Label Note;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//         int etatquiz = 0;
-//        if (btrChronometre.isSelected()) {
-//            etatquiz = 1;
-//        } else if (btrNonChronometre.isSelected()) {
-//            etatquiz = 0;
-//        }
+int et;
+        int f = 0;
         TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
         TextArea[] tfR = {
             R11, R12, R13, R14,
@@ -164,87 +162,110 @@ public class AfficherQuizController implements Initializable {
             C51, C52, C53, C54};
         DAOChapitre daoc1 = new DAOChapitre();
         int q = daoc1.FindIdQuizbychapitre(4);
-        System.out.println(q);
+
         DAOQuiz daoq1 = new DAOQuiz();
         String t = daoq1.findTitreQuizByTitreSelonId(q);
 
-        ltitre.setText(t);
+        txtTitre.setText(t);
 
         DAOQuestion daoqe = new DAOQuestion();
         List lsq = daoqe.FindIdQuestionbyQuiz(q);
-        System.out.println("les questions:" + lsq);
 
         for (int i = 0; i < 5; i++) {
 
             Question s = (Question) lsq.get(i);
             tfQ[i].setText(s.getQuestion());
             int Qid = daoqe.findQuestionSelonId(s);
-            System.out.println("l'id de question" + Qid);
 
             DAOReponse r = new DAOReponse();
             List Lr = r.FindIdReponsebyQuestion(Qid);
-            System.out.println("les reponses:" + Lr);
             for (int j = 0; j < 4; j++) {
                 Reponse s1 = (Reponse) Lr.get(j);
                 tfR[f].setText(s1.getReponse());
+                 et = r.findEtatReponse(tfR[f].getText());
+
+                if (et == 1) {
+                    tfC[f].setSelected(true);
+                }
                 f++;
+            }
             }
 
         }
 
-    }
+        @FXML
+        private void btnModifierQuizAction
+        (ActionEvent event
+        
+            ) {
 
-    @FXML
-    private void btnValiderQuizAction(ActionEvent event) throws IOException {
-        TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
-        TextArea[] tfR = {
-            R11, R12, R13, R14,
-            R21, R22, R23, R24,
-            R31, R32, R33, R34,
-            R41, R42, R43, R44,
-            R51, R52, R53, R54};
-        CheckBox[] tfC = {
-            C11, C12, C13, C14,
-            C21, C22, C23, C24,
-            C31, C32, C33, C34,
-            C41, C42, C43, C44,
-            C51, C52, C53, C54};
+        int etatquiz = 0;
+            if (btrChronometre.isSelected()) {
+                etatquiz = 1;
+            } else if (btrNonChronometre.isSelected()) {
+                etatquiz = 0;
+            }
 
-        for (int i = 0; i < 5; i++) {
-            DAOQuestion daoqe = new DAOQuestion();
-            int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
+            Quiz q = new Quiz(txtTitre.getText(), etatquiz, 0);
+            DAOQuiz daoq1 = new DAOQuiz();
+            daoq1.updateQuiz(q);
+            int r = 0;
+            int c;
+            int id = daoq1.findQuizByTitreSelonId(txtTitre.getText());
+            int etat = 0;
+            TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
+            TextArea[] tfR = {
+                R11, R12, R13, R14,
+                R21, R22, R23, R24,
+                R31, R32, R33, R34,
+                R41, R42, R43, R44,
+                R51, R52, R53, R54};
+            CheckBox[] tfC = {
+                C11, C12, C13, C14,
+                C21, C22, C23, C24,
+                C31, C32, C33, C34,
+                C41, C42, C43, C44,
+                C51, C52, C53, C54};
 
-            for (int j = 0; j < 4; j++) {
-                DAOReponse daor = new DAOReponse();
-                int et=daor.findEtatReponse(tfR[j].getText());
+            for (int i = 0; i < 5; i++) {
+                Question qe = new Question(tfQ[i].getText(), id);
+                DAOQuestion daoqe = new DAOQuestion();
+                daoqe.updateQuestion(qe);
+                int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
 
-                if (tfC[j].isSelected() && et==1) {
-                    note = note + 4;
-                } else {
-                    note = note -(int) 0.5;
+                for (int j = 0; j < 4; j++) {
+
+                    Reponse r11 = new Reponse(etat, tfR[r].getText(), Qid);
+                    DAOReponse daor11 = new DAOReponse();
+                    int et = daor11.findEtatReponse(tfR[r].getText());
+
+                    if (et == 1) {
+                        tfC[r].setSelected(true);
+                    }
+                    r++;
+
+                    daor11.updateReponse(r11);
+
                 }
 
             }
-            
-       
         }
-        //Note.setText("la note"+note);
+
+        @FXML
+        private void btrChronometreAction
+        (ActionEvent event
         
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/Note.fxml"));
-        AnchorPane frame =loader.load();
-        Parent p = loader.getRoot();
-        Stage stage =new Stage();
-        stage.setScene(new Scene(p));
-        NoteController nt  = loader.getController();
-        nt.setNote(note);
-        stage.setTitle("Note");
-        stage.show();
+        
+        ) {
     }
 
-    }
+    @FXML
+        private void btrNonChronometreAction
+        (ActionEvent event
+        
+        
+    
 
-//       public Timer timer; 
-////     public void gffgfgf(){
-////     timer.schedule(null, null);
-////     }
+) {
+    }
+}

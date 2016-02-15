@@ -14,6 +14,7 @@ import pidev.dao.interfaces.IDAOQuestion;
 import pidev.entities.Chapitre;
 import pidev.entities.Cours;
 import pidev.entities.Question;
+import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
 
 /**
@@ -112,5 +113,45 @@ public class DAOQuestion implements IDAOQuestion {
        
 
   }
+    
+        @Override
+    public int findQuestionSelonId(Question q) {
+               String req = "select * from question where id= '" + q.getIdQuestion() + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getInt(1);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+       
+
+  }
+    
+    
+         @Override
+    public List<Question> FindIdQuestionbyQuiz(int q) {
+           {
+       String req = "select * from question where idquiz= '"+q+"'";
+        List<Question> listQuestion = new ArrayList<Question>();
+
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                Question e = new Question(rs.getInt("id"),rs.getString("question"));
+
+                listQuestion.add(e);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listQuestion;
+    }
+    }
 
 }

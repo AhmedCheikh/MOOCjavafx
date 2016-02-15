@@ -12,5 +12,6 @@ public interface IDAOQuiz {
      List<Quiz> findQuizByTitre(String titre);
      int findQuizByTitreSelonId(String titre);
    List<Quiz> findQuizByType(boolean type);
+   String findTitreQuizByTitreSelonId(int id);
     
 }
