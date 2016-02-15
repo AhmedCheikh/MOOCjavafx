@@ -22,16 +22,16 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="139.0" prefHeight="339.0" prefWidth="717.0">
+            <TableView fx:id="tableCours" layoutX="14.0" layoutY="139.0" prefHeight="339.0" prefWidth="717.0">
                <columns>
-                  <TableColumn prefWidth="165.0" text="Nom cour" />
-                  <TableColumn prefWidth="191.0" text="Objectif" />
-                  <TableColumn prefWidth="175.0" text="Difficulté" />
-                  <TableColumn prefWidth="187.0" text="Action" />
+                  <TableColumn fx:id="nomCourColumn" prefWidth="165.0" text="Nom cour" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="191.0" text="Description" />
+                  <TableColumn fx:id="objectifColumn" prefWidth="175.0" text="Objectif" />
+                  <TableColumn fx:id="difficulteColumn" prefWidth="187.0" text="Difficulté" />
                </columns>
             </TableView>
-            <TextField layoutX="447.0" layoutY="67.0" prefHeight="35.0" prefWidth="183.0" style="-fx-background-color: ##FFF5EF;" />
-            <Button layoutX="638.0" layoutY="66.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #223645;" text="Chercher" textFill="WHITE">
+            <TextField fx:id="txtAChercher" layoutX="447.0" layoutY="67.0" prefHeight="35.0" prefWidth="183.0" style="-fx-background-color: ##FFF5EF;" />
+            <Button fx:id="btnRecherche" layoutX="638.0" layoutY="66.0" mnemonicParsing="false" onAction="#btnRechercheAction" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #223645;" text="Chercher" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

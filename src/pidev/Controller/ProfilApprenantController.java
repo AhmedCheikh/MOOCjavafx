@@ -46,12 +46,13 @@ public class ProfilApprenantController implements Initializable {
     private Button btnListCoursSuivis;
     @FXML
     private Button btnRechCours;
-    private String info;
+    
     @FXML
     private Hyperlink btnEditProfil;
     @FXML
     private Button btnDeconnecter;
     Apprenant apprenant;
+    private String info;
 
 
     /**

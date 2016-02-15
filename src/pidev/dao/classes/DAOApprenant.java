@@ -5,6 +5,7 @@
  */
 package pidev.dao.classes;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -26,11 +27,21 @@ import pidev.techniques.DataSource;
  * @author Khoubaib
  */
 public class DAOApprenant implements IDAOApprenant<Apprenant>{
-    
+//    public static void main(String[] args) {
+//        DataSource ds = DataSource.getInstance();
+//        File f = new File("C:\\Users\\Khoubaib\\Downloads\\Other\\double.jpg");
+//        File f1 = new File("C:\\Users\\Khoubaib\\Downloads\\Other\\saitama.jpg");
+//        Apprenant a = new Apprenant("123", "bes", "aziz", "@@", f, "az", "123");
+//        DAOApprenant dao = new DAOApprenant();
+//        //dao.add(a);
+//        a.setAvatar(f);
+//        dao.update(a);
+//    }
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
-
+    
+    
     public DAOApprenant() {
         connection =(DataSource.getInstance()).getConnection();
     }
@@ -46,36 +57,37 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             pst.setString(2, a.getNom());
             pst.setString(3, a.getPrenom());
             pst.setString(4, a.getEmail());
+           // pst.setBlob(5, new FileInputStream(a.getAvatar()));
             pst.setString(5, a.getLogin());
             pst.setString(6, a.getPassword());
-           
-//            InputStream inputStream = new FileInputStream(a.getAvatar());                                             
-//            pst.setBlob(5,inputStream);
-            
+                     
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         
     }
+    }
 
-    @Override
-    public void update(Apprenant a, String cin) {
-         String requete = "update apprenant set  nom = ?, prenom = ?, login = ? , password = ? where cin = ?";
+    
+    
+    public void update(Apprenant a, String cin ) {
+         String requete = "update apprenant set  nom = ?, prenom = ?, login = ? , password = ? , avatar = ? where cin = ?";
         try {
             pst = connection.prepareStatement(requete);
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getLogin());
-            pst.setString(4, a.getPassword());
-            pst.setString(5, cin);
+            pst.setString(4, a.getPassword());                                     
+            pst.setBlob(5, new FileInputStream(a.getAvatar()));
+            pst.setString(6, a.getCin());
             
             pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -176,6 +188,13 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         return null;
     }
 
+    @Override
+    public void update(Apprenant t, String cin, File file) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
+  
 
     
 }

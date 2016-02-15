@@ -203,6 +203,32 @@ Connection connection;
        
 
   }
+     
+     
+     public List<Cours> findCoursByTitle(String title) {
+         List<Cours> listecours = new ArrayList<>();
+        String requete = "select * from cours where nom_cours like '" + title + "%'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while (resultat.next()) {
+                Cours cours = new Cours();
+                cours.setIdCours(resultat.getInt(1));
+                cours.setNomCours(resultat.getString(2));
+                cours.setCinFormateur(resultat.getString(3));
+                cours.setIdQuiz(resultat.getInt(4));
+                cours.setDescription(resultat.getString(5));
+                cours.setDifficulte(resultat.getString(6));
+                cours.setObjectif(resultat.getString(7));
+                listecours.add(cours);
+            }
+            return listecours;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
+    }
 
  
 }
