@@ -13,7 +13,9 @@ public class Cours {
     private String objectif;
     private File video;
     private int idQuiz;
-    private int etatVideo;
+    private int etat;
+
+ 
 
     public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idQuiz) {
         
@@ -26,7 +28,12 @@ public class Cours {
         this.idQuiz = idQuiz;
   
     }
-
+public Cours(String nomCours,String description,String cinFormateur)
+{
+    this.nomCours=nomCours;
+    this.description=description;
+  this.cinFormateur=cinFormateur;
+}
     public Cours() {
        
     }
@@ -96,7 +103,7 @@ public class Cours {
     }
 
     public void setEtatVideo(int etatVideo) {
-        this.etatVideo = etatVideo;
+        this.etat = etatVideo;
     }
 
     public File getVideo() {
@@ -104,7 +111,7 @@ public class Cours {
     }
 
     public int getEtatVideo() {
-        return etatVideo;
+        return etat;
     }
 
     @Override

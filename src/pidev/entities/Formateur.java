@@ -2,6 +2,7 @@ package pidev.entities;
 
 import java.io.File;
 import java.util.Objects;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -22,6 +23,10 @@ public class Formateur {
     public Formateur() {
     }
 
+    public Formateur(String nom) {
+        this.nom = nom;
+    }
+
     public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar, File cv, int etat) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
@@ -32,6 +37,11 @@ public class Formateur {
         this.avatar = avatar;
         this.cv = cv;
         this.etat = etat;
+    }
+
+    public Formateur(String cinFormateur, String nom) {
+        this.cinFormateur = cinFormateur;
+        this.nom = nom;
     }
 
     public String getCinFormateur() {

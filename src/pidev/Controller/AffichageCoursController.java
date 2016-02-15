@@ -9,13 +9,21 @@ package pidev.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,15 +33,21 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import javafx.stage.Stage;
-import javafx.util.Duration;
+
 import pidev.dao.classes.*;
 import pidev.entities.* ;
+import pidev.techniques.DataSource;
 
 
 public class AffichageCoursController  implements Initializable{
@@ -52,44 +66,54 @@ private TextArea description ;
 private Hyperlink telecharger;
   @FXML
   private Label labelCours;
-  @FXML private TableView<DAOChapitre> tableChapites;
-  @FXML private TableColumn chapitreId ;
-  @FXML private TableColumn objectifId ;
-    ObservableList<Chapitre> chap ;
+  @FXML private TableView<Chapitre> table;
+  @FXML private TableColumn chapitre ;
+  @FXML private TableColumn objectif ;
+    public String nom ;
+    public Cours info; 
+    public String formateur ;
+private Connection connection ; 
+    public AffichageCoursController() {
+            connection = (DataSource.getInstance()).getConnection();
     
- @FXML
-     private void btnrechAction(ActionEvent event) throws IOException  {
-        if (idtextrech.getText().isEmpty())
-        {
-            idtextrech.setStyle("-fx-background-color: red;");
-        }
-        else
-        {
-            DAOCours d= new DAOCours();
-            int id=d.findIdCoursByTitre(idtextrech.getText());
-            
-        }
-        
     }
-     
-    @FXML
-     private void  textChangeColorAction(ActionEvent event)  {
-         idtextrech.setStyle("-fx-background-color: white;");
-          description.setText("saisir nom Cours ...");
-     }
-     
+ 
    @FXML
    private void faireQuizAction(ActionEvent event)  {
-        
+        FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuiz.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Parent p = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                stage.setTitle("Faire Quiz");
+                AfficherQuizController pac  = loader.getController();
+//                pac.setCh(ch);
+                stage.show();
    }
 @FXML
 private void Formateur1Action(ActionEvent event) throws IOException  {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-            Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
-            Stage stage =  new Stage();
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
+            
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
+                    try {
+                        loader.load();
+                    } catch (IOException ex) {
+                        Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
             stage.setTitle("Profil Formateur");
+            ProfilFormateurController pac  = loader.getController();
+            pac.setFormateur(formateur);
             stage.show();
    }
 
@@ -99,15 +123,90 @@ private void telechargerAction(ActionEvent event)  {
    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)  {
         final File file = new File("C:\\Users\\Ahmed\\Desktop\\iphone.mp4"); 
       final Media media = new Media(file.toURI().toString()); 
         final MediaPlayer mediaPlayer = new MediaPlayer(media); 
         video1= new  MediaView(mediaPlayer);
+     
         mediaPlayer.play(); 
-       
+        
+      
+
+
+        
        
     }
+
+    public void setInfo(Cours info) {
+        
+        this.info = info;
+          labelCours.setText(info.getNomCours());
+          description.setText(info.getDescription());
+          formateur=info.getCinFormateur() ;
+          nom=info.getNomCours();
+           String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
+       
+    
+            PreparedStatement ps;
+    try {
+        ps = connection.prepareStatement(requete);
+    
+            ResultSet rs = ps.executeQuery();
+         
+         List<Chapitre> temp=new ArrayList<>();
+         Chapitre c;
+         
+             while (rs.next()) {
+               c=new Chapitre(rs.getString(1),rs.getString(2));
+              //temp.add(rs.getString(1));
+           //temp.add(rs.getString(2));
+             // temp.add( new SimpleStringProperty(rs.getString(3)));
+              
+                  temp.add(c);
+               
+            }
+           final ObservableList<Chapitre> list=FXCollections.<Chapitre>observableList(temp);
+             
+             
+          
+             chapitre.setCellValueFactory(new PropertyValueFactory("titre"));
+             
+        objectif.setCellValueFactory(new PropertyValueFactory("objectif"));
+ 
+        
+        
+        
+        
+        table.setItems(list);
+        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Chapitre>() {
+            
+            @Override
+            public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
+                Chapitre ch=table.getSelectionModel().getSelectedItem();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitre.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Parent p = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                stage.setTitle("Affichage Chapitre");
+                AfficherChapitreApprenantController pac  = loader.getController();
+//                pac.setCh(ch);
+                stage.show();
+            }} );
+        } catch (SQLException ex) {
+        Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+          
+    }
+    
+   
 
     
 

@@ -75,6 +75,11 @@ public class Chapitre {
         this.Video = Video;
     }
 
+    public Chapitre(String titre, String objectif) {
+        this.titre = titre;
+        this.objectif = objectif;
+    }
+
     @Override
     public String toString() {
         return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif + ", etat=" + etat + ", idQuiz=" + idQuiz + ", idCours=" + idCours + ", Video=" + Video + '}';

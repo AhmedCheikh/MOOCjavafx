@@ -1,7 +1,7 @@
 package pidev.dao.classes;
 
 
-import static com.sun.org.apache.xerces.internal.util.FeatureState.is;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
