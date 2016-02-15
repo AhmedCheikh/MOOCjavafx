@@ -12,9 +12,29 @@ public class Chapitre {
     private int etat;
     private int idQuiz;
     private int idCours;
-    private Blob Video;
+    private File Video;
 
     public Chapitre() {
+    }
+
+    public Chapitre(String titre, File presentation, String objectif, int etat, int idQuiz, File Video) {
+        this.titre = titre;
+        this.presentation = presentation;
+        this.objectif = objectif;
+        this.etat = etat;
+        this.idQuiz = idQuiz;
+        this.Video = Video;
+    }
+    
+
+    public Chapitre(int idCours,int idQuiz,String titre, File presentation, String objectif, int etat,File Video) {
+        this.titre = titre;
+        this.presentation = presentation;
+        this.objectif = objectif;
+        this.etat = etat;
+        this.idQuiz = idQuiz;
+        this.idCours = idCours;
+        this.Video = Video;
     }
 
     public Chapitre(int idCours, String titre, String objectif) {
@@ -27,7 +47,7 @@ public class Chapitre {
         this.idQuiz = idQuiz;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, Blob Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, File Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
@@ -46,7 +66,7 @@ public class Chapitre {
         this.idCours = idCours;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, String objectif, int etat, Blob Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, String objectif, int etat, File Video) {
         this.titre = titre;
         this.objectif = objectif;
         this.etat = etat;
@@ -77,7 +97,7 @@ public class Chapitre {
         return presentation;
     }
 
-    public Blob getVideo() {
+    public File getVideo() {
         return Video;
     }
 
@@ -109,7 +129,7 @@ public class Chapitre {
         this.presentation = presentation;
     }
 
-    public void setVideo(Blob Video) {
+    public void setVideo(File Video) {
         this.Video = Video;
     }
 

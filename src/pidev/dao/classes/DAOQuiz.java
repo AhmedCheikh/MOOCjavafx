@@ -131,9 +131,9 @@ public class DAOQuiz implements IDAOQuiz {
     }
 
     @Override
-    public List<Quiz> findQuizByType(boolean type) {
+    public List findQuizByType(int type) {
         String req = "select * from quiz where type= '" + type + "'";
-        List<Quiz> listQuiz = new ArrayList<Quiz>();
+        List<String> l=new ArrayList<>();
 
         try {
             pst = connection.prepareStatement(req);
@@ -141,17 +141,19 @@ public class DAOQuiz implements IDAOQuiz {
 
             while (rs.next()) {
 
-                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
+                String q = rs.getString("titre");
 
-                listQuiz.add(q);
+                l.add(q);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return listQuiz;
+        return l;
     }
 
+    
+    
     @Override
     public int findQuizByTitreSelonId(String titre) {
         String req = "select * from quiz where titre= '" + titre + "'";
