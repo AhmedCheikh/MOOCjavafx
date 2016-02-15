@@ -120,17 +120,14 @@ public class AjouterQuizController {
     @FXML
     private RadioButton btrNonChronometre;
     @FXML
-    private Button btnAjouterQuiz;
+    private Button btnAjouterQuizAction;
 //    @FXML
 //    private Label er1;
 
     @FXML
-    private void btrChronometreAction(ActionEvent event) {
-    }
-
+    private javafx.scene.control.Label er1;
     @FXML
-    private void btrNonChronometreAction(ActionEvent event) {
-    }
+    private javafx.scene.control.Label ltitre;
 
     @FXML
     private void btnAjouterQuizAction(ActionEvent event) {
@@ -189,5 +186,13 @@ public class AjouterQuizController {
 
         }
 
+    }
+
+    @FXML
+    private void btrChronometreAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void btrNonChronometreAction(ActionEvent event) {
     }
 }

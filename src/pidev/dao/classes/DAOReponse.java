@@ -134,4 +134,46 @@ public class DAOReponse implements IDAOReponse{
         return listReponse;
     }
 
+    
+       @Override
+    public List<Reponse> FindIdReponsebyQuestion(int q) {
+           {
+       String req = "select * from reponse where idquestion= '"+q+"'";
+               System.out.println(req);
+        List<Reponse> listReponse = new ArrayList<Reponse>();
+
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+            System.out.println(rs);
+            while (rs.next()) {
+
+                Reponse r = new Reponse(rs.getInt("id"),rs.getInt("etat"),rs.getString("reponse"));
+                System.out.println(r);
+                listReponse.add(r);
+                System.out.println(listReponse);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listReponse;
+    }
+    }
+    
+    
+           @Override
+    public int findEtatReponse(String r) {
+        String req = "select * from reponse where reponse= '" + r+ "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getInt(2);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+       
+
+  }
 }

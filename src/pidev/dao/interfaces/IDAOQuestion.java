@@ -2,6 +2,7 @@
 package pidev.dao.interfaces;
 import java.util.List;
 import pidev.entities.Question;
+import pidev.entities.Quiz;
 
 
 public interface IDAOQuestion {
@@ -10,4 +11,6 @@ public interface IDAOQuestion {
     void updateQuestion(Question q);
     int findQuestionSelonId(String ques);
     List<Question> findQuestionById(int id);
+    List<Question> FindIdQuestionbyQuiz(int q);
+    int findQuestionSelonId(Question q);
 }
