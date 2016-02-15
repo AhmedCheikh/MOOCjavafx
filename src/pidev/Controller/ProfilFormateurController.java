@@ -12,7 +12,7 @@ public class ProfilFormateurController implements Initializable {
     private Button btnexit;
     @FXML
     private Button btnback;
-
+private String formateur ;
     
    @FXML
     private void  btnexitAction(ActionEvent event) {
@@ -25,6 +25,11 @@ public class ProfilFormateurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    public void setFormateur(String formateur) {
+        this.formateur = formateur;
+        System.out.println(formateur);
     }
 
 }

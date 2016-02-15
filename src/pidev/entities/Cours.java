@@ -13,7 +13,7 @@ public class Cours {
     private String objectif;
     private File video;
     private int idQuiz;
-    private int etatVideo;
+    private int etat;
 
  
 
@@ -103,7 +103,7 @@ public Cours(String nomCours,String description,String cinFormateur)
     }
 
     public void setEtatVideo(int etatVideo) {
-        this.etatVideo = etatVideo;
+        this.etat = etatVideo;
     }
 
     public File getVideo() {
@@ -111,7 +111,7 @@ public Cours(String nomCours,String description,String cinFormateur)
     }
 
     public int getEtatVideo() {
-        return etatVideo;
+        return etat;
     }
 
     @Override

@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,8 +41,10 @@ import javafx.scene.control.cell.*;
 
 
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import pidev.entities.Cours;
@@ -107,74 +111,77 @@ if (result.get() == ButtonType.OK){
    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-              DropShadow shadow = new DropShadow();
+  
+        DropShadow shadow = new DropShadow();
 //Adding the shadow when the mouse cursor is on
- btnexit.addEventHandler(MouseEvent.MOUSE_ENTERED, 
-    new EventHandler<MouseEvent>() {
-        @Override public void handle(MouseEvent e) {
-            shadow.setColor(Color.RED);
-            btnexit.setEffect(shadow);
-        }
-});
+        btnexit.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override public void handle(MouseEvent e) {
+                        shadow.setColor(Color.RED);
+                        btnexit.setEffect(shadow);
+                    }
+                });
 //Removing the shadow when the mouse cursor is off
- btnexit.addEventHandler(MouseEvent.MOUSE_EXITED, 
-    new EventHandler<MouseEvent>() {
-        @Override public void handle(MouseEvent e) {
+        btnexit.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override public void handle(MouseEvent e) {
+                        
+                        btnexit.setEffect(null);
+                    }
+                });
+        
+        try {
+        String requete = "select c.nom_cours,c.description,f.nom from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin";
+        
+        PreparedStatement ps;
+        
+            ps = connection.prepareStatement(requete);
+       
+        ResultSet rs = ps.executeQuery();
+        List<Cours> temp=new ArrayList<>();
+        Cours c;
+        while (rs.next()) {
+            c=new Cours(rs.getString(1),rs.getString(2),rs.getString(3));
+            //temp.add(rs.getString(1));
+            //temp.add(rs.getString(2));
+            // temp.add( new SimpleStringProperty(rs.getString(3)));
             
-             btnexit.setEffect(null);
+            temp.add(c);
+            
         }
-});
- 
- 
- String requete = "select c.nom_cours,c.description,f.nom from cours c,formateur f where c.cinformateur=f.cin";
-       
-       try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            ResultSet rs = ps.executeQuery();
-         
-         List<Cours> temp=new ArrayList<>();
-         Cours c;
-         
-             while (rs.next()) {
-               c=new Cours(rs.getString(1),rs.getString(2),rs.getString(3));
-              //temp.add(rs.getString(1));
-           //temp.add(rs.getString(2));
-             // temp.add( new SimpleStringProperty(rs.getString(3)));
-              
-                  temp.add(c);
-               
-            }
-           final ObservableList<Cours> list=FXCollections.<Cours>observableList(temp);
-             
-             
-          
-             Nom.setCellValueFactory(new PropertyValueFactory("nomCours"));
-             
+        final ObservableList<Cours> list=FXCollections.<Cours>observableList(temp);
+        Nom.setCellValueFactory(new PropertyValueFactory("nomCours"));
         Description.setCellValueFactory(new PropertyValueFactory("description"));
- 
         Formateur.setCellValueFactory(new PropertyValueFactory("cinFormateur"));
-        
-        
-        
         table.setItems(list);
+        
+        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cours>() {
             
-             
-      //  data.addAll(temp);
-       // Nom.setCellValueFactory(new PropertyValueFactory("nom_cours"));
-        //Description.setCellValueFactory(new PropertyValueFactory("description"));
-    
-        //Formateur.setCellValueFactory(new PropertyValueFactory("nom"));
-        System.out.println(list.toString());
-        
-       
-        
-          
-        } catch (SQLException ex) {
-            Logger.getLogger(ValiderCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
+            @Override
+            public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
+                Cours cours=table.getSelectionModel().getSelectedItem();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Parent p = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                stage.setTitle("Affichage Cours");
+                AffichageCoursController pac  = loader.getController();
+                pac.setInfo(cours);
+                stage.show();
+            }} );
+  
+  } catch (SQLException ex) {
+            Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-   
-    
-    
 }
+    
+    

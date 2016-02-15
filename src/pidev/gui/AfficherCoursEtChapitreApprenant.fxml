@@ -23,34 +23,7 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Label layoutX="297.0" layoutY="73.0" text="Cours disponibles" textFill="#222020">
-               <font>
-                  <Font name="Elephant Italic" size="16.0" />
-               </font>
-            </Label>
-            <TextField layoutX="447.0" layoutY="67.0" prefHeight="35.0" prefWidth="183.0" style="-fx-background-color: #FFF5EF;" />
-            <Button layoutX="638.0" layoutY="66.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #223645;" text="Chercher" textFill="WHITE">
-               <font>
-                  <Font name="Arial Black" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <RadioButton layoutX="14.0" layoutY="76.0" mnemonicParsing="false" text="Amateur">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </RadioButton>
-            <RadioButton layoutX="102.0" layoutY="76.0" mnemonicParsing="false" text="Moyenne">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></RadioButton>
-            <RadioButton layoutX="191.0" layoutY="76.0" mnemonicParsing="false" text="Excelent">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></RadioButton>
-            <TableView fx:id="table" layoutX="14.0" layoutY="122.0" prefHeight="359.0" prefWidth="717.0">
+            <TableView fx:id="table" layoutX="24.0" layoutY="65.0" prefHeight="359.0" prefWidth="717.0">
                <columns>
                   <TableColumn fx:id="Nom" prefWidth="198.0" text="Nom_cours" />
                   <TableColumn fx:id="Description" prefWidth="306.0" text="description" />
