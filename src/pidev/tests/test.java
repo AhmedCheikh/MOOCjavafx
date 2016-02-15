@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pidev.entities.*;
 import pidev.dao.classes.*;
@@ -17,34 +18,21 @@ public class test extends Application
 
     @Override
     public void start(Stage stage) throws Exception {
-     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/InscrireOrganisme.fxml"));
+//     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLPageAcceuille.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/AfficherCoursEtChapitreApprenant.fxml"));
+     
         Scene scene = new Scene(root);        
+        stage.getIcons().add(new Image("/pidev/gui/img/icone.png"));
+//        root.setStyle("-fx-background-image: url(/pidev/gui/img/moocBack.png ); " +
+//           "-fx-background-position: center center; " +
+//           "-fx-background-repeat: stretch;");
         stage.setScene(scene);
-        stage.setTitle("Inscrirption organisme");
+        stage.setTitle("Welcome !");
         stage.show();
     }
-//    public void start(Stage stage) {
-////            throws Exception {
-////     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/PreInscrireOrganisme.fxml"));
-////        Scene scene = new Scene(root);        
-////        stage.setScene(scene);
-////        stage.setTitle("Pre-Inscription Organisme");
-////        stage.show();
-//    }
-    
+
     public static void main(String[] args) {
         launch(args);
-//        launch();
-        
-//    try {
-//        DAOOrganisme d = new DAOOrganisme();
-//        Organisme o = new Organisme(3,"zzzz","sdsd","String password","String email","String siteweb","String adresse","String telephone","String description",null,null,8);
-//        d.addOrganisme(o); 
-//          
-//        } catch (Exception e) {
-//            System.out.println("lerreur est "+e.getMessage());
-//        }
-//        
-//    }
+
 }
 }
