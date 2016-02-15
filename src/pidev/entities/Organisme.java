@@ -35,8 +35,8 @@ public class Organisme  {
         this.etat = etat;
     }
 
-    public Organisme(int id, String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo) {
-        this.id = id;
+    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo) {
+      
         this.nom = nom;
         this.login = login;
         this.password = password;
@@ -58,17 +58,20 @@ public class Organisme  {
         this.siteweb = siteweb;
         this.telephone = telephone;
         this.description = description;
+      
     }
     
     
 
-    public Organisme(int Id,String nom, String login, String password, String email, String adresse) {
+    public Organisme(int Id,String nom, String login, String password, String email, String adresse,File document,int etat) {
         this.id=id;
         this.nom = nom;
         this.login = login;
         this.password = password;
         this.email = email;
         this.adresse = adresse;
+          this.document=document;
+          this.etat=etat;
     }
 
     @Override
