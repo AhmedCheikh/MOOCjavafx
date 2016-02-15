@@ -16,7 +16,7 @@ import pidev.entities.CoursSuivie;
  */
 public interface IDAOApprenant<T> {
     void add(T t);
-    void update(T t, String cin, File file);
+    void update(T t, String cin);
     List<CoursSuivie> listCoursSuivi(String cin);
     boolean authentification(String login,String password);
 }
