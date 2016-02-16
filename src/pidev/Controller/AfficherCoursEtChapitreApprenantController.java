@@ -47,6 +47,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import pidev.entities.Apprenant;
 import pidev.entities.Cours;
 
 import pidev.techniques.DataSource;
@@ -71,7 +72,7 @@ public class AfficherCoursEtChapitreApprenantController implements Initializable
     private Button btnback;
     
 private Connection connection ; 
-    
+    private Apprenant apprenant;
  
    public AfficherCoursEtChapitreApprenantController()
    {
@@ -97,7 +98,7 @@ if (result.get() == ButtonType.OK){
 
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
-         ((Node) (event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
         loader.load();
@@ -105,7 +106,8 @@ if (result.get() == ButtonType.OK){
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Profil Apprenant");
-     
+        ProfilApprenantController pac  = loader.getController();
+        pac.setApprenant(apprenant);
         stage.show();
     }
    
@@ -182,6 +184,11 @@ if (result.get() == ButtonType.OK){
         }
     }
 
+    public void setApprenant(Apprenant apprenant) {
+        this.apprenant = apprenant;
+    }
+
+    
 }
     
     
