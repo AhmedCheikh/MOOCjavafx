@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -169,12 +170,18 @@ public class InscriptionApprenantController implements Initializable {
             da.add(a);
             
             ((Node) (event.getSource())).getScene().getWindow().hide();
-            Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLPageAcceuille.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(parent);
             stage.setScene(scene);
-            stage.setTitle("Authentification");
+            stage.setTitle("Accueil");
             stage.show();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Look, an Information Dialog");
+            alert.setContentText("Registration successfully completed!");
+            alert.showAndWait();
     
         }
 

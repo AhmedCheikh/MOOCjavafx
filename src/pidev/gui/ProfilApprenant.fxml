@@ -11,29 +11,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilApprenantController">
    <children>
-      <MenuBar layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="608.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Exit" />
-                  <MenuItem mnemonicParsing="false" text="Nouveau Cour" />
-                  <MenuItem mnemonicParsing="false" text="Liste Cours" />
-                  <MenuItem mnemonicParsing="false" text="Liste Organisme" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <TitledPane animated="false" layoutX="626.0" layoutY="5.0" prefHeight="99.0" prefWidth="139.0" text="Mon Profil " textOverrun="CLIP">
+      <MenuBar layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="736.0" />
+      <TitledPane animated="false" expanded="false" layoutX="626.0" layoutY="5.0" prefHeight="99.0" prefWidth="139.0" text="Mon Profil " textOverrun="CLIP">
          <content>
             <AnchorPane cache="true" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="112.0">
                <children>

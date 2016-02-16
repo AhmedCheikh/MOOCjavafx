@@ -51,7 +51,7 @@ public class ProfilApprenantController implements Initializable {
     private Hyperlink btnEditProfil;
     @FXML
     private Button btnDeconnecter;
-    Apprenant apprenant;
+    public Apprenant apprenant;
     private String info;
     @FXML
     public ImageView imageView;
@@ -70,13 +70,14 @@ public class ProfilApprenantController implements Initializable {
     private void btnListCoursSuivisAction(ActionEvent event) throws IOException { 
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        //loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursEtChapitreApprenant.fxml")); 
         loader.load();
         Parent p = loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
-        AfficheListCoursSuivisController ALCS  = loader.getController();
-        ALCS.setApprenant(apprenant);
+        AfficherCoursEtChapitreApprenantController ACCA  = loader.getController();
+        ACCA.setApprenant(apprenant);
         stage.setTitle("List Cours Suivis");
         stage.show();
         
@@ -98,15 +99,15 @@ public class ProfilApprenantController implements Initializable {
     }
 
     public void setInfo(String info) throws IOException {
-       // System.out.println("111");
+        
         DAOApprenant da = new DAOApprenant();
-       // System.out.println("222");
+       
         apprenant = da.getApprenantByLogin(info);
-        String filename = apprenant.getNom();
-       // System.out.println("3333");
-        //imageView.setImage(new Image(getClass().getResourceAsStream("C:\\Users\\Khoubaib\\Desktop\\" + filename+".jpg")));
+        String filename = apprenant.getNom(); 
+        
+        //imageView.setImage(new Image(getClass().getResourceAsStream("C:\\photo\\"+filename+".jpg")));
         txtCin.setText(apprenant.getCin());
-        //System.out.println("444");
+        
         txtNom.setText(apprenant.getNom());
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
