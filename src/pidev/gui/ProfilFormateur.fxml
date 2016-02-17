@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+   <children>
+      <MenuBar layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="608.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Exit" />
+                  <MenuItem mnemonicParsing="false" text="Nouveau Cour" />
+                  <MenuItem mnemonicParsing="false" text="Liste Cours" />
+                  <MenuItem mnemonicParsing="false" text="Liste Organisme" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TitledPane animated="false" layoutX="626.0" layoutY="5.0" prefHeight="99.0" prefWidth="139.0" text="Mon Profil " textOverrun="CLIP">
+        <content>
+          <AnchorPane cache="true" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="112.0">
+               <children>
+                  <Hyperlink fx:id="lblEditerProfil" layoutX="13.0" layoutY="7.0" prefHeight="23.0" prefWidth="113.0" text="Edit Profil" />
+                  <Button fx:id="btnDeconnecter" layoutX="15.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="25.0" prefWidth="100.0" text="Se déconnecter" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <ImageView fx:id="imgAvatar" fitHeight="143.0" fitWidth="159.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/defaut.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblLoginPrenom" layoutX="16.0" layoutY="184.0" prefHeight="17.0" prefWidth="143.0" text="Akoubi Zied">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Region layoutX="14.0" layoutY="213.0" prefHeight="355.0" prefWidth="173.0" style="-fx-background-color: #EEEEC6; -fx-border-color: black; -fx-border-width: 1px;" />
+      <Pane layoutX="194.0" layoutY="213.0" prefHeight="355.0" prefWidth="567.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
+         <children>
+            <Label layoutX="93.0" layoutY="111.0" text="Cin">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="147.0" text="Nom">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="188.0" text="Prenom">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="224.0" text="Email">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="171.0" />
+            <Label layoutX="93.0" layoutY="264.0" text="Login">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="95.0" layoutY="304.0" text="Num_tel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="567.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/bgmenu.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="159.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Informations Personnels">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Text>
+            <Label fx:id="lblCin" layoutX="222.0" layoutY="113.0" text="07950625" underline="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNom" layoutX="222.0" layoutY="149.0" text="zied" underline="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLogin" layoutX="222.0" layoutY="266.0" text="zidaine" underline="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEmail" layoutX="222.0" layoutY="226.0" text="Zied.agoubi@esprit.tn" underline="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPrenom" layoutX="222.0" layoutY="190.0" text="Agoubi" underline="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="222.0" layoutY="306.0" text="95095985" underline="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="14.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="292.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes Cours" textFill="#5b0a0a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="346.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Publier Cour" textFill="#5b0a0a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="399.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Liste Organisme" textFill="#5b0a0a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="453.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Demmande Integration" textFill="#5b0a0a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="506.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes invitations" textFill="#5b0a0a">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#508ec9" height="35.0" layoutX="14.0" layoutY="213.0" stroke="BLACK" strokeType="INSIDE" width="173.0" />
+      <Text fill="WHITE" layoutX="72.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" wrappingWidth="56.0">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/book.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/upload.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/school.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="158.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/demmande.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="495.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/invit.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

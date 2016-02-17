@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-border-width: 5px; -fx-border-color: #5F8CA3; -fx-background-color: #34393E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ControllerAthentification">
+    <children>
+        <Button fx:id="btnConnexion" layoutX="336.0" layoutY="360.0" onAction="#btnConnexionAction" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #84CECC; -fx-border-width: 2px;" text="Connexion">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Label fx:id="message" alignment="CENTER" layoutX="289.0" layoutY="205.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="178.0" textFill="#f50606" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="11.0" layoutY="8.0" stroke="#1f394d" strokeType="INSIDE" width="674.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#059ae4" />
+                  <Stop color="#848490" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill></Rectangle>
+      <Text fill="#180e8f" layoutX="15.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue chez MOOC" textAlignment="CENTER" wrappingWidth="655.13671875">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="28.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="310.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/Android.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="372.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/ios.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="25.0" layoutX="439.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/wp.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="login" layoutX="289.0" layoutY="247.0" prefHeight="25.0" prefWidth="178.0" promptText="Votre login" style="-fx-background-color: #FFEFB6;" />
+      <PasswordField fx:id="password" layoutX="289.0" layoutY="298.0" prefHeight="25.0" prefWidth="178.0" promptText="Votre mot de passe" style="-fx-background-color: #FFEFB6;" />
+      <Hyperlink layoutX="214.0" layoutY="419.0" prefHeight="23.0" prefWidth="133.0" text="Changer mot de passe" />
+      <Hyperlink layoutX="391.0" layoutY="419.0" prefHeight="23.0" prefWidth="121.0" text="Mot de passe oublié" />
+      <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="223.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/login.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="223.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/pwd.png" />
+         </image>
+      </ImageView>
+      <WebView fx:id="browser" layoutX="11.0" layoutY="63.0" prefHeight="418.0" prefWidth="168.0" />
+    </children>
+</AnchorPane>
