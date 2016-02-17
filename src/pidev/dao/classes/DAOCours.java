@@ -229,6 +229,20 @@ Connection connection;
             return null;
         }
     }
+        @Override
+    public String findTitreCoursById(int id) {
+        String req = "select * from cours where idcours= '" + id + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+               while (rs.next()) {
+            return rs.getString(2);}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return "";
+       
 
+  }
  
 }
