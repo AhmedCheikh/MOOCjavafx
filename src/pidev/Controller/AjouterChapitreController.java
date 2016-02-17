@@ -64,6 +64,8 @@ public class AjouterChapitreController implements Initializable {
     @FXML
     public static File video;
 
+
+
     public void setVideo(File video) {
         this.video = video;
     }
@@ -146,7 +148,7 @@ public class AjouterChapitreController implements Initializable {
                 c.setPresentation(path);
             } else {
 
-                LPresentation.setText("Video selection cancelled.");
+                LVideo.setText("Video selection cancelled.");
 
             }
 
