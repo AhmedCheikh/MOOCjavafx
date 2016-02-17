@@ -56,7 +56,7 @@ public class ModifierChapitreController implements Initializable {
     @FXML
     private Button btnModifier;
     @FXML
-    private Button btnAnuller;
+    private Button btnSupprimer;
     @FXML
     private Button btnexit;
     @FXML
@@ -98,10 +98,10 @@ public class ModifierChapitreController implements Initializable {
         }
 
         DAOChapitre c = new DAOChapitre();
-        List l = c.findChapitreByTitre("JavaFx");
-        
+        List l = c.findChapitreByTitre("test2");
+
         Chapitre s = (Chapitre) l.get(0);
-         idlocal = s.getIdChapitre();
+        idlocal = s.getIdChapitre();
         txtTitre.setText(s.getTitre());
         txtAObjectif.setText(s.getObjectif());
         LVideo.setText(s.getVideo().getAbsolutePath());
@@ -182,9 +182,22 @@ public class ModifierChapitreController implements Initializable {
     }
 
     @FXML
-    private void btnAnullerAction(ActionEvent event) {
-        txtTitre.setText("");
-        txtAObjectif.setText("");
+    private void btnSupprimerAction(ActionEvent event) throws IOException {
+        DAOChapitre dc = new DAOChapitre();
+        List l = dc.findChapitreByTitre("test2");
+        Chapitre s = (Chapitre) l.get(0);
+        dc.removeChapitre(s);
+
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.setTitle("Afficher cours");
+        ProfilApprenantController pac = loader.getController();
+        stage.show();
 
     }
 
@@ -211,11 +224,11 @@ public class ModifierChapitreController implements Initializable {
 
     @FXML
     private void btnModifierAction(ActionEvent event) {
-        
-         DAOQuiz d = new DAOQuiz();
+
+        DAOQuiz d = new DAOQuiz();
         z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-        Chapitre c = new Chapitre(idlocal,1,z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, video);
-         System.out.println(c);
+        Chapitre c = new Chapitre(idlocal, 1, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, video);
+        System.out.println(c);
         DAOChapitre daoc = new DAOChapitre();
         daoc.updateChapitre(c);
     }
