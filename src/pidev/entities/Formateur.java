@@ -2,7 +2,7 @@ package pidev.entities;
 
 import java.io.File;
 import java.util.Objects;
-import javafx.beans.property.StringProperty;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -18,15 +18,34 @@ public class Formateur {
     private String password;
     private File avatar;
     private File cv;
-    private int etat;
+    private int etat = 0;
 
     public Formateur() {
     }
 
-    public Formateur(String nom) {
+    public Formateur(String cinFormateur, String nom, String prenom, String mail) {
+        this.cinFormateur = cinFormateur;
         this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
     }
 
+    public Formateur(String cinFormateur) {
+        this.cinFormateur = cinFormateur;
+    }
+
+    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar) {
+        this.cinFormateur = cinFormateur;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.login = login;
+        this.password = password;
+        this.avatar = avatar;
+    }
+
+    
+    
     public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar, File cv, int etat) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
@@ -39,9 +58,8 @@ public class Formateur {
         this.etat = etat;
     }
 
-    public Formateur(String cinFormateur, String nom) {
-        this.cinFormateur = cinFormateur;
-        this.nom = nom;
+    public Formateur(String text, String text0, TextField txtPrenom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getCinFormateur() {

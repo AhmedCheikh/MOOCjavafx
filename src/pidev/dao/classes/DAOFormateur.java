@@ -1,14 +1,9 @@
 package pidev.dao.classes;
 
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,43 +11,43 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import pidev.Controller.InscrireFormateurController;
-import pidev.Controller.ProfilFormateurController;
 import pidev.dao.interfaces.IDaoFormateur;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
-import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
 
 /**
  *
  * @author akoubi
  */
-public class DAOFormateur implements IDaoFormateur{
+public class DAOFormateur implements IDaoFormateur {
+
     private Connection connection;
 
     public DAOFormateur() {
-    connection = DataSource.getInstance().getConnection();
+        connection = DataSource.getInstance().getConnection();
     }
 
     @Override
     public void inscrire(Formateur f) {
-       try {
-            
-            String req = "insert into formateur (cin,nom,prenom,email,login,password,cv) values (?,?,?,?,?,?,?)";
+        try {
+
+            String req = "insert into formateur (cin,nom,prenom,email,login,password,avatar,cv,etat) values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req);
-         
+
             InputStream is = new FileInputStream(InscrireFormateurController.cv);
-           
+            InputStream is2 = new FileInputStream(InscrireFormateurController.im);
+
             ps.setString(1, f.getCinFormateur());
             ps.setString(2, f.getNom());
             ps.setString(3, f.getPrenom());
             ps.setString(4, f.getMail());
             ps.setString(5, f.getLogin());
             ps.setString(6, f.getPassword());
-            ps.setBlob(7, is);
+            ps.setBlob(7, is2);
+            ps.setBlob(8, is);
+            ps.setInt(9, f.getEtat());
             ps.executeUpdate();
         } catch (SQLException | FileNotFoundException ex) {
             Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,66 +55,81 @@ public class DAOFormateur implements IDaoFormateur{
     }
 
     @Override
-    public void Editer_Profil(Formateur f) {
+    public Formateur getFormateurByName(String nom) {
+        return null;
     }
 
     @Override
-    public void getFormateurByName(String nom) {
-
-    }
-
-    @Override
-    public void getFormateurByCIN(String cin) {
-    String requete = "select * from formateur where cin=?";
-
+    public Formateur getFormateurByCIN(String cin) {
+        String requete = "select * from formateur where cin = ?";
+        Formateur formateur = new Formateur();
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, cin);
             ResultSet resultat = ps.executeQuery();
-            ProfilFormateurController pfc = new ProfilFormateurController();
             while (resultat.next()) {
-//            pfc.lblCin.setText(resultat.getString("cin"));
-//            pfc.lblNom.setText(resultat.getString("nom"));
-//            pfc.lblNom.setText(resultat.getString("prenom"));
-//            pfc.lblNom.setText(resultat.getString("email"));
-//            pfc.lblNom.setText(resultat.getString("login"));
-            
-            InputStream is = resultat.getBinaryStream("avatar");
-            OutputStream os = new FileOutputStream(new File("photo.jpg"));
-            byte[] content = new byte[1024];
-            int size = 0;
-            while((size = is.read(content)) !=  -1){
-            os.write(content,0,size);
-            os.write(content);
+                formateur.setCinFormateur(resultat.getString(1));
+                formateur.setNom(resultat.getString(2));
+                formateur.setPrenom(resultat.getString(3));
+                formateur.setMail(resultat.getString(4));
+                formateur.setLogin(resultat.getString(8));
             }
-            os.close();
-            is.close();
-//            pfc.image = new Image("file:photo.jpg", 100 ,150,true,true);
-//            pfc.imgAvatar.setImage(pfc.image);
-            }
- 
-        } catch (SQLException ex) {
+            return formateur;
+        }catch (SQLException ex) {
             System.out.println("erreur lors du chargement" + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 
     @Override
-    public List<Cours> ListCoursByNameFormateur(String nom) {
-    return null;
+    public boolean Connecter(String cin, String pass) {
+        PreparedStatement ps = null;
+        ResultSet resalt = null;
+        String query = "select * from formateur where cin = ? and password = ? ";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, cin);
+            ps.setString(2, pass);
+
+            resalt = ps.executeQuery();
+
+            if (resalt.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                ps.close();
+                resalt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
-    public void DemmandeIntegration() {
-    
+    public boolean deconnecter() {
+        try {
+            return !connection.isClosed();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    @Override
+    public void DemmandeIntegration(String cin) {
+       
     }
 
     @Override
     public void DemmandeComite() {
-
+        
     }
 
     @Override
@@ -129,22 +139,29 @@ public class DAOFormateur implements IDaoFormateur{
 
     @Override
     public void RefuserOrganisme() {
-
+     
     }
 
     @Override
-    public void PublierCours(Cours c) {
-
+    public void EditerProfil(Formateur f) {
+        String requete = "update formateur set nom=? ,prenom = ?, email = ?, login = ?, avatar = ? , password = ? where cin = ?";
+        try {
+            //InputStream is = new FileInputStream(EditProfilFormateurController.avatar);
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, f.getNom());
+            ps.setString(2, f.getPrenom());
+            ps.setString(3, f.getMail());
+            ps.setString(4, f.getLogin());
+            ps.setBlob(5, new FileInputStream(f.getAvatar()));
+            ps.setString(6, f.getPassword());
+            ps.setString(7, f.getCinFormateur());
+            ps.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    @Override
-    public void EditerCours(Cours c) {
-
-    }
-
-    @Override
-    public void AjouterQuiz(Quiz q) {
-
-    }
-   
 }

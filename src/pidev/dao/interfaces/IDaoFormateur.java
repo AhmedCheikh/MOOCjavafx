@@ -12,16 +12,16 @@ import pidev.entities.Quiz;
 public interface IDaoFormateur {
 
     void inscrire(Formateur f);
-
-    void Editer_Profil(Formateur f);
-
-    void getFormateurByName(String nom);
-
-    void getFormateurByCIN(String cin);
     
-    List<Cours> ListCoursByNameFormateur(String nom);
+    boolean Connecter(String cin, String pass);
+    
+    boolean deconnecter();
+    
+    Formateur getFormateurByName(String nom);
+
+    Formateur getFormateurByCIN(String cin);
   
-    void DemmandeIntegration();
+    void DemmandeIntegration(String cin);
     
     void DemmandeComite();
 
@@ -29,9 +29,7 @@ public interface IDaoFormateur {
 
     void RefuserOrganisme();
     
-    void PublierCours(Cours c);
+    void EditerProfil(Formateur f);
     
-    void EditerCours(Cours c);
     
-    void AjouterQuiz(Quiz q);
 }

@@ -38,7 +38,9 @@ public class Cours {
         this.objectif = objectif;
         this.idQuiz = idQuiz;
     }
-
+ public Cours(int i, String text, String text0, int i0, String text1, String toString, String text2, int i1, File vedio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 public Cours(String nomCours,String description,String cinFormateur)
 {
     this.nomCours=nomCours;

@@ -1,9 +1,12 @@
 
 package pidev.Controller;
 
+import com.restfb.LegacyFacebookClient;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,13 +24,14 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import pidev.tests.test;
 import pidev.dao.classes.*;
+import pidev.entities.Formateur;
 
 /**
  *
  * @author akoubi
  */
 public class ControllerAthentification implements Initializable {
-    
+
     @FXML
     private Label message;
     @FXML
@@ -38,11 +42,15 @@ public class ControllerAthentification implements Initializable {
     public ComboBox roleAuth ;
     
     private String info;
-    @FXML
-    private WebView browser ;
+   @FXML
+   private void btnfbAction(ActionEvent event)
+   {
+       
+   }
+   
     @FXML
     private void btnConnexionAction(ActionEvent event) throws IOException  {
-       if(roleAuth.getValue().toString().equals("apprenant"))
+              if(roleAuth.getValue().toString().equals("apprenant"))
        {
            DAOApprenant app= new DAOApprenant();
            info = login.getText();
@@ -76,7 +84,27 @@ public class ControllerAthentification implements Initializable {
        }
        else if (roleAuth.getValue().toString().equals("formateur"))
        {
-           DAOFormateur formateur= new DAOFormateur() ;
+          DAOFormateur daof = new DAOFormateur();
+            try {
+                if (daof.Connecter(login.getText(), password.getText())) {
+                Formateur f = new Formateur(login.getText());
+                message.setText(" vos identifiant sont correcte ");
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
+                loader.load();  
+                Parent p = loader.getRoot();
+                ProfilFormateurController pfc = loader.getController();
+                pfc.setF(f);
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.show();
+                } else {
+            message.setText(" CIN ou Password Incorrecte ");
+        }
+            } catch (IOException ex) {
+                Logger.getLogger(ControllerAthentification.class.getName()).log(Level.SEVERE, null, ex);
+            }
            
        }
        else if (roleAuth.getValue().toString().equals("organisme"))
@@ -107,9 +135,7 @@ public class ControllerAthentification implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       WebEngine engine = browser.getEngine();
-		String a = "http://www.facebook.com";
-		engine.load(a);
+      
     }    
     
 }

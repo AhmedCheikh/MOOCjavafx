@@ -155,7 +155,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
             stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
             stage.setTitle("Profil Formateur");
             ProfilFormateurController pac  = loader.getController();
-            pac.setFormateur(formateur);
+//            pac.setFormateur(formateur);
             stage.show();
    }
 
