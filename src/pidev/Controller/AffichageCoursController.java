@@ -123,7 +123,7 @@ init(stage);
    @FXML
    private void faireQuizAction(ActionEvent event)  {
         FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuiz.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuizChrono.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
@@ -134,8 +134,8 @@ init(stage);
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Faire Quiz");
-                AfficherQuizController pac  = loader.getController();
-//                pac.setCh(ch);
+                AfficherQuizChronoController pac  = loader.getController();
+                pac.setPnomc(nom);
                 stage.show();
    }
 @FXML
@@ -227,7 +227,7 @@ private void telechargerAction(ActionEvent event)  {
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Chapitre");
-                AfficherChapitreApprenantController pac  = loader.getController();
+                AfficherChapitreFormateurController pac  = loader.getController();
 //                pac.setCh(ch);
                 stage.show();
             }} );

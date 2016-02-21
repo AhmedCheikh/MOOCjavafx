@@ -33,7 +33,7 @@ import pidev.entities.Chapitre;
  *
  * @author Gumus
  */
-public class ModifierChapitreController implements Initializable {
+public class ModifierChapitreController{
 
     @FXML
     private TextField txtTitre;
@@ -46,7 +46,7 @@ public class ModifierChapitreController implements Initializable {
     @FXML
     private ComboBox CmbQuiz;
     @FXML
-    private Label LVideo;
+    private TextField lVideo;
     @FXML
     private Label LPresentation;
     @FXML
@@ -73,22 +73,14 @@ public class ModifierChapitreController implements Initializable {
     }
 
     @FXML
-    public static File video;
-
-    public void setVideo(File video) {
-        this.video = video;
-    }
-    @FXML
     private Label er1;
     @FXML
     private Label er2;
     int z;
+    String pnomc;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void setPnomc(String pnomc) {
+        this.pnomc = pnomc;
 
         DAOQuiz daoQuiz = new DAOQuiz();
         l1 = daoQuiz.findQuizByType(1);
@@ -98,13 +90,13 @@ public class ModifierChapitreController implements Initializable {
         }
 
         DAOChapitre c = new DAOChapitre();
-        List l = c.findChapitreByTitre("test2");
+        List l = c.findChapitreByTitre(pnomc);
 
         Chapitre s = (Chapitre) l.get(0);
         idlocal = s.getIdChapitre();
         txtTitre.setText(s.getTitre());
         txtAObjectif.setText(s.getObjectif());
-        LVideo.setText(s.getVideo().getAbsolutePath());
+        lVideo.setText(s.getVideo());
         LPresentation.setText(s.getPresentation().getAbsolutePath());
 
         DAOQuiz z = new DAOQuiz();
@@ -117,6 +109,7 @@ public class ModifierChapitreController implements Initializable {
     @FXML
     private void btnChoisirVideoAction(ActionEvent event) {
 
+      
         FileChooser fileChooser = new FileChooser();
 
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -128,12 +121,12 @@ public class ModifierChapitreController implements Initializable {
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                video = path;
-                LVideo.setText("Video selected:" + selectedFile.getName());
-                c.setPresentation(path);
+                
+                lVideo.setText(path.getAbsolutePath());
+               
             } else {
 
-                LPresentation.setText("Video selection cancelled.");
+                lVideo.setText("Video selection cancelled.");
 
             }
 
@@ -227,7 +220,7 @@ public class ModifierChapitreController implements Initializable {
 
         DAOQuiz d = new DAOQuiz();
         z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-        Chapitre c = new Chapitre(idlocal, 1, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, video);
+        Chapitre c = new Chapitre(idlocal, 1, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, lVideo.getText());
         System.out.println(c);
         DAOChapitre daoc = new DAOChapitre();
         daoc.updateChapitre(c);

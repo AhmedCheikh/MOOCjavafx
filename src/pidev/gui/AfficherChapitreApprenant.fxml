@@ -57,9 +57,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e6fa" height="221.0" layoutX="32.0" layoutY="208.0" stroke="#77abd6" strokeType="INSIDE" strokeWidth="2.0" width="688.0" />
-            <MediaView fx:id="mvVideo" fitHeight="200.0" fitWidth="600.0" layoutX="79.0" layoutY="219.0" />
-            <TextArea fx:id="txtObjectives" editable="false" layoutX="152.0" layoutY="131.0" prefHeight="60.0" prefWidth="386.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <TextArea fx:id="txtObjectives" editable="false" layoutX="152.0" layoutY="131.0" prefHeight="108.0" prefWidth="445.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #84CECC; -fx-border-width: 2px;" />
             <Label layoutX="46.0" layoutY="131.0" text="Les objectifs:">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -80,6 +78,19 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
+            <Button fx:id="btnVideo" layoutX="182.0" layoutY="283.0" mnemonicParsing="false" onAction="#btnVideoAction" prefHeight="97.0" prefWidth="358.0" style="-fx-background-color: #9999ff;" text="Regarder Video">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.6857142857142857" startX="0.2238095238095238">
+                     <stops>
+                        <Stop color="#460b68" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">

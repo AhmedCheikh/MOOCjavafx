@@ -43,14 +43,14 @@ public class DAOReponse implements IDAOReponse{
     @Override
     public void addReponse(Reponse r) {
         try {
-            String req = "insert into reponse(id,etat,reponse,idquestion) values (?,?,?,?)";
+            String req = "insert into reponse(etat,rep,idquestion) values (?,?,?)";
             pst = connection.prepareStatement(req);
-            pst.setInt(1, r.getIdReponse());
-            pst.setInt(2, r.getEtat());
-            pst.setString(3, r.getReponse());
-            pst.setInt(4, r.getIdQuestion());
-            System.out.println(pst);
+           
+            pst.setInt(1, r.getEtat());
+            pst.setString(2, r.getReponse());
+            pst.setInt(3, r.getIdQuestion());
             pst.executeUpdate();
+            
             System.out.println("Ajout reponse effectuée avec succès");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -73,17 +73,17 @@ public class DAOReponse implements IDAOReponse{
     }
 
     @Override
-    public void updateReponse(Reponse r) {
+    public void updateReponse(int idquestion,Reponse r) {
 
-        String requete = "update reponse set etat=?, reponse=?, idquestion=? where id=?";
+        String requete = "update reponse set etat=?, rep=?, idquestion=? where idquestion=?";
         try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            pst.setInt(1, r.getIdReponse());
-            pst.setInt(2, r.getEtat());
-            pst.setString(3, r.getReponse());
-            pst.setInt(4, r.getIdQuestion());
+            PreparedStatement pst = connection.prepareStatement(requete);
+            pst.setInt(4, idquestion);
+            pst.setInt(1, r.getEtat());
+            pst.setString(2, r.getReponse());
+            pst.setInt(3, r.getIdQuestion());
 
-            ps.executeUpdate();
+            pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -101,7 +101,7 @@ public class DAOReponse implements IDAOReponse{
 
             while (rs.next()) {
 
-                Reponse q = new Reponse(rs.getInt("id"), rs.getInt("etat"),rs.getString("reponse"), rs.getInt("idquestion"));
+                Reponse q = new Reponse(rs.getInt("id"), rs.getInt("etat"),rs.getString("rep"), rs.getInt("idquestion"));
 
                 listReponse.add(q);
             }
@@ -123,7 +123,7 @@ public class DAOReponse implements IDAOReponse{
 
             while (rs.next()) {
 
-                    Reponse q = new Reponse(rs.getInt("id"), rs.getInt("etat"),rs.getString("reponse"), rs.getInt("idquestion"));
+                    Reponse q = new Reponse(rs.getInt("id"), rs.getInt("etat"),rs.getString("rep"), rs.getInt("idquestion"));
 
                 listReponse.add(q);
             }
@@ -139,19 +139,19 @@ public class DAOReponse implements IDAOReponse{
     public List<Reponse> FindIdReponsebyQuestion(int q) {
            {
        String req = "select * from reponse where idquestion= '"+q+"'";
-               System.out.println(req);
+         
         List<Reponse> listReponse = new ArrayList<Reponse>();
 
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-            System.out.println(rs);
+         
             while (rs.next()) {
 
-                Reponse r = new Reponse(rs.getInt("id"),rs.getInt("etat"),rs.getString("reponse"));
-                System.out.println(r);
+                Reponse r = new Reponse(rs.getInt("id"),rs.getInt("etat"),rs.getString("rep"));
+               
                 listReponse.add(r);
-                System.out.println(listReponse);
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -161,18 +161,20 @@ public class DAOReponse implements IDAOReponse{
     }
     
     
-           @Override
+    @Override
     public int findEtatReponse(String r) {
-        String req = "select * from reponse where reponse= '" + r+ "'";
+        String req = "select * from reponse where rep= ?";
         try {
             pst = connection.prepareStatement(req);
+            pst.setString(1,r);
             rs = pst.executeQuery();
-               while (rs.next()) {
+            while (rs.next()) {
             return rs.getInt(2);}
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return 0;
+       
        
 
   }

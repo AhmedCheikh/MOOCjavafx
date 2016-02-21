@@ -167,6 +167,7 @@ public class AjouterQuizController {
             Question qe = new Question(tfQ[i].getText(), id);
             DAOQuestion daoqe = new DAOQuestion();
             daoqe.addQuestion(qe);
+            
             int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
 
             for (int j = 0; j < 4; j++) {
@@ -177,7 +178,7 @@ public class AjouterQuizController {
                     etat = 0;
                 }
 
-                Reponse r11 = new Reponse(etat, tfR[r].getText(), Qid);
+                Reponse r11 = new Reponse(etat, tfR[r].getText(),Qid);
                 r++;
                 DAOReponse daor11 = new DAOReponse();
                 daor11.addReponse(r11);

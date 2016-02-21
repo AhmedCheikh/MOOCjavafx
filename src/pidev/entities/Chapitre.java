@@ -12,12 +12,12 @@ public class Chapitre {
     private int etat;
     private int idQuiz;
     private int idCours;
-    private File Video;
+    private String Video;
 
     public Chapitre() {
     }
 
-    public Chapitre(String titre, File presentation, String objectif, int etat, int idQuiz, File Video) {
+    public Chapitre(String titre, File presentation, String objectif, int etat, int idQuiz, String Video) {
         this.titre = titre;
         this.presentation = presentation;
         this.objectif = objectif;
@@ -27,7 +27,7 @@ public class Chapitre {
     }
     
 
-    public Chapitre(int idCours,int idQuiz,String titre, File presentation, String objectif, int etat,File Video) {
+    public Chapitre(int idCours,int idQuiz,String titre, File presentation, String objectif, int etat,String Video) {
         this.titre = titre;
         this.presentation = presentation;
         this.objectif = objectif;
@@ -47,7 +47,7 @@ public class Chapitre {
         this.idQuiz = idQuiz;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, File Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, String Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
@@ -66,7 +66,7 @@ public class Chapitre {
         this.idCours = idCours;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, String objectif, int etat, File Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, String objectif, int etat, String Video) {
         this.titre = titre;
         this.objectif = objectif;
         this.etat = etat;
@@ -97,7 +97,7 @@ public class Chapitre {
         return presentation;
     }
 
-    public File getVideo() {
+    public String getVideo() {
         return Video;
     }
 
@@ -129,7 +129,7 @@ public class Chapitre {
         this.presentation = presentation;
     }
 
-    public void setVideo(File Video) {
+    public void setVideo(String Video) {
         this.Video = Video;
     }
 

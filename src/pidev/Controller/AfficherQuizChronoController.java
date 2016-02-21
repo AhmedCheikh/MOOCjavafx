@@ -10,6 +10,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +29,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOChapitre;
+import pidev.dao.classes.DAOCours;
 import pidev.dao.classes.DAOQuestion;
 import pidev.dao.classes.DAOQuiz;
 import pidev.dao.classes.DAOReponse;
@@ -37,7 +43,7 @@ import pidev.entities.Reponse;
  *
  * @author Gumus
  */
-public class AfficherQuizController implements Initializable {
+public class AfficherQuizChronoController implements Initializable {
 
     @FXML
     private TextArea Q1;
@@ -135,13 +141,51 @@ public class AfficherQuizController implements Initializable {
     private Label Note;
     @FXML
     private Label ltitre;
+    @FXML
+    private Label LTime;
     public int note;
     int f = 0;
     String pnomc;
 
     public void setPnomc(String pnomc) {
         this.pnomc = pnomc;
-         TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
+
+    }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            int M = 60;
+
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        LTime.setText("00:00:" + M);
+                        M = M - 1;
+                        if (M == 0) {
+                            try {
+                                btnValiderQuizAction(null);
+                            } catch (IOException ex) {
+                                Logger.getLogger(AfficherQuizChronoController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+        }, 1000, 1000);
+        
+        TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
         TextArea[] tfR = {
             R11, R12, R13, R14,
             R21, R22, R23, R24,
@@ -154,8 +198,8 @@ public class AfficherQuizController implements Initializable {
             C31, C32, C33, C34,
             C41, C42, C43, C44,
             C51, C52, C53, C54};
-        DAOChapitre daoc1 = new DAOChapitre();
-        int q = daoc1.FindIdQuizbychapitre(pnomc);
+        DAOCours daoc1 = new DAOCours();
+        int q = daoc1.FindIdQuizbycours("cours");
         System.out.println(q);
         DAOQuiz daoq1 = new DAOQuiz();
         String t = daoq1.findTitreQuizByTitreSelonId(q);
@@ -183,22 +227,6 @@ public class AfficherQuizController implements Initializable {
             }
 
         }
-
-    }
-    
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-//         int etatquiz = 0;
-//        if (btrChronometre.isSelected()) {
-//            etatquiz = 1;
-//        } else if (btrNonChronometre.isSelected()) {
-//            etatquiz = 0;
-//        }
-       
     }
 
     @FXML
@@ -216,46 +244,38 @@ public class AfficherQuizController implements Initializable {
             C31, C32, C33, C34,
             C41, C42, C43, C44,
             C51, C52, C53, C54};
-             note=0;
+        note = 0;
         for (int i = 0; i < 5; i++) {
             DAOQuestion daoqe = new DAOQuestion();
             int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
 
             for (int j = 0; j < 4; j++) {
                 DAOReponse daor = new DAOReponse();
-                int et=daor.findEtatReponse(tfR[j].getText());
+                int et = daor.findEtatReponse(tfR[j].getText());
 
-                if (tfC[j].isSelected() && et==1) {
+                if (tfC[j].isSelected() && et == 1) {
                     note = note + 4;
-                } 
-                else if (tfC[j].isSelected() && et==0){
+                } else if (tfC[j].isSelected() && et == 0) {
                     note = note - 1;
-                }
-                else{
-                    note=note -1;
+                } else {
+                    note = note - 1;
                 }
 
             }
-            
-       
+
         }
         //Note.setText("la note"+note);
-        
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/Note.fxml"));
-        AnchorPane frame =loader.load();
+        AnchorPane frame = loader.load();
         Parent p = loader.getRoot();
-        Stage stage =new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(p));
-        NoteController nt  = loader.getController();
+        NoteController nt = loader.getController();
         nt.setNote(note);
         stage.setTitle("Note");
         stage.show();
     }
 
-    }
-
-//       public Timer timer; 
-////     public void gffgfgf(){
-////     timer.schedule(null, null);
-////     }
+}

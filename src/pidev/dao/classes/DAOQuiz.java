@@ -66,18 +66,18 @@ public class DAOQuiz implements IDAOQuiz {
     }
 
     @Override
-    public void updateQuiz(Quiz q) {
+    public void updateQuiz(int id,Quiz q) {
 
         String requete = "update quiz set titre=?, type=? ,etat=? where id=?";
         try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            pst.setInt(1, q.getIdQuiz());
-            pst.setString(2, q.getTitre());
-            pst.setInt(3, q.getType());
-            pst.setInt(4, q.getEtat());
-
-            ps.executeUpdate();
-            System.out.println("Mise à jour effectuée avec succès");
+            PreparedStatement pst = connection.prepareStatement(requete);
+            pst.setInt(4, id);
+            pst.setString(1, q.getTitre());
+            pst.setInt(2, q.getType());
+            pst.setInt(3, q.getEtat());
+            System.out.println(pst);
+            pst.executeUpdate();
+            System.out.println("Mise à jour Quiz effectuée avec succès");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

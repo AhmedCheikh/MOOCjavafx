@@ -44,10 +44,9 @@ public class DAOChapitre implements IDAOChapitre {
     public void addChapitre(Chapitre c) {
         try {
             InputStream isDoc;
-            InputStream isVideo;
+
             try {
                 isDoc = new FileInputStream(c.getPresentation());
-                isVideo = new FileInputStream(c.getVideo());
                 String req = "insert into chapitre (idcours,idQuiz,titre,presentation,objectif,etat,video) values (?,?,?,?,?,?,?)";
                 pst = connection.prepareStatement(req);
                 pst.setInt(1, c.getIdCours());
@@ -56,7 +55,7 @@ public class DAOChapitre implements IDAOChapitre {
                 pst.setBlob(4, isDoc);
                 pst.setString(5, c.getObjectif());
                 pst.setInt(6, c.getEtat());
-                pst.setBlob(7, isVideo);
+                pst.setString(7, c.getVideo());
 
                 pst.executeUpdate();
                 System.out.println("Ajout effectuée avec succès");
@@ -88,10 +87,9 @@ public class DAOChapitre implements IDAOChapitre {
         String requete = "update chapitre set idcours=?, idquiz=?, titre=? ,presentation=? ,objectif=?, etat=?, video=?  where id=?";
         try {
             InputStream isDoc;
-            InputStream isVideo;
+
             try {
                 isDoc = new FileInputStream(c.getPresentation());
-                isVideo = new FileInputStream(c.getVideo());
                 PreparedStatement pst = connection.prepareStatement(requete);
                 pst.setInt(8, c.getIdChapitre());
                 pst.setInt(1, c.getIdCours());
@@ -100,8 +98,7 @@ public class DAOChapitre implements IDAOChapitre {
                 pst.setBlob(4, isDoc);
                 pst.setString(5, c.getObjectif());
                 pst.setInt(6, c.getEtat());
-                pst.setBlob(7, isVideo);
-                
+                pst.setString(7, c.getVideo());
 
                 pst.executeUpdate();
                 System.out.println("Mise à jour effectuée avec succès");
@@ -109,13 +106,13 @@ public class DAOChapitre implements IDAOChapitre {
                 Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-             ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
     @Override
     public List<Chapitre> findChapitreByEtat(int etat) {
-              String req = "select * from chapitre where etat= '"+etat+"'";
+        String req = "select * from chapitre where etat= '" + etat + "'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {
@@ -124,7 +121,6 @@ public class DAOChapitre implements IDAOChapitre {
 
             while (rs.next()) {
 
-               
                 Chapitre c = new Chapitre();
                 c.setIdCours(rs.getInt(2));
                 c.setIdChapitre(rs.getInt(1));
@@ -137,21 +133,11 @@ public class DAOChapitre implements IDAOChapitre {
                 int b = 0;
                 while ((b = is.read()) != -1) {
                     fos.write(b);
-                } 
-                c.setPresentation(new File ("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
-                
-                
+                }
+                c.setPresentation(new File("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
+
                 c.setObjectif(rs.getString(6));
-                String filename2 = rs.getString(4);
-                Blob blob2 = rs.getBlob(8);
-                InputStream is2 = blob2.getBinaryStream();
-                FileOutputStream fos2 = new FileOutputStream("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".mp4");
-                int b1 = 0;
-                while ((b1 = is2.read()) != -1) {
-                    fos2.write(b1);
-                } 
-                c.setVideo(new File ("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".mp4"));
-                
+                c.setVideo(rs.getString(8));
 
                 listChapitres.add(c);
             }
@@ -175,7 +161,6 @@ public class DAOChapitre implements IDAOChapitre {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                
 
                 Chapitre c = new Chapitre();
                 c.setIdCours(rs.getInt(2));
@@ -189,21 +174,11 @@ public class DAOChapitre implements IDAOChapitre {
                 int b = 0;
                 while ((b = is.read()) != -1) {
                     fos.write(b);
-                } 
-                c.setPresentation(new File ("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
-                
-                
+                }
+                c.setPresentation(new File("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
+
                 c.setObjectif(rs.getString(6));
-                String filename2 = rs.getString(4);
-                Blob blob2 = rs.getBlob(8);
-                InputStream is2 = blob2.getBinaryStream();
-                FileOutputStream fos2 = new FileOutputStream("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".mp4");
-                int b1 = 0;
-                while ((b1 = is2.read()) != -1) {
-                    fos2.write(b1);
-                } 
-                c.setVideo(new File ("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".mp4"));
-                
+                c.setVideo(rs.getString(8));
 
                 listChapitres.add(c);
             }
@@ -241,10 +216,10 @@ public class DAOChapitre implements IDAOChapitre {
     }
 
     @Override
-    public int FindIdQuizbychapitre(int id
+    public int FindIdQuizbychapitre(String titre
     ) {
         {
-            String req = "select * from chapitre where etat=1 and id= '" + id + "'";
+            String req = "select * from chapitre where etat=1 and titre= '" + titre + "'";
             Quiz Quiz = new Quiz();
 
             try {
@@ -262,7 +237,56 @@ public class DAOChapitre implements IDAOChapitre {
             return 0;
         }
     }
-    
-    
-   
+
+    public String FindVideobychapitre(String titre
+    ) {
+        {
+            String req = "select * from chapitre where etat=1 and titre= '" + titre + "'";
+            Quiz Quiz = new Quiz();
+
+            try {
+                pst = connection.prepareStatement(req);
+                rs = pst.executeQuery();
+
+                while (rs.next()) {
+
+                    return rs.getString(8);
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return "";
+        }
+    }
+
+    public void FindPresentationbychapitre(String titre
+    ) {
+        {
+            String req = "select presentation from chapitre where etat=1 and titre= '" + titre + "'";
+            try {
+                PreparedStatement ps = connection.prepareStatement(req);
+                ResultSet resultat = ps.executeQuery();
+                while (resultat.next()) {
+                    File p = new File("E:\\Presentation" + titre + ".pdf");
+                    try (FileOutputStream fos = new FileOutputStream(p)) {
+                        byte[] buffer = new byte[1];
+                        InputStream is = resultat.getBinaryStream(1);
+                        while (is.read(buffer) > 0) {
+                            fos.write(buffer);
+                        }
+                    }
+                }
+                System.out.println("Téléchargement effectué avec succès!");
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
 }

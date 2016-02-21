@@ -1,5 +1,6 @@
 package pidev.dao.interfaces;
 
+import java.sql.Blob;
 import java.util.List;
 import pidev.entities.Chapitre;
 import pidev.entities.Quiz;
@@ -22,6 +23,8 @@ public interface IDAOChapitre {
 
     List<Chapitre> findChapitreById(int id);
              
-    int FindIdQuizbychapitre(int id);
+    int FindIdQuizbychapitre(String titre);
+    String FindVideobychapitre(String titre);
+    void FindPresentationbychapitre(String titre);
     
 }
