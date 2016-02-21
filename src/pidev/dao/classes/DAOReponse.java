@@ -59,11 +59,11 @@ public class DAOReponse implements IDAOReponse{
 
        
     @Override
-    public void removeReponse(Reponse r) {
+    public void removeReponse(int id) {
         String requete = "delete from reponse where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, r.getIdQuestion());
+            ps.setInt(1, id);
             ps.executeUpdate();
             System.out.println("Reponse supprimé");
         } catch (SQLException ex) {
@@ -73,16 +73,14 @@ public class DAOReponse implements IDAOReponse{
     }
 
     @Override
-    public void updateReponse(int idquestion,Reponse r) {
+    public void updateReponse(int id,Reponse r) {
 
-        String requete = "update reponse set etat=?, rep=?, idquestion=? where idquestion=?";
+        String requete = "update reponse set etat=?, rep=? where id=?";
         try {
             PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setInt(4, idquestion);
+            pst.setInt(3, id);
             pst.setInt(1, r.getEtat());
             pst.setString(2, r.getReponse());
-            pst.setInt(3, r.getIdQuestion());
-
             pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {

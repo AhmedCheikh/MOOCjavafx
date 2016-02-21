@@ -13,8 +13,8 @@ import pidev.entities.Reponse;
  */
 public interface IDAOReponse {
     void addReponse(Reponse r);
-    void removeReponse(Reponse r);
-    void updateReponse(int idquestion,Reponse r);
+    void removeReponse(int id);
+    void updateReponse(int id,Reponse r);
     List<Reponse> findReponseById(int id);
    List<Reponse> findReponseByEtat(int etat);
    List<Reponse> FindIdReponsebyQuestion(int q);

@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1663.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ModifierQuizController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1879.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ModifierQuizController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1884.0" prefWidth="618.0" style="-fx-border-width: 5px; -fx-border-color: #50468C; -fx-background-color: #E1E6FA;">
          <children>
@@ -103,7 +103,7 @@
             <Label layoutX="39.0" layoutY="23.0" prefHeight="17.0" prefWidth="34.0" text="Titre:" />
             <RadioButton fx:id="btrChronometre" layoutX="433.0" layoutY="23.0" mnemonicParsing="false" onAction="#btrChronometreAction" text="Quiz Chronométré" />
             <RadioButton fx:id="btrNonChronometre" layoutX="275.0" layoutY="23.0" mnemonicParsing="false" onAction="#btrNonChronometreAction" text="Quiz Non Chronométré" />
-            <Button fx:id="btnModifierQuiz" layoutX="246.0" layoutY="1825.0" mnemonicParsing="false" onAction="#btnModifierQuizAction" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #77ABD6;" text="Ajouter Quiz " textAlignment="RIGHT">
+            <Button fx:id="btnModifierQuiz" layoutX="126.0" layoutY="1828.0" mnemonicParsing="false" onAction="#btnModifierQuizAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #77ABD6;" text="Modifier " textAlignment="RIGHT">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -119,6 +119,21 @@
                </font>
             </Button>
             <Label fx:id="er1" layoutX="315.0" layoutY="44.0" />
+            <Button fx:id="btnSupprimerQuiz" layoutX="368.0" layoutY="1828.0" mnemonicParsing="false" onAction="#btnSupprimerQuizAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #77ABD6;" text="Supprimer " textAlignment="RIGHT">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children></AnchorPane>
   </content>
 </ScrollPane>

@@ -32,7 +32,7 @@ import pidev.entities.Reponse;
  * @author Gumus
  */
 public class ModifierQuizController {
-
+    
     @FXML
     private TextArea Q1;
     @FXML
@@ -131,7 +131,7 @@ public class ModifierQuizController {
     private RadioButton btrNonChronometre;
     @FXML
     private Button btnAjouterQuizAction;
-
+    
     @FXML
     private Button btnModifierQuiz;
     @FXML
@@ -146,7 +146,8 @@ public class ModifierQuizController {
     List lr;
     String pnomc;
     static List lmodifidquestion;
-
+    static List lmodifidrep;
+    
     public void setPnomc(String pnomc) {
         this.pnomc = pnomc;
         int et;
@@ -166,59 +167,65 @@ public class ModifierQuizController {
             C51, C52, C53, C54};
         DAOChapitre daoc1 = new DAOChapitre();
         qi = daoc1.FindIdQuizbychapitre(pnomc);
-
+        
         DAOQuiz daoq1 = new DAOQuiz();
         String t = daoq1.findTitreQuizByTitreSelonId(qi);
-
+        int type = daoq1.findTypeQuiz(qi);
+        if (type == 1) {
+            btrChronometre.setSelected(true);
+        } else {
+            btrNonChronometre.setSelected(true);
+        }
         txtTitre.setText(t);
-
+        
         DAOQuestion daoqe = new DAOQuestion();
         List lsq = daoqe.FindIdQuestionbyQuiz(qi);
         lmodifidquestion = new ArrayList();
+        lmodifidrep = new ArrayList();
         for (int i = 0; i < 5; i++) {
-
+            
             Question s = (Question) lsq.get(i);
             tfQ[i].setText(s.getQuestion());
             qu = daoqe.findQuestionSelonId(s);
-
+            
             lmodifidquestion.add(qu);
             DAOReponse r = new DAOReponse();
             lr = r.FindIdReponsebyQuestion(qu);
-
+            
             for (int j = 0; j < 4; j++) {
                 Reponse s1 = (Reponse) lr.get(j);
                 tfR[f].setText(s1.getReponse());
-
+                lmodifidrep.add(s1.getIdReponse());
                 et = r.findEtatReponse(tfR[f].getText());
-
+                
                 if (et == 1) {
                     tfC[f].setSelected(true);
                 }
                 f++;
             }
         }
-
+        
     }
-
+    
     @FXML
     private void btnModifierQuizAction(ActionEvent event) {
-
+        
         int etatquiz = 0;
         if (btrChronometre.isSelected()) {
             etatquiz = 1;
         } else if (btrNonChronometre.isSelected()) {
             etatquiz = 0;
         }
-
+        
         Quiz q = new Quiz(txtTitre.getText(), etatquiz, 0);
         System.out.println(q);
         System.out.println(qi);
         DAOQuiz daoq1 = new DAOQuiz();
         daoq1.updateQuiz(qi, q);
-
+        
         r = 0;
         int c;
-
+        
         int etat = 0;
         TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
         TextArea[] tfR = {
@@ -233,34 +240,58 @@ public class ModifierQuizController {
             C31, C32, C33, C34,
             C41, C42, C43, C44,
             C51, C52, C53, C54};
-
+        System.out.println(lmodifidquestion);
+        System.out.println(lmodifidrep);
         for (int i = 0; i < 5; i++) {
-
+            
             Question qe = new Question(tfQ[i].getText());
             DAOQuestion daoqe = new DAOQuestion();
+            System.out.println(qe);
+            System.out.println(lmodifidquestion.get(i));
             daoqe.updateQuestion((int) lmodifidquestion.get(i), qe);
-
+            
             for (int j = 0; j < 4; j++) {
-             if (tfC[r].isSelected()) {
-             etat = 1;
-             } else {
-             etat = 0;
-             }
-             Reponse r11 = new Reponse(etat, tfR[r].getText());
-             r++;
-             DAOReponse daor11 = new DAOReponse();
-             daor11.updateReponse(qu, r11);
-             }
+                if (tfC[r].isSelected()) {
+                    etat = 1;
+                } else {
+                    etat = 0;
+                }
+                Reponse r11 = new Reponse(etat, tfR[r].getText());
+                DAOReponse daor11 = new DAOReponse();
+                System.out.println(lmodifidrep.get(r));
+                daor11.updateReponse((int) lmodifidrep.get(r), r11);
+                r++;
+            }
         }
     }
-
+    
     @FXML
     private void btrChronometreAction(ActionEvent event
     ) {
     }
-
+    
     @FXML
     private void btrNonChronometreAction(ActionEvent event
     ) {
+    }
+    
+    @FXML
+    private void btnSupprimerQuizAction(ActionEvent event
+    ) {
+        DAOChapitre daoc1 = new DAOChapitre();
+        qi = daoc1.FindIdQuizbychapitre(pnomc);
+        DAOQuiz daoq1 = new DAOQuiz();
+        daoq1.removeQuiz(qi);
+        for (int i = 0; i < 5; i++) {
+            DAOQuestion daoqe = new DAOQuestion();
+            daoqe.removeQuestion((int) lmodifidquestion.get(i));
+            
+            for (int j = 0; j < 4; j++) {
+                DAOReponse daor11 = new DAOReponse();
+                daor11.removeReponse((int) lmodifidrep.get(r));
+                r++;
+            }
+        }
+        
     }
 }

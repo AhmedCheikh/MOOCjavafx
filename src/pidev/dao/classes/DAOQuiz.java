@@ -51,12 +51,12 @@ public class DAOQuiz implements IDAOQuiz {
     }
 
     @Override
-    public void removeQuiz(Quiz q) {
+    public void removeQuiz(int id) {
 
         String requete = "delete from quiz where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, q.getIdQuiz());
+            ps.setInt(1, id);
             ps.executeUpdate();
             System.out.println("Quiz supprimé");
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class DAOQuiz implements IDAOQuiz {
     }
 
     @Override
-    public void updateQuiz(int id,Quiz q) {
+    public void updateQuiz(int id, Quiz q) {
 
         String requete = "update quiz set titre=?, type=? ,etat=? where id=?";
         try {
@@ -106,7 +106,6 @@ public class DAOQuiz implements IDAOQuiz {
         return listQuiz;
     }
 
-    
     @Override
     public List<Quiz> findQuizByTitre(String titre) {
 
@@ -133,7 +132,7 @@ public class DAOQuiz implements IDAOQuiz {
     @Override
     public List findQuizByType(int type) {
         String req = "select * from quiz where type= '" + type + "'";
-        List<String> l=new ArrayList<>();
+        List<String> l = new ArrayList<>();
 
         try {
             pst = connection.prepareStatement(req);
@@ -152,49 +151,52 @@ public class DAOQuiz implements IDAOQuiz {
         return l;
     }
 
-    
-    
     @Override
     public int findQuizByTitreSelonId(String titre) {
         String req = "select * from quiz where titre= '" + titre + "'";
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-               while (rs.next()) {
-            return rs.getInt(1);}
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return 0;
-       
 
-  }
-    
-    
-    
-        @Override
+    }
+
+    @Override
+    public int findTypeQuiz(int id) {
+        String req = "select * from quiz where id= '" + id + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(3);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+
+    }
+
+    @Override
     public String findTitreQuizByTitreSelonId(int id) {
         String req = "select * from quiz where id= '" + id + "'";
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-               while (rs.next()) {
-            return rs.getString(2);}
+            while (rs.next()) {
+                return rs.getString(2);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return "";
-       
 
-  }
+    }
 
-    
-    
-  
-    
-    
-
-    
-    
-    
 }
