@@ -6,6 +6,7 @@
 package pidev.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ import pidev.entities.Reponse;
  *
  * @author Gumus
  */
-public class ModifierQuizController implements Initializable {
+public class ModifierQuizController {
 
     @FXML
     private TextArea Q1;
@@ -139,13 +140,16 @@ public class ModifierQuizController implements Initializable {
     private Label ltitre;
     @FXML
     private Label Note;
+    int qi;
+    int r;
+    int qu;
+    List lr;
+    String pnomc;
+    static List lmodifidquestion;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-int et;
+    public void setPnomc(String pnomc) {
+        this.pnomc = pnomc;
+        int et;
         int f = 0;
         TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
         TextArea[] tfR = {
@@ -161,111 +165,102 @@ int et;
             C41, C42, C43, C44,
             C51, C52, C53, C54};
         DAOChapitre daoc1 = new DAOChapitre();
-        int q = daoc1.FindIdQuizbychapitre(4);
+        qi = daoc1.FindIdQuizbychapitre(pnomc);
 
         DAOQuiz daoq1 = new DAOQuiz();
-        String t = daoq1.findTitreQuizByTitreSelonId(q);
+        String t = daoq1.findTitreQuizByTitreSelonId(qi);
 
         txtTitre.setText(t);
 
         DAOQuestion daoqe = new DAOQuestion();
-        List lsq = daoqe.FindIdQuestionbyQuiz(q);
-
+        List lsq = daoqe.FindIdQuestionbyQuiz(qi);
+        lmodifidquestion = new ArrayList();
         for (int i = 0; i < 5; i++) {
 
             Question s = (Question) lsq.get(i);
             tfQ[i].setText(s.getQuestion());
-            int Qid = daoqe.findQuestionSelonId(s);
+            qu = daoqe.findQuestionSelonId(s);
 
+            lmodifidquestion.add(qu);
             DAOReponse r = new DAOReponse();
-            List Lr = r.FindIdReponsebyQuestion(Qid);
+            lr = r.FindIdReponsebyQuestion(qu);
+
             for (int j = 0; j < 4; j++) {
-                Reponse s1 = (Reponse) Lr.get(j);
+                Reponse s1 = (Reponse) lr.get(j);
                 tfR[f].setText(s1.getReponse());
-                 et = r.findEtatReponse(tfR[f].getText());
+
+                et = r.findEtatReponse(tfR[f].getText());
 
                 if (et == 1) {
                     tfC[f].setSelected(true);
                 }
                 f++;
             }
-            }
-
         }
 
-        @FXML
-        private void btnModifierQuizAction
-        (ActionEvent event
-        
-            ) {
-
-        int etatquiz = 0;
-            if (btrChronometre.isSelected()) {
-                etatquiz = 1;
-            } else if (btrNonChronometre.isSelected()) {
-                etatquiz = 0;
-            }
-
-            Quiz q = new Quiz(txtTitre.getText(), etatquiz, 0);
-            DAOQuiz daoq1 = new DAOQuiz();
-            daoq1.updateQuiz(q);
-            int r = 0;
-            int c;
-            int id = daoq1.findQuizByTitreSelonId(txtTitre.getText());
-            int etat = 0;
-            TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
-            TextArea[] tfR = {
-                R11, R12, R13, R14,
-                R21, R22, R23, R24,
-                R31, R32, R33, R34,
-                R41, R42, R43, R44,
-                R51, R52, R53, R54};
-            CheckBox[] tfC = {
-                C11, C12, C13, C14,
-                C21, C22, C23, C24,
-                C31, C32, C33, C34,
-                C41, C42, C43, C44,
-                C51, C52, C53, C54};
-
-            for (int i = 0; i < 5; i++) {
-                Question qe = new Question(tfQ[i].getText(), id);
-                DAOQuestion daoqe = new DAOQuestion();
-                daoqe.updateQuestion(qe);
-                int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
-
-                for (int j = 0; j < 4; j++) {
-
-                    Reponse r11 = new Reponse(etat, tfR[r].getText(), Qid);
-                    DAOReponse daor11 = new DAOReponse();
-                    int et = daor11.findEtatReponse(tfR[r].getText());
-
-                    if (et == 1) {
-                        tfC[r].setSelected(true);
-                    }
-                    r++;
-
-                    daor11.updateReponse(r11);
-
-                }
-
-            }
-        }
-
-        @FXML
-        private void btrChronometreAction
-        (ActionEvent event
-        
-        
-        ) {
     }
 
     @FXML
-        private void btrNonChronometreAction
-        (ActionEvent event
-        
-        
-    
+    private void btnModifierQuizAction(ActionEvent event) {
 
-) {
+        int etatquiz = 0;
+        if (btrChronometre.isSelected()) {
+            etatquiz = 1;
+        } else if (btrNonChronometre.isSelected()) {
+            etatquiz = 0;
+        }
+
+        Quiz q = new Quiz(txtTitre.getText(), etatquiz, 0);
+        System.out.println(q);
+        System.out.println(qi);
+        DAOQuiz daoq1 = new DAOQuiz();
+        daoq1.updateQuiz(qi, q);
+
+        r = 0;
+        int c;
+
+        int etat = 0;
+        TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
+        TextArea[] tfR = {
+            R11, R12, R13, R14,
+            R21, R22, R23, R24,
+            R31, R32, R33, R34,
+            R41, R42, R43, R44,
+            R51, R52, R53, R54};
+        CheckBox[] tfC = {
+            C11, C12, C13, C14,
+            C21, C22, C23, C24,
+            C31, C32, C33, C34,
+            C41, C42, C43, C44,
+            C51, C52, C53, C54};
+
+        for (int i = 0; i < 5; i++) {
+
+            Question qe = new Question(tfQ[i].getText());
+            DAOQuestion daoqe = new DAOQuestion();
+            daoqe.updateQuestion((int) lmodifidquestion.get(i), qe);
+
+            for (int j = 0; j < 4; j++) {
+             if (tfC[r].isSelected()) {
+             etat = 1;
+             } else {
+             etat = 0;
+             }
+             Reponse r11 = new Reponse(etat, tfR[r].getText());
+             r++;
+             DAOReponse daor11 = new DAOReponse();
+             daor11.updateReponse(qu, r11);
+             }
+        }
+    }
+
+    @FXML
+    private void btrChronometreAction(ActionEvent event
+    ) {
+    }
+
+    @FXML
+    private void btrNonChronometreAction(ActionEvent event
+    ) {
     }
 }

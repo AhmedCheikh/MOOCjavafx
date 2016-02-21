@@ -16,6 +16,11 @@ public class Reponse {
         this.idQuestion = idQuestion;
     }
 
+    public Reponse(int etat, String reponse) {
+        this.etat = etat;
+        this.reponse = reponse;
+    }
+
     public Reponse(int idReponse, int etat, String reponse) {
         this.idReponse = idReponse;
         this.etat = etat;

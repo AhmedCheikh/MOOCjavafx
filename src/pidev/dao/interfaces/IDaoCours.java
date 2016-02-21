@@ -21,4 +21,5 @@ public interface IDaoCours {
     Cours findCoursByFormateur(String cinFormateur);
     String findTitreCoursById(int id);
     Cours findCoursByDifficulte (String difficulte) ;
+    int FindIdQuizbycours(String titre);
 }

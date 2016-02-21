@@ -12,6 +12,7 @@ import pidev.techniques.DataSource;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import pidev.entities.Quiz;
 
 public class DAOCours implements IDaoCours{
 
@@ -203,6 +204,29 @@ Connection connection;
        
 
   }
+     
+         @Override
+    public int FindIdQuizbycours(String titre
+    ) {
+        {
+            String req = "select * from cours where nom_cours= '" + titre + "'";
+            Quiz Quiz = new Quiz();
+
+            try {
+                pst = connection.prepareStatement(req);
+                rs = pst.executeQuery();
+
+                while (rs.next()) {
+
+                    return rs.getInt(4);
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        }
+    }
      
      
      public List<Cours> findCoursByTitle(String title) {

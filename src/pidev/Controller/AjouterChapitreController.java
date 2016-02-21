@@ -49,7 +49,7 @@ public class AjouterChapitreController implements Initializable {
     @FXML
     private Label LPresentation;
     @FXML
-    private Label LVideo;
+    private TextField lVideo;
     @FXML
     private TextArea txtAObjectif;
     @FXML
@@ -91,7 +91,7 @@ public class AjouterChapitreController implements Initializable {
          */
         DAOQuiz d = new DAOQuiz();
         z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-        Chapitre c = new Chapitre(1, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, video);
+        Chapitre c = new Chapitre(2, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, lVideo.getText());
 
         DAOChapitre daoc = new DAOChapitre();
         daoc.addChapitre(c);
@@ -143,12 +143,12 @@ public class AjouterChapitreController implements Initializable {
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                video = path;
-                LVideo.setText("Video selected:" + selectedFile.getName());
-                c.setPresentation(path);
+                
+                lVideo.setText(path.getAbsolutePath());
+               
             } else {
 
-                LVideo.setText("Video selection cancelled.");
+                lVideo.setText("Video selection cancelled.");
 
             }
 
@@ -189,7 +189,7 @@ public class AjouterChapitreController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Afficher cours");
-        ProfilApprenantController pac = loader.getController();
+        AffichageCoursController pac = loader.getController();
         stage.show();
 
     }

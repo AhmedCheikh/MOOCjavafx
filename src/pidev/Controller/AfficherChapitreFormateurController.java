@@ -7,13 +7,11 @@ package pidev.Controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Blob;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -39,27 +37,26 @@ import pidev.dao.classes.DAOChapitre;
 import pidev.dao.classes.DAOCours;
 import pidev.entities.Chapitre;
 import pidev.gui.video.VideoFXDemo;
-import pidev.techniques.DataSource;
 
 /**
  * FXML Controller class
  *
  * @author Gumus
  */
-public class AfficherChapitreApprenantController implements Initializable {
+public class AfficherChapitreFormateurController implements Initializable {
 
     @FXML
-    private Button btnPasserQuiz;
+    private Button btnModifierQuiz;
     @FXML
-    private Button btnTelecharger;
+    private Button btnModifierChapitre;
     @FXML
     private MediaView mvVideo;
     @FXML
     private TextArea txtObjectives;
     @FXML
-    private Hyperlink hpChapitre1;
+    private Hyperlink hpChapitre;
     @FXML
-    private Hyperlink hpCours1;
+    private Hyperlink hpCours;
     @FXML
     private Button btnexit;
     @FXML
@@ -82,8 +79,8 @@ public class AfficherChapitreApprenantController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        hpChapitre1.setText(">" + nameCh);
-        DAOChapitre dch = new DAOChapitre();
+        hpChapitre.setText(">" + nameCh);
+       DAOChapitre dch = new DAOChapitre();
         System.out.println(nameCh);
         System.out.println(dch.findChapitreByTitre(nameCh));
         List l = dch.findChapitreByTitre(nameCh);
@@ -92,7 +89,7 @@ public class AfficherChapitreApprenantController implements Initializable {
 
         DAOCours dc = new DAOCours();
 
-        hpCours1.setText(dc.findTitreCoursById(s.getIdCours()));
+        hpCours.setText(dc.findTitreCoursById(s.getIdCours()));
 
         txtObjectives.setText(s.getObjectif());
 
@@ -112,16 +109,6 @@ public class AfficherChapitreApprenantController implements Initializable {
         root.getChildren().add(playerPane);
     }
 
-    public void play() {
-        MediaPlayer.Status status = mediaPlayer.getStatus();
-        if (status == MediaPlayer.Status.UNKNOWN || status == MediaPlayer.Status.HALTED) {
-            return;
-        }
-        if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.STOPPED || status == MediaPlayer.Status.READY) {
-            mediaPlayer.play();
-        }
-    }
-
     @FXML
     private void btnVideoAction(ActionEvent event) {
 
@@ -133,26 +120,42 @@ public class AfficherChapitreApprenantController implements Initializable {
         play();
     }
 
+    public void play() {
+        MediaPlayer.Status status = mediaPlayer.getStatus();
+        if (status == MediaPlayer.Status.UNKNOWN || status == MediaPlayer.Status.HALTED) {
+            return;
+        }
+        if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.STOPPED || status == MediaPlayer.Status.READY) {
+            mediaPlayer.play();
+        }
+    }
+
     @FXML
-    private void btnPasserQuizAction(ActionEvent event) throws IOException {
+    private void btnModifierQuizAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuiz.fxml"));
+        loader.setLocation(getClass().getResource("/pidev/gui/ModifierQuiz.fxml"));
         loader.load();
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
-        AfficherQuizController aq = loader.getController();
+        ModifierQuizController aq = loader.getController();
         aq.setPnomc(nameCh);
         stage.show();
     }
 
     @FXML
-    private void btnTelechargerAction(ActionEvent event) throws FileNotFoundException, IOException {
-
-        DAOChapitre dch = new DAOChapitre();
-        dch.FindPresentationbychapitre(nameCh);
-
+    private void btnModifierChapitreAction(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ModifierChapitre.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        ModifierChapitreController aq = loader.getController();
+        aq.setPnomc(nameCh);
+        stage.show();
     }
 
     @FXML

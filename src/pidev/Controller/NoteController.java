@@ -16,7 +16,7 @@ public class NoteController  {
 
     @FXML
     private Label lnote;
-   public int note;
+    public int note;
 
     /**
      * Initializes the controller class.
