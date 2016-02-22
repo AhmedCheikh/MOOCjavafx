@@ -46,11 +46,11 @@ public class DAOQuestion implements IDAOQuestion {
     }
 
     @Override
-    public void removeQuestion(Question q) {
+    public void removeQuestion(int id) {
         String requete = "delete from question where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, q.getIdQuestion());
+            ps.setInt(1,id);
             ps.executeUpdate();
             System.out.println("Question supprimé");
         } catch (SQLException ex) {
@@ -60,12 +60,12 @@ public class DAOQuestion implements IDAOQuestion {
     }
 
     @Override
-    public void updateQuestion(int idquiz,Question q) {
+    public void updateQuestion(int id,Question q) {
 
         String requete = "update question set question=? where id=?";
         try {
             PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setInt(2, idquiz);
+            pst.setInt(2, id);
             pst.setString(1, q.getQuestion());
             System.out.println(pst);
             pst.executeUpdate();

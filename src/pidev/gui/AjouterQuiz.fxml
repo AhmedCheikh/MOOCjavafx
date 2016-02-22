@@ -118,7 +118,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="er1" layoutX="315.0" layoutY="44.0" />
+            <Label fx:id="er1" layoutX="315.0" layoutY="44.0" textFill="#ff2d2d" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

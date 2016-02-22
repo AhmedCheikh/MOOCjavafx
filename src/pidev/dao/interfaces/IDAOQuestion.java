@@ -7,8 +7,8 @@ import pidev.entities.Quiz;
 
 public interface IDAOQuestion {
     void addQuestion(Question q);
-    void removeQuestion(Question q);
-    void updateQuestion(int idquiz,Question q);
+    void removeQuestion(int id);
+    void updateQuestion(int id,Question q);
     int findQuestionSelonId(String ques);
     List<Question> findQuestionById(int id);
     List<Question> FindIdQuestionbyQuiz(int q);

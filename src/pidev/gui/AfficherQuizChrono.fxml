@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -19,14 +20,14 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label layoutX="33.0" layoutY="122.0" text="Réponce 1:" />
+            <Label layoutX="33.0" layoutY="122.0" text="Réponse 1:" />
             <TextArea fx:id="R11" editable="false" layoutX="71.0" layoutY="146.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: white;" />
             <TextArea fx:id="R12" editable="false" layoutX="70.0" layoutY="212.0" prefHeight="29.0" prefWidth="448.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="33.0" layoutY="186.0" text="Réponce 2:" />
+            <Label layoutX="33.0" layoutY="186.0" text="Réponse 2:" />
             <TextArea fx:id="R13" editable="false" layoutX="68.0" layoutY="282.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="34.0" layoutY="251.0" text="Réponce 3:" />
+            <Label layoutX="34.0" layoutY="251.0" text="Réponse 3:" />
             <TextArea fx:id="R14" editable="false" layoutX="67.0" layoutY="351.0" prefHeight="29.0" prefWidth="450.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="35.0" layoutY="316.0" text="Réponce 4:" />
+            <Label layoutX="35.0" layoutY="316.0" text="Réponse 4:" />
             <Label layoutX="17.0" layoutY="391.0" text="Question2" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -40,22 +41,22 @@
             <CheckBox fx:id="C24" layoutX="36.0" layoutY="700.0" mnemonicParsing="false" />
             <CheckBox fx:id="C22" layoutX="36.0" layoutY="563.0" mnemonicParsing="false" />
             <CheckBox fx:id="C21" layoutX="36.0" layoutY="491.0" mnemonicParsing="false" />
-            <Label layoutX="36.0" layoutY="664.0" text="Réponce 4:" />
+            <Label layoutX="36.0" layoutY="664.0" text="Réponse 4:" />
             <TextArea fx:id="R24" editable="false" layoutX="64.0" layoutY="694.0" prefHeight="29.0" prefWidth="450.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="36.0" layoutY="595.0" text="Réponce 3:" />
+            <Label layoutX="36.0" layoutY="595.0" text="Réponse 3:" />
             <TextArea fx:id="R23" editable="false" layoutX="65.0" layoutY="625.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="35.0" layoutY="527.0" text="Réponce 2:" />
+            <Label layoutX="35.0" layoutY="527.0" text="Réponse 2:" />
             <TextArea fx:id="R22" editable="false" layoutX="66.0" layoutY="557.0" prefHeight="29.0" prefWidth="452.0" style="-fx-background-color: #E1E6FA;" />
             <TextArea fx:id="R21" editable="false" layoutX="66.0" layoutY="485.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="35.0" layoutY="451.0" text="Réponce 1:" />
-            <Label layoutX="35.0" layoutY="801.0" text="Réponce 1:" />
+            <Label layoutX="35.0" layoutY="451.0" text="Réponse 1:" />
+            <Label layoutX="35.0" layoutY="801.0" text="Réponse 1:" />
             <TextArea fx:id="R31" editable="false" layoutX="66.0" layoutY="838.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
             <TextArea fx:id="R32" editable="false" layoutX="70.0" layoutY="927.0" prefHeight="29.0" prefWidth="452.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="37.0" layoutY="892.0" text="Réponce 2:" />
+            <Label layoutX="37.0" layoutY="892.0" text="Réponse 2:" />
             <TextArea fx:id="R33" editable="false" layoutX="71.0" layoutY="1007.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="38.0" layoutY="970.0" text="Réponce 3:" />
+            <Label layoutX="38.0" layoutY="970.0" text="Réponse 3:" />
             <TextArea fx:id="R34" editable="false" layoutX="72.0" layoutY="1083.0" prefHeight="29.0" prefWidth="450.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="36.0" layoutY="1050.0" text="Réponce 4:" />
+            <Label layoutX="36.0" layoutY="1050.0" text="Réponse 4:" />
             <CheckBox fx:id="C31" layoutX="36.0" layoutY="844.0" mnemonicParsing="false" />
             <CheckBox fx:id="C32" layoutX="36.0" layoutY="933.0" mnemonicParsing="false" />
             <CheckBox fx:id="C34" layoutX="36.0" layoutY="1089.0" mnemonicParsing="false" />
@@ -74,28 +75,28 @@
             <CheckBox fx:id="C44" layoutX="36.0" layoutY="1422.0" mnemonicParsing="false" />
             <CheckBox fx:id="C42" layoutX="36.0" layoutY="1281.0" mnemonicParsing="false" />
             <CheckBox fx:id="C41" layoutX="36.0" layoutY="1223.0" mnemonicParsing="false" />
-            <Label layoutX="28.0" layoutY="1383.0" text="Réponce 4:" />
+            <Label layoutX="28.0" layoutY="1383.0" text="Réponse 4:" />
             <TextArea fx:id="R44" editable="false" layoutX="69.0" layoutY="1416.0" prefHeight="29.0" prefWidth="450.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="29.0" layoutY="1319.0" text="Réponce 3:" />
+            <Label layoutX="29.0" layoutY="1319.0" text="Réponse 3:" />
             <TextArea fx:id="R43" editable="false" layoutX="69.0" layoutY="1345.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="28.0" layoutY="1255.0" text="Réponce 2:" />
+            <Label layoutX="28.0" layoutY="1255.0" text="Réponse 2:" />
             <TextArea fx:id="R42" editable="false" layoutX="70.0" layoutY="1281.0" prefHeight="29.0" prefWidth="452.0" style="-fx-background-color: #E1E6FA;" />
             <TextArea fx:id="R41" editable="false" layoutX="70.0" layoutY="1217.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="28.0" layoutY="1187.0" text="Réponce 1:" />
+            <Label layoutX="28.0" layoutY="1187.0" text="Réponse 1:" />
             <Label layoutX="17.0" layoutY="1451.0" text="Question5" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
             <TextArea fx:id="Q5" editable="false" layoutX="35.0" layoutY="1481.0" prefHeight="29.0" prefWidth="517.0" style="-fx-background-color: #E1E6FA;" />
             <CheckBox fx:id="C52" layoutX="37.0" layoutY="1625.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="28.0" />
-            <Label layoutX="28.0" layoutY="1734.0" text="Réponce 4:" />
+            <Label layoutX="28.0" layoutY="1734.0" text="Réponse 4:" />
             <TextArea fx:id="R54" editable="false" layoutX="62.0" layoutY="1766.0" prefHeight="29.0" prefWidth="450.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="26.0" layoutY="1658.0" text="Réponce 3:" />
+            <Label layoutX="26.0" layoutY="1658.0" text="Réponse 3:" />
             <TextArea fx:id="R53" editable="false" layoutX="63.0" layoutY="1696.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: #E1E6FA;" />
-            <Label layoutX="26.0" layoutY="1589.0" text="Réponce 2:" />
+            <Label layoutX="26.0" layoutY="1589.0" text="Réponse 2:" />
             <TextArea fx:id="R52" editable="false" layoutX="64.0" layoutY="1619.0" prefHeight="29.0" prefWidth="452.0" style="-fx-background-color: #E1E6FA;" />
             <TextArea fx:id="R51" editable="false" layoutX="65.0" layoutY="1552.0" prefHeight="29.0" prefWidth="451.0" style="-fx-background-color: white;" />
-            <Label layoutX="28.0" layoutY="1518.0" text="Réponce 1:" />
+            <Label layoutX="28.0" layoutY="1518.0" text="Réponse 1:" />
             <CheckBox fx:id="C51" layoutX="36.0" layoutY="1558.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="30.0" />
             <CheckBox fx:id="C53" layoutX="34.0" layoutY="1702.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="27.0" />
             <CheckBox fx:id="C54" layoutX="35.0" layoutY="1772.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="13.0" />
@@ -114,14 +115,16 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="er1" layoutX="315.0" layoutY="44.0" />
             <Label fx:id="ltitre" layoutX="262.0" layoutY="29.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
             <Label fx:id="Note" disable="true" layoutX="549.0" layoutY="1842.0" textFill="#01020a" />
-            <Label fx:id="LTime" layoutX="455.0" layoutY="1829.0" text="Label" />
+            <Label fx:id="LTime" layoutX="448.0" layoutY="1821.0" prefHeight="34.0" prefWidth="76.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
          </children></AnchorPane>
   </content>
 </ScrollPane>

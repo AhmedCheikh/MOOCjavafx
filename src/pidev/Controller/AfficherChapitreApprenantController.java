@@ -65,7 +65,7 @@ public class AfficherChapitreApprenantController implements Initializable {
     @FXML
     private Button btnback;
     public Chapitre ch;
-    String nameCh = "JavaFX";
+    String nameCh = "Introduction";
 
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;

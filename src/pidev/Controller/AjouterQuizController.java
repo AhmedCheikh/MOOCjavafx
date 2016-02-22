@@ -128,14 +128,15 @@ public class AjouterQuizController {
     private javafx.scene.control.Label er1;
     @FXML
     private javafx.scene.control.Label ltitre;
-
+        int etatquiz = 0;
     @FXML
     private void btnAjouterQuizAction(ActionEvent event) {
-        int etatquiz = 0;
-//        //quiz
-//        if (!btrChronometre.isSelected() || !btrNonChronometre.isSelected()) {
-//            er1.setText("Vous devez choisir le type de quiz");
-//        } else {
+
+       if (!btrChronometre.isSelected() || !btrNonChronometre.isSelected()) {
+            er1.setText("Vous devez choisir le type de quiz");
+       } else {
+            er1.setText(" ");
+        
         if (btrChronometre.isSelected()) {
             etatquiz = 1;
         } else if (btrNonChronometre.isSelected()) {
@@ -186,7 +187,7 @@ public class AjouterQuizController {
             }
 
         }
-
+       }
     }
 
     @FXML
