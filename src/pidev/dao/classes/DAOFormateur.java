@@ -3,6 +3,8 @@ package pidev.dao.classes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -191,6 +193,32 @@ public class DAOFormateur implements IDaoFormateur {
 
         } catch (SQLException ex) {
           System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
+        }
+    }
+    @Override
+    public void downloadCV(Formateur f) {
+      String requete = "select cv from formateur where cin=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, f.getCinFormateur());
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                File cv = new File("D:\\CV"+f.getNom()+""+f.getPrenom()+".docx");
+                try (FileOutputStream fos = new FileOutputStream(cv)) {
+                    byte[] buffer = new byte[1];
+                    InputStream is = resultat.getBinaryStream(1);
+                    while (is.read(buffer) > 0) {
+                        fos.write(buffer);
+                    }         
+                }
+            }
+            System.out.println("Téléchargement effectué avec succès!");
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

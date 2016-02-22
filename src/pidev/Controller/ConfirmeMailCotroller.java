@@ -19,8 +19,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOApprenant;
 import pidev.dao.classes.DAOFormateur;
@@ -95,6 +97,12 @@ public class ConfirmeMailCotroller implements Initializable{
                 stage.setScene(scene);
                 stage.setTitle("Modifier password");
                 stage.show(); 
+        }
+        else
+        {
+             DropShadow shadow = new DropShadow();
+               shadow.setColor(Color.RED);
+codetxt.setEffect(shadow);
         }
     }
 

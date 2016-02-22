@@ -44,6 +44,12 @@ public class Formateur {
         this.avatar = avatar;
     }
 
+    public Formateur(String nom, String prenom, String mail) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+    }
+
     
     
     public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar, File cv, int etat) {

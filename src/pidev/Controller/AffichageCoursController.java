@@ -78,7 +78,7 @@ private Connection connection ;
     
     }
 //   private String MEDIA_URL ="http://download.oracle.com/otndocs/javafx/JavaRap_ProRes_H264_768kbit_Widescreen.mp4";
-   
+   public static String pathFile ;
   
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;  
@@ -87,7 +87,7 @@ private Connection connection ;
     public void init(Stage primaryStage) {
         Group root = new Group();
         primaryStage.setScene(new Scene(root,480,270));
-        mediaPlayer = new MediaPlayer(new Media("file:///C:/Users/Ahmed/Desktop/iphone.mp4"));
+        mediaPlayer = new MediaPlayer(new Media("file:///"+pathFile));
         mediaPlayer.setAutoPlay(true);
         VideoFXDemo.PlayerPane playerPane = new VideoFXDemo.PlayerPane(mediaPlayer);
         playerPane.setMinSize(mediaWidth, mediaHeight);  
@@ -176,6 +176,7 @@ private void telechargerAction(ActionEvent event)  {
           description.setText(info.getDescription());
           formateur=info.getCinFormateur() ;
           nom=info.getNomCours();
+          pathFile=info.getVideo();
            String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
        
     

@@ -33,4 +33,5 @@ public interface IDaoFormateur {
     
     String getEmailByLogin(String login);
      public void setPwd(String login, String pwd);
+     void downloadCV(Formateur f);
 }

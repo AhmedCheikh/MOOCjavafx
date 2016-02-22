@@ -80,7 +80,7 @@ private Connection connection ;
    }
 
     @FXML
-    private void btnexitAction(ActionEvent event) {
+    private void btnexitAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
 alert.setTitle("Warning");
 alert.setHeaderText("Your are leaving application !");
@@ -88,8 +88,19 @@ alert.setContentText("Are you sure to leave?");
 
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
-    Stage stage = (Stage) btnexit.getScene().getWindow();
-        stage.close();
+    
+      ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Authentification");
+        
+        stage.show();
+    
 } else {
    alert.close();
 }
@@ -105,6 +116,7 @@ if (result.get() == ButtonType.OK){
         Parent p = loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Apprenant");
         ProfilApprenantController pac  = loader.getController();
         pac.setApprenant(apprenant);
@@ -133,7 +145,7 @@ if (result.get() == ButtonType.OK){
                 });
         
         try {
-        String requete = "select c.nom_cours,c.description,f.nom from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin";
+        String requete = "select * from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin";
         
         PreparedStatement ps;
         
@@ -143,7 +155,7 @@ if (result.get() == ButtonType.OK){
         List<Cours> temp=new ArrayList<>();
         Cours c;
         while (rs.next()) {
-            c=new Cours(rs.getString(1),rs.getString(2),rs.getString(3));
+            c=new Cours(rs.getString("nom_cours"),rs.getString("description"),rs.getString("nom"),rs.getNString("video"));
             //temp.add(rs.getString(1));
             //temp.add(rs.getString(2));
             // temp.add( new SimpleStringProperty(rs.getString(3)));

@@ -33,6 +33,7 @@ public class test extends Application
 
         stage.setTitle("Welcome !");
         stage.show();
+        
     }
 
     public static void main(String[] args) {

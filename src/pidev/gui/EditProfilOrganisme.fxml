@@ -9,57 +9,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.EditProfilOrganismeController">
    <children>
-      <Pane layoutX="16.0" layoutY="74.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="553.0" prefWidth="746.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
             <Label layoutX="30.0" layoutY="171.0" />
-            <ImageView fitHeight="46.0" fitWidth="755.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="56.0" fitWidth="746.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/bgmenu.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="306.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editer Mon profil" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="292.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editer Mon profil" textAlignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Label fx:id="er1" layoutX="501.0" layoutY="116.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er2" layoutX="501.0" layoutY="152.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er5" layoutX="502.0" layoutY="235.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er3" layoutX="501.0" layoutY="193.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er6" layoutX="502.0" layoutY="275.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er7" layoutX="499.0" layoutY="318.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="er8" layoutX="499.0" layoutY="358.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnModifier" layoutX="273.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
+            <Button fx:id="btnModifier" layoutX="216.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -67,7 +32,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnAnuller" layoutX="391.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
+            <Button fx:id="btnAnuller" layoutX="359.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -75,11 +40,6 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="er9" layoutX="500.0" layoutY="397.0" style="visibility: none;" text="Vous devez renseigner ce champ" textFill="#fc0000">
-               <font>
-                  <Font name="Times New Roman" size="14.0" />
-               </font>
-            </Label>
             <GridPane layoutX="65.0" layoutY="51.0" prefHeight="379.0" prefWidth="624.0">
                <children>
                   <Label text="Nom:">
@@ -118,54 +78,54 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtNom" prefHeight="25.0" prefWidth="184.0" promptText="Organisme" style=": 2px;" GridPane.columnIndex="1" />
-                  <TextField fx:id="txtPrenom" prefHeight="25.0" prefWidth="184.0" promptText="Rue 18 janvier-Tunis" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtPrenom2" prefHeight="25.0" prefWidth="184.0" promptText="Organisme@esxemple.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtAdresse" prefHeight="25.0" prefWidth="184.0" promptText="Rue 18 janvier-Tunis" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="184.0" promptText="Organisme@esxemple.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="txtLogin" prefHeight="25.0" prefWidth="184.0" promptText="votre pseudo" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <PasswordField fx:id="txtRepaet" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="er21" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2">
+                  <Label fx:id="er21" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er31" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="er31" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er61" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label fx:id="er61" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er71" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label fx:id="er71" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er81" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Label fx:id="er81" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er92" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Label fx:id="er92" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er91" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <Label fx:id="er91" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtNom1" prefHeight="25.0" prefWidth="184.0" promptText="+21672568458" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="txtTel" prefHeight="25.0" prefWidth="184.0" promptText="+21672568458" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Site Web:" GridPane.rowIndex="7">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtLogin1" prefHeight="25.0" prefWidth="184.0" promptText="www.organisme.com" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label fx:id="er911" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <TextField fx:id="txtSite" prefHeight="25.0" prefWidth="184.0" promptText="www.organisme.com" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="er911" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -216,17 +176,17 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Label fx:id="er9113" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                  <Label fx:id="er9113" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er9112" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                  <Label fx:id="er9112" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="9">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er9111" text="Vous devez renseigner ce champ" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                  <Label fx:id="er9111" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="10">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -251,48 +211,42 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="273.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="252.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/edit.png" />
                </image>
             </ImageView>
+                  <Button fx:id="btnDeconnecter" layoutX="689.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: transparent;" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+               <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/deco.png" />
+                           </image>
+                        </ImageView>
+               </graphic>
+                  </Button>
+            <Button fx:id="btnback" layoutX="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="39.0" prefWidth="35.0" style="-fx-background-color: transparent;" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+               <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/fleche.png" />
+                           </image>
+                        </ImageView>
+               </graphic>
+                  </Button>
          </children>
       </Pane>
-      <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

@@ -8,6 +8,9 @@ package pidev.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,21 +19,38 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class PageAcceuilleController  implements  Initializable{
     public String v;
 @FXML
 private ComboBox role ;
+@FXML
+private Label labelMOOC ;
     private Object fxmlLoader;
     @FXML
     private ComboBox role1 ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Timeline timeline;
+
+        labelMOOC.setEffect(new Lighting());
+       
+        timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(true);
+        timeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO,
+                new KeyValue(labelMOOC.translateXProperty(), 0)),
+                new KeyFrame(new Duration(10000),
+                        new KeyValue(labelMOOC.translateXProperty(), 1500)));
+        timeline.play();
        role.getItems().addAll(
     "administrateur",
     "apprenant",
@@ -60,6 +80,7 @@ private ComboBox role ;
             c.roleAuth=role ;
             Stage stage =  new Stage();
             Scene scene = new Scene(frame);
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
             stage.setScene(scene);
             stage.setTitle("Authentification");
             stage.show();

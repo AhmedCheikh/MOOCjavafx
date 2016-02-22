@@ -11,7 +11,7 @@ public class Cours {
     private String cinFormateur;
     private String difficulte;
     private String objectif;
-    private File video;
+    private String video;
     private int idQuiz;
     private int etat;
 
@@ -47,6 +47,14 @@ public Cours(String nomCours,String description,String cinFormateur)
     this.description=description;
   this.cinFormateur=cinFormateur;
 }
+
+    public Cours(String nomCours, String description, String cinFormateur, String video) {
+        this.nomCours = nomCours;
+        this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.video = video;
+    }
+
     public Cours() {
        
     }
@@ -111,7 +119,7 @@ public Cours(String nomCours,String description,String cinFormateur)
         this.idQuiz = idQuiz;
     }
 
-    public void setVideo(File video) {
+    public void setVideo(String video) {
         this.video = video;
     }
 
@@ -119,7 +127,7 @@ public Cours(String nomCours,String description,String cinFormateur)
         this.etat = etatVideo;
     }
 
-    public File getVideo() {
+    public String getVideo() {
         return video;
     }
 
@@ -129,8 +137,10 @@ public Cours(String nomCours,String description,String cinFormateur)
 
     @Override
     public String toString() {
-        return "Cours{" + "idCours=" + idCours + ", nomCours=" + nomCours + ", description=" + description + ", cinFormateur=" + cinFormateur + ", difficulte=" + difficulte + ", objectif=" + objectif  + ", idQuiz=" + idQuiz +'}';
+        return "Cours{" + "idCours=" + idCours + ", nomCours=" + nomCours + ", description=" + description + ", cinFormateur=" + cinFormateur + ", difficulte=" + difficulte + ", objectif=" + objectif + ", video=" + video + ", idQuiz=" + idQuiz + ", etat=" + etat + '}';
     }
+
+    
 
     @Override
     public int hashCode() {

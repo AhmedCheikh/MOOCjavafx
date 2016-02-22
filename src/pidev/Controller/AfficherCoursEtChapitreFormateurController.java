@@ -34,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -160,7 +161,7 @@ public class AfficherCoursEtChapitreFormateurController implements Initializable
     }    
 
     @FXML
-    private void btnexitAction(ActionEvent event) {
+    private void btnexitAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 alert.setTitle("Warning");
 alert.setHeaderText("Your are leaving application !");
@@ -168,8 +169,17 @@ alert.setContentText("Are you sure to leave?");
 
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
-    Stage stage = (Stage) btnexit.getScene().getWindow();
-        stage.close();
+    ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Authentification");
+        
+        stage.show();
 } else {
    alert.close();
 }

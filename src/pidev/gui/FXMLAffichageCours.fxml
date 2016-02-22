@@ -20,7 +20,7 @@
                      <children>
                         <Label fx:id="labelCours" layoutX="57.0" layoutY="20.0" prefHeight="35.0" prefWidth="156.0">
                            <font>
-                              <Font name="System Bold Italic" size="17.0" />
+                              <Font name="Calibri Light Italic" size="17.0" />
                            </font></Label>
                         <TextArea fx:id="description" editable="false" layoutX="49.0" layoutY="76.0" prefHeight="210.0" prefWidth="658.0" promptText="Description ...">
                            <cursor>
@@ -63,7 +63,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="faireQuiz" disable="true" layoutX="395.0" layoutY="505.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Faire Quiz">
+      <Button fx:id="faireQuiz" layoutX="395.0" layoutY="505.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Faire Quiz">
          <font>
             <Font size="15.0" />
          </font>
