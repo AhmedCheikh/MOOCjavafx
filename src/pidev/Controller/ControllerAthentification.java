@@ -1,8 +1,12 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pidev.Controller;
 
-import com.restfb.LegacyFacebookClient;
-import com.restfb.types.User;
+//import com.restfb.LegacyFacebookClient;
+//import com.restfb.types.User;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -36,10 +40,10 @@ import pidev.entities.Formateur;
 
 /**
  *
- * @author akoubi
+ * @author Khoubaib
  */
-public class ControllerAthentification implements Initializable {
-
+class ControllerAthentification {
+    
     @FXML
     private Label message;
     @FXML
@@ -55,7 +59,7 @@ public class ControllerAthentification implements Initializable {
    private void btnfbAction(ActionEvent event)
    {
        
-   }
+}
    
     @FXML
     private void btnConnexionAction(ActionEvent event) throws IOException  {
@@ -148,7 +152,6 @@ public class ControllerAthentification implements Initializable {
                 stage.setTitle("Retrouver votre compte");
                 stage.show();  }
 
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
         
       
