@@ -76,4 +76,34 @@ public class DAOCoursSuivie implements IDAOCoursSuivie{
         }
     }
     
+    public CoursSuivie getCourByCinApprenant(String cin) throws SQLException{
+   
+        String req= "select from coursuivi where cinapprenant = ?";
+        pst = connection.prepareStatement(req);
+        pst.setString(1, cin);
+        rs = pst.executeQuery();
+        CoursSuivie cs = new CoursSuivie();
+            while (rs.next()){
+              // CoursSuivie cs = new CoursSuivie(rs.getInt("idCoursuivi"), rs.getInt("id_cours"), rs.getString("cinapprenant"),rs.getString("commentaire"), rs.getDouble("note"), rs.getString("date_debut"), rs.getString("appreciation"));
+                ;
+                cs.setId_cours(rs.getInt("id_cours"));
+                cs.setCinapprenant(rs.getString("cinapprenant"));
+                cs.setCommentaire(rs.getString("commentaire"));
+                cs.setNote(rs.getFloat("note"));
+                cs.setDate_debut(rs.getString("date_debut"));
+                cs.setAppreciation(rs.getString("appreciation"));
+                cs.setIdCoursuivi(rs.getInt("idCoursuivi"));
+
+                return cs;
+            }
+    return null;
+    }
+    public static void main(String[] args) throws SQLException {
+         DAOCoursSuivie dcs = new DAOCoursSuivie();
+        CoursSuivie cs = new CoursSuivie();
+        
+        cs = dcs.getCourByCinApprenant("0123456");
+        System.out.println(cs.getAppreciation());
+    }
+    
 }
