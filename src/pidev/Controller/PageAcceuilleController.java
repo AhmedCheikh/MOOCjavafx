@@ -55,7 +55,9 @@ private Label labelMOOC ;
     "administrateur",
     "apprenant",
     "formateur",
-    "organisme"           
+    "organisme"  ,
+    "comite"
+               
 );
        role1.getItems().addAll(
     

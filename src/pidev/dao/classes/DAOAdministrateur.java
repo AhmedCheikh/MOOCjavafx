@@ -136,8 +136,6 @@ public class DAOAdministrateur implements IDAOAdministrateur{
                         serie4.getData().add(new XYChart.Data(rs.getString(1), rs.getInt(2)));
                         break;
                 }
-                
-            
             }
             answer.addAll(serie1,serie2,serie3,serie4) ; 
             return answer ; 

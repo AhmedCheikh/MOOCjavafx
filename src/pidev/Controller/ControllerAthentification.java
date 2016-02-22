@@ -88,6 +88,21 @@ login.setEffect(shadow);
        else if (roleAuth.getValue().toString().equals("administrateur"))
        {
            DAOAdministrateur admin= new DAOAdministrateur() ;
+           if(admin.authentification(login.getText(), password.getText()))
+           {
+               ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/ProfilAdministrateur.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+            stage.setTitle("Profil Admin");
+//            ProfilApprenantController pac  = loader.getController();
+//            pac.setInfo(info);
+            stage.show();
+           }
            
        }
        else if (roleAuth.getValue().toString().equals("formateur"))
@@ -143,6 +158,24 @@ login.setEffect(shadow);
                shadow.setColor(Color.RED);
 login.setEffect(shadow);
                                password.setEffect(shadow);
+            }
+        }else if (roleAuth.getValue().toString().equals("comite")) {
+            DAOComite com= new DAOComite();
+            info = login.getText();
+            if(com.authentification(login.getText(), password.getText()))
+            {
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/ProfilComite.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+            stage.setTitle("Profil Comite");
+            ProfilComiteController pac  = loader.getController();
+            pac.setInfo(info);
+            stage.show();
             }
         }
        

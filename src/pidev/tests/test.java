@@ -12,7 +12,7 @@ public class test extends Application
 
     @Override
     public void start(Stage stage) throws Exception {
-     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilAdministrateur.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLPageAcceuille.fxml"));
 //     Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/AfficherCoursEtChapitreApprenant.fxml"));
      
         Scene scene = new Scene(root);        

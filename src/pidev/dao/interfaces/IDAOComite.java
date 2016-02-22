@@ -23,4 +23,5 @@ public interface IDAOComite {
     public List<Formateur> findAllFormateur() ;  
     boolean authentification(String login, String password);
     void downloadCV(Formateur f);
+    Comite getComiteByLogin(String login);
 }

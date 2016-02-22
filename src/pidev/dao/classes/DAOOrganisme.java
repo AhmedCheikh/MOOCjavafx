@@ -108,21 +108,24 @@ public class DAOOrganisme implements IDAOOrganisme {
 
     @Override
     public void updateOrganisme(Organisme organisme) {
-//      try {
-//          String req1="update  organisme set (nom,login,password,email,adresse,siteweb,telephone,description) values (?,?,?,?,?,?,?,?) where nom=?";
-//          
-//          pst.setString(1, organisme.getNom());
-//          pst.setString(2, organisme.getLogin());
-//          pst.setString(3, organisme.getPassword());
-//          pst.setString(4, organisme.getEmail());
-//          pst.setString(5, organisme.getAdresse());
-//           pst.setString(6, organisme.getSiteweb());
-//          pst.setString(7, organisme.getTelephone());
-//          pst.setString(8, organisme.getDescription());
-//           pst.setString(9, organisme.getNom());
-//      } catch (SQLException ex) {
-//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-//      }
+        try {
+            String req1 = "update  organisme set nom=?,login=?,password=?,email=?,adresse=?,siteweb=?,telephone=?,description=?  where nom=?";
+            PreparedStatement pst3;
+            pst3 = connection.prepareStatement(req1);
+            pst3.setString(1, organisme.getNom());
+            pst3.setString(2, organisme.getLogin());
+            pst3.setString(3, organisme.getPassword());
+            pst3.setString(4, organisme.getEmail());
+            pst3.setString(5, organisme.getAdresse());
+            pst3.setString(6, organisme.getSiteweb());
+            pst3.setString(7, organisme.getTelephone());
+            pst3.setString(8, organisme.getDescription());
+            pst3.setString(9, organisme.getNom());
+            pst3.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -295,8 +298,10 @@ public class DAOOrganisme implements IDAOOrganisme {
 
             rs = pst.executeQuery();
             while (rs.next()) {
-
+                o.setNom(rs.getString(2));
                 o.setLogin(rs.getString(3));
+                o.setPassword(rs.getString(4));
+                o.setEmail(rs.getString(5));
                 o.setAdresse(rs.getString(6));
                 o.setSiteweb(rs.getString(7));
                 o.setTelephone(rs.getString(8));
@@ -385,14 +390,14 @@ public class DAOOrganisme implements IDAOOrganisme {
 
     @Override
     public void setPwd(String login, String pwd) {
- try {    
-        String req1 = "update  organisme set password='" + pwd + "' where login='" + login + "'";
+        try {
+            String req1 = "update  organisme set password='" + pwd + "' where login='" + login + "'";
 
             PreparedStatement pst2 = connection.prepareStatement(req1);
             pst2.executeUpdate();
 
         } catch (SQLException ex) {
-          System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
+            System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
         }
     }
 
