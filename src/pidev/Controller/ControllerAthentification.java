@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 
 import pidev.dao.classes.*;
 import pidev.entities.Formateur;
+import pidev.entities.Organisme;
 
 
 public class ControllerAthentification implements Initializable {
@@ -140,16 +141,48 @@ login.setEffect(shadow);
        }
        else if (roleAuth.getValue().toString().equals("organisme")) {
             DAOOrganisme org = new DAOOrganisme();
-            if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) == 1) {
-                log=login.getText();
+            Organisme org3 = new Organisme();
+
+            if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) == 1 && org.getComplete(login.getText()).equals("complete")) {
+
+//               Organisme o = new Organisme(nom);
+                //lblmessage.setText(" vos identifiant sont correcte ");
+                        Organisme Org = new Organisme(login.getText());
+log=login.getText();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
-                Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfilOrganismeA.fxml"));
-                Stage stage = new Stage();
-                Scene scene = new Scene(parent);
-                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-                stage.setScene(scene);
-                stage.setTitle("Profil Organisme");
-                stage.show();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
+        loader.load();
+        Parent parent = loader.getRoot();
+        ProfileOrganismeAController poc = loader.getController();
+        
+        Stage stage = new Stage();
+        stage.setTitle("Profil Organisme");
+        stage.setScene(new Scene(parent));
+        stage.getIcons().add(new javafx.scene.image.Image("pidev/gui/img/icone.png"));
+        stage.show();
+                
+            } else if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) ==1 && org.getComplete(login.getText()).equals("pas complete")) {
+                 Organisme Org = new Organisme(login.getText());
+
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/InscrireOrganisme.fxml"));
+        loader.load();
+        Parent parent = loader.getRoot();
+        InscrireOrganismeController ioc = loader.getController();
+        ioc.setOg(Org);
+        Stage stage = new Stage();
+        stage.setTitle("Profil Organisme");
+        stage.setScene(new Scene(parent));
+        stage.getIcons().add(new javafx.scene.image.Image("pidev/gui/img/icone.png"));
+        stage.show();
+            } 
+            else if(org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) ==0 ){
+                  message.setText("Vous etes classe dans la liste d'attente");
+                login.setText("");
+                password.setText(""); 
+            
             } else {
                 message.setText("mot de passe ou login erroné");
                 login.setText("");

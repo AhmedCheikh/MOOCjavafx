@@ -73,6 +73,9 @@ private Hyperlink telecharger;
     public Cours info; 
     public String formateur ;
 private Connection connection ; 
+private Media me ;
+
+
     public AffichageCoursController() {
             connection = (DataSource.getInstance()).getConnection();
     
@@ -87,7 +90,10 @@ private Connection connection ;
     public void init(Stage primaryStage) {
         Group root = new Group();
         primaryStage.setScene(new Scene(root,480,270));
-        mediaPlayer = new MediaPlayer(new Media("file:///"+pathFile));
+         String path = new File("src/pidev/gui/video/"+pathFile).getAbsolutePath();
+        me = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(me);
+        
         mediaPlayer.setAutoPlay(true);
         VideoFXDemo.PlayerPane playerPane = new VideoFXDemo.PlayerPane(mediaPlayer);
         playerPane.setMinSize(mediaWidth, mediaHeight);  

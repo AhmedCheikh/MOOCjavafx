@@ -122,13 +122,13 @@ private Label labelMOOC ;
           {
               ((Node) (event.getSource())).getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/pidev/gui/InscrireOrganisme.fxml"));
+            loader.setLocation(getClass().getResource("/pidev/gui/PreInscrireOrganisme.fxml"));
             loader.load();
             Parent p = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(p));
             stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-            stage.setTitle("Inscrire Formateur");
+            stage.setTitle("Pre Inscrire Organisme");
              stage.show();
           }
     }

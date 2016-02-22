@@ -8,11 +8,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOCoursSuivie;
 import pidev.entities.CoursSuivie;
+import pidev.techniques.DataSource;
 public class DAOCoursSuivie implements IDAOCoursSuivie{
     
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
+
+    public DAOCoursSuivie() {
+          connection = DataSource.getInstance().getConnection();
+    }
     
     
 
