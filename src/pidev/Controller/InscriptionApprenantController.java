@@ -195,11 +195,11 @@ public class InscriptionApprenantController implements Initializable {
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLPageAcceuille.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(parent);
         stage.setScene(scene);
-        stage.setTitle("Authentification");
+        stage.setTitle("Page Acceuille");
         stage.show();
     }
 

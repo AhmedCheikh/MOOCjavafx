@@ -51,20 +51,27 @@ public class ProfilApprenantController implements Initializable {
     private Hyperlink btnEditProfil;
     @FXML
     private Button btnDeconnecter;
-    public Apprenant apprenant;
+    public static Apprenant apprenant;
     private String info;
     @FXML
     public ImageView imageView;
-
+    @FXML
+    private Button btnEnvoyerMail;
+    //public static Apprenant apprenant1;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-    }    
+//        
+//        txtCin.setText(ControllerAthentification.apprenant.getCin());
+//        txtNom.setText(ControllerAthentification.apprenant.getNom());
+//        txtPrenom.setText(ControllerAthentification.apprenant.getPrenom());
+ //       txtEmail.setText(ControllerAthentification.apprenant.getEmail());
+//        txtLogin.setText(ControllerAthentification.apprenant.getLogin());        
+    } 
+
 
     @FXML
     private void btnListCoursSuivisAction(ActionEvent event) throws IOException { 
@@ -80,7 +87,7 @@ public class ProfilApprenantController implements Initializable {
         ACCA.setApprenant(apprenant);
         stage.setTitle("List Cours Suivis");
         stage.show();
-        
+
     }
 
     @FXML
@@ -103,9 +110,10 @@ public class ProfilApprenantController implements Initializable {
         DAOApprenant da = new DAOApprenant();
        
         apprenant = da.getApprenantByLogin(info);
+        //apprenant1 = da.getApprenantByLogin(info);
         String filename = apprenant.getNom(); 
         
-        //imageView.setImage(new Image(getClass().getResourceAsStream("C:\\photo\\"+filename+".jpg")));
+        //imageView.setImage(new Image(getClass().getResourceAsStream("pidev/gui/img/"+filename+".jpg")));
         txtCin.setText(apprenant.getCin());
         
         txtNom.setText(apprenant.getNom());
@@ -157,6 +165,21 @@ public class ProfilApprenantController implements Initializable {
         txtLogin.setText(apprenant.getLogin());
        
         this.apprenant = apprenant;
+    }
+
+    @FXML
+    private void btnEnvoyerMailAction(ActionEvent event) throws IOException {
+        
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/SendMailApprenant.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        stage.setTitle("Envoyer Mail");
+        stage.show();   
+        
     }
 
 }

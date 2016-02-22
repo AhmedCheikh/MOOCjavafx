@@ -207,7 +207,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
 //                String filename = rs.getString(2);
 //                Blob blob = rs.getBlob(5);
 //                InputStream is = blob.getBinaryStream();
-//                FileOutputStream fos = new FileOutputStream("C:\\photo\\" + filename+".jpg");
+//                FileOutputStream fos = new FileOutputStream("pidev//gui//img//"+ filename+".jpg");
 //                
 //                int b = 0;
 //                while ((b = is.read()) != -1) {
@@ -217,10 +217,16 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return null;
     }
-@Override
+    }
+
+    @Override
     public String getEmailByLogin(String login) {
        
         String req2 = "select email from  apprenant where login='" + login + "'";
@@ -238,7 +244,8 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         return null;
 
     }
-    @Override
+    
+   @Override
     public void setPwd(String login, String pwd) {
  try {    
         String req1 = "update  apprenant set password='" + pwd + "' where login='" + login + "'";
@@ -251,3 +258,4 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         }
     }
 }
+
