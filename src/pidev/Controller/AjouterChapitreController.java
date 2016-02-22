@@ -40,8 +40,6 @@ import pidev.entities.Chapitre;
  */
 public class AjouterChapitreController implements Initializable {
 
-    List l;
-
     @FXML
     private TextField txtTitre;
     @FXML
@@ -56,39 +54,32 @@ public class AjouterChapitreController implements Initializable {
     public static File presentation;
     @FXML
     private ComboBox CmbQuiz;
+    @FXML
+    private Label er1;
+    @FXML
+    private Label er2;
+    @FXML
+    public static File video;
+    List l;
+    int z;
 
     public void setPresentation(File presentation) {
         this.presentation = presentation;
     }
 
-    @FXML
-    public static File video;
-
-
-
-    public void setVideo(File video) {
-        this.video = video;
-    }
-    @FXML
-    private Label er1;
-    @FXML
-    private Label er2;
-    int z;
-
     public void btnAjouterAction(ActionEvent event) throws IOException {
 
-        /*
-         if (txtTitre.getText().isEmpty()) {
-         er1.setText("Vous devez Renseigez ce champs");
-         } else {
-         er1.setText(" ");
-         }
-         if (txtAObjectif.getText().isEmpty()) {
-         er2.setText("Vous devez Renseigez ce champs");
-         } else {
-         er2.setText(" ");
-         }
-         */
+        if (txtTitre.getText().isEmpty()) {
+            er1.setText("Vous devez Renseigez ce champs");
+        } else {
+            er1.setText(" ");
+        }
+        if (txtAObjectif.getText().isEmpty()) {
+            er2.setText("Vous devez Renseigez ce champs");
+        } else {
+            er2.setText(" ");
+        }
+
         DAOQuiz d = new DAOQuiz();
         z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
         Chapitre c = new Chapitre(2, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, lVideo.getText());
@@ -143,9 +134,9 @@ public class AjouterChapitreController implements Initializable {
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                
+
                 lVideo.setText(path.getAbsolutePath());
-               
+
             } else {
 
                 lVideo.setText("Video selection cancelled.");

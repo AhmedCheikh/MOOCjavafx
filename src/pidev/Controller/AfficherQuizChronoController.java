@@ -203,7 +203,7 @@ public class AfficherQuizChronoController implements Initializable {
         System.out.println(q);
         DAOQuiz daoq1 = new DAOQuiz();
         String t = daoq1.findTitreQuizByTitreSelonId(q);
-
+        
         ltitre.setText(t);
 
         DAOQuestion daoqe = new DAOQuestion();
