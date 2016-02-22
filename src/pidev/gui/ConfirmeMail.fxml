@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ConfirmeMailCotroller">
+   <children>
+      <Pane layoutX="10.0" layoutY="115.0" prefHeight="200.0" prefWidth="368.0" style="-fx-border-width: 2; -fx-border-color: grey;">
+         <children>
+            <GridPane layoutX="26.0" layoutY="95.0" prefHeight="77.0" prefWidth="232.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="87.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="145.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Code" />
+                  <TextField fx:id="codetxt" prefHeight="25.0" prefWidth="126.0" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <Button fx:id="btnEnvoyer" layoutX="126.0" layoutY="54.0" mnemonicParsing="false" onAction="#btnEnvoyerAction" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #50468C;" text="Envoyer" textFill="WHITE" />
+            <Button fx:id="btnValider" layoutX="277.0" layoutY="118.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #50468C;" text="Valider" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="20.0" prefHeight="21.0" prefWidth="336.0" text="Envoyer le code de réinitialisation dans un E-mail">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Label>
+         </children>
+      </Pane>
+      <Label layoutX="39.0" layoutY="20.0" prefHeight="38.0" prefWidth="523.0" text="Envoyer le code de réinitialisation par E-mail:">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Pane layoutX="386.0" layoutY="115.0" prefHeight="200.0" prefWidth="202.0" style="-fx-border-color: grey; -fx-border-width: 2;">
+         <children>
+            <ImageView fx:id="img" fitHeight="125.0" fitWidth="129.0" layoutX="36.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="np" layoutX="56.0" layoutY="144.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
