@@ -18,14 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import pidev.gui.Main;
-import pidev.gui.Main;
 
-/**
- * FXML Controller class
- *
- * @author WiKi
- */
 public class ProfilComiteController implements Initializable {
 
      
