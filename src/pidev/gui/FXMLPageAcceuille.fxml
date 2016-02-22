@@ -9,15 +9,15 @@
 
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="1000.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.PageAcceuilleController">
    <children>
-      <Button fx:id="btnInscri" layoutX="188.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnInscriAction" style="-fx-background-color: #8080ff;" text="Inscrire" textFill="#00113f" />
-      <Button fx:id="btnAuthentif" layoutX="492.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnAuthentifAction" style="-fx-background-color: #8080ff;" text="S'authentifier" textFill="#00113f" />
-      <ComboBox fx:id="role" disable="true" layoutX="608.0" layoutY="390.0" onAction="#clickAction" prefWidth="150.0" promptText="en tant que ..." style="-fx-background-color: #8080ff;" visible="false" visibleRowCount="4" />
-      <Label fx:id="labelMOOC" layoutX="-400.0" layoutY="20.0" prefHeight="39.0" prefWidth="297.0" text="Bienvenue Sur MOOC" textFill="#2b1475">
+      <Button fx:id="btnInscri" layoutX="134.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnInscriAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #008060;" text="Inscrire" textFill="WHITE" />
+      <Button fx:id="btnAuthentif" layoutX="492.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnAuthentifAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #008060;" text="S'authentifier" textFill="WHITE" />
+      <ComboBox fx:id="role" disable="true" layoutX="608.0" layoutY="390.0" onAction="#clickAction" prefHeight="33.0" prefWidth="150.0" promptText="en tant que ..." style="-fx-background-color: #008060;" visible="false" visibleRowCount="4" />
+      <Label fx:id="labelMOOC" layoutX="-400.0" layoutY="20.0" prefHeight="39.0" prefWidth="297.0" text="Bienvenue Sur MOOC" textFill="#008060">
          <font>
             <Font name="Candara Italic" size="32.0" />
          </font>
       </Label>
-      <ComboBox fx:id="role1" disable="true" layoutX="250.0" layoutY="390.0" onAction="#click1Action" prefWidth="150.0" promptText="en tant que ..." style="-fx-background-color: #8080ff;" visible="false" visibleRowCount="4" />
+      <ComboBox fx:id="role1" disable="true" layoutX="250.0" layoutY="390.0" onAction="#click1Action" prefHeight="33.0" prefWidth="150.0" promptText="en tant que ..." style="-fx-background-color: #008060;" visible="false" visibleRowCount="4" />
       <Label layoutX="826.0" layoutY="449.0" text=" © Copyright &lt;/SmartDev&gt;">
          <font>
             <Font name="System Bold" size="12.0" />

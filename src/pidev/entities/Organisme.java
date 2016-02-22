@@ -27,13 +27,52 @@ public class Organisme  {
     private File document;
     private File logo;
     private int etat;
-
+    private String complete;
     public Organisme() {
     }
 
-    public Organisme(int etat) {
+    public Organisme(int id, String nom, String login, String password, String email, String adresse, File document, int etat) {
+        this.id = id;
+        this.nom = nom;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.adresse = adresse;
+        this.document = document;
         this.etat = etat;
     }
+
+    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description) {
+        this.nom = nom;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.siteweb = siteweb;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.description = description;
+    }
+
+    public Organisme(int id, String nom, String login, String password, String email, File document, int etat) {
+        this.id = id;
+        this.nom = nom;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.document = document;
+        this.etat = etat;
+    }
+    
+
+    public Organisme(String nom, String siteweb, String adresse, String telephone, String description) {
+        this.nom = nom;
+        this.siteweb = siteweb;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.description = description;
+    }
+
+   
 
     public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo) {
       
@@ -49,21 +88,28 @@ public class Organisme  {
         this.logo = logo;
     }
 
-    public Organisme(String nom) {
-        this.nom = nom;
+    public Organisme(int id) {
+        this.id = id;
     }
 
-    public Organisme(int id, String siteweb, String telephone, String description) {
-        this.id = id;
+    public Organisme(String login) {
+        this.login = login;
+    }
+  
+
+  
+
+    public Organisme(String login, String siteweb, String telephone, String description, File logo) {
+        this.login = login;
         this.siteweb = siteweb;
         this.telephone = telephone;
         this.description = description;
-      
+        this.logo = logo;
     }
     
     
 
-    public Organisme(int Id,String nom, String login, String password, String email, String adresse,File document,int etat) {
+    public Organisme(String nom, String login, String password, String email ,String adresse,File document,int etat) {
         this.id=id;
         this.nom = nom;
         this.login = login;
@@ -81,6 +127,7 @@ public class Organisme  {
         return hash;
     }
 
+   
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -190,6 +237,19 @@ public class Organisme  {
 
     public void setEtat(int etat) {
         this.etat = etat;
+    }
+
+    public String getComplete() {
+        return complete;
+    }
+
+    public void setComplete(String complete) {
+        this.complete = complete;
+    }
+
+    @Override
+    public String toString() {
+        return "Organisme{" + "id=" + id + ", nom=" + nom + ", login=" + login + ", password=" + password + ", email=" + email + ", siteweb=" + siteweb + ", adresse=" + adresse + ", telephone=" + telephone + ", description=" + description + ", document=" + document + ", logo=" + logo + ", etat=" + etat + ", complete=" + complete + '}';
     }
  
 

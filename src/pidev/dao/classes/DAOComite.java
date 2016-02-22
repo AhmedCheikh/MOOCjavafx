@@ -28,6 +28,7 @@ import pidev.entities.Cours;
 import pidev.entities.Formateur;
 import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
+import pidev.entities.Comite;
 
 /**
  *
@@ -212,6 +213,33 @@ public class DAOComite implements IDAOComite{
         }
       
     }
+    @Override
+    public Comite getComiteByLogin(String login) {
+         
+            Comite a = new Comite();
+            String req = "select * from comite where login = ?";
+        try {
+            
+            pst=connection.prepareStatement(req);
+            pst.setString(1, login);
+            rs = pst.executeQuery();
+            while(rs.next()){
+               
+                a.setCIN(rs.getString(1));
+                a.setNom(rs.getString(2));
+                a.setPrenom(rs.getString(3));
+                a.setEmail(rs.getString(4));
+                a.setLoginComite(rs.getString(5));
+                a.setPasswordComite(rs.getString(6));  
+                
 
+            }
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+
+        return null;
+    }
+    }
     
 }

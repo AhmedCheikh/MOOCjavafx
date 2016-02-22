@@ -7,9 +7,8 @@ package pidev.Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,25 +17,43 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import pidev.dao.classes.DAOOrganisme;
+import pidev.entities.Apprenant;
+import pidev.entities.Organisme;
 
 /**
- * FXML Controller class
  *
- * @author Ahmed
+ * @author Rimy Jeljeli
  */
 public class EditProfilOrganismeController implements Initializable {
+
     @FXML
-    private Button btnModifier;
+    private Label l1;
     @FXML
-    private Button btnAnuller;
+    private Label l2;
+    @FXML
+    private Label l3;
+    @FXML
+    private Label l4;
+    @FXML
+    private Label l5;
+    @FXML
+    private Label l6;
+    @FXML
+    private Label l7;
+    @FXML
+    private Label l8;
+    @FXML
+    private Label l9;
+    @FXML
+    private Label l10;
+
     @FXML
     private TextField txtNom;
     @FXML
@@ -48,137 +65,61 @@ public class EditProfilOrganismeController implements Initializable {
     @FXML
     private PasswordField txtPassword;
     @FXML
-    private PasswordField txtRepaet;
-    @FXML
-    private Label er21;
-    @FXML
-    private Label er31;
-    @FXML
-    private Label er61;
-    @FXML
-    private Label er71;
-    @FXML
-    private Label er81;
-    @FXML
-    private Label er92;
-    @FXML
-    private Label er91;
+    private PasswordField txtPassword2;
     @FXML
     private TextField txtTel;
     @FXML
     private TextField txtSite;
     @FXML
-    private Label er911;
+    private TextArea txtDesc;
     @FXML
-    private Label er9113;
+    private Label login;
     @FXML
-    private Label er9112;
-    @FXML
-    private Label er9111;
-    @FXML
-    private Button btnDeconnecter;
+    private Button btnexit;
     @FXML
     private Button btnback;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Button btnModifier;
+    @FXML
+    private Button btnAnnuller;
+    @FXML
+    private Button btnChoisirImg;
+    ControllerAthentification ca = new ControllerAthentification();
+    private Organisme o;
+    DAOOrganisme daoO = new DAOOrganisme();
+    Organisme o1;
+Organisme o2;
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-@FXML
-    private void btnModifierAction(ActionEvent event) {
-        if (txtNom.getText().isEmpty())
-        {
-            er21.setVisible(true);
-             DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtNom.setEffect(shadow);
-        }
-        if (txtAdresse.getText().isEmpty())
-        {
-            er31.setVisible(true);
-             DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtAdresse.setEffect(shadow);
-        }
-        if (txtEmail.getText().isEmpty())
-        {
-            er61.setVisible(true);
-             DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtEmail.setEffect(shadow);
-        }
-        if (txtLogin.getText().isEmpty())
-        {
-            er71.setVisible(true);
-             DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtLogin.setEffect(shadow);
-        }
-        if (txtPassword.getText().isEmpty())
-        {
-            er81.setVisible(true);
-             DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtPassword.setEffect(shadow);
-        }
-        if (txtRepaet.getText().isEmpty() || !(txtPassword.getText().equals(txtRepaet.getText())))
-        {
-            er92.setVisible(true);
-             DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtRepaet.setEffect(shadow);
-        }
-        
+    public void initialize(URL location, ResourceBundle resources) {
+        o1 = daoO.getOrganisme(ca.log);
+
+        txtNom.setText(o1.getNom());
+        txtAdresse.setText(o1.getAdresse());
+        txtEmail.setText(o1.getEmail());
+        txtLogin.setText(o1.getLogin());
+       txtPassword.setText(o1.getPassword());
+        txtTel.setText(o1.getTelephone());
+        txtSite.setText(o1.getSiteweb());
+        txtDesc.setText(o1.getDescription());
     }
 
     @FXML
-    private void btnAnullerAction(ActionEvent event) {
-    }
+    public void btnModifierAction(Event event) throws IOException {
+              o2=new Organisme(txtNom.getText(),txtLogin.getText(), txtPassword.getText(), txtEmail.getText(),txtSite.getText(), txtAdresse.getText(),txtTel.getText(),txtDesc.getText());
 
-    @FXML
-    private void btnDeconnecterAction(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-alert.setTitle("Warning");
-alert.setHeaderText("Your are leaving application !");
-alert.setContentText("Are you sure to leave?");
-
-Optional<ButtonType> result = alert.showAndWait();
-if (result.get() == ButtonType.OK){
-    
-      ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage =new Stage();
-        stage.setScene(new Scene(p));
-        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-        stage.setTitle("Authentification");
-        
-        stage.show();
-    
-} else {
-   alert.close();
-}
-        
-    }
-
-    @FXML
-    private void btnbackAction(ActionEvent event) throws IOException {
+        daoO.updateOrganisme(o2);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Modification profile");
+        alert.setHeaderText(null);
+        alert.setContentText("Votre Profile à été modifier avec succès");
+        alert.showAndWait();
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/ProfilOrganismeA.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage =new Stage();
-        stage.setScene(new Scene(p));
-        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-        stage.setTitle("Profil Apprenant");
-        
-        stage.show();
+                Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(parent);
+                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                stage.setScene(scene);
+                stage.setTitle("Profile Organisme");
+                stage.show(); 
     }
-    
 }

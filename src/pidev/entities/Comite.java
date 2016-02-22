@@ -13,14 +13,14 @@ import java.util.Objects;
  */
 public class Comite  {
     
-    private int CIN ; 
+    private String CIN ; 
     private String nom ; 
     private String prenom ; 
     private String email ; 
     private String loginComite ; 
     private String passwordComite ; 
 
-    public Comite(int CIN, String nom, String prenom, String email, String loginComite, String passwordComite) {
+    public Comite(String CIN, String nom, String prenom, String email, String loginComite, String passwordComite) {
         this.CIN = CIN;
         this.nom = nom;
         this.prenom = prenom;
@@ -29,7 +29,10 @@ public class Comite  {
         this.passwordComite = passwordComite;
     }
 
-    public int getCIN() {
+    public Comite() {
+    }
+
+    public String getCIN() {
         return CIN;
     }
 
@@ -53,7 +56,7 @@ public class Comite  {
         return passwordComite;
     }
 
-    public void setCIN(int CIN) {
+    public void setCIN(String CIN) {
         this.CIN = CIN;
     }
 
@@ -80,7 +83,7 @@ public class Comite  {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 67 * hash + this.CIN;
+        
         hash = 67 * hash + Objects.hashCode(this.nom);
         hash = 67 * hash + Objects.hashCode(this.prenom);
         hash = 67 * hash + Objects.hashCode(this.email);
@@ -98,7 +101,7 @@ public class Comite  {
             return false;
         }
         final Comite other = (Comite) obj;
-        if (this.CIN != other.CIN) {
+        if (!this.CIN.equals(other.CIN)) {
             return false;
         }
         if (!Objects.equals(this.nom, other.nom)) {

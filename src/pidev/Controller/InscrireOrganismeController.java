@@ -5,29 +5,18 @@
  */
 package pidev.Controller;
 
-import java.awt.Image;
+
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+
 import pidev.dao.classes.DAOOrganisme;
 import pidev.entities.Organisme;
 
@@ -36,7 +25,9 @@ import pidev.entities.Organisme;
  * @author Rimy Jeljeli
  */
 public class InscrireOrganismeController implements Initializable {
-      @FXML
+ @FXML
+    private Label nom;
+    @FXML
     private Label l1;
     @FXML
     private Label l2;
@@ -44,56 +35,58 @@ public class InscrireOrganismeController implements Initializable {
     private Label l3;
     @FXML
     private Label l4;
-  
-  
- 
-        
+    @FXML
+    public File logo;
+
+    public void setLogo(File logo) {
+        this.logo = logo;
+    }
+    @FXML
+    private TextField txtNom;
     @FXML
     private TextField txtTel;
     @FXML
     private TextField txtSite;
-   
-  @FXML
-  private TextArea txtDesc;
-  @FXML
-  private Button btnDeconnecter;
-   
+    @FXML
+    private TextArea txtDesc;
+    private File selectedFile;
+
+    private  Organisme o;
+    
+    DAOOrganisme daoO = new DAOOrganisme();
+    Organisme o1 = new Organisme();
+    
+    
     @Override
-    public void initialize(URL location, ResourceBundle resources) { }
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 
+    public void btnValiderAction(ActionEvent event) {
 
-    public void btnValiderAction(ActionEvent event){
-    
-    
         if (txtTel.getText().isEmpty()) {
-        l1.setText("Vous devez Renseigez ce champs");
-         DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtTel.setEffect(shadow);
-        }else if (txtSite.getText().isEmpty()) {
-            l2.setText("Vous devez Renseigez ce champs");
-      DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtSite.setEffect(shadow);
-       
-        }else if (txtDesc.getText().isEmpty()) {
-        l3.setText("Vous devez Renseigez ce champs");
-         DropShadow shadow = new DropShadow();
-               shadow.setColor(Color.RED);
-txtDesc.setEffect(shadow);
-        }else{
-      
-            Organisme o= new Organisme();
-                Organisme o1 = new Organisme(0,txtTel.getText(),txtSite.getText(), txtDesc.getText());
-                DAOOrganisme d1 = new DAOOrganisme();
-                
-                
-                
-                d1.updateOrganismeInscription(o1);
+            l1.setText("Vous devez Renseigez ce champs");
+        } else {
+            l1.setText(" ");
         }
-        
-            
-                 
+        if (txtSite.getText().isEmpty()) {
+            l2.setText("Vous devez Renseigez ce champs");
+
+        } else {
+            l2.setText(" ");
+        }
+        if (txtDesc.getText().isEmpty()) {
+            l3.setText("Vous devez Renseigez ce champs");
+        } else {
+            l3.setText(" ");
+        }
+
+        System.out.println(txtTel.getText());
+
+        Organisme o1 = new Organisme(nom.getText(), txtSite.getText(), txtTel.getText(), txtDesc.getText(), selectedFile);
+        DAOOrganisme d1 = new DAOOrganisme();
+        System.out.println(selectedFile.getAbsolutePath());
+
+        d1.updateOrganismeInscription(o1);
 
 //         ((Node) (event.getSource())).getScene().getWindow().hide();
 //            Parent parent;
@@ -105,70 +98,58 @@ txtDesc.setEffect(shadow);
 //            stage.setScene(scene);
 //            stage.setTitle("Profil Organisme");
 //            stage.show();
-   }
-
-  public void btnAnullerAction(ActionEvent event){
-    txtTel.setText("");
-    txtSite.setText("");
-    txtDesc.setText("");
-     
-   
     }
-     @FXML
-    private void btnDeconnecterAction(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-alert.setTitle("Warning");
-alert.setHeaderText("Your are leaving application !");
-alert.setContentText("Are you sure to leave?");
+    
+    private Organisme og;
+    
 
-Optional<ButtonType> result = alert.showAndWait();
-if (result.get() == ButtonType.OK){
-    
-       Stage stage = (Stage) btnDeconnecter.getScene().getWindow();
-    
-    stage.close();
-    
-} else {
-   alert.close();
-}
-        
+    public void btnAnullerAction(ActionEvent event) {
+        txtTel.setText("");
+        txtSite.setText("");
+        txtDesc.setText("");
+
     }
 
-    @FXML
-    private void btnbackAction(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/FXMLPageAcceuille.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage =new Stage();
-        stage.setScene(new Scene(p));
-        stage.getIcons().add(new javafx.scene.image.Image("pidev/gui/img/icone.png"));
-        stage.setTitle("Page Acceuille");
-        
-        stage.show();
+    public void btnexitAction(ActionEvent event) {
+
     }
-    public void  btnChoisireImgAction(){
+
+    public void btnbackAction(ActionEvent event) {
+
+    }
+
+    public void btnChoisireImgAction() {
         FileChooser fileChooser = new FileChooser();
 
-File selectedFile = fileChooser.showOpenDialog(null);
+        selectedFile = fileChooser.showOpenDialog(null);
 
- 
+        if (selectedFile != null) {
 
-if (selectedFile != null) {
+            fileChooser.setTitle("Open resource file");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.png"));
+            Organisme o = new Organisme();
+            if (selectedFile != null) {
+                File path = selectedFile.getAbsoluteFile();
+                logo = path;
+                l4.setText("File selected: " + selectedFile.getName());
+                o.setLogo(path);
+            } else {
 
- 
+                l4.setText("File selection cancelled.");
 
-    l4.setText("File selected: " + selectedFile.getName());
+            }
 
-}
-
-else {
-
-    l4.setText("File selection cancelled.");
-
-}
+        }
 
     }
-   
+
+    public void setOg(Organisme og) {
+        nom.setText(og.getLogin());
+        this.og = og;
+       
+    }
+    
+    
+    
+
 }

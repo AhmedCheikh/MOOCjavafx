@@ -16,13 +16,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import pidev.dao.classes.*;
+import pidev.entities.Comite;
+
 public class ProfilComiteController implements Initializable {
 
-     
-    
+     @FXML private Label txtCin ;
+     @FXML private Label txtNom ;
+     @FXML private Label txtPrenom ;
+     @FXML private Label txtEmail ;
+     private String info;
+     public static Comite comite;
     @FXML private Button validerVideo ;
     @FXML private Button validerDescription ;
     @FXML private Button validerCours ;
@@ -111,7 +119,24 @@ public class ProfilComiteController implements Initializable {
         
     }
     
-    
+    public void setInfo(String info) throws IOException {
+        
+        DAOComite da = new DAOComite();
+        System.out.println(info);
+        comite = da.getComiteByLogin(info);
+        //apprenant1 = da.getApprenantByLogin(info);
+//        String filename =comite.getNom(); 
+        
+        //imageView.setImage(new Image(getClass().getResourceAsStream("pidev/gui/img/"+filename+".jpg")));
+        txtCin.setText(comite.getCIN());
+        
+        txtNom.setText(comite.getNom());
+        txtPrenom.setText(comite.getPrenom());
+        txtEmail.setText(comite.getEmail());
+        
+        
+        this.info = info;
+    }
     
     
     @Override
