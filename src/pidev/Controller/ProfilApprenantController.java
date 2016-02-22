@@ -71,7 +71,7 @@ public class ProfilApprenantController implements Initializable {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         //loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
-        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursEtChapitreApprenant.fxml")); 
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursSuiviApprenant.fxml")); 
         loader.load();
         Parent p = loader.getRoot();
         Stage stage =new Stage();

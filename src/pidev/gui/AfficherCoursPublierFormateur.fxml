@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -9,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.AfficherCoursEtChapitreApprenantController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.AfficherCoursEtChapitreFormateurController">
    <children>
       <Pane layoutX="11.0" layoutY="15.0" prefHeight="552.0" prefWidth="765.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
@@ -23,12 +22,12 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <TableView fx:id="table" layoutX="24.0" layoutY="65.0" prefHeight="359.0" prefWidth="717.0">
-               <columns>
-                  <TableColumn fx:id="Nom" prefWidth="198.0" text="Nom_cours" />
-                  <TableColumn fx:id="Description" prefWidth="306.0" text="description" />
-                  <TableColumn fx:id="Formateur" prefWidth="211.0" text="nom_formateur" />
-               </columns>
+            <TableView fx:id="table" layoutX="15.0" layoutY="73.0" prefHeight="359.0" prefWidth="735.0" style="-fx-background-color: #cce6ff;">
+              <columns>
+                <TableColumn fx:id="Nom" prefWidth="203.0" text="cours" />
+                  <TableColumn fx:id="Description" prefWidth="251.0" text="description" />
+                  <TableColumn fx:id="Formateur" prefWidth="279.0" text="Formateur" />
+              </columns>
             </TableView>
             <Button fx:id="btnback" layoutX="23.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="39.0" prefWidth="35.0" textFill="WHITE">
                <cursor>
@@ -60,6 +59,14 @@
                   </ImageView>
                </graphic>
             </Button>
+            <ImageView fitHeight="106.0" fitWidth="300.0" layoutX="249.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+              
+               
+                      <image>
+          <Image url="@img/moocimg.jpg" />
+                </image>
+              
+            </ImageView>
          </children>
       </Pane>
    </children>

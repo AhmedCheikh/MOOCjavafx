@@ -21,4 +21,6 @@ public interface IDAOApprenant<T> {
     boolean authentification(String login,String password);
     T getApprenantByEmail(String email);
     T getApprenantByLogin(String login);
+    public void setPwd(String login, String pwd);
+    public String getEmailByLogin(String login);
 }

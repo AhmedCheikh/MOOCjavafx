@@ -220,5 +220,34 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
         }
         return null;
     }
+@Override
+    public String getEmailByLogin(String login) {
+       
+        String req2 = "select email from  apprenant where login='" + login + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
 
+                return rs.getString("email");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+    @Override
+    public void setPwd(String login, String pwd) {
+ try {    
+        String req1 = "update  apprenant set password='" + pwd + "' where login='" + login + "'";
+
+            PreparedStatement pst2 = connection.prepareStatement(req1);
+            pst2.executeUpdate();
+
+        } catch (SQLException ex) {
+          System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
+        }
+    }
 }

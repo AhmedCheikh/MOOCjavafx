@@ -4,88 +4,107 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.text.StringContent;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import pidev.dao.interfaces.IDAOOrganisme;
 import pidev.entities.*;
 import pidev.techniques.DataSource;
+
 /**
  *
  * @author Rimy Jeljeli
  */
-public class DAOOrganisme implements IDAOOrganisme{
-  Connection connection;
+public class DAOOrganisme implements IDAOOrganisme {
+
+    Connection connection;
     PreparedStatement pst;
     ResultSet rs;
-    public DAOOrganisme (){
-        connection =(DataSource.getInstance()).getConnection();
+    private Object emailExp;
+
+    public DAOOrganisme() {
+        connection = (DataSource.getInstance()).getConnection();
     }
-   
-   
-  @Override
+
+    @Override
     public void addOrganisme(Organisme organisme) {
-   try {
-        InputStream is;
-       try {
-           is = new FileInputStream(organisme.getDocument());
-      
+        try {
+            InputStream is;
+            try {
+                is = new FileInputStream(organisme.getDocument());
 
 //       String req1="insert into orga (nom) values (?)";
-   //     String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
-      String req1="insert into organisme (id_organisme,nom,login,password,email,adresse,document) values (?,?,?,?,?,?,?)";
+                //     String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
+                String req1 = "insert into organisme (nom,login,password,email,adresse,document,complete,etat) values (?,?,?,?,?,?,?,?)";
 
-          pst = connection.prepareStatement(req1);
-         pst.setInt(1, organisme.getId());
-          pst.setString(2, organisme.getNom());
-          pst.setString(3, organisme.getLogin());
-          pst.setString(4, organisme.getPassword());
-          pst.setString(5, organisme.getEmail());
-          pst.setString(6, organisme.getAdresse());
-          pst.setBlob(7,is);
+                pst = connection.prepareStatement(req1);
 
-           pst.executeUpdate();
-           //rs = pst.executeUpdate();
+                pst.setString(1, organisme.getNom());
+                pst.setString(2, organisme.getLogin());
+                pst.setString(3, organisme.getPassword());
+                pst.setString(4, organisme.getEmail());
+                pst.setString(5, organisme.getAdresse());
+                pst.setBlob(6, is);
+                pst.setString(7, "pas compele");
+                pst.setInt(8, 0);
+                pst.executeUpdate();
+                //rs = pst.executeUpdate();
 
-    
-        } catch (FileNotFoundException ex) {
-           Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-       }
+            } catch (FileNotFoundException ex) {
+                System.out.println("erreur lors de l'insertion " + ex.getMessage());
+            }
 //           System.out.println(rs.getRow());
-           } catch (SQLException ex) {
-                  Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-      } 
-  
-     
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
+
+    }
+
     @Override
     public void updateOrganismeInscription(Organisme organisme) {
-//        try {
-//          String req1="update  organisme set (siteweb,telephone,description) values (?,?,?) where nom=?";
-//        //né9ess logo
-//          
-//          pst = connection.prepareStatement(req1);
-//          pst.setString(1, organisme.getSiteweb());
-//          pst.setString(2, organisme.getTelephone());
-//          pst.setString(3, organisme.getDescription());
-////          pst.setString(4, organisme.getLogo());
-//         pst.setString(4, organisme.getNom());
-//           pst.executeUpdate();
-//           } catch (SQLException ex) {
-//      } 
-//     
+        try {
+
+            try {
+
+                String req2 = "update  organisme set  siteweb=?, telephone=?, description=? ,logo=? ,complete=?  where login =?";
+
+                PreparedStatement pst2;
+
+                pst2 = connection.prepareStatement(req2);
+                pst2.setString(1, organisme.getSiteweb());
+                pst2.setString(2, organisme.getTelephone());
+                pst2.setString(3, organisme.getDescription());
+                pst2.setBlob(4, new FileInputStream(organisme.getLogo()));
+                pst2.setString(5, "complete");
+                pst2.setString(6, organisme.getLogin());
+                pst2.executeUpdate();
+
+//           System.out.println(rs.getRow());
+            } catch (FileNotFoundException ex) {
+                System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+            }
+//           System.out.println(rs.getRow());
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
 
     @Override
     public void updateOrganisme(Organisme organisme) {
@@ -131,6 +150,7 @@ public class DAOOrganisme implements IDAOOrganisme{
 //             
 //    }
     }
+
     @Override
     public void removeFormateurFromOrganisme(int cin) {
 //      try {
@@ -183,19 +203,19 @@ public class DAOOrganisme implements IDAOOrganisme{
     @Override
     public void refuserInvitation() {
 
-     
-      try {
-          String req1="update  invitation set (etat) values (?) where cin=?";
-          PreparedStatement ps = connection.prepareStatement(req1);
-          ps.setString(1,"lu");
-          ps.executeUpdate();
-      } catch (SQLException ex) {
-          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-      }
-          
-         
-    }           @Override
-          public void findFormateurByOrganisme(String nom) {
+        try {
+            String req1 = "update  invitation set (etat) values (?) where cin=?";
+            PreparedStatement ps = connection.prepareStatement(req1);
+            ps.setString(1, "lu");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public void findFormateurByOrganisme(String nom) {
 //      try {
 //          String req1="select * from  formateur where idorganisme=?";
 //          PreparedStatement ps = connection.prepareStatement(req1);
@@ -205,16 +225,17 @@ public class DAOOrganisme implements IDAOOrganisme{
 //      } catch (SQLException ex) {
 //          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
 //      }
-          }
-        @Override
-        public List<Organisme> findAll() {
+    }
+
+    @Override
+    public List<Organisme> findAll() {
         return null;
-              
-          }
+
+    }
 
     @Override
     public void getIdOrganismeByName(String nom) {
-        String req1="select idorgansme from  Organisme where nom=?";
+        String req1 = "select idorgansme from  Organisme where nom=?";
     }
 
     @Override
@@ -225,20 +246,19 @@ public class DAOOrganisme implements IDAOOrganisme{
     @Override
     public boolean authentificationOrganisme(String login, String password) {
 
-      boolean res = false;
+        boolean res = false;
         try {
             String req = "select * from organisme where login = ? and password = ? ";
-            pst=connection.prepareStatement(req);
+            pst = connection.prepareStatement(req);
             pst.setString(1, login);
             pst.setString(2, password);
             rs = pst.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 System.out.println("Authentification reussie");
                 res = true;
-                
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -247,36 +267,133 @@ public class DAOOrganisme implements IDAOOrganisme{
 
     @Override
     public int getEtat(String login) {
-        Organisme o1=new Organisme();
-                
-        String req2="select * from  Organisme where login='"+login+"'";
-      try {
-          PreparedStatement  pst2 = connection.prepareStatement(req2);
-          ResultSet rs = pst2.executeQuery();
-          while (rs.next()) {
-                
-             return rs.getInt("etat") ;
-              
-              
-          }
-      } catch (SQLException ex) {
-          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-      }
-return 0;
+        Organisme o1 = new Organisme();
+
+        String req2 = "select * from  Organisme where login='" + login + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
+
+                return rs.getInt("etat");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
-    
- 
 
-   
+    @Override
+    public Organisme getOrganisme(String login) {
+
+        try {
+            Organisme o = new Organisme();
+            String req = "select * from organisme where login = ? ";
+            pst = connection.prepareStatement(req);
+            pst.setString(1, login);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+
+                o.setLogin(rs.getString(3));
+                o.setAdresse(rs.getString(6));
+                o.setSiteweb(rs.getString(7));
+                o.setTelephone(rs.getString(8));
+                o.setDescription(rs.getString(9));
+
+            }
+            return o;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
-    
-    
-    
-    
 
- 
+    @Override
+    public String getComplete(String login) {
+        Organisme o2 = new Organisme();
+        String s = null;
+        String req2 = "select complete from  Organisme where login='" + login + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
 
+                return rs.getString("Complete");
 
-  
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "pas complete";
 
-  
+    }
+
+    @Override
+    public void envoyerMsg(String emailExp, String objet, String msg) {
+        String username = "mooc123456@gmail.com";
+        String password = "moocmail123";
+
+// Etape 1 : Création de la session
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+// Etape 2 : Création de l'objet Message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(emailExp));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(emailExp));
+            message.setSubject(objet);
+            message.setText(msg);
+// Etape 3 : Envoyer le message
+            Transport.send(message);
+            System.out.println("Message_envoye");
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String getEmailByLogin(String login) {
+        Organisme o2 = new Organisme();
+        String s = null;
+        String req2 = "select email from  Organisme where login='" + login + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
+
+                return rs.getString("email");
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la selection du mail " + ex.getMessage());
+        }
+        return null;
+
+    }
+
+    @Override
+    public void setPwd(String login, String pwd) {
+ try {    
+        String req1 = "update  organisme set password='" + pwd + "' where login='" + login + "'";
+
+            PreparedStatement pst2 = connection.prepareStatement(req1);
+            pst2.executeUpdate();
+
+        } catch (SQLException ex) {
+          System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
+        }
+    }
+
+}

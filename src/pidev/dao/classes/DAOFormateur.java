@@ -163,5 +163,34 @@ public class DAOFormateur implements IDaoFormateur {
             Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+@Override
+    public String getEmailByLogin(String login) {
+       
+        String req2 = "select email from  formateur where login='" + login + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
 
+                return rs.getString("email");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+      @Override
+    public void setPwd(String login, String pwd) {
+ try {    
+        String req1 = "update  Formateur set password='" + pwd + "' where login='" + login + "'";
+
+            PreparedStatement pst2 = connection.prepareStatement(req1);
+            pst2.executeUpdate();
+
+        } catch (SQLException ex) {
+          System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
+        }
+    }
 }

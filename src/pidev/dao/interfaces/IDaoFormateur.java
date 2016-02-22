@@ -31,5 +31,6 @@ public interface IDaoFormateur {
     
     void EditerProfil(Formateur f);
     
-    
+    String getEmailByLogin(String login);
+     public void setPwd(String login, String pwd);
 }

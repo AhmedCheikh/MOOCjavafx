@@ -30,7 +30,7 @@
                               <InnerShadow color="#ee0808" />
                            </effect>
                         </TextArea>
-                        <Button fx:id="btnVideo" layoutX="186.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnVideoAction" prefHeight="56.0" prefWidth="358.0" style="-fx-background-color: #9999ff;" text="Regarder Video">
+                        <Button fx:id="btnVideo" layoutX="172.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnVideoAction" prefHeight="56.0" prefWidth="372.0" style="-fx-background-color: #9999ff;" text="Regarder Video">
                            <textFill>
                               <LinearGradient endX="1.0" endY="0.6857142857142857" startX="0.2238095238095238">
                                  <stops>
@@ -51,10 +51,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="table" layoutX="7.0" layoutY="6.0" prefHeight="434.0" prefWidth="649.0">
+                        <TableView fx:id="table" layoutX="63.0" layoutY="37.0" prefHeight="370.0" prefWidth="636.0" style="-fx-background-color: #cce6ff;">
                           <columns>
-                            <TableColumn fx:id="chapitre" prefWidth="256.0" text="Chapitres" />
-                            <TableColumn fx:id="objectif" minWidth="0.0" prefWidth="392.0" text="objectifs" />
+                            <TableColumn fx:id="chapitre" prefWidth="256.0" style="-fx-background-color: #cce6ff;" text="Chapitres" />
+                            <TableColumn fx:id="objectif" minWidth="0.0" prefWidth="392.0" style="-fx-background-color: #cce6ff;" text="objectifs" />
                           </columns>
                         </TableView>
                      </children>
@@ -63,26 +63,11 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Hyperlink fx:id="telecharger" layoutX="576.0" layoutY="512.0" onAction="#telechargerAction" text="Telecharger Cours" textFill="#4d01ff">
-         <cursor>
-            <Cursor fx:constant="CROSSHAIR" />
-         </cursor>
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Hyperlink>
-      <Hyperlink fx:id="Formateur1" layoutX="60.0" layoutY="512.0" onAction="#Formateur1Action" text="Formateur" textFill="#4d01ff">
-         <cursor>
-            <Cursor fx:constant="CROSSHAIR" />
-         </cursor>
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Hyperlink>
-      <Button fx:id="faireQuiz" disable="true" layoutX="318.0" layoutY="514.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Faire Quiz">
+      <Button fx:id="faireQuiz" disable="true" layoutX="395.0" layoutY="505.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Faire Quiz">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="Formateur1" layoutX="227.0" layoutY="505.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="31.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Profil Formateur" />
    </children>
 </AnchorPane>
