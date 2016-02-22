@@ -140,5 +140,18 @@
             </GridPane>
          </children>
       </Pane>
+      <Button fx:id="btnEnvoyerMail" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="399.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnEnvoyerMailAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Envoyer Mail" textFill="#5b0a0a">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="43.0" fitWidth="35.0" layoutX="145.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/mail.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
