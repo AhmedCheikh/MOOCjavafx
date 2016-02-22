@@ -67,55 +67,7 @@ public class ValiderCoursController implements Initializable {
         labelObjectif.setText(cours.getObjectif());
         
     }
-    
-//    @Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//      String requete = "select * from cours where etat=2";
-//        try {
-//            
-//            connection =(DataSource.getInstance()).getConnection();
-//            PreparedStatement ps = connection.prepareStatement(requete);
-//            ResultSet rs = ps.executeQuery();
-//            data = FXCollections.observableArrayList();
-//            
-//             while (rs.next()) {
-//               data.add(new Cours(rs.getInt("idCours"),rs.getString("nom_cours"), rs.getString("description"), rs.getString("cinformateur"), rs.getString("difficulte"), rs.getString("objectif"), rs.getInt("idQuiz")));
-//             }
-//             
-//             titre.setCellValueFactory(new PropertyValueFactory("nomCours"));
-//
-//             
-//             tableCours.setItems(data);
-//             
-//             tableCours.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cours>() {
-//
-//                @Override
-//                public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
-//                    showCoursDetails(newValue);
-//                    approuver.setOnAction(new EventHandler<ActionEvent>() {
-//
-//            @Override
-//            public void handle(ActionEvent event) {
-//               IDAOComite comiteDAO = new DAOComite();
-//               comiteDAO.validerCours(newValue);
-//               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//               alert.setTitle("Validation");
-//               alert.setHeaderText(null);
-//               alert.setContentText("Validation du cours effectuée avec succès!");
-//
-//               alert.showAndWait();
-//               
-//            }
-//        });
-//                    
-//                }
-//            } );
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ValiderCoursController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        
-//    } 
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -143,11 +95,11 @@ public class ValiderCoursController implements Initializable {
             public void handle(ActionEvent event) {
                IDAOComite comiteDAO = new DAOComite();
                comiteDAO.validerCours(newValue);
+               
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                alert.setTitle("Validation");
                alert.setHeaderText(null);
                alert.setContentText("Validation du cours effectuée avec succès!");
-
                alert.showAndWait();
                
             }

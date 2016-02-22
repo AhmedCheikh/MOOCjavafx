@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class ValiderCandidatureController implements Initializable {
     @FXML
     private Button btnexit;
     @FXML
-    private Button approuver;
+    private Button approuver,downloadCV;
     @FXML
     private TableView<Formateur> table ; 
     @FXML
@@ -80,19 +81,17 @@ public class ValiderCandidatureController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String requete = "select * from formateur where etat=0";
-        try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            ResultSet rs = ps.executeQuery();
-            data = FXCollections.observableArrayList();
-             while (rs.next()) {
-                data.add(new Formateur(rs.getString("cin"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), null, null, null, null, rs.getInt("etat"))) ; 
-            }
+        IDAOComite comiteDAO = new DAOComite();
+        data = FXCollections.observableArrayList();
+        List<Formateur> listFormateur = comiteDAO.findAllFormateur() ; 
+        
+        for (Formateur formateur : listFormateur) {
+            data.add(formateur) ; 
+        }
         
         Nom.setCellValueFactory(new PropertyValueFactory("nom"));
         Prenom.setCellValueFactory(new PropertyValueFactory("prenom"));
-//        Email.setCellValueFactory(new PropertyValueFactory("mail"));
-//        Adresse.setCellValueFactory(new PropertyValueFactory("adresse"));
+
         
         table.setItems(data);
         
@@ -101,33 +100,84 @@ public class ValiderCandidatureController implements Initializable {
         @Override
         public void changed(ObservableValue<? extends Formateur> observable, Formateur oldValue, Formateur newValue) {
         showFormateurDetails(newValue);
+        
         approuver.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-               IDAOComite comiteDAO = new DAOComite();
-               comiteDAO.validerCandidature(newValue); 
+        @Override
+        public void handle(ActionEvent event) {
+        IDAOComite comiteDAO = new DAOComite();
+        comiteDAO.validerCandidature(newValue); 
+        table.refresh();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validation");
         alert.setHeaderText(null);
         alert.setContentText("Validation de la candidature effectuée avec succès!");
-
         alert.showAndWait();
+        
+        
                
+                                             }
+                               });
+        
+        downloadCV.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                IDAOComite comiteDAO = new DAOComite();
+                comiteDAO.downloadCV(newValue);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Téléchargement");
+                alert.setHeaderText(null);
+                alert.setContentText("Téléchargement effectuée avec succès! (Allez dans D:)");
+                alert.showAndWait();
+                
             }
         });
-                }
+        
+        }
             
         }) ;
         
-          
-        } catch (SQLException ex) {
-            Logger.getLogger(ValiderCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
+        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Formateur>() {
+
+        @Override
+        public void changed(ObservableValue<? extends Formateur> observable, Formateur oldValue, Formateur newValue) {
+        showFormateurDetails(newValue);
+        
+        approuver.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+        IDAOComite comiteDAO = new DAOComite();
+        comiteDAO.validerCandidature(newValue); 
+        table.refresh();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Validation");
+        alert.setHeaderText(null);
+        alert.setContentText("Validation de la candidature effectuée avec succès!");
+        alert.showAndWait();
+        
+               
+                                             }
+                               });
+        
+        downloadCV.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                IDAOComite comiteDAO = new DAOComite();
+                comiteDAO.downloadCV(newValue);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Téléchargement");
+                alert.setHeaderText(null);
+                alert.setContentText("Téléchargement effectuée avec succès! (Allez dans D:)");
+                alert.showAndWait();
+                
+            }
+        });
+        
         }
-        
-        
-        
-        
+            
+        }) ;
+    
     }    
 
     @FXML
@@ -139,25 +189,6 @@ public class ValiderCandidatureController implements Initializable {
     private void btnexitAction(ActionEvent event) {
     }
     
-//    @FXML
-//    private void approuverAction(ActionEvent event) {
-//        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Formateur>() {
-//
-//        @Override
-//        public void changed(ObservableValue<? extends Formateur> observable, Formateur oldValue, Formateur newValue) {
-//        IDAOComite comiteDAO = new DAOComite();
-//        comiteDAO.validerCandidature(newValue);
-//        
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Validation");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Validation de la candidature effectuée avec succès!");
-//
-//        alert.showAndWait();
-//                }
-//        }) ;
-//        
-//    }
     
     
     

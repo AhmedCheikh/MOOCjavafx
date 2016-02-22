@@ -4,11 +4,24 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOComite ; 
 import pidev.entities.Comite;
 import pidev.entities.Cours;
@@ -116,8 +129,33 @@ public class DAOComite implements IDAOComite{
     }
 
     @Override
-    public List<Comite> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Formateur> findAllFormateur() {
+        List<Formateur> listeformateur = new ArrayList<>();
+        String requete = "select * from formateur where etat=0";
+        try {
+            Statement statement = connection
+                    .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while (resultat.next()) {
+                Formateur formateur = new Formateur();
+                formateur.setCinFormateur(resultat.getString(1));
+                formateur.setNom(resultat.getString(2));
+                formateur.setPrenom(resultat.getString(3));
+                formateur.setMail(resultat.getString(4));
+                formateur.setEtat(resultat.getInt(5));
+                formateur.setAvatar(null);
+                formateur.setCv(null);
+                formateur.setLogin(null);
+                formateur.setPassword(null);
+                listeformateur.add(formateur);
+            }
+            return listeformateur;
+            
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
     }
     
     @Override
@@ -144,5 +182,36 @@ public class DAOComite implements IDAOComite{
          return res ;  
          
      }
+
+
+
+    @Override
+    public void downloadCV(Formateur f) {
+      String requete = "select cv from formateur where cin=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, f.getCinFormateur());
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                File cv = new File("D:\\CV"+f.getNom()+""+f.getPrenom()+".docx");
+                try (FileOutputStream fos = new FileOutputStream(cv)) {
+                    byte[] buffer = new byte[1];
+                    InputStream is = resultat.getBinaryStream(1);
+                    while (is.read(buffer) > 0) {
+                        fos.write(buffer);
+                    }         
+                }
+            }
+            System.out.println("Téléchargement effectué avec succès!");
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }
+
     
 }

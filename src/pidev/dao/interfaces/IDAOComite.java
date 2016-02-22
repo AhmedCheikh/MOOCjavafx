@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.interfaces;
+
 import java.util.List;
 import pidev.entities.* ; 
 
@@ -19,6 +20,7 @@ public interface IDAOComite {
     void validerCours(Cours cours) ;
     void validerQuiz(Quiz quiz) ; 
     void validerIntegrationComite(Formateur formateur);
-    List<Comite> findAll() ; 
+    public List<Formateur> findAllFormateur() ;  
     boolean authentification(String login, String password);
+    void downloadCV(Formateur f);
 }

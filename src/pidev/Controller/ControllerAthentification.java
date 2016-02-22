@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pidev.Controller;
 
 
@@ -34,10 +30,7 @@ import javafx.stage.Stage;
 import pidev.dao.classes.*;
 import pidev.entities.Formateur;
 
-/**
- *
- * @author Khoubaib
- */
+
 public class ControllerAthentification implements Initializable {
 public static String log;
     @FXML
@@ -167,6 +160,7 @@ login.setEffect(shadow);
                 stage.setTitle("Retrouver votre compte");
                 stage.show();  }
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         
       
