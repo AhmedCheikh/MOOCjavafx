@@ -196,7 +196,7 @@ if (result.get() == ButtonType.OK){
                 stage.setTitle("Affichage Cours");
                 AffichageCoursController pac  = loader.getController();
                 pac.setInfo(cours);
-                pac.setApprenant(apprenant);
+//                pac.setApprenant(apprenant);
                 stage.show();
             }} );
   

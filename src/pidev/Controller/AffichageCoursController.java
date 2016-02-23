@@ -189,28 +189,28 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
-        DAOCoursSuivie dcs = new DAOCoursSuivie();
-        cs = new CoursSuivie();
-    try {
-        cs = dcs.getCourByCinApprenant("01478520");
-        txtDateDebut.setText(cs.getDate_debut().toString());
-        
-        txtCommentaire.setText(cs.getCommentaire());
-        txtNote.setText(Float.toString(cs.getNote()));
-        if(cs.getAppreciation().equals("Mauvais")){
-            radioMauvais.setSelected(true);
-        }
-        else if(cs.getAppreciation().equals("Moyen") ){
-            radioMoyen.setSelected(true);
-        }
-        else{
-            radioExcellent.setSelected(true);
-        }
-        
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+//        DAOCoursSuivie dcs = new DAOCoursSuivie();
+//        cs = new CoursSuivie();
+//    try {
+//        cs = dcs.getCourByCinApprenant("01478520");
+//        txtDateDebut.setText(cs.getDate_debut().toString());
+//        
+//        txtCommentaire.setText(cs.getCommentaire());
+//        txtNote.setText(Float.toString(cs.getNote()));
+//        if(cs.getAppreciation().equals("Mauvais")){
+//            radioMauvais.setSelected(true);
+//        }
+//        else if(cs.getAppreciation().equals("Moyen") ){
+//            radioMoyen.setSelected(true);
+//        }
+//        else{
+//            radioExcellent.setSelected(true);
+//        }
+//        
+//        
+//    } catch (SQLException ex) {
+//        Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
+//    }
 
     }
 
@@ -282,32 +282,33 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     }
           
     }
+    @FXML
     private void btnCommenterAction(ActionEvent event) {
-        DAOCoursSuivie dcs = new DAOCoursSuivie();
-        String c = txtCommentaire.getText();
-        dcs.laisserCommentaire(c, apprenant.getCin());
-    }
-
-    public void setApprenant(Apprenant apprenant) {
-        this.apprenant = apprenant;
+//        DAOCoursSuivie dcs = new DAOCoursSuivie();
+//        String c = txtCommentaire.getText();
+//        dcs.laisserCommentaire(c, apprenant.getCin());
+//    }
+//
+//    public void setApprenant(Apprenant apprenant) {
+//        this.apprenant = apprenant;
     }
     
     
-   
+   @FXML
     private void changerAppreciation(MouseEvent event) {
-        DAOCoursSuivie dcs = new DAOCoursSuivie();
-        radioExcellent.setToggleGroup(appreciation);
-        radioMoyen.setToggleGroup(appreciation);
-        radioMauvais.setToggleGroup(appreciation);
-          
-        appreciation.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-        @Override
-        public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
-
-            RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle();
-            dcs.donnerAppreciation(chk.getText(), apprenant.getCin());
-        }
-    });
+//        DAOCoursSuivie dcs = new DAOCoursSuivie();
+//        radioExcellent.setToggleGroup(appreciation);
+//        radioMoyen.setToggleGroup(appreciation);
+//        radioMauvais.setToggleGroup(appreciation);
+//          
+//        appreciation.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+//        @Override
+//        public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
+//
+//            RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle();
+//            dcs.donnerAppreciation(chk.getText(), apprenant.getCin());
+//        }
+//    });
           
         }
     

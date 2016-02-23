@@ -15,8 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOOrganisme;
@@ -28,8 +30,6 @@ import pidev.entities.Organisme;
  * @author Ahmed
  */
 public class ProfileOrganismeAController implements Initializable {
-   @FXML
-    private Label login;
     @FXML
     private Label nom;
   @FXML
@@ -39,13 +39,20 @@ public class ProfileOrganismeAController implements Initializable {
  @FXML
     private Label tel;
   @FXML
-    private Label site;
-
+    private Label site,notif;
+@FXML
+private Button dec;
   
 private  Organisme o;
     
     DAOOrganisme daoO = new DAOOrganisme();
     Organisme o1 = new Organisme();
+    @FXML
+    private Button listeFormateur;
+    @FXML
+    private Button btnListeFormateur1organisme;
+    @FXML
+    private Button btnModifier;
 
 public void btnDeconnecterAction(ActionEvent event) throws IOException{
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -57,7 +64,8 @@ public void btnDeconnecterAction(ActionEvent event) throws IOException{
                 stage.setScene(new Scene(p));
                 stage.show();
     }
-public void btnListeFormateurAction(ActionEvent event) throws IOException{
+    @FXML
+    public void btnListeFormateurAction(ActionEvent event) throws IOException{
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/pidev/gui/ListeFormateurs.fxml"));
@@ -68,7 +76,8 @@ public void btnListeFormateurAction(ActionEvent event) throws IOException{
                 stage.show();
     }
 
-public void btnListeFormateur1organismeAction(ActionEvent event) throws IOException{
+    @FXML
+    public void btnListeFormateur1organismeAction(ActionEvent event) throws IOException{
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/pidev/gui/ListeFormateur1Organisme.fxml"));
@@ -87,6 +96,18 @@ public  void btnModifierAction(ActionEvent event) throws IOException{
                 Parent p = loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
+                stage.show();}
+                @FXML
+public  void btnDecAction(ActionEvent event) throws IOException{
+     ((Node) (event.getSource())).getScene().getWindow().hide();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/pidev/gui/PageAcceuille.fxml"));
+              
+                loader.load();                
+                Parent p = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                
                 stage.show();
 } 
     /**

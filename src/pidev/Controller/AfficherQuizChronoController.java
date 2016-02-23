@@ -150,15 +150,7 @@ public class AfficherQuizChronoController implements Initializable {
     public void setPnomc(String pnomc) {
         
         this.pnomc = pnomc;
-
-    }
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+        
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             int M = 60;
@@ -228,6 +220,15 @@ public class AfficherQuizChronoController implements Initializable {
             }
 
         }
+
+    }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
     }
 
     @FXML

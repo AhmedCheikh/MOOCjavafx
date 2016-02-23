@@ -72,25 +72,15 @@ public class AfficherChapitreApprenantController implements Initializable {
     final double mediaHeight = 270;
 
     public void setCh(Chapitre ch) {
-        txtObjectives.setText(ch.getObjectif());
-        hpChapitre1.setText(ch.getTitre());
-        DAOCours d= new DAOCours() ;
-        String a=d.findTitreCoursById(ch.getIdCours());
-        hpCours1.setText(a);
+//        txtObjectives.setText(ch.getObjectif());
+//        hpChapitre1.setText(ch.getTitre());
+//        DAOCours d= new DAOCours() ;
+//        String a=d.findTitreCoursById(ch.getIdCours());
+//        hpCours1.setText(a);
         nameCh=ch.getTitre();
-        this.ch = ch;
-        
-    }
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        hpChapitre1.setText(">" + nameCh);
+         hpChapitre1.setText(">" + nameCh);
         DAOChapitre dch = new DAOChapitre();
-        System.out.println(nameCh);
+  
         System.out.println(dch.findChapitreByTitre(nameCh));
         List l = dch.findChapitreByTitre(nameCh);
 
@@ -101,6 +91,17 @@ public class AfficherChapitreApprenantController implements Initializable {
         hpCours1.setText(dc.findTitreCoursById(s.getIdCours()));
 
         txtObjectives.setText(s.getObjectif());
+        this.ch = ch;
+        
+    }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+       
 
     }
 

@@ -154,7 +154,7 @@
             </ImageView>
             <ImageView fx:id="imgv" fitHeight="35.0" fitWidth="200.0" layoutX="356.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
          </children></Pane>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="419.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes Cours" textFill="#5b0a0a">
+      <Button fx:id="btncours" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="419.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btncoursAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes Cours" textFill="#5b0a0a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

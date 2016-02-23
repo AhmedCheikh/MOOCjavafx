@@ -35,7 +35,7 @@ public class MailController extends Application{
     @FXML
     private TextField emailExp;
     @FXML
-    private HTMLEditor msg;
+    private TextArea msg;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -48,7 +48,7 @@ public class MailController extends Application{
 @FXML
     public void btnEnvoyerAction(ActionEvent event) throws IOException {
     DAOOrganisme daoo=new DAOOrganisme();
-    daoo.envoyerMsg(emailExp.getText(),objet.getText(),msg.getHtmlText());
+    daoo.envoyerMsg(emailExp.getText(),objet.getText(),msg.getText());
 
  }
 

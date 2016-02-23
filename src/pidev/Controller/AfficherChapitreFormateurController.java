@@ -63,13 +63,17 @@ public class AfficherChapitreFormateurController implements Initializable {
     @FXML
     private Button btnback;
     public static Cours cours;
-    public static String nameCh ;
-
+    public static String nameCh;
+    private static String path;
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
     final double mediaHeight = 270;
 
-    
+    public static void setPath(String path) {
+        AfficherChapitreFormateurController.path = path;
+        DAOChapitre d = new DAOChapitre();
+        path=d.FindVideobychapitre(nameCh);
+    }
 
     /**
      * Initializes the controller class.
@@ -77,27 +81,24 @@ public class AfficherChapitreFormateurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        hpChapitre.setText(">" + nameCh);
-       DAOChapitre dch = new DAOChapitre();
-        System.out.println(nameCh);
-        System.out.println(dch.findChapitreByTitre(nameCh));
-        List l = dch.findChapitreByTitre(nameCh);
-
-        Chapitre s = (Chapitre) l.get(0);
-
-        DAOCours dc = new DAOCours();
-
-        hpCours.setText(dc.findTitreCoursById(s.getIdCours()));
-
-        txtObjectives.setText(s.getObjectif());
-
+//        hpChapitre.setText(">" + nameCh);
+//       DAOChapitre dch = new DAOChapitre();
+//        List l = dch.findChapitreByTitre(nameCh);
+//
+//        Chapitre s = (Chapitre) l.get(0);
+//
+//        DAOCours dc = new DAOCours();
+//
+//        hpCours.setText(dc.findTitreCoursById(s.getIdCours()));
+//
+//        txtObjectives.setText(s.getObjectif());
     }
 
     public void init(Stage primaryStage) {
         DAOChapitre dch = new DAOChapitre();
         Group root = new Group();
         primaryStage.setScene(new Scene(root, 480, 270));
-        mediaPlayer = new MediaPlayer(new Media("file:///" + dch.FindVideobychapitre(nameCh)));
+        mediaPlayer = new MediaPlayer(new Media("file:///" + path));
         mediaPlayer.setAutoPlay(true);
         VideoFXDemo.PlayerPane playerPane = new VideoFXDemo.PlayerPane(mediaPlayer);
         playerPane.setMinSize(mediaWidth, mediaHeight);
@@ -177,13 +178,15 @@ public class AfficherChapitreFormateurController implements Initializable {
     }
 
     void setInfo(Cours cours) {
-        DAOChapitre d= new DAOChapitre();
-        Chapitre ch=d.findChapitreByIdCours(cours.getIdCours());
+        this.cours = cours;
+        DAOChapitre d = new DAOChapitre();
+        Chapitre ch = d.findChapitreByIdCours(cours.getIdCours());
         txtObjectives.setText(ch.getObjectif());
         hpChapitre.setText(ch.getTitre());
         hpCours.setText(cours.getNomCours());
-        nameCh=ch.getTitre();
-        this.cours=cours;
+        nameCh = ch.getTitre();
+        path=d.FindVideobychapitre(nameCh);
+
     }
 
 }

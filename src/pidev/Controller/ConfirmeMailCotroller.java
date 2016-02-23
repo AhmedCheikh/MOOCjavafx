@@ -62,7 +62,7 @@ public class ConfirmeMailCotroller implements Initializable{
    
     
       float x=1111111+(int) (Math.random() * (999999-111111)) ;
-      String s = "" +x;
+      String s = "Bonjour "+RetrouverCompteController.log +"voila votre code:"+x;
     @FXML
     public void btnEnvoyerAction(Event event){
       
