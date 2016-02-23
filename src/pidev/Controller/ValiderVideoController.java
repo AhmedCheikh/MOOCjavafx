@@ -38,8 +38,8 @@ public class ValiderVideoController implements Initializable {
     @FXML
     private void btnexitAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-alert.setTitle("Warning");
-alert.setHeaderText("Your are leaving application !");
+        alert.setTitle("Warning");
+        alert.setHeaderText("Your are leaving application !");
 alert.setContentText("Are you sure to leave?");
 
 Optional<ButtonType> result = alert.showAndWait();

@@ -14,7 +14,7 @@
    <children>
       <Pane layoutX="14.0" layoutY="8.0" prefHeight="557.0" prefWidth="744.0" style="-fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
-            <TableView layoutX="26.0" layoutY="96.0" prefHeight="277.0" prefWidth="666.0">
+            <TableView layoutX="26.0" layoutY="96.0" prefHeight="354.0" prefWidth="666.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Cours" />
                 <TableColumn prefWidth="75.0" text="Formateur" />
@@ -23,7 +23,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button layoutX="116.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #223645;" text="Télécharger" textFill="WHITE">
+            <Button layoutX="118.0" layoutY="483.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #223645;" text="Télécharger" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -41,7 +41,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="307.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #223645;" text="Approuver" textFill="WHITE">
+            <Button layoutX="307.0" layoutY="483.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #223645;" text="Approuver" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -59,7 +59,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="490.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #223645;" text="Décliner" textFill="WHITE">
+            <Button layoutX="487.0" layoutY="483.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #223645;" text="Décliner" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
