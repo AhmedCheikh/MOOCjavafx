@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ListeInvitationOrganismeController">
    <children>
       <Pane layoutX="16.0" layoutY="74.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
@@ -17,24 +20,90 @@
                   <Image url="@img/bgmenu.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="309.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Invitations" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="280.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Invitations" textAlignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="112.0" prefHeight="366.0" prefWidth="717.0">
+            <TableView fx:id="tbvInvit" layoutX="14.0" layoutY="112.0" onMouseClicked="#clickAction" prefHeight="366.0" prefWidth="430.0">
                <columns>
-                  <TableColumn prefWidth="195.0" text="Nom de formateur" />
-                  <TableColumn prefWidth="192.0" text="Date Invite" />
-                  <TableColumn prefWidth="148.0" text="Repondre" />
-                  <TableColumn prefWidth="256.0" text="Répondre" />
+                  <TableColumn fx:id="tcNomExp" prefWidth="136.0" text="Nom Expéditeur" />
+                  <TableColumn fx:id="tcNomDes" prefWidth="135.0" text="Nom Destinataire" />
+                  <TableColumn fx:id="tcDateInvit" prefWidth="119.0" text="Date Invitation" />
+                  <TableColumn fx:id="tcEtat" prefWidth="39.0" text="etat" />
                </columns>
             </TableView>
-            <Label layoutX="17.0" layoutY="74.0" text="Mes invitations" textFill="#680c0c">
+            <Label layoutX="17.0" layoutY="67.0" text="Mes invitations" textFill="#680c0c">
                <font>
                   <Font name="Elephant Italic" size="16.0" />
                </font>
             </Label>
+            <Pane layoutX="461.0" layoutY="115.0" prefHeight="360.0" prefWidth="269.0" style="-fx-border-color: black;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#110304bd" height="27.0" layoutX="10.0" layoutY="-10.0" stroke="#da8585" strokeType="INSIDE" width="251.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="26.0" layoutY="-11.0" prefHeight="21.0" prefWidth="234.0" text="Infos Organisme | Accepter Refuser" textFill="#00c8fa">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNomorg" layoutX="116.0" layoutY="51.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEmail" layoutX="117.0" layoutY="77.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSiteweb" layoutX="118.0" layoutY="103.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAdresse" layoutX="117.0" layoutY="131.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="brnAccepter" layoutX="102.0" layoutY="286.0" mnemonicParsing="false" onAction="#brnAccepterAction" prefHeight="46.0" prefWidth="52.0" />
+                  <Button fx:id="brnRefuser" layoutX="170.0" layoutY="286.0" mnemonicParsing="false" onAction="#brnRefuserAction" prefHeight="46.0" prefWidth="52.0" />
+                  <Label layoutX="103.0" layoutY="340.0" text="Accepter" textFill="#078631">
+                     <font>
+                        <Font name="Times New Roman Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="174.0" layoutY="340.0" text="Refuser" textFill="RED">
+                     <font>
+                        <Font name="Times New Roman Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="txtDescription" layoutX="100.0" layoutY="189.0" prefHeight="83.0" prefWidth="162.0" promptText="université privé de technologie et d'ingénierie privé " />
+                  <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="3.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/info.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="419.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/invitationicone.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblNomfrm" layoutX="165.0" layoutY="70.0" text="lblNomfrm" />
+            <Label fx:id="lblcinfrm" layoutX="230.0" layoutY="70.0" text="lblcinfrm" />
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
@@ -44,6 +113,16 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </Button>
       <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
          <cursor>
@@ -52,6 +131,68 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Label layoutX="494.0" layoutY="373.0" text="Description:" textFill="#2a1846">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="493.0" layoutY="346.0" text="Telephone:" textFill="#2a1846">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="493.0" layoutY="319.0" text="Adresse:" textFill="#2a1846">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="492.0" layoutY="291.0" text="Site web:" textFill="#2a1846">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="489.0" layoutY="265.0" text=" Email:" textFill="#2a1846">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="492.0" layoutY="240.0" text="Nom:" textFill="#2a1846">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTelephone" layoutX="595.0" layoutY="347.0" textFill="#793817" underline="true">
+         <font>
+            <Font name="Times New Roman Italic" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="89.0" fitWidth="184.0" layoutX="285.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/moocLog3.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Actualiser" layoutX="21.0" layoutY="75.0" mnemonicParsing="false" onAction="#ActualiserAction" prefHeight="35.0" prefWidth="37.0" style="-fx-border-radius: 2px;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </Button>
    </children>
 </AnchorPane>

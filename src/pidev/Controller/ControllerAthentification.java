@@ -109,35 +109,33 @@ login.setEffect(shadow);
        else if (roleAuth.getValue().toString().equals("formateur"))
        {
           DAOFormateur daof = new DAOFormateur();
-            try {
-                if (daof.Connecter(login.getText(), password.getText())) {
+        try {
+            if (daof.Connecter(login.getText(), password.getText())) {
                 Formateur f = new Formateur(login.getText());
                 message.setText(" vos identifiant sont correcte ");
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
-                loader.load();  
+                loader.load();
                 Parent p = loader.getRoot();
                 ProfilFormateurController pfc = loader.getController();
                 pfc.setF(f);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                 stage.setTitle("Profil Formateur");
-                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.show();
-                } else {
-           message.setText("mot de passe ou login erroné");
-               login.setText("");
+            } else {
+                message.setText(" CIN ou Password Incorrecte ");
+                 login.setText("");
                password.setText("");
                DropShadow shadow = new DropShadow();
                shadow.setColor(Color.RED);
 login.setEffect(shadow);
                                password.setEffect(shadow);
-        }
-            } catch (IOException ex) {
-                Logger.getLogger(ControllerAthentification.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerAthentification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
        }
        else if (roleAuth.getValue().toString().equals("organisme")) {
             DAOOrganisme org = new DAOOrganisme();

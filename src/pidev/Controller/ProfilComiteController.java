@@ -122,7 +122,7 @@ public class ProfilComiteController implements Initializable {
     public void setInfo(String info) throws IOException {
         
         DAOComite da = new DAOComite();
-        System.out.println(info);
+        
         comite = da.getComiteByLogin(info);
         //apprenant1 = da.getApprenantByLogin(info);
 //        String filename =comite.getNom(); 

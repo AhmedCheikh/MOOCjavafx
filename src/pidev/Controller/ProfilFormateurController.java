@@ -15,14 +15,14 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOFormateur;
 import pidev.entities.Formateur;
 
 public class ProfilFormateurController implements Initializable {
 
-    @FXML
-    private ImageView imgAvatar = new ImageView("/pidev/gui/img/defaut.jpg");
+//    = new ImageView("/pidev/gui/img/defaut.jpg");
     @FXML
     private Label lblNom;
     @FXML
@@ -37,29 +37,40 @@ public class ProfilFormateurController implements Initializable {
     private Label lblPrenominf;
     @FXML
     private Label lblCininf;
+    @FXML
+    private Label lblnbrInvit;
+
     private Formateur f;
 
     DAOFormateur daof = new DAOFormateur();
-    Formateur f2 = new Formateur();
+ public static   Formateur f2 ;
+    @FXML
+    private Pane idpaneimg;
     @FXML
     private Hyperlink hpEditerProfil;
     @FXML
     private Button btnDeconnecter;
     @FXML
+    private ImageView imgAvatar;
+    @FXML
+    private ImageView imgv;
+    @FXML
     private Button btnPublierCour;
     @FXML
     private Button btnLstOrganisme;
+    @FXML
+    private Button btnMesinvitation;
 
     @FXML
     public void btnDeconnecterAction(ActionEvent event) throws IOException {
-//        ((Node) (event.getSource())).getScene().getWindow().hide();
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
-//        loader.load();
-//        Parent p = loader.getRoot();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(p));
-//        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.show();
 
     }
 
@@ -91,43 +102,81 @@ public class ProfilFormateurController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.show();
-                  
-                   
-    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
     }
+    public static String c;
 
     public void setF(Formateur f) {
         lblCininf.setText(f.getCinFormateur());
         f2 = daof.getFormateurByCIN(f.getCinFormateur());
+        c=f2.getCinFormateur();
         lblNom.setText(f2.getNom());
         lblPrenom.setText(f2.getPrenom());
         lblNominf.setText(f2.getNom());
         lblLogininf.setText(f2.getLogin());
         lblEmailinf.setText(f2.getMail());
         lblPrenominf.setText(f2.getPrenom());
+        String width = "150";
+        String height = "150";
+        // idpaneimg.setStyle("-fx-background-image:url(/pidev/avatar/"+f2.getAvatar()+")");
+        idpaneimg.setStyle("-fx-background-image:url(/pidev/avatar/" + f2.getAvatar() + ");-fx-background-position: center center; -fx-background-repeat:stretch;-fx-background-size:" + width + " " + height + "; -fx-effect: dropshadow(three-pass-box, #FFDA8C, 30, 0.5, 0, 0);");
         //Image img = new Image("C:\\Users\\akoubi\\Downloads\\smart.png");
         //imgAvatar.setImage(img);
-//      lblPrenominf.setText(f2.getAvatar().getAbsolutePath());
+        //lblPrenominf.setText(f2.getAvatar().getAbsolutePath());
+        int nbrinvit;
+        nbrinvit = daof.nbrInvit(f.getCinFormateur());
+        lblnbrInvit.setText(nbrinvit + "");
         this.f = f;
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
     }
 
     @FXML
     private void btnLstOrganismeAction(ActionEvent event) throws IOException {
-        Formateur fpubc = new Formateur(lblCininf.getText());
+        Formateur flstOrg = new Formateur(lblCininf.getText());
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ListeOrganisme.fxml"));
         loader.load();
         Parent p = loader.getRoot();
-        ListeOrganismeController pc = loader.getController();
-        //pc.setfrm(fpubc);
+        ListeOrganismeController lstOrg = loader.getController();
+        lstOrg.setFrm(flstOrg);
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
+        stage.show();
+    }
+
+    @FXML
+    private void btnMesinvitation(ActionEvent event) throws IOException {
+        Formateur fi = new Formateur(lblCininf.getText());
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ListeInvitationOrganisme.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        ListeInvitationOrganismeController lstinvitOrg = loader.getController();
+        lstinvitOrg.setF(fi);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.show();
+    }
+    @FXML
+    private void btncoursAction(ActionEvent event) throws IOException {
+         ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        //loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursPublierFormateur.fxml")); 
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        AfficherCoursEtChapitreFormateurController ACCA  = loader.getController();
+        ACCA.setInfoFormateur(c);
+        stage.setTitle("List Cours Publiers");
         stage.show();
     }
 

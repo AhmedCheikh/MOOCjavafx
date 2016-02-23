@@ -16,7 +16,7 @@ public class Formateur {
     private String mail;
     private String login;
     private String password;
-    private File avatar;
+    private String avatar;
     private File cv;
     private int etat = 0;
 
@@ -34,7 +34,7 @@ public class Formateur {
         this.cinFormateur = cinFormateur;
     }
 
-    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar) {
+    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -43,16 +43,7 @@ public class Formateur {
         this.password = password;
         this.avatar = avatar;
     }
-
-    public Formateur(String nom, String prenom, String mail) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mail = mail;
-    }
-
-    
-    
-    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, File avatar, File cv, int etat) {
+public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar, File cv, int etat) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -64,10 +55,13 @@ public class Formateur {
         this.etat = etat;
     }
 
-    public Formateur(String text, String text0, TextField txtPrenom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Formateur(String nom, String prenom, String mail) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
     }
 
+    
     public String getCinFormateur() {
         return cinFormateur;
     }
@@ -116,11 +110,11 @@ public class Formateur {
         this.password = password;
     }
 
-    public File getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(File avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

@@ -79,7 +79,10 @@ public class InscrireFormateurController implements Initializable {
     @FXML
     private Pane paneImg2;
     Alert alert = new Alert(Alert.AlertType.WARNING);
-    public static File im = new File("C:\\Users\\akoubi\\Documents\\NetBeansProjects\\MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e\\src\\pidev\\gui\\img\\defaut.jpg");
+    public static File im = new File("C:\\Users\\Ahmed\\Desktop\\MOOC_3A2\\MOOC_3A2\\src\\pidev\\avatar\\defaut.jpg");
+
+    public static String AvatarDefault = "defaut.jpg";
+
     @FXML
     private Button btnChoisirCv;
     @FXML
@@ -96,9 +99,9 @@ public class InscrireFormateurController implements Initializable {
     public void setIm(File im) {
         this.im = im;
     }
-    
+
     public static File cv;
-   
+
     public void setCv(File cv) {
         this.cv = cv;
     }
@@ -119,6 +122,7 @@ public class InscrireFormateurController implements Initializable {
             r = false;
             c = sValidationText;
             i.setStyle("-fx-border-color:red");
+
         }
         l.setText(c);
         return r;
@@ -149,7 +153,7 @@ public class InscrireFormateurController implements Initializable {
         }
         return verif;
     }
-    
+
     public boolean validationEmail(TextField txte) {
         boolean verife = false;
         Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -184,7 +188,7 @@ public class InscrireFormateurController implements Initializable {
         if (selectedFile != null) {
             File path = selectedFile.getAbsoluteFile();
             er8.setText(selectedFile.getAbsolutePath());
-            
+
             //mpth = path;
             setCv(path);
         } else {
@@ -198,8 +202,6 @@ public class InscrireFormateurController implements Initializable {
 //    public void setCii(String cii) {
 //        this.cii = cii;
 //    }
-    
-    
     @FXML
     public void btnValiderAction(ActionEvent event) throws IOException {
         File pth = im.getAbsoluteFile();
@@ -213,10 +215,10 @@ public class InscrireFormateurController implements Initializable {
         boolean email = validationEmail(txtMail, er4, "Email Invalide");
         if (cin && nom && prenom && email && login && password && repeat) {
             if (txtPassword.getText().equals(txtRepaet.getText())) {
-                Formateur f1 = new Formateur(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText(), im, cv, 0);
+                Formateur f1 = new Formateur(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText(), AvatarDefault, cv, 0);
                 DAOFormateur daof = new DAOFormateur();
                 daof.inscrire(f1);
-                
+
                 try {
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                     Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
@@ -274,12 +276,18 @@ public class InscrireFormateurController implements Initializable {
 
     @FXML
     public void btnexitAction(ActionEvent event) {
-
+    
     }
 
     @FXML
-    public void btnbackAction(ActionEvent event) {
-
+    public void btnbackAction(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(parent);
+        st.setScene(sc);
+        st.setTitle("Profilformateur");
+        st.show();
     }
 
     /**
@@ -293,7 +301,6 @@ public class InscrireFormateurController implements Initializable {
         // TODO
     }
 
-   
     @FXML
     private void hpCvAction(ActionEvent event) throws IOException {
         //Formateur feditProfil = new Formateur(lblCininf.getText());
@@ -302,8 +309,8 @@ public class InscrireFormateurController implements Initializable {
         loader.setLocation(getClass().getResource("/pidev/gui/RealiserCvFormateur.fxml"));
         loader.load();
         Parent p = loader.getRoot();
-       // EditProfilFormateurController epfc = loader.getController();
-       // epfc.setF(feditProfil);
+        // EditProfilFormateurController epfc = loader.getController();
+        // epfc.setF(feditProfil);
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.show();

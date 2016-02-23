@@ -30,7 +30,14 @@ public class Organisme  {
     private String complete;
     public Organisme() {
     }
-
+public Organisme(String nom, String email, String siteweb, String adresse, String telephone, String description) {
+        this.nom = nom;
+        this.email = email;
+        this.siteweb = siteweb;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.description = description;
+    }
     public Organisme(int id, String nom, String login, String password, String email, String adresse, File document, int etat) {
         this.id = id;
         this.nom = nom;
@@ -96,8 +103,22 @@ public class Organisme  {
         this.login = login;
     }
   
+ 
 
-  
+    public Organisme(String nom, String email, String adresse, String telephone) {
+        this.nom = nom;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
+    }
+
+    public Organisme(int id, String siteweb, String telephone, String description) {
+        this.id = id;
+        this.siteweb = siteweb;
+        this.telephone = telephone;
+        this.description = description;
+      
+    }
 
     public Organisme(String login, String siteweb, String telephone, String description, File logo) {
         this.login = login;

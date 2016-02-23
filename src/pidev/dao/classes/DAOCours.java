@@ -158,7 +158,7 @@ Connection connection;
             return cours;
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            System.out.println("erreur lors de la recherche du cours " + ex.getMessage());
             return null;
         }
     }
@@ -185,7 +185,7 @@ Connection connection;
             return cours;
 
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            System.out.println("erreur lors de la recherche du cours " + ex.getMessage());
             return null;
         }
     }
@@ -249,7 +249,7 @@ Connection connection;
             }
             return listecours;
         } catch (SQLException ex) {
-            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            System.out.println("erreur lors du chargement des cours " + ex.getMessage());
             return null;
         }
     }

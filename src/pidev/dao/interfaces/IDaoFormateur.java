@@ -1,8 +1,11 @@
 package pidev.dao.interfaces;
 
 import java.util.List;
+import javafx.collections.ObservableList;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
+import pidev.entities.Invitation;
+import pidev.entities.Organisme;
 import pidev.entities.Quiz;
 
 /**
@@ -21,17 +24,29 @@ public interface IDaoFormateur {
 
     Formateur getFormateurByCIN(String cin);
   
-    void DemmandeIntegration(String cin);
+    void DemmandeIntegration(Invitation invit);
     
-    void DemmandeComite();
+   
 
-    void AccepterOrganisme();
+    void AccepterOrganisme(String nom);
 
-    void RefuserOrganisme();
+    void RefuserOrganisme(String nom);
     
     void EditerProfil(Formateur f);
     
     String getEmailByLogin(String login);
      public void setPwd(String login, String pwd);
      void downloadCV(Formateur f);
+       void publierCour(Cours c);
+    
+    Cours getCoursById(int id);
+    int nbrInvit(String cin);
+    
+    ObservableList<Organisme> ListeOrganisme();
+    
+    Organisme AllInfoOrganisme(String nomexp);
+    
+    ObservableList<Organisme> FindOrganismeByName(String nom);
+    
+    ObservableList<Invitation> FindInvitationByNom(String nomdes);
 }

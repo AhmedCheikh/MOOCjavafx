@@ -223,7 +223,7 @@ private void telechargerAction(ActionEvent event)  {
             public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
                 Chapitre ch=table.getSelectionModel().getSelectedItem();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitre.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreApprenant.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
@@ -234,8 +234,8 @@ private void telechargerAction(ActionEvent event)  {
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Chapitre");
-                AfficherChapitreFormateurController pac  = loader.getController();
-//                pac.setCh(ch);
+                AfficherChapitreApprenantController pac  = loader.getController();
+                pac.setCh(ch);
                 stage.show();
             }} );
         } catch (SQLException ex) {

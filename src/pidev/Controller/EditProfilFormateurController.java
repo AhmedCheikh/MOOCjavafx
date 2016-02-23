@@ -67,51 +67,63 @@ public class EditProfilFormateurController implements Initializable {
     @FXML
     private Label er8;
 
-    public static File avatar;
-   
-    public void setAvatar(File avatar) {
+    public static String avatar;
+
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-    public static String url;
     
+    public static String CheminAv;
+
+    public void setCheminAv(String CheminAv) {
+        this.CheminAv = CheminAv;
+    }
+    
+    public static String url;
+
     public void setUrl(String url) {
         this.url = url;
     }
-    
-    private  Formateur fedit;
+
+//    public static String nomAv;
+//
+//    public void setNomAv(String nomAv) {
+//        this.nomAv = nomAv;
+//    }
+
+    private Formateur fedit;
     DAOFormateur daof = new DAOFormateur();
     Formateur f2 = new Formateur();
-  
+
     @FXML
-    public void btnChoisirAvatarAction(){
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Open resource file");
-    fileChooser.getExtensionFilters().addAll(
-    new FileChooser.ExtensionFilter("Text Files", "*.jpg"));
-    File selectedFile = fileChooser.showOpenDialog(null);
-    if (selectedFile != null) {
-    File path = selectedFile.getAbsoluteFile();
-    er8.setText(selectedFile.getAbsolutePath());
-    String url = selectedFile.getAbsolutePath();
-    setUrl(url);
-    //mpth = path;
-    setAvatar(path);
+    public void btnChoisirAvatarAction() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open resource file");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            String path = selectedFile.getName();
+            er8.setText(selectedFile.getAbsolutePath());
+            String ur = selectedFile.getAbsolutePath();
+            String nomimg = "C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/avatar/"+selectedFile.getName();
+            setCheminAv(nomimg);
+            setUrl(ur);
+            setAvatar(path);
         } else {
             er8.setText("File Invalide");
         }
     }
-    
+
     @FXML
     public void btnModifierAction(ActionEvent event) throws IOException {
-        Formateur fr = new Formateur(txtCin.getText(),txtNom.getText(),txtPrenom.getText(),txtMail.getText(),txtLogin.getText(),txtPassword.getText(), avatar);
+        Formateur fr = new Formateur(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText(), avatar);
         daof.EditerProfil(fr);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Path source = Paths.get(url);
         System.out.println(source.toRealPath(LinkOption.NOFOLLOW_LINKS));
-        Path destination = Paths.get("C:\\Users\\akoubi\\Documents\\NetBeansProjects\\MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e\\src\\avatar\\av.jpg");
+        Path destination = Paths.get(CheminAv);
         Files.copy(source, destination);
-        
         alert.setTitle("Mise a jour");
         alert.setHeaderText(null);
         alert.setContentText("Votre Profil a été mise a jour vous devez Reconnecté");
@@ -126,7 +138,7 @@ public class EditProfilFormateurController implements Initializable {
 
     @FXML
     public void btnAnullerAction(ActionEvent event) {
-       
+
     }
 
     /**
@@ -139,8 +151,8 @@ public class EditProfilFormateurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-    
-      public void setF(Formateur f) {
+
+    public void setF(Formateur f) {
         txtCin.setText(f.getCinFormateur());
         txtCin.setDisable(true);
         f2 = daof.getFormateurByCIN(f.getCinFormateur());

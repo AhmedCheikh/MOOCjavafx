@@ -52,6 +52,7 @@ public class ProfilApprenantController implements Initializable {
     @FXML
     private Button btnDeconnecter;
     public static Apprenant apprenant;
+     public static String inf;
     private String info;
     @FXML
     public ImageView imageView;
@@ -84,7 +85,7 @@ public class ProfilApprenantController implements Initializable {
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
         AfficherCoursEtChapitreApprenantController ACCA  = loader.getController();
-        ACCA.setApprenant(apprenant);
+        ACCA.setInfoApprenant(inf);
         stage.setTitle("List Cours Suivis");
         stage.show();
 
@@ -112,7 +113,7 @@ public class ProfilApprenantController implements Initializable {
         apprenant = da.getApprenantByLogin(info);
         //apprenant1 = da.getApprenantByLogin(info);
         String filename = apprenant.getNom(); 
-        
+        inf=apprenant.getCin();
         //imageView.setImage(new Image(getClass().getResourceAsStream("pidev/gui/img/"+filename+".jpg")));
         txtCin.setText(apprenant.getCin());
         

@@ -5,10 +5,15 @@
  */
 package pidev.Controller;
 
-import com.sun.media.jfxmedia.track.Track;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,11 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.media.VideoTrack;
 import javafx.stage.FileChooser;
-import static pidev.Controller.InscrireFormateurController.cv;
-import static pidev.Controller.InscrireFormateurController.im;
-import pidev.dao.classes.DAOCours;
 import pidev.dao.classes.DAOFormateur;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
@@ -56,15 +57,27 @@ public class PublierCourController implements Initializable {
     @FXML
     private Button btnback;
     @FXML
-    
-    public static File vedio;
-    @FXML
+
     private Label lblcheminvideo;
 
-    public void setVedio(File vedio) {
-        PublierCourController.vedio = vedio;
-    }
+    public static String video;
 
+    public void setVideo(String video) {
+        this.video = video;
+    }
+    
+    public static String CheminVid;
+
+    public void setCheminVid(String CheminVid) {
+        this.CheminVid = CheminVid;
+    }
+    
+    public static String url;
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
     @FXML
     public void btnexitAction(ActionEvent event) {
       
@@ -80,13 +93,16 @@ public class PublierCourController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open resource file");
         fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter("Text Files", "*.3gp"));
+                new FileChooser.ExtensionFilter("Text Files", "*.mp4"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            File path = selectedFile.getAbsoluteFile();
+            String path = selectedFile.getName();
             lblcheminvideo.setText(selectedFile.getAbsolutePath());
-            //mpth = path;
-            setVedio(path);
+            String ur = selectedFile.getAbsolutePath();
+            String nomvid = "C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/video/"+selectedFile.getName();
+            setCheminVid(nomvid);
+            setUrl(ur);
+            setVideo(path);
         } else {
             lblcheminvideo.setText("File Invalide");
         }
@@ -104,13 +120,15 @@ public class PublierCourController implements Initializable {
     }
 
     @FXML
-    public void btnPublierAction(ActionEvent event) {
-       
-        Cours cou = new Cours(1, txtNomCour.getText(), lblcinf.getText(),0, txtDescription.getText(), cmbDifficulté.getValue().toString(), txtObjectif.getText(), 0, vedio);
-        DAOCours dac = new DAOCours();
-        dac.addCours(cou);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Publication de cour");
+    public void btnPublierAction(ActionEvent event) throws IOException {
+        Cours c = new Cours(txtNomCour.getText(), txtDescription.getText(), cmbDifficulté.getValue().toString(), txtObjectif.getText(), video);
+        daof.publierCour(c);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Path source = Paths.get(url);
+        System.out.println(source.toRealPath(LinkOption.NOFOLLOW_LINKS));
+        Path destination = Paths.get(CheminVid);
+        Files.copy(source, destination);
+        alert.setTitle("Publuer cours");
         alert.setHeaderText(null);
         alert.setContentText("Votre cours a été publier avec succès");
         alert.showAndWait();
@@ -146,4 +164,3 @@ public class PublierCourController implements Initializable {
     }
 
 }
-

@@ -28,7 +28,14 @@ public class Cours {
         this.idQuiz = idQuiz;
   
     }
-    
+     public Cours(int idCours, String nomCours, String description, String difficulte, String objectif, String video) {
+        this.idCours = idCours;
+        this.nomCours = nomCours;
+        this.description = description;
+        this.difficulte = difficulte;
+        this.objectif = objectif;
+        this.video = video;
+    }
     public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idQuiz) {
         this.idCours = idCours;
         this.nomCours = nomCours;
@@ -38,8 +45,23 @@ public class Cours {
         this.objectif = objectif;
         this.idQuiz = idQuiz;
     }
- public Cours(int i, String text, String text0, int i0, String text1, String toString, String text2, int i1, File vedio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+ public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, String video, int idQuiz, int etat) {
+        this.idCours = idCours;
+        this.nomCours = nomCours;
+        this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.difficulte = difficulte;
+        this.objectif = objectif;
+        this.video = video;
+        this.idQuiz = idQuiz;
+        this.etat = etat;
+    }
+ public Cours(String nomCours, String description, String difficulte, String objectif, String video) {
+        this.nomCours = nomCours;
+        this.description = description;
+        this.difficulte = difficulte;
+        this.objectif = objectif;
+        this.video = video;
     }
 public Cours(String nomCours,String description,String cinFormateur)
 {

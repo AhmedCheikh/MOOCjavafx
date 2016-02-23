@@ -25,7 +25,7 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="btnCrerCv" layoutX="380.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnCrerCvAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Créer cv" textFill="WHITE">
+            <Button fx:id="btnCrerCv" layoutX="385.0" layoutY="427.0" mnemonicParsing="false" onAction="#btnCrerCvAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Créer cv" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -33,7 +33,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnAnuller" layoutX="505.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
+            <Button fx:id="btnAnuller" layoutX="499.0" layoutY="427.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -41,13 +41,140 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="30.0" layoutY="77.0" text="Nom:">
+            <ImageView fx:id="imgPhoto" fitHeight="89.0" fitWidth="97.0" layoutX="245.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="58.0" fitWidth="104.0" layoutX="464.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/ecrire2.gif" />
+               </image>
+            </ImageView>
+            <Pane layoutX="14.0" layoutY="56.0" prefHeight="307.0" prefWidth="349.0" style="-fx-border-color: black;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#110304bd" height="27.0" layoutX="9.0" layoutY="-8.0" stroke="#da8585" strokeType="INSIDE" width="150.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="32.0" layoutY="-9.0" prefHeight="17.0" prefWidth="135.0" text="Coordonnées:" textFill="#25ff00">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtLangue" layoutX="94.0" layoutY="270.0" prefHeight="25.0" prefWidth="184.0" promptText="Français, anglais , japonais" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+                  <Label layoutX="11.0" layoutY="276.0" text="Langues:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="25.0" layoutY="294.0" text="Email:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtnom" layoutX="113.0" layoutY="73.0" prefHeight="25.0" prefWidth="184.0" promptText="zied" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
-            <Button fx:id="btnChoisirphoto" layoutX="130.0" layoutY="383.0" mnemonicParsing="false" onAction="#btnChoisirphotoAction" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #77ABD6;" text="Browse ...">
+            <TextField fx:id="txtemail" layoutX="108.0" layoutY="288.0" prefHeight="25.0" prefWidth="184.0" promptText="zied.agoubi@esprit.tn" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <TextField fx:id="txtnumtel" layoutX="108.0" layoutY="250.0" prefHeight="25.0" prefWidth="184.0" promptText="95095985" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <Label layoutX="25.0" layoutY="256.0" text="Num Tel:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="218.0" text="Adresse:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtadresse" layoutX="108.0" layoutY="212.0" prefHeight="25.0" prefWidth="184.0" promptText="cité ines rue razi " style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <TextField fx:id="txtage" layoutX="108.0" layoutY="174.0" prefHeight="25.0" prefWidth="184.0" promptText="22" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <Label layoutX="25.0" layoutY="180.0" text="Age:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="140.0" text="Prenom:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtprenom" layoutX="108.0" layoutY="136.0" prefHeight="25.0" prefWidth="184.0" promptText="akoubi" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <TextField fx:id="txtnom" layoutX="108.0" layoutY="98.0" prefHeight="25.0" prefWidth="184.0" promptText="zied" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
+            <Label layoutX="25.0" layoutY="102.0" text="Nom:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutX="383.0" layoutY="56.0" prefHeight="161.0" prefWidth="349.0" style="-fx-border-color: black;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#110304bd" height="27.0" layoutX="9.0" layoutY="-8.0" stroke="#da8585" strokeType="INSIDE" width="150.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="32.0" layoutY="-9.0" prefHeight="17.0" prefWidth="135.0" text="Formation:" textFill="#25ff00">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="txtFormation" layoutX="393.0" layoutY="94.0" prefHeight="113.0" prefWidth="310.0" promptText="en 2011 j'ai obtenu mn bac avec la montion bien après j'été orienté vers l'institut de ............. ou j'ai étudié ............ et en 2014 j'ai obtenu mon diplome dans la spécialité de ............." />
+            <Pane layoutX="383.0" layoutY="227.0" prefHeight="161.0" prefWidth="349.0" style="-fx-border-color: black;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#110304bd" height="27.0" layoutX="9.0" layoutY="-8.0" stroke="#da8585" strokeType="INSIDE" width="260.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="32.0" layoutY="-9.0" prefHeight="27.0" prefWidth="237.0" text="expérience professionnelle:" textFill="#25ff00">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TextArea fx:id="txtExpPro" layoutX="393.0" layoutY="266.0" prefHeight="113.0" prefWidth="310.0" promptText="en 2011 j'ai passé un stage de ........... j'été appellé pour le développement de ................ et en 2102 j'ai passé un stage de ................" />
+            <Pane layoutX="14.0" layoutY="376.0" prefHeight="101.0" prefWidth="349.0" style="-fx-border-color: black;">
+               <children>
+                  <Pane fx:id="pnImgPro" layoutX="229.0" layoutY="6.0" prefHeight="89.0" prefWidth="114.0" style="-fx-border-color: #B9121B;" />
+               </children>
+            </Pane>
+            <Label layoutX="51.0" layoutY="456.0" text="cette image doit etre professionnel" textFill="RED">
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="19.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/attention.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="26.0" layoutY="421.0" prefHeight="20.0" prefWidth="97.0" text="insérer photo:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnChoisirphoto" layoutX="130.0" layoutY="417.0" mnemonicParsing="false" onAction="#btnChoisirphotoAction" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #77ABD6;" text="Browse ...">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -62,67 +189,14 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="txtprenom" layoutX="113.0" layoutY="111.0" prefHeight="25.0" prefWidth="184.0" promptText="akoubi" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
-            <Label layoutX="30.0" layoutY="115.0" text="Prenom:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="30.0" layoutY="155.0" text="Age:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtage" layoutX="113.0" layoutY="149.0" prefHeight="25.0" prefWidth="184.0" promptText="22" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
-            <TextField fx:id="txtadresse" layoutX="113.0" layoutY="187.0" prefHeight="25.0" prefWidth="184.0" promptText="cité ines rue razi " style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
-            <Label layoutX="30.0" layoutY="193.0" text="Adresse:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="30.0" layoutY="231.0" text="Num Tel:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtnumtel" layoutX="113.0" layoutY="225.0" prefHeight="25.0" prefWidth="184.0" promptText="95095985" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
-            <TextField fx:id="txtemail" layoutX="113.0" layoutY="263.0" prefHeight="25.0" prefWidth="184.0" promptText="zied.agoubi@esprit.tn" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" />
-            <Label layoutX="30.0" layoutY="269.0" text="Email:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="txtcariere" layoutX="372.0" layoutY="131.0" prefHeight="206.0" prefWidth="358.0" promptText="je suis un igénieur informatique en dévelopement des systèmes d'information et .............." />
-            <Label layoutX="374.0" layoutY="95.0" prefHeight="20.0" prefWidth="273.0" text="Décrire votre carière, connaissances içi:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="26.0" layoutY="387.0" prefHeight="20.0" prefWidth="97.0" text="insérer photo:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c2a5d9" height="89.0" layoutX="245.0" layoutY="331.0" stroke="#02fa00" strokeType="INSIDE" width="97.0" />
-            <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="35.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="72.0" layoutX="19.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/attention.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="67.0" layoutY="339.0" text="cette image doit etre professionnel" textFill="RED">
-               <font>
-                  <Font name="Times New Roman Italic" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="imgPhoto" fitHeight="89.0" fitWidth="97.0" layoutX="245.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="58.0" fitWidth="104.0" layoutX="464.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/ecrire2.gif" />
+                  <Image url="@img/imgprof.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
+      <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -140,7 +214,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
+      <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

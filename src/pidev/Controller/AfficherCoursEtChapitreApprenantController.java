@@ -72,7 +72,7 @@ public class AfficherCoursEtChapitreApprenantController implements Initializable
     private Button btnback;
     
 private Connection connection ; 
-    private Apprenant apprenant;
+    private String infoApprenant ;
  
    public AfficherCoursEtChapitreApprenantController()
    {
@@ -118,8 +118,8 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Apprenant");
-        ProfilApprenantController pac  = loader.getController();
-        pac.setApprenant(apprenant);
+//        ProfilApprenantController pac  = loader.getController();
+//        pac.setApprenant(apprenant);
         stage.show();
     }
    
@@ -144,8 +144,15 @@ if (result.get() == ButtonType.OK){
                     }
                 });
         
-        try {
-        String requete = "select * from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin";
+       
+    }
+
+   
+
+    void setInfoApprenant(String inf) {
+         try {
+
+        String requete = "select * from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant="+inf+" and c.cinformateur=f.cin";
         
         PreparedStatement ps;
         
@@ -195,10 +202,8 @@ if (result.get() == ButtonType.OK){
   } catch (SQLException ex) {
             Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void setApprenant(Apprenant apprenant) {
-        this.apprenant = apprenant;
+        this.infoApprenant=inf;
+        
     }
 
     

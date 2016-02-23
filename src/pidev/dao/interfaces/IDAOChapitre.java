@@ -26,5 +26,5 @@ public interface IDAOChapitre {
     int FindIdQuizbychapitre(String titre);
     String FindVideobychapitre(String titre);
     void FindPresentationbychapitre(String titre);
-    
+    Chapitre findChapitreByIdCours(int id);
 }

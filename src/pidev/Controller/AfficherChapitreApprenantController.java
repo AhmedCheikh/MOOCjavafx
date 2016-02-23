@@ -72,8 +72,13 @@ public class AfficherChapitreApprenantController implements Initializable {
     final double mediaHeight = 270;
 
     public void setCh(Chapitre ch) {
+        txtObjectives.setText(ch.getObjectif());
+        hpChapitre1.setText(ch.getTitre());
+        DAOCours d= new DAOCours() ;
+        String a=d.findTitreCoursById(ch.getIdCours());
+        hpCours1.setText(a);
         this.ch = ch;
-        ch.getTitre();
+        
     }
 
     /**
@@ -171,7 +176,7 @@ public class AfficherChapitreApprenantController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Afficher cours");
-        ProfilApprenantController pac = loader.getController();
+       
         stage.show();
     }
 

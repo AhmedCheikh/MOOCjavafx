@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 import pidev.dao.classes.DAOChapitre;
 import pidev.dao.classes.DAOCours;
 import pidev.entities.Chapitre;
+import pidev.entities.Cours;
 import pidev.gui.video.VideoFXDemo;
 
 /**
@@ -61,17 +62,14 @@ public class AfficherChapitreFormateurController implements Initializable {
     private Button btnexit;
     @FXML
     private Button btnback;
-    public Chapitre ch;
+    public static Cours cours;
     String nameCh = "Introduction";
 
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
     final double mediaHeight = 270;
 
-    public void setCh(Chapitre ch) {
-        this.ch = ch;
-        ch.getTitre();
-    }
+    
 
     /**
      * Initializes the controller class.
@@ -176,6 +174,15 @@ public class AfficherChapitreFormateurController implements Initializable {
         stage.setTitle("Afficher cours");
         ProfilApprenantController pac = loader.getController();
         stage.show();
+    }
+
+    void setInfo(Cours cours) {
+        DAOChapitre d= new DAOChapitre();
+        Chapitre ch=d.findChapitreByIdCours(cours.getIdCours());
+        txtObjectives.setText(ch.getObjectif());
+        hpChapitre.setText(ch.getTitre());
+        hpCours.setText(cours.getNomCours());
+        this.cours=cours;
     }
 
 }
