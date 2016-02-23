@@ -6,6 +6,7 @@
 package pidev.dao.classes;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOComite ; 
+import pidev.entities.Apprenant;
 import pidev.entities.Comite;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
@@ -42,6 +44,26 @@ public class DAOComite implements IDAOComite{
     
      public DAOComite() {
         connection =(DataSource.getInstance()).getConnection();
+    }
+     
+     
+     @Override
+    public void update( Comite c, String cin ) {
+         String requete = "update comite set  nom = ?, prenom = ?, email=?, login = ? , password = ? where cin = ?";
+        try {
+            pst = connection.prepareStatement(requete);
+            pst.setString(1, c.getNom());
+            pst.setString(2, c.getPrenom());
+            pst.setString(3, c.getEmail());
+            pst.setString(4, c.getLoginComite());
+            pst.setString(5, c.getPasswordComite());
+            pst.setString(6, c.getCIN());
+            
+            pst.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+        } 
     }
 
     @Override

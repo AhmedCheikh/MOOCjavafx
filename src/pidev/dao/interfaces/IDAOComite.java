@@ -24,4 +24,5 @@ public interface IDAOComite {
     boolean authentification(String login, String password);
     void downloadCV(Formateur f);
     Comite getComiteByLogin(String login);
+    public void update( Comite c, String cin );
 }

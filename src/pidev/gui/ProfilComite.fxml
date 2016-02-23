@@ -39,8 +39,8 @@
          <content>
             <AnchorPane cache="true" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="112.0">
                <children>
-                  <Hyperlink layoutX="13.0" layoutY="7.0" prefHeight="23.0" prefWidth="113.0" text="Edit Profil" />
-                  <Button layoutX="15.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Se déconnecter" />
+                  <Hyperlink fx:id="btnEditProfil" layoutX="13.0" layoutY="7.0" onAction="#btnEditProfilAction" prefHeight="23.0" prefWidth="113.0" text="Edit Profil" />
+                  <Button fx:id="btnDeconnecter" layoutX="15.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="25.0" prefWidth="100.0" text="Se déconnecter" />
                </children>
             </AnchorPane>
          </content>
@@ -112,7 +112,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="validerDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="311.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerDescriptionAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider descriptions" textFill="#5b0a0a">
+      <Button fx:id="validerDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="327.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerDescriptionAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider descriptions" textFill="#5b0a0a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -120,7 +120,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="validerCours" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="362.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerCoursAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider cours" textFill="#5b0a0a">
+      <Button fx:id="validerCours" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="391.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerCoursAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider cours" textFill="#5b0a0a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -128,7 +128,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="validerCandidature" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="468.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerCandidatureAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider candidatures" textFill="#5b0a0a">
+      <Button fx:id="validerCandidature" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="455.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerCandidatureAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider candidatures" textFill="#5b0a0a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -136,7 +136,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="validerIntegration" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="520.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerIntegrationAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider intégration" textFill="#5b0a0a">
+      <Button fx:id="validerIntegration" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="519.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerIntegrationAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider intégration" textFill="#5b0a0a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -150,35 +150,22 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Button fx:id="validerQuiz" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="415.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#validerQuizAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Valider les quiz" textFill="#5b0a0a">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="25.0" layoutY="268.0">
          <image>
             <Image url="@img/icon-26025.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="24.0" layoutY="315.0">
+      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="26.0" layoutY="331.0">
          <image>
             <Image url="@img/sheet.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="23.0" fitWidth="16.0" layoutX="24.0" layoutY="364.0">
+      <ImageView fitHeight="23.0" fitWidth="16.0" layoutX="27.0" layoutY="394.0">
          <image>
             <Image url="@img/book2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="20.0" layoutY="419.0">
-         <image>
-            <Image url="@img/square.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="24.0" layoutY="471.0">
+      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="24.0" layoutY="458.0">
          <image>
             <Image url="@img/school2.png" />
          </image>
@@ -188,5 +175,15 @@
             <Image url="@img/people.png" />
          </image>
       </ImageView>
+      <Label fx:id="txtNom2" layoutX="198.0" layoutY="65.0" text="Bonjour">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="198.0" layoutY="111.0" text="Veuillez choisir la tâche à faire.">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

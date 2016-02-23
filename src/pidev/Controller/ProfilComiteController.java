@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -23,10 +24,11 @@ import javafx.stage.Stage;
 import pidev.dao.classes.*;
 import pidev.entities.Comite;
 
+
 public class ProfilComiteController implements Initializable {
 
      @FXML private Label txtCin ;
-     @FXML private Label txtNom ;
+     @FXML private Label txtNom, txtNom2 ; 
      @FXML private Label txtPrenom ;
      @FXML private Label txtEmail ;
      private String info;
@@ -37,12 +39,34 @@ public class ProfilComiteController implements Initializable {
     @FXML private Button validerQuiz ;
     @FXML private Button validerCandidature ;
     @FXML private Button validerIntegration ;
+    @FXML private Button btnDeconnecter ;
+    @FXML
+    private Hyperlink btnEditProfil;
+    
+    
+    @FXML
+    private void btnEditProfilAction(ActionEvent event) throws IOException {
+           
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/EditProfilComite.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage =new Stage();
+            stage.setScene(new Scene(p));
+            EditProfilComiteController epcc  = loader.getController();
+            epcc.setComite(comite);
+            stage.setTitle("Editer Mon Profil");
+            stage.show();
+        
+    }
     
     @FXML
     private void validerVideoAction (ActionEvent event) throws IOException {
         
-        ((Node) (event.getSource())).getScene().getWindow().hide();
+        
             Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ValiderVideo.fxml"));
+            ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage =  new Stage();
             Scene scene = new Scene(parent);
             stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
@@ -82,7 +106,7 @@ public class ProfilComiteController implements Initializable {
     @FXML
     private void validerQuizAction (ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ValiderQuiz.fxml"));
-            ((Node) (event.getSource())).getScene().getWindow().hide();
+           ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage =  new Stage();
             Scene scene = new Scene(parent);
             stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
@@ -108,7 +132,7 @@ public class ProfilComiteController implements Initializable {
     
     @FXML
     private void validerIntegrationAction (ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ValiderIntegration.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ValiderDemandeIntegration.fxml"));
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage =  new Stage();
             Scene scene = new Scene(parent);
@@ -116,6 +140,20 @@ public class ProfilComiteController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Valider les demandes d'intégration à la comité");
             stage.show();
+        
+    }
+    
+        @FXML
+    private void btnDeconnecterAction(ActionEvent event) throws IOException {
+//        ((Node) (event.getSource())).getScene().getWindow().hide();
+//        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(parent);
+//        stage.setScene(scene);
+//        stage.setTitle("Authentification");
+//        stage.show();
+        Stage stage = (Stage) btnDeconnecter.getScene().getWindow();
+        stage.close();
         
     }
     
@@ -133,6 +171,7 @@ public class ProfilComiteController implements Initializable {
         txtNom.setText(comite.getNom());
         txtPrenom.setText(comite.getPrenom());
         txtEmail.setText(comite.getEmail());
+        txtNom2.setText("Bonjour "+ comite.getPrenom());
         
         
         this.info = info;
