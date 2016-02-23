@@ -5,12 +5,14 @@
  */
 package pidev.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,13 +23,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import pidev.dao.classes.DAOComite;
 import pidev.dao.classes.DAOCours;
 import pidev.dao.interfaces.IDAOComite;
@@ -112,12 +121,46 @@ public class ValiderCoursController implements Initializable {
         
     
 
-    @FXML
-    private void btnbackAction(ActionEvent event) {
+     @FXML
+    private void btnexitAction(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Your are leaving application !");
+alert.setContentText("Are you sure to leave?");
+
+Optional<ButtonType> result = alert.showAndWait();
+if (result.get() == ButtonType.OK){
+    
+      ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Authentification");
+        
+        stage.show();
+    
+} else {
+   alert.close();
+}
+        
     }
 
     @FXML
-    private void btnexitAction(ActionEvent event) {
+    private void btnbackAction(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ProfilComite.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Profil Comite");
+
+        stage.show();
     }
-    
 }
