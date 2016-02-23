@@ -10,8 +10,8 @@ public class CoursSuivie {
     private int id_cours ;
     private String cinapprenant ;
     private String commentaire ;
-    private double note ;
-    private String date_debut ;
+    private Float note ;
+    private Date date_debut ;
     private String appreciation;
 
     
@@ -72,13 +72,13 @@ public class CoursSuivie {
     public CoursSuivie() {
     }
 
-    public CoursSuivie(int idCoursuivi, String date_debut, String appreciation) {
+    public CoursSuivie(int idCoursuivi, Date date_debut, String appreciation) {
         this.idCoursuivi = idCoursuivi;
         this.date_debut = date_debut;
         this.appreciation = appreciation;
     }
 
-    public CoursSuivie(int idCoursuivi, int id_cours, String cinapprenant, String commentaire, double note, String date_debut, String appreciation) {
+    public CoursSuivie(int idCoursuivi, int id_cours, String cinapprenant, String commentaire, Float note, Date date_debut, String appreciation) {
         this.idCoursuivi = idCoursuivi;
         this.id_cours = id_cours;
         this.cinapprenant = cinapprenant;
@@ -104,11 +104,11 @@ public class CoursSuivie {
         return commentaire;
     }
 
-    public double getNote() {
+    public Float getNote() {
         return note;
     }
 
-    public String getDate_debut() {
+    public Date getDate_debut() {
         return date_debut;
     }
 
@@ -132,11 +132,11 @@ public class CoursSuivie {
         this.commentaire = commentaire;
     }
 
-    public void setNote(double note) {
+    public void setNote(Float note) {
         this.note = note;
     }
 
-    public void setDate_debut(String date_debut) {
+    public void setDate_debut(Date date_debut) {
         this.date_debut = date_debut;
     }
 

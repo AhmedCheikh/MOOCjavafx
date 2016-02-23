@@ -18,7 +18,7 @@ public class Apprenant{
     private String nom;
     private String prenom;
     private String email;
-    private File avatar;
+    private String avatar;
     private String login;
     private String password;
 
@@ -43,7 +43,7 @@ public class Apprenant{
         this.password = password;
     }
     
-    public Apprenant(String cin, String nom, String prenom, String email, File avatar, String login, String password) {
+    public Apprenant(String cin, String nom, String prenom, String email, String avatar, String login, String password) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
@@ -69,7 +69,7 @@ public class Apprenant{
         return email;
     }
 
-    public File getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
@@ -97,7 +97,7 @@ public class Apprenant{
         this.email = email;
     }
 
-    public void setAvatar(File avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -45,6 +46,8 @@ public static String log;
     public ComboBox roleAuth ;
     
     private String info;
+    @FXML 
+    private Hyperlink idcontact ;
    @FXML
    private void btnfbAction(ActionEvent event)
    {
@@ -212,7 +215,8 @@ login.setEffect(shadow);
        
         
     }
-    public void pwdAction(ActionEvent event) throws IOException {
+    @FXML
+        public void pwdAction(ActionEvent event) throws IOException {
       
                 
          ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -223,7 +227,18 @@ login.setEffect(shadow);
                 stage.setScene(scene);
                 stage.setTitle("Retrouver votre compte");
                 stage.show();  }
-
+@FXML
+        public void contactAction(ActionEvent event) throws IOException {
+      
+                
+         ((Node) (event.getSource())).getScene().getWindow().hide();
+                Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/Mail.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(parent);
+                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                stage.setScene(scene);
+                stage.setTitle("Mail");
+                stage.show();  }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         

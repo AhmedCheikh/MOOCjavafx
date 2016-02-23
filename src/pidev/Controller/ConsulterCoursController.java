@@ -44,6 +44,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -56,7 +57,7 @@ import pidev.entities.* ;
 import pidev.techniques.DataSource;
 import pidev.gui.video.*;
 import pidev.tests.test;
-public class AffichageCoursController  implements Initializable{
+public class ConsulterCoursController  implements Initializable{
 
 @FXML
 private TextArea description ;
@@ -70,21 +71,8 @@ private TextArea description ;
     public Cours info; 
     public String formateur ;
 private Connection connection ; 
-private Media me ;
-    private RadioButton radioExcellent;
-    private RadioButton radioMoyen;
-    private RadioButton radioMauvais;
-    
-    public CoursSuivie cs;
-    private ToggleGroup appreciation;
-    public Apprenant apprenant;
     @FXML
     private Button btnVideo;
-    @FXML
-    private Button faireQuiz;
-    @FXML
-    private Button Formateur1;
-    
     @FXML
     private TextField txtNote;
     @FXML
@@ -92,12 +80,30 @@ private Media me ;
     @FXML
     private Label txtJour;
 
-        @FXML
+    @FXML
+    private Button faireQuiz;
+    @FXML
+    private Button Formateur1;
+    @FXML
     private TextField txtDateDebut;
     @FXML
     private TextField txtDateFin;
-
-    public AffichageCoursController() {
+   
+    @FXML
+    private RadioButton radioExcellent;
+    @FXML
+    private RadioButton radioMoyen;
+    @FXML
+    private RadioButton radioMauvais;
+    
+    public CoursSuivie cs;
+    @FXML
+    private ToggleGroup appreciation;
+    @FXML
+    private Button btnCommenter;
+    public Apprenant apprenant;
+    
+    public ConsulterCoursController() {
             connection = (DataSource.getInstance()).getConnection();
     
     }
@@ -111,10 +117,7 @@ private Media me ;
     public void init(Stage primaryStage) {
         Group root = new Group();
         primaryStage.setScene(new Scene(root,480,270));
-         String path = new File("src/pidev/gui/video/"+pathFile).getAbsolutePath();
-        me = new Media(new File(path).toURI().toString());
-        mediaPlayer = new MediaPlayer(me);
-        
+        mediaPlayer = new MediaPlayer(new Media("file:///"+pathFile));
         mediaPlayer.setAutoPlay(true);
         VideoFXDemo.PlayerPane playerPane = new VideoFXDemo.PlayerPane(mediaPlayer);
         playerPane.setMinSize(mediaWidth, mediaHeight);  
@@ -165,7 +168,6 @@ init(stage);
                 pac.setPnomc(nom);
                 stage.show();
    }
-@FXML
 private void Formateur1Action(ActionEvent event) throws IOException  {
         ((Node) (event.getSource())).getScene().getWindow().hide();
             
@@ -189,30 +191,14 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
-        DAOCoursSuivie dcs = new DAOCoursSuivie();
-        cs = new CoursSuivie();
-    try {
-        cs = dcs.getCourByCinApprenant("01478520");
-        txtDateDebut.setText(cs.getDate_debut().toString());
-        
-        txtCommentaire.setText(cs.getCommentaire());
-        txtNote.setText(Float.toString(cs.getNote()));
-        if(cs.getAppreciation().equals("Mauvais")){
-            radioMauvais.setSelected(true);
-        }
-        else if(cs.getAppreciation().equals("Moyen") ){
-            radioMoyen.setSelected(true);
-        }
-        else{
-            radioExcellent.setSelected(true);
-        }
-        
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+ 
 
     }
+
+    public void setApprenant(Apprenant apprenant) {
+        this.apprenant = apprenant;
+    }
+    
 
     public void setInfo(Cours info) {
         
@@ -262,7 +248,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
             public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
                 Chapitre ch=table.getSelectionModel().getSelectedItem();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreApprenant.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitre.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
@@ -273,8 +259,8 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Chapitre");
-                AfficherChapitreApprenantController pac  = loader.getController();
-                pac.setCh(ch);
+                AfficherChapitreFormateurController pac  = loader.getController();
+//                pac.setCh(ch);
                 stage.show();
             }} );
         } catch (SQLException ex) {
@@ -282,35 +268,8 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     }
           
     }
-    private void btnCommenterAction(ActionEvent event) {
-        DAOCoursSuivie dcs = new DAOCoursSuivie();
-        String c = txtCommentaire.getText();
-        dcs.laisserCommentaire(c, apprenant.getCin());
-    }
 
-    public void setApprenant(Apprenant apprenant) {
-        this.apprenant = apprenant;
-    }
     
-    
-   
-    private void changerAppreciation(MouseEvent event) {
-        DAOCoursSuivie dcs = new DAOCoursSuivie();
-        radioExcellent.setToggleGroup(appreciation);
-        radioMoyen.setToggleGroup(appreciation);
-        radioMauvais.setToggleGroup(appreciation);
-          
-        appreciation.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-        @Override
-        public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
+}   
 
-            RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle();
-            dcs.donnerAppreciation(chk.getText(), apprenant.getCin());
-        }
-    });
-          
-        }
-    
 
-   
-}

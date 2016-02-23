@@ -73,7 +73,7 @@ public class AfficherCoursEtChapitreApprenantController implements Initializable
     
 private Connection connection ; 
     private String infoApprenant ;
- 
+  private Apprenant apprenant;
    public AfficherCoursEtChapitreApprenantController()
    {
     connection = (DataSource.getInstance()).getConnection();
@@ -118,8 +118,8 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Apprenant");
-//        ProfilApprenantController pac  = loader.getController();
-//        pac.setApprenant(apprenant);
+        ProfilApprenantController pac  = loader.getController();
+        pac.setApprenant(apprenant);
         stage.show();
     }
    
@@ -152,7 +152,7 @@ if (result.get() == ButtonType.OK){
     void setInfoApprenant(String inf) {
          try {
 
-        String requete = "select * from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant="+inf+" and c.cinformateur=f.cin";
+        String requete = "select c.nom_cours,c.description,f.nom,c.video from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin and cs.cinapprenant="+inf;
         
         PreparedStatement ps;
         
@@ -196,6 +196,7 @@ if (result.get() == ButtonType.OK){
                 stage.setTitle("Affichage Cours");
                 AffichageCoursController pac  = loader.getController();
                 pac.setInfo(cours);
+                pac.setApprenant(apprenant);
                 stage.show();
             }} );
   
@@ -205,7 +206,9 @@ if (result.get() == ButtonType.OK){
         this.infoApprenant=inf;
         
     }
-
+ public void setApprenant(Apprenant apprenant) {
+        this.apprenant = apprenant;
+    }
     
 }
     

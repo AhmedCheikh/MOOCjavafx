@@ -36,11 +36,14 @@ private Label labelMOOC ;
     private Object fxmlLoader;
     @FXML
     private ComboBox role1 ;
-
+@FXML
+private AnchorPane anch ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Timeline timeline;
-
+anch.setStyle("-fx-background-image: url(/pidev/gui/img/moocBack.png ); " +
+           "-fx-background-position: center center; " +
+           "-fx-background-repeat: stretch;");
         labelMOOC.setEffect(new Lighting());
        
         timeline = new Timeline();

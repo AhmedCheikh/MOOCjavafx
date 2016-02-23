@@ -8,4 +8,6 @@ public interface IDAOCoursSuivie {
     void ajouterCommentaire(CoursSuivie c);
     void ajouterNote(CoursSuivie c);
     void ajouterAppreciation(CoursSuivie c);
+    void laisserCommentaire(String c , String cin );
+    void donnerAppreciation(String appreciation, String cin);
 }

@@ -145,9 +145,10 @@ public class AfficherQuizChronoController implements Initializable {
     private Label LTime;
     public int note;
     int f = 0;
-    String pnomc;
+   public static String pnomc;
 
     public void setPnomc(String pnomc) {
+        
         this.pnomc = pnomc;
 
     }
@@ -199,7 +200,7 @@ public class AfficherQuizChronoController implements Initializable {
             C41, C42, C43, C44,
             C51, C52, C53, C54};
         DAOCours daoc1 = new DAOCours();
-        int q = daoc1.FindIdQuizbycours("cours");
+        int q = daoc1.FindIdQuizbycours(pnomc);
         System.out.println(q);
         DAOQuiz daoq1 = new DAOQuiz();
         String t = daoq1.findTitreQuizByTitreSelonId(q);

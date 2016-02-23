@@ -63,7 +63,7 @@ public class AfficherChapitreFormateurController implements Initializable {
     @FXML
     private Button btnback;
     public static Cours cours;
-    String nameCh = "Introduction";
+    public static String nameCh ;
 
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
@@ -182,6 +182,7 @@ public class AfficherChapitreFormateurController implements Initializable {
         txtObjectives.setText(ch.getObjectif());
         hpChapitre.setText(ch.getTitre());
         hpCours.setText(cours.getNomCours());
+        nameCh=ch.getTitre();
         this.cours=cours;
     }
 

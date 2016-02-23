@@ -20,9 +20,9 @@ public class test extends Application
         
        
         stage.getIcons().add(new Image("/pidev/gui/img/icone.png"));
-        root.setStyle("-fx-background-image: url(/pidev/gui/img/moocBack.png ); " +
-           "-fx-background-position: center center; " +
-           "-fx-background-repeat: stretch;");
+//        root.setStyle("-fx-background-image: url(/pidev/gui/img/moocBack.png ); " +
+//           "-fx-background-position: center center; " +
+//           "-fx-background-repeat: stretch;");
         stage.setScene(scene);
 
 

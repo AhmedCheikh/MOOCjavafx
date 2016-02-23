@@ -89,7 +89,7 @@ public class ProfilFormateurController implements Initializable {
         stage.show();
     }
 
-    @FXML
+   @FXML
     public void btnPublierCourAction(ActionEvent event) throws IOException {
         Formateur fpubc = new Formateur(lblCininf.getText());
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -179,5 +179,18 @@ public class ProfilFormateurController implements Initializable {
         stage.setTitle("List Cours Publiers");
         stage.show();
     }
-
+@FXML
+    private void btnDemmandeIntegrationAction(ActionEvent event) throws IOException {
+       Formateur flstOrg = new Formateur(lblCininf.getText());
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ListeOrganisme.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        ListeOrganismeController lstOrg = loader.getController();
+        lstOrg.setFrm(flstOrg);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.show();
+    }
 }

@@ -164,7 +164,7 @@ if (result.get() == ButtonType.OK){
 //                DAOFormateur daof = new DAOFormateur();
 //        formateur=daof.getFormateurByCIN(c);
     
-     String requete = "select c.nom_cours,c.description,f.nom from cours c,formateur f where c.cinformateur="+c;
+     String requete = "select c.nom_cours,c.description,f.nom from cours c,formateur f where c.cinformateur=f.cin and c.cinformateur="+c;
        
        try {
             PreparedStatement ps = connection.prepareStatement(requete);

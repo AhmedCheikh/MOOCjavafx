@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="1000.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.PageAcceuilleController">
+<AnchorPane id="AnchorPane" fx:id="anch" prefHeight="480.0" prefWidth="1000.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.PageAcceuilleController">
    <children>
       <Button fx:id="btnInscri" layoutX="134.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnInscriAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #008060;" text="Inscrire" textFill="WHITE" />
       <Button fx:id="btnAuthentif" layoutX="492.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnAuthentifAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #008060;" text="S'authentifier" textFill="WHITE" />

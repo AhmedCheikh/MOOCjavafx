@@ -177,7 +177,7 @@ public class ModifierChapitreController{
     @FXML
     private void btnSupprimerAction(ActionEvent event) throws IOException {
         DAOChapitre dc = new DAOChapitre();
-        List l = dc.findChapitreByTitre("test2");
+        List l = dc.findChapitreByTitre(pnomc);
         Chapitre s = (Chapitre) l.get(0);
         dc.removeChapitre(s);
 

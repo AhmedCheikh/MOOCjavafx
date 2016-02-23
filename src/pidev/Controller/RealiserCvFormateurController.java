@@ -104,7 +104,7 @@ public class RealiserCvFormateurController implements Initializable {
         if (selectedFile != null) {
             String path = selectedFile.getAbsolutePath();
             setimgProfil(path);
-            pnImgPro.setStyle("-fx-background-image:url('/"+path+"');-fx-background-position: center center; -fx-background-repeat:stretch;-fx-background-size: 150 150; -fx-effect: dropshadow(three-pass-box, #FFDA8C, 30, 0.5, 0, 0);");                 
+            pnImgPro.setStyle("-fx-background-image:url('"+path+"');-fx-background-position: center center; -fx-background-repeat:stretch;-fx-background-size: 100 100; -fx-effect: dropshadow(three-pass-box, #FFDA8C, 30, 0.5, 0, 0);");
         } else {
             System.out.println("File Invalide");
         }
@@ -135,13 +135,13 @@ public class RealiserCvFormateurController implements Initializable {
         PdfPHeaderCell pdfhcell = new PdfPHeaderCell();
         pdfhcell.addElement(new Paragraph("Ma Formation"));
         cell1.addHeader(pdfhcell);
-        cell1.addElement(new Paragraph("Ma Formation: "+txtFormation.getText()));
+        cell1.addElement(new Paragraph("Ma Formation: " + txtFormation.getText()));
 
         PdfPCell cell2 = new PdfPCell();
         PdfPHeaderCell pdfhcell2 = new PdfPHeaderCell();
         pdfhcell.addElement(new Paragraph("Mon Expérience: "));
         cell1.addHeader(pdfhcell2);
-        cell2.addElement(new Paragraph("Mon Expérience: "+txtExpPro.getText()));
+        cell2.addElement(new Paragraph("Mon Expérience: " + txtExpPro.getText()));
 
         table.addCell(cell1);
         table.addCell(cell2);
@@ -157,11 +157,11 @@ public class RealiserCvFormateurController implements Initializable {
     @FXML
     private void btnCrerCvAction(ActionEvent event) throws DocumentException, BadElementException, IOException {
         CreerPdf();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION); 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Création CV");
-         alert.setHeaderText(null);
-         alert.setContentText("Votre Cv a été créer avec sucès");
-         alert.showAndWait();
+        alert.setHeaderText(null);
+        alert.setContentText("Votre Cv a été créer avec sucès");
+        alert.showAndWait();
     }
 
     @FXML
@@ -179,7 +179,8 @@ public class RealiserCvFormateurController implements Initializable {
 
     @FXML
     private void btnexitAction(ActionEvent event) {
-
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

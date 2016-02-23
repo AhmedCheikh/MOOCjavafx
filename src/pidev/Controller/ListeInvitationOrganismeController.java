@@ -143,7 +143,8 @@ public class ListeInvitationOrganismeController implements Initializable {
 
     @FXML
     private void btnexitAction(ActionEvent event) {
-
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

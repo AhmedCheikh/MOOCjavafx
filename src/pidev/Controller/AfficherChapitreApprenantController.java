@@ -65,7 +65,7 @@ public class AfficherChapitreApprenantController implements Initializable {
     @FXML
     private Button btnback;
     public Chapitre ch;
-    String nameCh = "Introduction";
+    public static String nameCh ;
 
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
@@ -77,6 +77,7 @@ public class AfficherChapitreApprenantController implements Initializable {
         DAOCours d= new DAOCours() ;
         String a=d.findTitreCoursById(ch.getIdCours());
         hpCours1.setText(a);
+        nameCh=ch.getTitre();
         this.ch = ch;
         
     }

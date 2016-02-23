@@ -79,7 +79,7 @@ public class InscrireFormateurController implements Initializable {
     @FXML
     private Pane paneImg2;
     Alert alert = new Alert(Alert.AlertType.WARNING);
-    public static File im = new File("C:\\Users\\Ahmed\\Desktop\\MOOC_3A2\\MOOC_3A2\\src\\pidev\\avatar\\defaut.jpg");
+    public static File im = new File("C:\\Users\\akoubi\\Documents\\NetBeansProjects\\MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e\\src\\pidev\\gui\\img\\defaut.jpg");
 
     public static String AvatarDefault = "defaut.jpg";
 
@@ -276,7 +276,8 @@ public class InscrireFormateurController implements Initializable {
 
     @FXML
     public void btnexitAction(ActionEvent event) {
-    
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

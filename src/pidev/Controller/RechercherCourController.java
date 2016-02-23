@@ -133,7 +133,7 @@ public class RechercherCourController implements Initializable {
             public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
                 Cours cours=tableCours.getSelectionModel().getSelectedItem();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/ConsulterCour.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
@@ -144,7 +144,7 @@ public class RechercherCourController implements Initializable {
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Cours");
-                AffichageCoursController pac  = loader.getController();
+                ConsulterCoursController pac  = loader.getController();
                 pac.setInfo(cours);
                 stage.show();
             }} );

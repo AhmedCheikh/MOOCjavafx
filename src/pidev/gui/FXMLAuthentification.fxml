@@ -48,7 +48,7 @@
       </ImageView>
       <TextField fx:id="login" layoutX="217.0" layoutY="248.0" prefHeight="25.0" prefWidth="229.0" promptText="Votre login" style="-fx-background-color: #FFEFB6;" />
       <PasswordField fx:id="password" layoutX="217.0" layoutY="299.0" prefHeight="25.0" prefWidth="229.0" promptText="Votre mot de passe" style="-fx-background-color: #FFEFB6;" />
-      <Hyperlink layoutX="162.0" layoutY="419.0" prefHeight="23.0" prefWidth="133.0" text="Changer mot de passe" />
+      <Hyperlink fx:id="idcontact" layoutX="162.0" layoutY="419.0" onAction="#contactAction" prefHeight="23.0" prefWidth="133.0" text="Contactez nous" />
       <Hyperlink fx:id="pwd" layoutX="371.0" layoutY="419.0" onAction="#pwdAction" prefHeight="23.0" prefWidth="121.0" text="Mot de passe oublié" />
       <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="146.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
          <image>

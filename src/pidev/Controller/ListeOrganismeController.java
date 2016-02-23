@@ -48,7 +48,7 @@ public class ListeOrganismeController implements Initializable {
     private TableColumn<Organisme, String> tcAdresse;
     @FXML
     private TableColumn<Organisme, String> tctelephone;
-    
+
     @FXML
     private TextField txtChercher;
     @FXML
@@ -138,9 +138,10 @@ public class ListeOrganismeController implements Initializable {
 
     @FXML
     private void btnexitAction(ActionEvent event) {
-
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
-
+    
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
         Formateur f = new Formateur(lblCinFrm.getText());

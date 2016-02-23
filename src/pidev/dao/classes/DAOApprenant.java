@@ -83,16 +83,15 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getLogin());
             pst.setString(4, a.getPassword());                                     
-            pst.setBlob(5, new FileInputStream(a.getAvatar()));
+            //pst.setBlob(5, new FileInputStream(a.getAvatar()));
+            pst.setString(5, a.getAvatar());
             pst.setString(6, a.getCin());
             
             pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
     
     @Override

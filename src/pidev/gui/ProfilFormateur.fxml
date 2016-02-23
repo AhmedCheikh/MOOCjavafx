@@ -154,7 +154,7 @@
             </ImageView>
             <ImageView fx:id="imgv" fitHeight="35.0" fitWidth="200.0" layoutX="356.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
          </children></Pane>
-      <Button fx:id="btncours" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="280.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btncoursAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes Cours" textFill="#5b0a0a">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="419.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes Cours" textFill="#5b0a0a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -172,7 +172,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="btnPublierCour" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="325.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnPublierCourAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Publier Cour" textFill="#5b0a0a">
+      <Button fx:id="btnPublierCour" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="467.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnPublierCourAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Publier Cour" textFill="#5b0a0a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -189,7 +189,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button fx:id="btnLstOrganisme" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="372.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnLstOrganismeAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Liste Organisme" textFill="#5b0a0a">
+      <Button fx:id="btnLstOrganisme" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="514.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnLstOrganismeAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Liste Organisme" textFill="#5b0a0a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -206,7 +206,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="420.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Demmande Integration" textFill="#5b0a0a">
+      <Button fx:id="btnDemmandeIntegration" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="372.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnDemmandeIntegrationAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Demmande Integration" textFill="#5b0a0a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -223,7 +223,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button fx:id="btnMesinvitation" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="513.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnMesinvitation" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes invitations" textFill="#5b0a0a">
+      <Button fx:id="btnMesinvitation" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="325.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnMesinvitation" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: ; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes invitations" textFill="#5b0a0a">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -246,27 +246,27 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Text>
-      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/book.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/upload.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="156.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/school.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="158.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="158.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/demmande.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="36.0" layoutX="155.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/invit.png" />
          </image>
@@ -287,14 +287,14 @@
          </font>
       </Label>
       <Pane fx:id="idpaneimg" layoutX="11.0" layoutY="40.0" prefHeight="143.0" prefWidth="149.0" style="-fx-border-color: black;" />
-      <ImageView fitHeight="55.0" fitWidth="56.0" layoutX="25.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="25.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/bulle2.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblnbrInvit" layoutX="44.0" layoutY="471.0" text="1" textFill="WHITE">
+      <Label fx:id="lblnbrInvit" layoutX="39.0" layoutY="288.0" textFill="WHITE">
          <font>
-            <Font name="Times New Roman Bold" size="23.0" />
+            <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
    </children>

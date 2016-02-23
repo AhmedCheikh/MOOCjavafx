@@ -86,7 +86,7 @@ public class AfficheListCoursSuivisController implements Initializable {
             
             while(rs.next()){
                
-                data.add(new CoursSuivie(rs.getInt("idCoursuivi"),rs.getString("date_debut"), rs.getString("appreciation")));
+//                data.add(new CoursSuivie(rs.getInt("idCoursuivi"),rs.getString("date_debut"), rs.getString("appreciation")));
                 
             }
         

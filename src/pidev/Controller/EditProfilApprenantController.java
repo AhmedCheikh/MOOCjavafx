@@ -9,6 +9,9 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -32,6 +35,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static jdk.nashorn.internal.objects.NativeRegExp.source;
+import static pidev.Controller.EditProfilFormateurController.url;
 import pidev.dao.classes.DAOApprenant;
 import pidev.entities.Apprenant;
 
@@ -173,9 +178,14 @@ public class EditProfilApprenantController implements Initializable {
         if( test == 4 ){
             DAOApprenant da = new DAOApprenant();
             if(file != null){
-                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), file , txtLogin.getText(), txtPassword.getText());
+                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), file.getName() , txtLogin.getText(), txtPassword.getText());
                 da.update(newApprenant , apprenant.getCin());
                 apprenant = newApprenant;
+                String url;
+                url = "C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master/src/pidev/gui/img/"+ file.getName();
+                Path des = Paths.get(url);
+                Path source = Paths.get(file.getAbsolutePath());
+                Files.copy(source , des);
             } else {
                 newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), txtLogin.getText(), txtPassword.getText());
                 da.updateWithoutAvatarChange(newApprenant , apprenant.getCin());
@@ -255,15 +265,12 @@ public class EditProfilApprenantController implements Initializable {
 
         file = fileChooser.showOpenDialog(null);
         if(file != null){
-            er6.setText(file.getAbsolutePath());
+            er6.setText(file.getName());
         }
         
         
  
                 
     }
-    
-    
 
-    
 }

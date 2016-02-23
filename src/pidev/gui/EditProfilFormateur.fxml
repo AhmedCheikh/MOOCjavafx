@@ -40,23 +40,48 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <ImageView fitHeight="60.0" fitWidth="86.0" layoutX="446.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/editer.gif" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
+      <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </Button>
-      <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
+      <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </Button>
       <GridPane layoutX="89.0" layoutY="160.0" prefHeight="317.0" prefWidth="624.0">
          <children>
@@ -179,5 +204,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
+      <ImageView fitHeight="89.0" fitWidth="184.0" layoutX="277.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/moocLog3.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
