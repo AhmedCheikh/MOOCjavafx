@@ -34,7 +34,13 @@ import pidev.entities.Organisme;
 
 
 public class ControllerAthentification implements Initializable {
-public static String log;
+ public static ControllerAthentification c ;
+    public static String connection;
+    private MyBrowser myBrowser;
+    private Scene scene;
+    Stage browserStage;
+    Stage stage;
+    public static String log;
     @FXML
     private Label message;
     @FXML
@@ -48,10 +54,18 @@ public static String log;
     private String info;
     @FXML 
     private Hyperlink idcontact ;
+    public Stage getStage(){
+        return browserStage;
+    }
    @FXML
    private void btnfbAction(ActionEvent event)
    {
-       
+       myBrowser = new MyBrowser();
+        scene = new Scene(myBrowser, 640, 480);
+        browserStage = new Stage();
+        browserStage.setScene(scene);
+        browserStage.show();
+        connection = "FB";
 }
    
     @FXML
@@ -242,7 +256,7 @@ login.setEffect(shadow);
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-      
+      c = this;
     }    
    
 }
