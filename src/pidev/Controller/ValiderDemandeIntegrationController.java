@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pidev.entities.Comite;
 
 /**
  * FXML Controller class
@@ -27,7 +28,8 @@ import javafx.stage.Stage;
  * @author WiKi
  */
 public class ValiderDemandeIntegrationController implements Initializable {
-
+ 
+    private Comite comite ; 
     /**
      * Initializes the controller class.
      */
@@ -35,6 +37,9 @@ public class ValiderDemandeIntegrationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }  
+    public void setComite(Comite comite) {
+        this.comite = comite;
+    }
     
      @FXML
     private void btnexitAction(ActionEvent event) throws IOException {
@@ -75,6 +80,8 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Comite");
+        ProfilComiteController pcc = loader.getController();
+        pcc.setComite(comite);
 
         stage.show();
     }
