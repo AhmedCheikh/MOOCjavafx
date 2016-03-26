@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pidev.entities.Comite;
 
 /**
  * FXML Controller class
@@ -27,6 +28,12 @@ import javafx.stage.Stage;
  * @author WiKi
  */
 public class ValiderQuizController implements Initializable {
+    
+    private Comite comite ; 
+    
+    public void setComite(Comite comite) {
+        this.comite = comite;
+    }
 
     /**
      * Initializes the controller class.
@@ -64,7 +71,7 @@ if (result.get() == ButtonType.OK){
         
     }
 
-    @FXML
+@FXML
     private void btnbackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
@@ -75,6 +82,8 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Comite");
+        ProfilComiteController pcc = loader.getController();
+        pcc.setComite(comite);
 
         stage.show();
     }

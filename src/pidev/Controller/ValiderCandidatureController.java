@@ -39,6 +39,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOComite;
 import pidev.dao.interfaces.IDAOComite;
+import pidev.entities.Comite;
 import pidev.entities.Formateur;
 import pidev.techniques.DataSource;
 
@@ -50,6 +51,7 @@ import pidev.techniques.DataSource;
 public class ValiderCandidatureController implements Initializable {
     Connection connection ; 
     private ObservableList<Formateur> data ; 
+    public ObservableList<Formateur> data2;
     @FXML
     private Button btnback;
     @FXML
@@ -67,6 +69,7 @@ public class ValiderCandidatureController implements Initializable {
     @FXML
     private TableColumn Adresse;
     @FXML private Label labelNom, labelPrenom, labelEmail, labelAdresse, labelMsg ; 
+    private Comite comite ; 
     
     
     
@@ -76,6 +79,10 @@ public class ValiderCandidatureController implements Initializable {
      */
      public ValiderCandidatureController() {
         connection =(DataSource.getInstance()).getConnection();
+    }
+     
+     public void setComite(Comite comite) {
+        this.comite = comite;
     }
      
      private void showFormateurDetails(Formateur formateur) {
@@ -114,8 +121,18 @@ public class ValiderCandidatureController implements Initializable {
         @Override
         public void handle(ActionEvent event) {
         IDAOComite comiteDAO = new DAOComite();
-        comiteDAO.validerCandidature(newValue); 
-        table.refresh();
+        comiteDAO.validerCandidature(newValue);
+        data2 = FXCollections.observableArrayList();
+        table.getItems().remove(newValue);
+        List<Formateur> listFormateur2 = comiteDAO.findAllFormateur() ; 
+        
+        for (Formateur formateur : listFormateur2) {
+            data2.add(formateur) ; 
+        }
+        
+        Nom.setCellValueFactory(new PropertyValueFactory("nom"));
+        Prenom.setCellValueFactory(new PropertyValueFactory("prenom"));
+        table.setItems(data2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validation");
         alert.setHeaderText(null);
@@ -217,6 +234,7 @@ if (result.get() == ButtonType.OK){
         
     }
 
+
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -228,6 +246,8 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Comite");
+        ProfilComiteController pcc = loader.getController();
+        pcc.setComite(comite);
 
         stage.show();
     }
