@@ -137,14 +137,16 @@ Connection connection;
     }
 
     @Override
-    public Cours findCoursByFormateur(String cinFormateur) {
-       Cours cours = new Cours();
+    public List<Cours> findCoursByFormateur(String cinFormateur) {
+        List<Cours> listecours = new ArrayList<>();
+       
         String requete = "select * from cours where cinformateur=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, cinFormateur);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
+                Cours cours = new Cours();
                 cours.setIdCours(resultat.getInt(1));
                 cours.setNomCours(resultat.getString(2));
                 cours.setCinFormateur(resultat.getString(3));
@@ -153,9 +155,9 @@ Connection connection;
                
                 cours.setDifficulte(resultat.getString(7));
                 cours.setObjectif(resultat.getString(8));
-                
+                listecours.add(cours);
             }
-            return cours;
+            return listecours;
 
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche du cours " + ex.getMessage());
