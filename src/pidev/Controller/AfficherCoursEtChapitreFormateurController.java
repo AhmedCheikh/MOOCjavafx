@@ -216,7 +216,7 @@ if (result.get() == ButtonType.OK){
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Chapitre");
                 AfficherChapitreFormateurController pac  = loader.getController();
-                pac.setInfo(cours);
+//                pac.setInfo(cours);
                 stage.show();
             }} );
   
