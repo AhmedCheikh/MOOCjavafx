@@ -111,7 +111,7 @@ public class DAOComite implements IDAOComite{
     @Override
     public void validerCours(Cours c) {
         
-        String requete = "update cours set etat=3 where idcours=?";
+        String requete = "update cours set etat=2 where idcours=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1,c.getIdCours() );

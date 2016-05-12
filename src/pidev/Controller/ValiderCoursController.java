@@ -41,6 +41,7 @@ import pidev.dao.classes.DAOComite;
 import pidev.dao.classes.DAOCours;
 import pidev.dao.interfaces.IDAOComite;
 import pidev.dao.interfaces.IDaoCours;
+import pidev.entities.Comite;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
 import pidev.techniques.DataSource;
@@ -52,6 +53,7 @@ import pidev.techniques.DataSource;
  */
 public class ValiderCoursController implements Initializable {
     Connection connection ; 
+    private Comite comite; 
     @FXML private Button btnback;
     @FXML private Button btnexit;
     @FXML private Button approuver;
@@ -75,6 +77,10 @@ public class ValiderCoursController implements Initializable {
         labelDifficulte.setText(cours.getDifficulte());
         labelObjectif.setText(cours.getObjectif());
         
+    }
+    
+    public void setComite(Comite comite) {
+        this.comite = comite;
     }
 
     
@@ -160,7 +166,10 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Profil Comite");
+        ProfilComiteController pcc = loader.getController();
+        pcc.setComite(comite);
 
         stage.show();
     }
+    
 }
