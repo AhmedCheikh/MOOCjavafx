@@ -6,22 +6,17 @@
 package pidev.dao.classes;
 
 import java.util.List;
-import pidev.dao.interfaces.IDAOReponse;
+
 import pidev.entities.Reponse;
-import java.sql.Blob;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pidev.dao.interfaces.IDAOChapitre;
-import pidev.dao.interfaces.IDAOQuestion;
+
 import pidev.dao.interfaces.IDAOReponse;
-import pidev.entities.Chapitre;
-import pidev.entities.Cours;
-import pidev.entities.Question;
+
 import pidev.techniques.DataSource;
 
 /**
@@ -75,10 +70,9 @@ public class DAOReponse implements IDAOReponse{
     @Override
     public void updateReponse(int id,Reponse r) {
 
-        String requete = "update reponse set etat=?, rep=? where id=?";
+        String requete = "update reponse set etat=?, rep=? where id= '"+id+"'";
         try {
             PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setInt(3, id);
             pst.setInt(1, r.getEtat());
             pst.setString(2, r.getReponse());
             pst.executeUpdate();

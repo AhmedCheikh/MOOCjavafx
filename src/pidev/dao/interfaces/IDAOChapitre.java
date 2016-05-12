@@ -10,21 +10,24 @@ import pidev.entities.Quiz;
  * @author Gumus
  */
 public interface IDAOChapitre {
-    
+
     void addChapitre(Chapitre c);
 
     void removeChapitre(Chapitre c);
 
-    void updateChapitre(Chapitre c);
+    void updateChapitre(Chapitre c,int id);
 
-    List<Chapitre> findChapitreByEtat(int id);
-
-    List<Chapitre> findChapitreByTitre(String titre);
+    List<Chapitre> findChapitre();
 
     List<Chapitre> findChapitreById(int id);
-             
+
     int FindIdQuizbychapitre(String titre);
-    String FindVideobychapitre(String titre);
-    void FindPresentationbychapitre(String titre);
-    Chapitre findChapitreByIdCours(int id);
+    int FindIdbychapitre(String titre);
+
+    String FindVideobychapitre(int id);
+
+    void FindPresentationbychapitre(int id);
+
+    boolean ChercherTitre(String titre);
+
 }

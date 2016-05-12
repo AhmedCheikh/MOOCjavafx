@@ -47,15 +47,14 @@ public class DAOChapitre implements IDAOChapitre {
 
             try {
                 isDoc = new FileInputStream(c.getPresentation());
-                String req = "insert into chapitre (idcours,idQuiz,titre,presentation,objectif,etat,video) values (?,?,?,?,?,?,?)";
+                String req = "insert into chapitre (idcours,idQuiz,titre,presentation,objectif,video) values (?,?,?,?,?,?)";
                 pst = connection.prepareStatement(req);
                 pst.setInt(1, c.getIdCours());
                 pst.setInt(2, c.getIdQuiz());
                 pst.setString(3, c.getTitre());
                 pst.setBlob(4, isDoc);
                 pst.setString(5, c.getObjectif());
-                pst.setInt(6, c.getEtat());
-                pst.setString(7, c.getVideo());
+                pst.setString(6, c.getVideo());
 
                 pst.executeUpdate();
                 System.out.println("Ajout effectuée avec succès");
@@ -82,23 +81,20 @@ public class DAOChapitre implements IDAOChapitre {
         }
     }
 
-    public void updateChapitre(Chapitre c) {
+    public void updateChapitre(Chapitre c ,int id) {
 
-        String requete = "update chapitre set idcours=?, idquiz=?, titre=? ,presentation=? ,objectif=?, etat=?, video=?  where id=?";
+        String requete = "update chapitre set idquiz=?, titre=? ,presentation=? ,objectif=?, video=?  where id= '" + id + "'";
         try {
             InputStream isDoc;
 
             try {
                 isDoc = new FileInputStream(c.getPresentation());
-                PreparedStatement pst = connection.prepareStatement(requete);
-                pst.setInt(8, c.getIdChapitre());
-                pst.setInt(1, c.getIdCours());
-                pst.setInt(2, c.getIdQuiz());
-                pst.setString(3, c.getTitre());
-                pst.setBlob(4, isDoc);
-                pst.setString(5, c.getObjectif());
-                pst.setInt(6, c.getEtat());
-                pst.setString(7, c.getVideo());
+                PreparedStatement pst = connection.prepareStatement(requete);  
+                pst.setInt(1, c.getIdQuiz());
+                pst.setString(2, c.getTitre());
+                pst.setBlob(3, isDoc);
+                pst.setString(4, c.getObjectif());
+                pst.setString(5, c.getVideo());
 
                 pst.executeUpdate();
                 System.out.println("Mise à jour effectuée avec succès");
@@ -109,10 +105,15 @@ public class DAOChapitre implements IDAOChapitre {
             ex.printStackTrace();
         }
     }
+    
+    
+       
+
+
 
     @Override
-    public List<Chapitre> findChapitreByEtat(int etat) {
-        String req = "select * from chapitre where etat= '" + etat + "'";
+    public List<Chapitre> findChapitre() {
+        String req = "select * from chapitre";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {
@@ -129,53 +130,12 @@ public class DAOChapitre implements IDAOChapitre {
                 String filename = rs.getString(4);
                 Blob blob = rs.getBlob(6);
                 InputStream is = blob.getBinaryStream();
-                FileOutputStream fos = new FileOutputStream("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf");
+                FileOutputStream fos = new FileOutputStream("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf");
                 int b = 0;
                 while ((b = is.read()) != -1) {
                     fos.write(b);
                 }
-                c.setPresentation(new File("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
-
-                c.setObjectif(rs.getString(6));
-                c.setVideo(rs.getString(8));
-
-                listChapitres.add(c);
-            }
-        } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche " + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listChapitres;
-    }
-
-    @Override
-    public List<Chapitre> findChapitreByTitre(String titre) {
-        String req = "select * from chapitre where titre= '" + titre + "'";
-        List<Chapitre> listChapitres = new ArrayList<Chapitre>();
-
-        try {
-            pst = connection.prepareStatement(req);
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-
-                Chapitre c = new Chapitre();
-                c.setIdCours(rs.getInt(2));
-                c.setIdChapitre(rs.getInt(1));
-                c.setIdQuiz(rs.getInt(3));
-                c.setTitre(rs.getString(4));
-                String filename = rs.getString(4);
-                Blob blob = rs.getBlob(6);
-                InputStream is = blob.getBinaryStream();
-                FileOutputStream fos = new FileOutputStream("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf");
-                int b = 0;
-                while ((b = is.read()) != -1) {
-                    fos.write(b);
-                }
-                c.setPresentation(new File("E:\\xampp\\htdocs\\Tests\\MOOC_3A2\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
+                c.setPresentation(new File("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
 
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
@@ -194,8 +154,7 @@ public class DAOChapitre implements IDAOChapitre {
 
     @Override
     public List<Chapitre> findChapitreById(int id) {
-        String req = "select * from chapitre where id = " + id;
-
+        String req = "select * from chapitre where id= '" + id+ "'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
 
         try {
@@ -204,22 +163,64 @@ public class DAOChapitre implements IDAOChapitre {
 
             while (rs.next()) {
 
-                //Chapitre c = new Chapitre(rs.getInt("idcours"), rs.getInt("idquiz"), rs.getInt("idquiz"), rs.getString("titre"), rs.getBlob("presentation"), rs.getString("objectif"), rs.getInt("etat"), rs.getBlob("video"));
                 Chapitre c = new Chapitre();
+                c.setIdCours(rs.getInt(2));
+                c.setIdChapitre(rs.getInt(1));
+                c.setIdQuiz(rs.getInt(3));
+                c.setTitre(rs.getString(4));
+                String filename = rs.getString(4);
+                Blob blob = rs.getBlob(6);
+                InputStream is = blob.getBinaryStream();
+                FileOutputStream fos = new FileOutputStream("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf");
+                int b = 0;
+                while ((b = is.read()) != -1) {
+                    fos.write(b);
+                }
+                c.setPresentation(new File("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
+
+                c.setObjectif(rs.getString(6));
+                c.setVideo(rs.getString(8));
+
                 listChapitres.add(c);
             }
-
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listChapitres;
     }
+
+//    @Override
+//    public List<Chapitre> findChapitreById(int id) {
+//        String req = "select * from chapitre where id = " + id;
+//
+//        List<Chapitre> listChapitres = new ArrayList<Chapitre>();
+//
+//        try {
+//            pst = connection.prepareStatement(req);
+//            rs = pst.executeQuery();
+//
+//            while (rs.next()) {
+//
+//                //Chapitre c = new Chapitre(rs.getInt("idcours"), rs.getInt("idquiz"), rs.getInt("idquiz"), rs.getString("titre"), rs.getBlob("presentation"), rs.getString("objectif"), rs.getBlob("video"));
+//                Chapitre c = new Chapitre();
+//                listChapitres.add(c);
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.out.println("erreur lors de la recherche " + ex.getMessage());
+//        }
+//        return listChapitres;
+//    }
 
     @Override
     public int FindIdQuizbychapitre(String titre
     ) {
         {
-            String req = "select * from chapitre where etat=1 and titre= '" + titre + "'";
+            String req = "select * from chapitre where titre= '" + titre + "'";
             Quiz Quiz = new Quiz();
 
             try {
@@ -228,7 +229,7 @@ public class DAOChapitre implements IDAOChapitre {
 
                 while (rs.next()) {
 
-                    return rs.getInt(3);
+                    return rs.getInt(2);
                 }
 
             } catch (SQLException ex) {
@@ -238,10 +239,9 @@ public class DAOChapitre implements IDAOChapitre {
         }
     }
 
-    public String FindVideobychapitre(String titre
-    ) {
+    public String FindVideobychapitre(int id ) {
         {
-            String req = "select * from chapitre where etat=1 and titre= '" + titre + "'";
+            String req = "select * from chapitre where id= '" + id + "'";
             Quiz Quiz = new Quiz();
 
             try {
@@ -260,15 +260,15 @@ public class DAOChapitre implements IDAOChapitre {
         }
     }
 
-    public void FindPresentationbychapitre(String titre
+    public void FindPresentationbychapitre(int id
     ) {
         {
-            String req = "select presentation from chapitre where etat=1 and titre= '" + titre + "'";
+            String req = "select presentation from chapitre where id= '" + id + "'";
             try {
                 PreparedStatement ps = connection.prepareStatement(req);
                 ResultSet resultat = ps.executeQuery();
                 while (resultat.next()) {
-                    File p = new File("E:\\Presentation" + titre + ".pdf");
+                    File p = new File("C:\\Presentation.pdf");
                     try (FileOutputStream fos = new FileOutputStream(p)) {
                         byte[] buffer = new byte[1];
                         InputStream is = resultat.getBinaryStream(1);
@@ -288,30 +288,47 @@ public class DAOChapitre implements IDAOChapitre {
 
         }
     }
-
-    @Override
-    public Chapitre findChapitreByIdCours(int id) {
-       Chapitre c = new Chapitre();
-        String requete = "select * from chapitre where idcours=?";
+    
+    
+       @Override
+    public boolean ChercherTitre(String titre) {
+       boolean res = false;
         try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, id);
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next()) {
-              c.setIdChapitre(rs.getInt(1));
-                c.setIdCours(rs.getInt(2));
+            String req = "select * from chapitre where titre =?";
+            pst=connection.prepareStatement(req);
+            pst.setString(1, titre);
+            rs = pst.executeQuery();
+            if(rs.next())
+            {
+                res = true;
                 
-                c.setIdQuiz(rs.getInt(3));
-                c.setTitre(rs.getString(4));
-                 c.setObjectif(rs.getString(6));
-                c.setVideo(rs.getString(8));
             }
-            return c;
-
+            
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche du chapitre " + ex.getMessage());
-            return null;
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
     }
 
-}
+    @Override
+    public int FindIdbychapitre(String titre) {
+         String req = "select * from chapitre where titre= '" + titre + "'";
+            Quiz Quiz = new Quiz();
+
+            try {
+                pst = connection.prepareStatement(req);
+                rs = pst.executeQuery();
+
+                while (rs.next()) {
+
+                    return rs.getInt(1);
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        }
+    
+
 }

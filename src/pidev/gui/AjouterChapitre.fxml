@@ -52,11 +52,6 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label style="visibility: none;" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
                   <TextArea fx:id="txtAObjectif" prefHeight="200.0" prefWidth="200.0" promptText="les objectifs...." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="btnChoisirVideo" mnemonicParsing="false" onAction="#btnChoisirVideoAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir video ..." GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
@@ -116,6 +111,11 @@
                      </rotationAxis>
                   </Button>
                   <TextField fx:id="lVideo" prefHeight="29.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" translateX="20.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="ou" translateX="10.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

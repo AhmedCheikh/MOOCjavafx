@@ -23,4 +23,6 @@ public interface IDAOQuiz {
 
     int findTypeQuiz(int id);
 
+    boolean ChercherTitre(String titre);
+
 }

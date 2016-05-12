@@ -165,7 +165,7 @@ init(stage);
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Faire Quiz");
                 AfficherQuizChronoController pac  = loader.getController();
-                pac.setPnomc(nom);
+//                pac.setPnomc(nom);
                 stage.show();
    }
 private void Formateur1Action(ActionEvent event) throws IOException  {

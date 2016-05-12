@@ -57,11 +57,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="hpCours" layoutX="59.0" layoutY="60.0" text="Nom Cours" underline="true">
-               <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
-               </font>
-            </Hyperlink>
+         
             <Hyperlink fx:id="hpChapitre" layoutX="159.0" layoutY="80.0" text="Nom chapitre" underline="true">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />

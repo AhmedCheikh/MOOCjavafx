@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.EditerCoursController">
+   <children>
+      <Pane layoutX="-2.0" prefHeight="552.0" prefWidth="767.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
+         <children>
+            <ImageView fitHeight="51.0" fitWidth="765.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/bgmenu.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="217.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editer Cours" textAlignment="CENTER" wrappingWidth="328.09375">
+               <font>
+                  <Font name="Calibri Light Italic" size="40.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnback" layoutX="23.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="39.0" prefWidth="35.0" style="-fx-background-color: transparent;" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/fleche.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnexit" layoutX="702.0" layoutY="-2.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: transparent;" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/deco.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="106.0" fitWidth="300.0" layoutX="249.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/moocimg.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnQuiz" layoutX="444.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnQuizAction" prefHeight="56.0" prefWidth="272.0" style="-fx-background-color: #9999ff;" text="Ajouter Quiz">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.6857142857142857" startX="0.2238095238095238">
+                     <stops>
+                        <Stop color="#460b68" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+            <Button fx:id="btnChapitre" layoutX="96.0" layoutY="196.0" mnemonicParsing="false" onAction="#btnChapitreAction" prefHeight="56.0" prefWidth="243.0" style="-fx-background-color: #9999ff;" text="Ajouter Chapitre">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.6857142857142857" startX="0.2238095238095238">
+                     <stops>
+                        <Stop color="#460b68" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

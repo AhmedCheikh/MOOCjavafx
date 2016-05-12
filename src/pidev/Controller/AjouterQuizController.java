@@ -6,13 +6,21 @@
 package pidev.Controller;
 
 import java.awt.Label;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import pidev.dao.classes.*;
 import pidev.entities.*;
 
@@ -24,96 +32,6 @@ import pidev.entities.*;
 public class AjouterQuizController {
 
     @FXML
-    private TextArea Q1;
-    @FXML
-    private TextArea R11;
-    @FXML
-    private TextArea R12;
-    @FXML
-    private TextArea R13;
-    @FXML
-    private TextArea R14;
-    @FXML
-    private TextArea Q2;
-    @FXML
-    private CheckBox C11;
-    @FXML
-    private CheckBox C12;
-    @FXML
-    private CheckBox C14;
-    @FXML
-    private CheckBox C13;
-    @FXML
-    private CheckBox C23;
-    @FXML
-    private CheckBox C24;
-    @FXML
-    private CheckBox C22;
-    @FXML
-    private CheckBox C21;
-    @FXML
-    private TextArea R24;
-    @FXML
-    private TextArea R23;
-    @FXML
-    private TextArea R22;
-    @FXML
-    private TextArea R21;
-    @FXML
-    private TextArea R31;
-    @FXML
-    private TextArea R32;
-    @FXML
-    private TextArea R33;
-    @FXML
-    private TextArea R34;
-    @FXML
-    private CheckBox C31;
-    @FXML
-    private CheckBox C32;
-    @FXML
-    private CheckBox C34;
-    @FXML
-    private CheckBox C33;
-    @FXML
-    private TextArea Q3;
-    @FXML
-    private TextArea Q4;
-    @FXML
-    private CheckBox C43;
-    @FXML
-    private CheckBox C44;
-    @FXML
-    private CheckBox C42;
-    @FXML
-    private CheckBox C41;
-    @FXML
-    private TextArea R44;
-    @FXML
-    private TextArea R43;
-    @FXML
-    private TextArea R42;
-    @FXML
-    private TextArea R41;
-    @FXML
-    private TextArea Q5;
-    @FXML
-    private CheckBox C52;
-    @FXML
-    private TextArea R54;
-    @FXML
-    private TextArea R53;
-    @FXML
-    private TextArea R52;
-    @FXML
-    private TextArea R51;
-    @FXML
-    private CheckBox C51;
-    @FXML
-    private CheckBox C53;
-    @FXML
-    private CheckBox C54;
-    @FXML
     private TextField txtTitre;
     @FXML
     private RadioButton btrChronometre;
@@ -121,73 +39,61 @@ public class AjouterQuizController {
     private RadioButton btrNonChronometre;
     @FXML
     private Button btnAjouterQuizAction;
-//    @FXML
-//    private Label er1;
+    @FXML
+    private Button btnexit;
+    @FXML
+    private Button btnback;
 
     @FXML
-    private javafx.scene.control.Label er1;
+    private javafx.scene.control.Label lt;
     @FXML
-    private javafx.scene.control.Label ltitre;
-        int etatquiz = 0;
-    @FXML
-    private void btnAjouterQuizAction(ActionEvent event) {
+    private Label ltitre;
+    int etatquiz = 0;
 
-       if (!btrChronometre.isSelected() || !btrNonChronometre.isSelected()) {
-            er1.setText("Vous devez choisir le type de quiz");
-       } else {
-            er1.setText(" ");
-        
-        if (btrChronometre.isSelected()) {
-            etatquiz = 1;
-        } else if (btrNonChronometre.isSelected()) {
-            etatquiz = 0;
+    @FXML
+    private void btnAjouterQuizAction(ActionEvent event) throws IOException {
+
+        int test = 0;
+        DAOQuiz dtest = new DAOQuiz();
+
+        if (txtTitre.getText().isEmpty()) {
+            lt.setText("Ce champ est obligatoire");
+            test -= 1;
+        } else if (true == dtest.ChercherTitre(txtTitre.getText())) {
+            lt.setText("Titre de quiz existe déja");
+            test -= 1;
+        } else {
+            lt.setText(" ");
+            test += 1;
         }
 
-        Quiz q = new Quiz(txtTitre.getText(), etatquiz, 0);
-        DAOQuiz daoq1 = new DAOQuiz();
-        daoq1.addQuiz(q);
-        int r = 0;
-        int c;
-        int id = daoq1.findQuizByTitreSelonId(txtTitre.getText());
-        int etat = 0;
-        TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
-        TextArea[] tfR = {
-            R11, R12, R13, R14,
-            R21, R22, R23, R24,
-            R31, R32, R33, R34,
-            R41, R42, R43, R44,
-            R51, R52, R53, R54};
-        CheckBox[] tfC = {
-            C11, C12, C13, C14,
-            C21, C22, C23, C24,
-            C31, C32, C33, C34,
-            C41, C42, C43, C44,
-            C51, C52, C53, C54};
-
-        for (int i = 0; i < 5; i++) {
-            Question qe = new Question(tfQ[i].getText(), id);
-            DAOQuestion daoqe = new DAOQuestion();
-            daoqe.addQuestion(qe);
-            
-            int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
-
-            for (int j = 0; j < 4; j++) {
-
-                if (tfC[r].isSelected()) {
-                    etat = 1;
-                } else {
-                    etat = 0;
-                }
-
-                Reponse r11 = new Reponse(etat, tfR[r].getText(),Qid);
-                r++;
-                DAOReponse daor11 = new DAOReponse();
-                daor11.addReponse(r11);
-
+        if (test == 1) {
+            if (btrChronometre.isSelected()) {
+                etatquiz = 1;
+            } else if (btrNonChronometre.isSelected()) {
+                etatquiz = 0;
             }
 
+            Quiz q = new Quiz(txtTitre.getText(), etatquiz);
+            DAOQuiz dq = new DAOQuiz();
+            dq.addQuiz(q);
+            System.out.println(""+q.getIdQuiz());
+            ((Node) (event.getSource())).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/AjouterQuestion.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            AjouterQuestionController pac = loader.getController();
+            System.out.println("QQQQQQQQ"+q);
+            pac.setQuiz(q);
+            stage.show();
+            
+            
+            
+
         }
-       }
     }
 
     @FXML
@@ -196,5 +102,33 @@ public class AjouterQuizController {
 
     @FXML
     private void btrNonChronometreAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnexitAction(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        AjouterChapitreController pac = loader.getController();
+
+        stage.show();
+    }
+
+    @FXML
+    private void btnbackAction(ActionEvent event) throws IOException {
+    ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        AjouterChapitreController pac = loader.getController();
+
+        stage.show();
     }
 }

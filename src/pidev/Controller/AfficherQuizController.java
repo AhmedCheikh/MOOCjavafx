@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,17 +41,17 @@ import pidev.entities.Reponse;
 public class AfficherQuizController implements Initializable {
 
     @FXML
-    private TextArea Q1;
+    private Label Q1;
     @FXML
-    private TextArea R11;
+    private Label R11;
     @FXML
-    private TextArea R12;
+    private Label R12;
     @FXML
-    private TextArea R13;
+    private Label R13;
     @FXML
-    private TextArea R14;
+    private Label R14;
     @FXML
-    private TextArea Q2;
+    private Label Q2;
     @FXML
     private CheckBox C11;
     @FXML
@@ -68,21 +69,21 @@ public class AfficherQuizController implements Initializable {
     @FXML
     private CheckBox C21;
     @FXML
-    private TextArea R24;
+    private Label R24;
     @FXML
-    private TextArea R23;
+    private Label R23;
     @FXML
-    private TextArea R22;
+    private Label R22;
     @FXML
-    private TextArea R21;
+    private Label R21;
     @FXML
-    private TextArea R31;
+    private Label R31;
     @FXML
-    private TextArea R32;
+    private Label R32;
     @FXML
-    private TextArea R33;
+    private Label R33;
     @FXML
-    private TextArea R34;
+    private Label R34;
     @FXML
     private CheckBox C31;
     @FXML
@@ -92,9 +93,9 @@ public class AfficherQuizController implements Initializable {
     @FXML
     private CheckBox C33;
     @FXML
-    private TextArea Q3;
+    private Label Q3;
     @FXML
-    private TextArea Q4;
+    private Label Q4;
     @FXML
     private CheckBox C43;
     @FXML
@@ -104,25 +105,25 @@ public class AfficherQuizController implements Initializable {
     @FXML
     private CheckBox C41;
     @FXML
-    private TextArea R44;
+    private Label R44;
     @FXML
-    private TextArea R43;
+    private Label R43;
     @FXML
-    private TextArea R42;
+    private Label R42;
     @FXML
-    private TextArea R41;
+    private Label R41;
     @FXML
-    private TextArea Q5;
+    private Label Q5;
     @FXML
     private CheckBox C52;
     @FXML
-    private TextArea R54;
+    private Label R54;
     @FXML
-    private TextArea R53;
+    private Label R53;
     @FXML
-    private TextArea R52;
+    private Label R52;
     @FXML
-    private TextArea R51;
+    private Label R51;
     @FXML
     private CheckBox C51;
     @FXML
@@ -135,14 +136,14 @@ public class AfficherQuizController implements Initializable {
     private Label Note;
     @FXML
     private Label ltitre;
-    public int note;
+    public double note;
     int f = 0;
-    String pnomc;
+    int pnomc;
 
-    public void setPnomc(String pnomc) {
+    public void setPnomc(int pnomc) {
         this.pnomc = pnomc;
-         TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
-        TextArea[] tfR = {
+        Label[] tfQ = {Q1, Q2, Q3, Q4, Q5};
+        Label[] tfR = {
             R11, R12, R13, R14,
             R21, R22, R23, R24,
             R31, R32, R33, R34,
@@ -154,21 +155,21 @@ public class AfficherQuizController implements Initializable {
             C31, C32, C33, C34,
             C41, C42, C43, C44,
             C51, C52, C53, C54};
-        DAOChapitre daoc1 = new DAOChapitre();
-        int q = daoc1.FindIdQuizbychapitre(pnomc);
-        System.out.println(q);
+
         DAOQuiz daoq1 = new DAOQuiz();
-        String t = daoq1.findTitreQuizByTitreSelonId(q);
+        String t = daoq1.findTitreQuizByTitreSelonId(pnomc);
 
         ltitre.setText(t);
 
         DAOQuestion daoqe = new DAOQuestion();
-        List lsq = daoqe.FindIdQuestionbyQuiz(q);
+        List lsq = daoqe.FindIdQuestionbyQuiz(pnomc);
         System.out.println("les questions:" + lsq);
 
         for (int i = 0; i < 5; i++) {
 
-            Question s = (Question) lsq.get(i);
+            
+         int   rand=randomWithRange(0, (lsq.size())-1);
+            Question s = (Question) lsq.get(rand);
             tfQ[i].setText(s.getQuestion());
             int Qid = daoqe.findQuestionSelonId(s);
             System.out.println("l'id de question" + Qid);
@@ -185,26 +186,25 @@ public class AfficherQuizController implements Initializable {
         }
 
     }
-    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//         int etatquiz = 0;
-//        if (btrChronometre.isSelected()) {
-//            etatquiz = 1;
-//        } else if (btrNonChronometre.isSelected()) {
-//            etatquiz = 0;
-//        }
-       
+
+    }
+
+ 
+    int randomWithRange(int min, int max) {
+        int range = (max - min) + 1;
+        return (int) (Math.random() * range) + min;
     }
 
     @FXML
     private void btnValiderQuizAction(ActionEvent event) throws IOException {
-        TextArea[] tfQ = {Q1, Q2, Q3, Q4, Q5};
-        TextArea[] tfR = {
+        Label[] tfQ = {Q1, Q2, Q3, Q4, Q5};
+        Label[] tfR = {
             R11, R12, R13, R14,
             R21, R22, R23, R24,
             R31, R32, R33, R34,
@@ -216,46 +216,42 @@ public class AfficherQuizController implements Initializable {
             C31, C32, C33, C34,
             C41, C42, C43, C44,
             C51, C52, C53, C54};
-             note=0;
+
         for (int i = 0; i < 5; i++) {
             DAOQuestion daoqe = new DAOQuestion();
             int Qid = daoqe.findQuestionSelonId(tfQ[i].getText());
 
+            DAOReponse r = new DAOReponse();
+            List Lr = r.FindIdReponsebyQuestion(Qid);
+
             for (int j = 0; j < 4; j++) {
                 DAOReponse daor = new DAOReponse();
-                int et=daor.findEtatReponse(tfR[j].getText());
-
-                if (tfC[j].isSelected() && et==1) {
-                    note = note + 4;
-                } 
-                else if (tfC[j].isSelected() && et==0){
+                Reponse s = (Reponse) Lr.get(j);
+                int et = s.getEtat();
+                System.out.println(et);
+                if (tfC[j].isSelected() && et == 1) {
+                    note = note + 1;
+                } else if (tfC[j].isSelected() && et == 0) {
                     note = note - 1;
-                }
-                else{
-                    note=note -1;
+                } else {
+                    note = note + 0.5;
                 }
 
+                System.out.println(note);
             }
-            
-       
+
         }
-        //Note.setText("la note"+note);
-        
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/Note.fxml"));
-        AnchorPane frame =loader.load();
+        AnchorPane frame = loader.load();
         Parent p = loader.getRoot();
-        Stage stage =new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(p));
-        NoteController nt  = loader.getController();
+        NoteController nt = loader.getController();
         nt.setNote(note);
         stage.setTitle("Note");
         stage.show();
     }
 
-    }
-
-//       public Timer timer; 
-////     public void gffgfgf(){
-////     timer.schedule(null, null);
-////     }
+}

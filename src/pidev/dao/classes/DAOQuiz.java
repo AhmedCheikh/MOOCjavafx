@@ -14,15 +14,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev.dao.interfaces.IDAOQuiz;
-import pidev.entities.Question;
 import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
 
 /**
  *
- * @author Gumus
+ * @author Nour
  */
-public class DAOQuiz implements IDAOQuiz {
+public class DAOQuiz implements IDAOQuiz{
 
     Connection connection;
     PreparedStatement pst;
@@ -32,15 +31,13 @@ public class DAOQuiz implements IDAOQuiz {
         connection = DataSource.getInstance().getConnection();
     }
 
-    @Override
     public void addQuiz(Quiz q) {
         try {
-            String req = "insert into quiz (titre,type,etat) values (?,?,?)";
+            String req = "insert into quiz (titre,type) values (?,?)";
             pst = connection.prepareStatement(req);
 
             pst.setString(1, q.getTitre());
             pst.setInt(2, q.getType());
-            pst.setInt(3, q.getEtat());
 
             pst.executeUpdate();
             System.out.println("Ajout quiz effectuée avec succès");
@@ -68,14 +65,12 @@ public class DAOQuiz implements IDAOQuiz {
     @Override
     public void updateQuiz(int id, Quiz q) {
 
-        String requete = "update quiz set titre=?, type=? ,etat=? where id=?";
+        String requete = "update quiz set titre=?, type=? where id= '" + id + "'";
         try {
             PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setInt(4, id);
             pst.setString(1, q.getTitre());
             pst.setInt(2, q.getType());
-            pst.setInt(3, q.getEtat());
-            System.out.println(pst);
+           
             pst.executeUpdate();
             System.out.println("Mise à jour Quiz effectuée avec succès");
         } catch (SQLException ex) {
@@ -95,7 +90,7 @@ public class DAOQuiz implements IDAOQuiz {
 
             while (rs.next()) {
 
-                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
+                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"));
 
                 listQuiz.add(q);
             }
@@ -118,7 +113,7 @@ public class DAOQuiz implements IDAOQuiz {
 
             while (rs.next()) {
 
-                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"), rs.getInt("etat"));
+                Quiz q = new Quiz(rs.getInt("id"), rs.getString("titre"), rs.getInt("type"));
 
                 listQuiz.add(q);
             }
@@ -199,4 +194,23 @@ public class DAOQuiz implements IDAOQuiz {
 
     }
 
+    @Override
+    public boolean ChercherTitre(String titre) {
+       boolean res = false;
+        try {
+            String req = "select * from quiz where titre =?";
+            pst=connection.prepareStatement(req);
+            pst.setString(1, titre);
+            rs = pst.executeQuery();
+            if(rs.next())
+            {
+                res = true;
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
 }

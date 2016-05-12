@@ -1,139 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1879.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ModifierQuizController">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1884.0" prefWidth="618.0" style="-fx-border-width: 5px; -fx-border-color: #50468C; -fx-background-color: #E1E6FA;">
-         <children>
-            <TextArea fx:id="Q1" layoutX="46.0" layoutY="87.0" prefHeight="29.0" prefWidth="517.0" />
-            <Label layoutX="17.0" layoutY="64.0" text="Question1" underline="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="33.0" layoutY="122.0" text="Réponce 1:" />
-            <TextArea fx:id="R11" layoutX="71.0" layoutY="146.0" prefHeight="29.0" prefWidth="451.0" />
-            <TextArea fx:id="R12" layoutX="70.0" layoutY="212.0" prefHeight="29.0" prefWidth="448.0" />
-            <Label layoutX="33.0" layoutY="186.0" text="Réponce 2:" />
-            <TextArea fx:id="R13" layoutX="68.0" layoutY="282.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="34.0" layoutY="251.0" text="Réponce 3:" />
-            <TextArea fx:id="R14" layoutX="67.0" layoutY="351.0" prefHeight="29.0" prefWidth="450.0" />
-            <Label layoutX="35.0" layoutY="316.0" text="Réponce 4:" />
-            <Label layoutX="17.0" layoutY="391.0" text="Question2" underline="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextArea fx:id="Q2" layoutX="46.0" layoutY="416.0" prefHeight="29.0" prefWidth="517.0" />
-            <CheckBox fx:id="C11" layoutX="528.0" layoutY="152.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C12" layoutX="526.0" layoutY="218.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="68.0" text="Correcte" />
-            <CheckBox fx:id="C14" layoutX="525.0" layoutY="357.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C13" layoutX="525.0" layoutY="288.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C23" layoutX="525.0" layoutY="631.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C24" layoutX="525.0" layoutY="700.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C22" layoutX="525.0" layoutY="563.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C21" layoutX="525.0" layoutY="491.0" mnemonicParsing="false" text="Correcte" />
-            <Label layoutX="36.0" layoutY="664.0" text="Réponce 4:" />
-            <TextArea fx:id="R24" layoutX="64.0" layoutY="694.0" prefHeight="29.0" prefWidth="450.0" />
-            <Label layoutX="36.0" layoutY="595.0" text="Réponce 3:" />
-            <TextArea fx:id="R23" layoutX="65.0" layoutY="625.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="35.0" layoutY="527.0" text="Réponce 2:" />
-            <TextArea fx:id="R22" layoutX="66.0" layoutY="557.0" prefHeight="29.0" prefWidth="452.0" />
-            <TextArea fx:id="R21" layoutX="66.0" layoutY="485.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="35.0" layoutY="451.0" text="Réponce 1:" />
-            <Label layoutX="35.0" layoutY="801.0" text="Réponce 1:" />
-            <TextArea fx:id="R31" layoutX="66.0" layoutY="838.0" prefHeight="29.0" prefWidth="451.0" />
-            <TextArea fx:id="R32" layoutX="70.0" layoutY="927.0" prefHeight="29.0" prefWidth="452.0" />
-            <Label layoutX="37.0" layoutY="892.0" text="Réponce 2:" />
-            <TextArea fx:id="R33" layoutX="71.0" layoutY="1007.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="38.0" layoutY="970.0" text="Réponce 3:" />
-            <TextArea fx:id="R34" layoutX="72.0" layoutY="1083.0" prefHeight="29.0" prefWidth="450.0" />
-            <Label layoutX="36.0" layoutY="1050.0" text="Réponce 4:" />
-            <CheckBox fx:id="C31" layoutX="525.0" layoutY="844.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C32" layoutX="528.0" layoutY="933.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C34" layoutX="528.0" layoutY="1089.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C33" layoutX="528.0" layoutY="1013.0" mnemonicParsing="false" text="Correcte" />
-            <TextArea fx:id="Q3" layoutX="46.0" layoutY="765.0" prefHeight="29.0" prefWidth="517.0" />
-            <Label layoutX="17.0" layoutY="738.0" text="Question3" underline="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="17.0" layoutY="1127.0" text="Question4" underline="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextArea fx:id="Q4" layoutX="38.0" layoutY="1152.0" prefHeight="29.0" prefWidth="517.0" />
-            <CheckBox fx:id="C43" layoutX="525.0" layoutY="1351.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C44" layoutX="525.0" layoutY="1422.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C42" layoutX="525.0" layoutY="1287.0" mnemonicParsing="false" text="Correcte" />
-            <CheckBox fx:id="C41" layoutX="525.0" layoutY="1223.0" mnemonicParsing="false" text="Correcte" />
-            <Label layoutX="28.0" layoutY="1383.0" text="Réponce 4:" />
-            <TextArea fx:id="R44" layoutX="69.0" layoutY="1416.0" prefHeight="29.0" prefWidth="450.0" />
-            <Label layoutX="29.0" layoutY="1319.0" text="Réponce 3:" />
-            <TextArea fx:id="R43" layoutX="69.0" layoutY="1345.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="28.0" layoutY="1255.0" text="Réponce 2:" />
-            <TextArea fx:id="R42" layoutX="70.0" layoutY="1281.0" prefHeight="29.0" prefWidth="452.0" />
-            <TextArea fx:id="R41" layoutX="70.0" layoutY="1217.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="28.0" layoutY="1187.0" text="Réponce 1:" />
-            <Label layoutX="17.0" layoutY="1451.0" text="Question5" underline="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextArea fx:id="Q5" layoutX="35.0" layoutY="1481.0" prefHeight="29.0" prefWidth="517.0" />
-            <CheckBox fx:id="C52" layoutX="519.0" layoutY="1625.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="72.0" text="Correcte" />
-            <Label layoutX="28.0" layoutY="1734.0" text="Réponce 4:" />
-            <TextArea fx:id="R54" layoutX="62.0" layoutY="1766.0" prefHeight="29.0" prefWidth="450.0" />
-            <Label layoutX="26.0" layoutY="1658.0" text="Réponce 3:" />
-            <TextArea fx:id="R53" layoutX="63.0" layoutY="1696.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="26.0" layoutY="1589.0" text="Réponce 2:" />
-            <TextArea fx:id="R52" layoutX="64.0" layoutY="1619.0" prefHeight="29.0" prefWidth="452.0" />
-            <TextArea fx:id="R51" layoutX="65.0" layoutY="1552.0" prefHeight="29.0" prefWidth="451.0" />
-            <Label layoutX="28.0" layoutY="1518.0" text="Réponce 1:" />
-            <CheckBox fx:id="C51" layoutX="519.0" layoutY="1558.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="72.0" text="Correcte" />
-            <CheckBox fx:id="C53" layoutX="519.0" layoutY="1702.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="72.0" text="Correcte" />
-            <CheckBox fx:id="C54" layoutX="519.0" layoutY="1772.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="72.0" text="Correcte" />
-            <TextField fx:id="txtTitre" layoutX="85.0" layoutY="19.0" prefHeight="25.0" prefWidth="179.0" />
-            <Label layoutX="39.0" layoutY="23.0" prefHeight="17.0" prefWidth="34.0" text="Titre:" />
-            <RadioButton fx:id="btrChronometre" layoutX="433.0" layoutY="23.0" mnemonicParsing="false" onAction="#btrChronometreAction" text="Quiz Chronométré" />
-            <RadioButton fx:id="btrNonChronometre" layoutX="275.0" layoutY="23.0" mnemonicParsing="false" onAction="#btrNonChronometreAction" text="Quiz Non Chronométré" />
-            <Button fx:id="btnModifierQuiz" layoutX="126.0" layoutY="1828.0" mnemonicParsing="false" onAction="#btnModifierQuizAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #77ABD6;" text="Modifier " textAlignment="RIGHT">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label fx:id="er1" layoutX="315.0" layoutY="44.0" />
-            <Button fx:id="btnSupprimerQuiz" layoutX="368.0" layoutY="1828.0" mnemonicParsing="false" onAction="#btnSupprimerQuizAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #77ABD6;" text="Supprimer " textAlignment="RIGHT">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
-  </content>
-</ScrollPane>
+<AnchorPane id="AnchorPane" prefHeight="467.0" prefWidth="816.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ModifierQuizController">
+    <children>  
+        <Pane layoutX="16.0" layoutY="74.0" prefHeight="381.0" prefWidth="790.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
+            <children>
+                <GridPane layoutX="34.0" layoutY="106.0" prefHeight="183.0" prefWidth="735.0">
+                    <children>
+                        <Label text="Type de quiz:" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Titre de quiz">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtTitre" prefHeight="25.0" prefWidth="184.0" promptText="Titre de quiz ....." style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="1" />
+                
+                  
+                  
+                  
+                        <RadioButton fx:id="btrChronometre" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btrChronometreAction" prefHeight="17.0" prefWidth="156.0" selected="true" text="Quiz Non Chronométré" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="type" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="btrNonChronometre" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btrNonChronometreAction" prefHeight="17.0" prefWidth="156.0" text="Quiz Non Chronométré" textAlignment="RIGHT" toggleGroup="$type" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        
+                   
+                        
+                    </children>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="175.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="333.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.0" minWidth="0.0" prefWidth="207.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                </GridPane>
+                <ImageView fitHeight="50.0" fitWidth="790.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@img/bgmenu.png" />
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="288.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier quiz" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                    </font>
+                </Text>
+                <Button fx:id="btnModifierQuiz" layoutX="150.0" layoutY="302.0" mnemonicParsing="false" onAction="#btnModifierQuizAction" prefHeight="25.0" prefWidth="129.0" style="-fx-background-color: #040317;" text="Modifier quiz" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSupprimerQuiz" layoutX="348.0" layoutY="302.0" mnemonicParsing="false" onAction="#btnSupprimerQuizAction" prefHeight="25.0" prefWidth="129.0" style="-fx-background-color: #040317;" text="Supprimer quiz" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnModifierQuestions" layoutX="531.0" layoutY="302.0" mnemonicParsing="false" onAction="#btnModifierQuestionsAction" prefHeight="25.0" prefWidth="129.0" style="-fx-background-color: #040317;" text="Modifier questions" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+        <Button fx:id="btnexit" layoutX="677.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
+
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
+
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

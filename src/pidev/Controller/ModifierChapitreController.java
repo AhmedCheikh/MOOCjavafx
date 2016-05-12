@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,11 +18,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pidev.dao.classes.DAOChapitre;
@@ -33,7 +39,7 @@ import pidev.entities.Chapitre;
  *
  * @author Gumus
  */
-public class ModifierChapitreController{
+public class ModifierChapitreController {
 
     @FXML
     private TextField txtTitre;
@@ -63,10 +69,11 @@ public class ModifierChapitreController{
     private Button btnback;
     @FXML
     public static File presentation;
+
     private String idq;
     List l;
     List l1;
-    int idlocal;
+     int idlocal;
 
     public void setPresentation(File presentation) {
         this.presentation = presentation;
@@ -77,9 +84,9 @@ public class ModifierChapitreController{
     @FXML
     private Label er2;
     int z;
-    String pnomc;
+    Chapitre pnomc;
 
-    public void setPnomc(String pnomc) {
+    public void setPnomc(Chapitre pnomc) {
         this.pnomc = pnomc;
 
         DAOQuiz daoQuiz = new DAOQuiz();
@@ -88,19 +95,17 @@ public class ModifierChapitreController{
             CmbQuiz.getItems().add(l1.get(i));
 
         }
-
-        DAOChapitre c = new DAOChapitre();
-        List l = c.findChapitreByTitre(pnomc);
-
-        Chapitre s = (Chapitre) l.get(0);
-        idlocal = s.getIdChapitre();
-        txtTitre.setText(s.getTitre());
-        txtAObjectif.setText(s.getObjectif());
-        lVideo.setText(s.getVideo());
-        LPresentation.setText(s.getPresentation().getAbsolutePath());
+//        DAOChapitre dc = new DAOChapitre();
+//        idlocal = dc.FindIdbychapitre(pnomc.getTitre());
+//        idlocal = pnomc.getIdChapitre();
+        
+        txtTitre.setText(pnomc.getTitre());
+        txtAObjectif.setText(pnomc.getObjectif());
+        lVideo.setText(pnomc.getVideo());
+//        LPresentation.setText(pnomc.getPresentation().getAbsolutePath());
 
         DAOQuiz z = new DAOQuiz();
-        idq = z.findTitreQuizByTitreSelonId(s.getIdQuiz());
+        idq = z.findTitreQuizByTitreSelonId(pnomc.getIdQuiz());
         System.out.println(idq);
         CmbQuiz.setPromptText(idq);
 
@@ -109,7 +114,6 @@ public class ModifierChapitreController{
     @FXML
     private void btnChoisirVideoAction(ActionEvent event) {
 
-      
         FileChooser fileChooser = new FileChooser();
 
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -121,9 +125,9 @@ public class ModifierChapitreController{
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                
-                lVideo.setText(path.getAbsolutePath());
-               
+
+                lVideo.setText(path.getName());
+
             } else {
 
                 lVideo.setText("Video selection cancelled.");
@@ -176,21 +180,31 @@ public class ModifierChapitreController{
 
     @FXML
     private void btnSupprimerAction(ActionEvent event) throws IOException {
-        DAOChapitre dc = new DAOChapitre();
-        List l = dc.findChapitreByTitre(pnomc);
-        Chapitre s = (Chapitre) l.get(0);
-        dc.removeChapitre(s);
 
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        stage.setTitle("Afficher cours");
-        ProfilApprenantController pac = loader.getController();
-        stage.show();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Do you want to delete");
+        alert.setHeaderText("");
+        alert.setContentText("Delete successfully!");
+        alert.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            DAOChapitre dc = new DAOChapitre();
+            List l = dc.findChapitreById(pnomc.getIdChapitre());
+            Chapitre s = (Chapitre) l.get(0);
+            dc.removeChapitre(s);
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            stage.setTitle("Afficher cours");
+            ProfilApprenantController pac = loader.getController();
+            stage.show();
+        } else {
+            alert.close();
+        }
 
     }
 
@@ -216,13 +230,60 @@ public class ModifierChapitreController{
     }
 
     @FXML
-    private void btnModifierAction(ActionEvent event) {
+    public void btnModifierAction(ActionEvent event) {
 
-        DAOQuiz d = new DAOQuiz();
-        z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-        Chapitre c = new Chapitre(idlocal, 1, z, txtTitre.getText(), presentation, txtAObjectif.getText(), 1, lVideo.getText());
-        System.out.println(c);
-        DAOChapitre daoc = new DAOChapitre();
-        daoc.updateChapitre(c);
+        int test = 0;
+        if (txtTitre.getText().isEmpty()) {
+            er1.setText("Vous devez Renseigez ce champs");
+            test -= 1;
+        } else {
+            er1.setText(" ");
+            test += 1;
+        }
+        if (txtAObjectif.getText().isEmpty()) {
+            er2.setText("Vous devez Renseigez ce champs");
+            test -= 1;
+        } else {
+            er2.setText(" ");
+            test += 1;
+        }
+
+        DropShadow shadow = new DropShadow();
+
+        if (lVideo.getText().isEmpty()) {
+            shadow.setColor(Color.RED);
+            lVideo.setEffect(shadow);
+            test -= 1;
+        } else {
+            shadow.setColor(Color.GREEN);
+            lVideo.setEffect(shadow);
+            test += 1;
+        }
+        if (LPresentation.getText().isEmpty()) {
+            shadow.setColor(Color.RED);
+            btnChoisirDoc.setEffect(shadow);
+            test -= 1;
+        } else {
+            shadow.setColor(Color.GREEN);
+            btnChoisirDoc.setEffect(shadow);
+            test += 1;
+        }
+
+        if (test == 4) {
+            DAOQuiz d = new DAOQuiz();
+            z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
+            DAOChapitre dc = new DAOChapitre();
+//            idlocal = dc.FindIdbychapitre(pnomc.getTitre());
+            System.out.println("ssss" + dc.FindIdbychapitre(pnomc.getTitre()));
+            int q=dc.FindIdbychapitre(pnomc.getTitre());
+            Chapitre c = new Chapitre(txtTitre.getText(), presentation, txtAObjectif.getText(),z, lVideo.getText());
+            DAOChapitre daoc = new DAOChapitre();
+            daoc.updateChapitre(c,q);
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Look, an Information Dialog");
+            alert.setContentText("update successfully!");
+            alert.showAndWait();
+        }
     }
 }

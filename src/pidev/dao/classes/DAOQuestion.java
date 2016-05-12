@@ -86,7 +86,7 @@ public class DAOQuestion implements IDAOQuestion {
 
             while (rs.next()) {
 
-                Question q = new Question(rs.getInt("id"), rs.getString("question"), rs.getInt("idquiz"));
+                Question q = new Question(rs.getInt("id"), rs.getString("ques"), rs.getInt("idquiz"));
 
                 listQuestion.add(q);
             }
@@ -115,7 +115,7 @@ public class DAOQuestion implements IDAOQuestion {
     
         @Override
     public int findQuestionSelonId(Question q) {
-               String req = "select * from question where id= '" + q.getIdQuestion() + "'";
+               String req = "select * from question where question= '" + q.getQuestion()+ "'";
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
@@ -142,7 +142,7 @@ public class DAOQuestion implements IDAOQuestion {
 
             while (rs.next()) {
 
-                Question e = new Question(rs.getInt("id"),rs.getString("question"));
+                Question e = new Question(rs.getString(3));
 
                 listQuestion.add(e);
             }

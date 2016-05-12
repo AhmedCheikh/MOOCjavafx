@@ -5,7 +5,7 @@ public class Quiz {
     private int idQuiz;
     private String titre;
     private int type;
-    private int etat;
+
 
     public Quiz() {
     }
@@ -18,23 +18,22 @@ public class Quiz {
         this.titre = titre;
     }
 
-    public Quiz(int idQuiz,String titre, int type, int etat) {
+    public Quiz(int idQuiz,String titre, int type) {
         this.idQuiz = idQuiz;
         this.titre = titre;
         this.type = type;
-        this.etat = etat;
-    }
+            }
 
-    public Quiz(int idQuiz, String titre, int etat) {
+    public Quiz(int idQuiz, String titre) {
         this.idQuiz = idQuiz;
         this.titre = titre;
-        this.etat = etat;
+       
     }
 
-    public Quiz(String titre, int type, int etat) {
+    public Quiz(String titre, int type) {
         this.titre = titre;
         this.type = type;
-        this.etat = etat;
+    
     }
 
  
@@ -50,9 +49,6 @@ public class Quiz {
         return type;
     }
 
-    public int getEtat() {
-        return etat;
-    }
 
     public void setIdQuiz(int idQuiz) {
         this.idQuiz = idQuiz;
@@ -66,13 +62,10 @@ public class Quiz {
         this.type = type;
     }
 
-    public void setEtat(int etat) {
-        this.etat = etat;
-    }
-
     @Override
     public String toString() {
-        return "Quiz{" + "idQuiz=" + idQuiz + ", titre=" + titre + ", type=" + type + ", etat=" + etat + '}';
+        return "Quiz{" + "idQuiz=" + idQuiz + ", titre=" + titre + ", type=" + type + '}';
     }
+
 
 }

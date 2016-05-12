@@ -9,7 +9,6 @@ public class Chapitre {
     private String titre;
     private File presentation;
     private String objectif;
-    private int etat;
     private int idQuiz;
     private int idCours;
     private String Video;
@@ -17,25 +16,33 @@ public class Chapitre {
     public Chapitre() {
     }
 
-    public Chapitre(String titre, File presentation, String objectif, int etat, int idQuiz, String Video) {
+    public Chapitre(String titre, File presentation, String objectif, int idQuiz, String Video) {
         this.titre = titre;
         this.presentation = presentation;
         this.objectif = objectif;
-        this.etat = etat;
+
         this.idQuiz = idQuiz;
+        this.Video = Video;
+    }
+
+    public Chapitre(int idChapitre, String titre, File presentation, String objectif, String Video) {
+        this.idChapitre = idChapitre;
+        this.titre = titre;
+        this.presentation = presentation;
+        this.objectif = objectif;
         this.Video = Video;
     }
     
 
-    public Chapitre(int idCours,int idQuiz,String titre, File presentation, String objectif, int etat,String Video) {
-        this.titre = titre;
-        this.presentation = presentation;
-        this.objectif = objectif;
-        this.etat = etat;
-        this.idQuiz = idQuiz;
-        this.idCours = idCours;
-        this.Video = Video;
-    }
+//    public Chapitre(int idCours,int idQuiz,String titre, File presentation, String objectif, String Video) {
+//        this.titre = titre;
+//        this.presentation = presentation;
+//        this.objectif = objectif;
+//
+//        this.idQuiz = idQuiz;
+//        this.idCours = idCours;
+//        this.Video = Video;
+//    }
 
     public Chapitre(int idCours, String titre, String objectif) {
         this.idCours = idCours;
@@ -47,31 +54,29 @@ public class Chapitre {
         this.idQuiz = idQuiz;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif, int etat, String Video) {
+    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre,File presentation, String objectif,String Video) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.presentation = presentation;
         this.objectif = objectif;
-        this.etat = etat;
+        
         this.idQuiz = idQuiz;
         this.idCours = idCours;
         this.Video = Video;
     }
 
-    public Chapitre(int idChapitre, int idCours, String titre, String objectif, int etat) {
+    public Chapitre(int idChapitre, int idCours, String titre, String objectif) {
         this.idChapitre = idChapitre;
         this.titre = titre;
         this.objectif = objectif;
-        this.etat = etat;
         this.idCours = idCours;
     }
 
-    public Chapitre(int idChapitre, int idCours, int idQuiz, String titre, String objectif, int etat, String Video) {
+    public Chapitre(int idChapitre, int idQuiz, String titre,File presentation, String objectif,  String Video) {
         this.titre = titre;
         this.objectif = objectif;
-        this.etat = etat;
         this.idQuiz = idQuiz;
-        this.idCours = idCours;
+         this.presentation = presentation;
         this.Video = Video;
     }
 
@@ -82,7 +87,7 @@ public class Chapitre {
 
     @Override
     public String toString() {
-        return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif + ", etat=" + etat + ", idQuiz=" + idQuiz + ", idCours=" + idCours + ", Video=" + Video + '}';
+        return "Chapitre{" + "idChapitre=" + idChapitre + ", titre=" + titre + ", presentation=" + presentation + ", objectif=" + objectif +", idQuiz=" + idQuiz + ", idCours=" + idCours + ", Video=" + Video + '}';
     }
 
     public void setIdChapitre(int idChapitre) {
@@ -103,10 +108,6 @@ public class Chapitre {
 
     public void setObjectif(String objectif) {
         this.objectif = objectif;
-    }
-
-    public void setEtat(int etat) {
-        this.etat = etat;
     }
 
     public void setIdQuiz(int idQuiz) {
@@ -135,10 +136,6 @@ public class Chapitre {
 
     public String getObjectif() {
         return objectif;
-    }
-
-    public int getEtat() {
-        return etat;
     }
 
     public int getIdQuiz() {

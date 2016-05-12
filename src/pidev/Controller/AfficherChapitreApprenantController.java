@@ -65,34 +65,18 @@ public class AfficherChapitreApprenantController implements Initializable {
     @FXML
     private Button btnback;
     public Chapitre ch;
-    public static String nameCh ;
-
+    //String nameCh = "TestChapitre";
+    private Media me;
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
     final double mediaHeight = 270;
 
     public void setCh(Chapitre ch) {
-//        txtObjectives.setText(ch.getObjectif());
-//        hpChapitre1.setText(ch.getTitre());
-//        DAOCours d= new DAOCours() ;
-//        String a=d.findTitreCoursById(ch.getIdCours());
-//        hpCours1.setText(a);
-        nameCh=ch.getTitre();
-         hpChapitre1.setText(">" + nameCh);
-        DAOChapitre dch = new DAOChapitre();
-  
-        System.out.println(dch.findChapitreByTitre(nameCh));
-        List l = dch.findChapitreByTitre(nameCh);
-
-        Chapitre s = (Chapitre) l.get(0);
-
-        DAOCours dc = new DAOCours();
-
-        hpCours1.setText(dc.findTitreCoursById(s.getIdCours()));
-
-        txtObjectives.setText(s.getObjectif());
         this.ch = ch;
-        
+        DAOCours dc = new DAOCours();
+        hpChapitre1.setText(ch.getTitre());
+        txtObjectives.setText(ch.getObjectif());
+        System.out.println("ssssssss"+ch);
     }
 
     /**
@@ -101,15 +85,16 @@ public class AfficherChapitreApprenantController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-       
-
     }
 
     public void init(Stage primaryStage) {
         DAOChapitre dch = new DAOChapitre();
         Group root = new Group();
         primaryStage.setScene(new Scene(root, 480, 270));
-        mediaPlayer = new MediaPlayer(new Media("file:///" + dch.FindVideobychapitre(nameCh)));
+        System.out.println("kkkk"+ch.getVideo());
+        String path = new File("src/pidev/gui/video/" +ch.getVideo()).getAbsolutePath();
+        me = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(me);
         mediaPlayer.setAutoPlay(true);
         VideoFXDemo.PlayerPane playerPane = new VideoFXDemo.PlayerPane(mediaPlayer);
         playerPane.setMinSize(mediaWidth, mediaHeight);
@@ -150,7 +135,8 @@ public class AfficherChapitreApprenantController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         AfficherQuizController aq = loader.getController();
-        aq.setPnomc(nameCh);
+        
+        aq.setPnomc(23);
         stage.show();
     }
 
@@ -158,7 +144,7 @@ public class AfficherChapitreApprenantController implements Initializable {
     private void btnTelechargerAction(ActionEvent event) throws FileNotFoundException, IOException {
 
         DAOChapitre dch = new DAOChapitre();
-        dch.FindPresentationbychapitre(nameCh);
+        dch.FindPresentationbychapitre(ch.getIdChapitre());
 
     }
 
@@ -172,13 +158,13 @@ public class AfficherChapitreApprenantController implements Initializable {
     private void btnbackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursApp.fxml"));
         loader.load();
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Afficher cours");
-       
+        ProfilApprenantController pac = loader.getController();
         stage.show();
     }
 
