@@ -23,4 +23,5 @@ public interface IDAOApprenant<T> {
     T getApprenantByLogin(String login);
     public void setPwd(String login, String pwd);
     public String getEmailByLogin(String login);
+    public Apprenant getApprenantByCin(String cin);
 }

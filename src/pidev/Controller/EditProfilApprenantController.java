@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -173,23 +174,38 @@ public class EditProfilApprenantController implements Initializable {
             test +=1;
         }
               
-            System.out.println("1111");
             
         if( test == 4 ){
             DAOApprenant da = new DAOApprenant();
             if(file != null){
-                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), file.getName() , txtLogin.getText(), txtPassword.getText());
+                Random r;
+                String letters;
+                r = new Random();
+                letters = "abcdefghijklmnopqrstuvwxyz";
+                 StringBuilder nom = new StringBuilder("") ;
+                for(int i = 0; i < 5; i++)
+                {
+                    nom.append(letters.charAt(r.nextInt(letters.length())));
+                }
+                String fileName = nom.toString() +file.getName();
+
+                
+                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), fileName , txtLogin.getText(), txtPassword.getText());
                 da.update(newApprenant , apprenant.getCin());
                 apprenant = newApprenant;
                 String url;
-                url = "C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master/src/pidev/gui/img/"+ file.getName();
+                url = "C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/"+ fileName;
                 Path des = Paths.get(url);
                 Path source = Paths.get(file.getAbsolutePath());
                 Files.copy(source , des);
             } else {
-                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), txtLogin.getText(), txtPassword.getText());
-                da.updateWithoutAvatarChange(newApprenant , apprenant.getCin());
-                apprenant = newApprenant;
+                
+                apprenant.setNom(txtNom.getText());
+                apprenant.setPrenom(txtPrenom.getText());
+                apprenant.setLogin(txtLogin.getText());
+                apprenant.setPassword(txtPassword.getText());
+                da.updateWithoutAvatarChange(apprenant , apprenant.getCin());
+                
             }
             
             Alert alert = new Alert(AlertType.INFORMATION);

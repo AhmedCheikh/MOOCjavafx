@@ -27,36 +27,35 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Calendar;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
+
 
 import javafx.stage.Stage;
+
 
 import pidev.dao.classes.*;
 import pidev.entities.* ;
 import pidev.techniques.DataSource;
 import pidev.gui.video.*;
-import pidev.tests.test;
 public class ConsulterCoursController  implements Initializable{
 
 @FXML
@@ -68,7 +67,7 @@ private TextArea description ;
   @FXML private TableColumn chapitre ;
   @FXML private TableColumn objectif ;
     public String nom ;
-    public Cours info; 
+   
     public String formateur ;
 private Connection connection ; 
     @FXML
@@ -102,7 +101,9 @@ private Connection connection ;
     @FXML
     private Button btnCommenter;
     public Apprenant apprenant;
-    
+   
+    public Cours cours; 
+   
     public ConsulterCoursController() {
             connection = (DataSource.getInstance()).getConnection();
     
@@ -200,14 +201,14 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     }
     
 
-    public void setInfo(Cours info) {
+     public void setCours(Cours cours) {
         
-        this.info = info;
-          labelCours.setText(info.getNomCours());
-          description.setText(info.getDescription());
-          formateur=info.getCinFormateur() ;
-          nom=info.getNomCours();
-          pathFile=info.getVideo();
+        this.cours = cours;
+          labelCours.setText(cours.getNomCours());
+          description.setText(cours.getDescription());
+          formateur=cours.getCinFormateur() ;
+          nom=cours.getNomCours();
+          pathFile=cours.getVideo();
            String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
        
     
@@ -269,7 +270,53 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
           
     }
 
-    
+    @FXML
+    private void suivreCoursAction(ActionEvent event) throws SQLException, IOException {
+        DAOCoursSuivie dcs =  new DAOCoursSuivie();
+        if(dcs.getCourSuiviByCinApprenantAndCoursId(apprenant.getCin(), cours.getIdCours()) == null ){
+        Calendar cl = Calendar.getInstance ();
+        String jour = Integer.toString(cl.get(Calendar.DAY_OF_MONTH)) ;
+        String mois = Integer.toString(cl.get(Calendar.MONTH)+1);
+        String annee =  Integer.toString(cl.get(Calendar.YEAR));       
+        String ds = annee+"-0"+mois+"-"+jour;
+        System.out.println(ds);
+        System.out.println(cours.getIdCours());
+        System.out.println(apprenant.getCin());
+        dcs.ajouter(new CoursSuivie(cours.getIdCours(), apprenant.getCin(), ds));
+        
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        
+        AfficheListCoursSuivisController ALCS = loader.getController();
+        ALCS.setApprenant(apprenant);
+        stage.setTitle("List Cours Suivis");
+        stage.show();  
+        
+        }else{
+         ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(p));
+        
+        AfficheListCoursSuivisController ALCS = loader.getController();
+        ALCS.setApprenant(apprenant);
+        stage.setTitle("List Cours Suivis");
+        stage.show();   
+        }
+        
+    }
+
+
 }   
 
 

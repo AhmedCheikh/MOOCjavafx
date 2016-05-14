@@ -63,7 +63,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="faireQuiz" layoutX="395.0" layoutY="505.0" mnemonicParsing="false" onAction="#faireQuizAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Faire Quiz">
+      <Button fx:id="btnSuivre" layoutX="395.0" layoutY="505.0" mnemonicParsing="false" onAction="#suivreCoursAction" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #77ABD6;" text="Suivre Cours">
          <font>
             <Font size="15.0" />
          </font>

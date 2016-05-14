@@ -195,8 +195,12 @@ if (result.get() == ButtonType.OK){
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Cours");
                 AffichageCoursController pac  = loader.getController();
-                pac.setInfo(cours);
-//                pac.setApprenant(apprenant);
+                try {
+                    pac.setCours(cours);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                pac.setApprenant(apprenant);
                 stage.show();
             }} );
   

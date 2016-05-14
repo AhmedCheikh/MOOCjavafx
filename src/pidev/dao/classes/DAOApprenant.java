@@ -5,13 +5,6 @@
  */
 package pidev.dao.classes;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,16 +23,7 @@ import pidev.techniques.DataSource;
  * @author Khoubaib
  */
 public class DAOApprenant implements IDAOApprenant<Apprenant>{
-//    public static void main(String[] args) {
-//        DataSource ds = DataSource.getInstance();
-//        File f = new File("C:\\Users\\Khoubaib\\Downloads\\Other\\double.jpg");
-//        File f1 = new File("C:\\Users\\Khoubaib\\Downloads\\Other\\saitama.jpg");
-//        Apprenant a = new Apprenant("123", "bes", "aziz", "@@", f, "az", "123");
-//        DAOApprenant dao = new DAOApprenant();
-//        //dao.add(a);
-//        a.setAvatar(f);
-//        dao.update(a);
-//    }
+
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
@@ -82,8 +66,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
             pst.setString(3, a.getLogin());
-            pst.setString(4, a.getPassword());                                     
-            //pst.setBlob(5, new FileInputStream(a.getAvatar()));
+            pst.setString(4, a.getPassword());
             pst.setString(5, a.getAvatar());
             pst.setString(6, a.getCin());
             
@@ -173,8 +156,7 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
                 a.setEmail(rs.getString(4));
                 a.setLogin(rs.getString(6));
                 a.setPassword(rs.getString(7));
-                
-               // a = new Apprenant(rs.getString("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("login"));
+               
             }
             return a;
         } catch (SQLException ex) {
@@ -200,30 +182,47 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
                 a.setNom(rs.getString(2));
                 a.setPrenom(rs.getString(3));
                 a.setEmail(rs.getString(4));
+                a.setAvatar(rs.getString(5));
                 a.setLogin(rs.getString(6));
                 a.setPassword(rs.getString(7));  
                 
-//                String filename = rs.getString(2);
-//                Blob blob = rs.getBlob(5);
-//                InputStream is = blob.getBinaryStream();
-//                FileOutputStream fos = new FileOutputStream("pidev//gui//img//"+ filename+".jpg");
-//                
-//                int b = 0;
-//                while ((b = is.read()) != -1) {
-//                    fos.write(b); 
-//                }
             }
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
         return null;
     }
     }
+    
+    @Override
+    public Apprenant getApprenantByCin(String cin) {
+         
+            Apprenant a = new Apprenant();
+            String req = "select * from apprenant where cin = ?";
+        try {
+            
+            pst=connection.prepareStatement(req);
+            pst.setString(1, cin);
+            rs = pst.executeQuery();
+            while(rs.next()){
+               
+                a.setCin(rs.getString(1));
+                a.setNom(rs.getString(2));
+                a.setPrenom(rs.getString(3));
+                a.setEmail(rs.getString(4));
+                a.setLogin(rs.getString(6));
+                a.setPassword(rs.getString(7));  
+                
+            }
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+    }
+    }
+    
+    
 
     @Override
     public String getEmailByLogin(String login) {

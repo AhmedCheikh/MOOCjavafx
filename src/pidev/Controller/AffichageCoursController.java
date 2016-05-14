@@ -67,13 +67,20 @@ private TextArea description ;
   @FXML private TableColumn chapitre ;
   @FXML private TableColumn objectif ;
     public String nom ;
-    public Cours info; 
+    public Cours cours; 
     public String formateur ;
 private Connection connection ; 
 private Media me ;
+   @FXML
     private RadioButton radioExcellent;
+    @FXML
     private RadioButton radioMoyen;
+    @FXML
     private RadioButton radioMauvais;
+    @FXML
+    private RadioButton radioTresBien;
+    @FXML
+    private RadioButton radioBien;
     
     public CoursSuivie cs;
     private ToggleGroup appreciation;
@@ -162,7 +169,7 @@ init(stage);
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Faire Quiz");
                 AfficherQuizChronoController pac  = loader.getController();
-                pac.setCours(info.getIdQuiz());
+                pac.setCours(cours.getIdQuiz());
                 stage.show();
    }
 @FXML
@@ -214,15 +221,15 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
 
     }
 
-    public void setInfo(Cours info) {
+    public void setCours(Cours cours) throws SQLException {
         
-        this.info = info;
-          labelCours.setText(info.getNomCours());
-          description.setText(info.getDescription());
-          formateur=info.getCinFormateur() ;
-          nom=info.getNomCours();
-          pathFile=info.getVideo();
-           String requete = "select titre,objectif,idquiz from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
+        this.cours = cours;
+          labelCours.setText(cours.getNomCours());
+          description.setText(cours.getDescription());
+          formateur=cours.getCinFormateur() ;
+          nom=cours.getNomCours();
+          pathFile=cours.getVideo();
+           String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
        
     
             PreparedStatement ps;
@@ -235,12 +242,9 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
          Chapitre c;
          
              while (rs.next()) {
-               c=new Chapitre(rs.getString(1),rs.getString(2),rs.getInt(3));
-              //temp.add(rs.getString(1));
-           //temp.add(rs.getString(2));
-             // temp.add( new SimpleStringProperty(rs.getString(3)));
-              
-                  temp.add(c);
+                
+                 c=new Chapitre(rs.getString(1),rs.getString(2));
+                 temp.add(c);
                
             }
            final ObservableList<Chapitre> list=FXCollections.<Chapitre>observableList(temp);
@@ -249,14 +253,9 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
           
              chapitre.setCellValueFactory(new PropertyValueFactory("titre"));
              
-        objectif.setCellValueFactory(new PropertyValueFactory("objectif"));
- 
-        
-        
-        
-        
-        table.setItems(list);
-        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Chapitre>() {
+            objectif.setCellValueFactory(new PropertyValueFactory("objectif"));
+            table.setItems(list);
+            table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Chapitre>() {
             
             @Override
             public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
@@ -284,31 +283,68 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     }
     @FXML
     private void btnCommenterAction(ActionEvent event) {
-//        DAOCoursSuivie dcs = new DAOCoursSuivie();
-//        String c = txtCommentaire.getText();
-//        dcs.laisserCommentaire(c, apprenant.getCin());
-//    }
-//
-//    public void setApprenant(Apprenant apprenant) {
-//        this.apprenant = apprenant;
+        DAOCoursSuivie dcs = new DAOCoursSuivie();
+        
+        String c = txtCommentaire.getText();
+        dcs.laisserCommentaire(c, cs.getIdCoursuivi());
+    }
+
+    public void setApprenant(Apprenant apprenant) {
+        DAOCoursSuivie dcs = new DAOCoursSuivie();
+        CoursSuivie cs = new CoursSuivie();
+        cs = dcs.getCourSuiviByCinApprenantAndCoursId(apprenant.getCin(), cours.getIdCours());
+        this.cs = cs;
+        txtDateDebut.setText(cs.getDate_debut());
+        txtCommentaire.setText(cs.getCommentaire());
+        txtNote.setText(Double.toString(cs.getNote()));
+        if(cs.getAppreciation() == null){
+            //rien a faire
+        }
+        else if(cs.getAppreciation().equals("1")){
+            radioMauvais.setSelected(true);
+        } else if(cs.getAppreciation().equals("2") ){
+            radioMoyen.setSelected(true);
+        }else if(cs.getAppreciation().equals("3") ){
+            radioBien.setSelected(true);
+        }else if(cs.getAppreciation().equals("4") ){
+            radioTresBien.setSelected(true);
+        }
+        else{
+            radioExcellent.setSelected(true);
+        }
+        
+        this.apprenant = apprenant;
     }
     
     
    @FXML
     private void changerAppreciation(MouseEvent event) {
-//        DAOCoursSuivie dcs = new DAOCoursSuivie();
-//        radioExcellent.setToggleGroup(appreciation);
-//        radioMoyen.setToggleGroup(appreciation);
-//        radioMauvais.setToggleGroup(appreciation);
-//          
-//        appreciation.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-//        @Override
-//        public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
-//
-//            RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle();
-//            dcs.donnerAppreciation(chk.getText(), apprenant.getCin());
-//        }
-//    });
+        DAOCoursSuivie dcs = new DAOCoursSuivie();
+        
+        radioMauvais.setToggleGroup(appreciation);
+        radioMoyen.setToggleGroup(appreciation);
+        radioBien.setToggleGroup(appreciation);
+        radioTresBien.setToggleGroup(appreciation);
+        radioExcellent.setToggleGroup(appreciation);
+        
+        appreciation.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+        @Override
+        public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
+
+            RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle();
+            if(chk.getText().equals("Mauvais")){
+                dcs.donnerAppreciation("1", cs.getIdCoursuivi());
+            } else if(chk.getText().equals("Moyen")){
+                dcs.donnerAppreciation("2", cs.getIdCoursuivi());
+            }else if(chk.getText().equals("Bien")){
+                dcs.donnerAppreciation("3", cs.getIdCoursuivi());
+            }else if(chk.getText().equals("TresBien")){
+                dcs.donnerAppreciation("4", cs.getIdCoursuivi());
+            }else{
+                dcs.donnerAppreciation("5", cs.getIdCoursuivi());
+            }
+        }
+    });
           
         }
     

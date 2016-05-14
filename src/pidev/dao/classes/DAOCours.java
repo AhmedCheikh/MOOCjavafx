@@ -137,16 +137,14 @@ Connection connection;
     }
 
     @Override
-    public List<Cours> findCoursByFormateur(String cinFormateur) {
-        List<Cours> listecours = new ArrayList<>();
-       
+    public Cours findCoursByFormateur(String cinFormateur) {
+       Cours cours = new Cours();
         String requete = "select * from cours where cinformateur=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, cinFormateur);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                Cours cours = new Cours();
                 cours.setIdCours(resultat.getInt(1));
                 cours.setNomCours(resultat.getString(2));
                 cours.setCinFormateur(resultat.getString(3));
@@ -155,9 +153,9 @@ Connection connection;
                
                 cours.setDifficulte(resultat.getString(7));
                 cours.setObjectif(resultat.getString(8));
-                listecours.add(cours);
+                
             }
-            return listecours;
+            return cours;
 
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche du cours " + ex.getMessage());
@@ -241,12 +239,12 @@ Connection connection;
             while (resultat.next()) {
                 Cours cours = new Cours();
                 cours.setIdCours(resultat.getInt(1));
-                cours.setNomCours(resultat.getString(2));
-                cours.setCinFormateur(resultat.getString(3));
-                cours.setIdQuiz(resultat.getInt(4));
-                cours.setDescription(resultat.getString(5));
-                cours.setDifficulte(resultat.getString(6));
-                cours.setObjectif(resultat.getString(7));
+                cours.setNomCours(resultat.getString(3));
+                cours.setCinFormateur(resultat.getString(2));
+                
+                cours.setDescription(resultat.getString(4));
+                cours.setDifficulte(resultat.getString(5));
+                cours.setObjectif(resultat.getString(6));
                 listecours.add(cours);
             }
             return listecours;
@@ -255,6 +253,31 @@ Connection connection;
             return null;
         }
     }
+     
+    public List<Cours> findCoursByApprenant(String cin) {
+         List<Cours> listecours = new ArrayList<>();
+        String requete = "select * from cours c,coursuivi cs where c.idcours=cs.id_cours and cs.cinapprenant= ?";
+        try {
+            pst = connection.prepareStatement(requete);
+            pst.setString(1, cin);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Cours cours = new Cours();
+                cours.setIdCours(rs.getInt(1));
+                cours.setNomCours(rs.getString(3));
+                cours.setCinFormateur(rs.getString(2));
+                cours.setDescription(rs.getString(4));
+                cours.setDifficulte(rs.getString(5));
+                cours.setObjectif(rs.getString(6));
+                listecours.add(cours);
+            }
+            return listecours;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement des cours " + ex.getMessage());
+            return null;
+        }
+    } 
+     
         @Override
     public String findTitreCoursById(int id) {
         String req = "select * from cours where idcours= '" + id + "'";

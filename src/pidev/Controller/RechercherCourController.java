@@ -71,6 +71,7 @@ public class RechercherCourController implements Initializable {
     private Apprenant apprenant;
     
     ObservableList<Cours> data = FXCollections.observableArrayList();
+    
 
     /**
      * Initializes the controller class.
@@ -145,7 +146,8 @@ public class RechercherCourController implements Initializable {
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Cours");
                 ConsulterCoursController pac  = loader.getController();
-                pac.setInfo(cours);
+                pac.setCours(cours);
+                pac.setApprenant(apprenant);
                 stage.show();
             }} );
         

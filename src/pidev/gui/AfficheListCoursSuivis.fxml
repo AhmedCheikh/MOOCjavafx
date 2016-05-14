@@ -24,9 +24,9 @@
             </Text>
             <TableView fx:id="tableCourSuivi" layoutX="14.0" layoutY="47.0" prefHeight="431.0" prefWidth="717.0">
                <columns>
-                  <TableColumn fx:id="idCour" prefWidth="219.0" text="ID Cour" />
-                  <TableColumn fx:id="dateDebut" prefWidth="252.0" text="Date de debut" />
-                  <TableColumn fx:id="appreciation" prefWidth="245.0" text="Appreciation" />
+                  <TableColumn fx:id="nomCour" prefWidth="219.0" text="Nom Cour" />
+                  <TableColumn fx:id="difficulteCours" prefWidth="252.0" text="Difficulte" />
+                  <TableColumn fx:id="objectifCours" prefWidth="245.0" text="Objectif" />
                </columns>
             </TableView>
          </children>

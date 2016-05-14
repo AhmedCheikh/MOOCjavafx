@@ -10,82 +10,17 @@ public class CoursSuivie {
     private int id_cours ;
     private String cinapprenant ;
     private String commentaire ;
-    private Float note ;
-    private Date date_debut ;
+    private double note ;
+    private String date_debut ;
     private String appreciation;
-
-    
-    
-
-//    public Integer getIdCours() {
-//        return idCours.get();
-//    }
-//
-//    public String getCinApprenant() {
-//        return cinApprenant;
-//    }
-//
-//    public String getCommentaire() {
-//        return Commentaire;
-//    }
-//
-//    public double getNote() {
-//        return note;
-//    }
-//
-//    public String getDateDebut() {
-//        return dateDebut.get();
-//    }
-//
-//    public String getAppreciation() {
-//        return appreciation.get();
-//    }
-//
-//    public void setIdCours(SimpleIntegerProperty idCours) {
-//        this.idCours = idCours;
-//    }
-//
-//    public void setCinApprenant(String cinApprenant) {
-//        this.cinApprenant = cinApprenant;
-//    }
-//
-//    public void setCommentaire(String Commentaire) {
-//        this.Commentaire = Commentaire;
-//    }
-//
-//    public void setNote(double note) {
-//        this.note = note;
-//    }
-//
-//    public void setDateDebut(SimpleStringProperty dateDebut) {
-//        this.dateDebut = dateDebut;
-//    }
-//
-//    public void setAppreciation(SimpleStringProperty appreciation) {
-//        this.appreciation = appreciation;
-//    }
-//    
-//    
-//    
-//    
 
     public CoursSuivie() {
     }
 
-    public CoursSuivie(int idCoursuivi, Date date_debut, String appreciation) {
-        this.idCoursuivi = idCoursuivi;
-        this.date_debut = date_debut;
-        this.appreciation = appreciation;
-    }
-
-    public CoursSuivie(int idCoursuivi, int id_cours, String cinapprenant, String commentaire, Float note, Date date_debut, String appreciation) {
-        this.idCoursuivi = idCoursuivi;
+    public CoursSuivie(int id_cours, String cinapprenant, String date_debut) {
         this.id_cours = id_cours;
         this.cinapprenant = cinapprenant;
-        this.commentaire = commentaire;
-        this.note = note;
         this.date_debut = date_debut;
-        this.appreciation = appreciation;
     }
 
     public int getIdCoursuivi() {
@@ -104,11 +39,11 @@ public class CoursSuivie {
         return commentaire;
     }
 
-    public Float getNote() {
+    public double getNote() {
         return note;
     }
 
-    public Date getDate_debut() {
+    public String getDate_debut() {
         return date_debut;
     }
 
@@ -132,11 +67,11 @@ public class CoursSuivie {
         this.commentaire = commentaire;
     }
 
-    public void setNote(Float note) {
+    public void setNote(double note) {
         this.note = note;
     }
 
-    public void setDate_debut(Date date_debut) {
+    public void setDate_debut(String date_debut) {
         this.date_debut = date_debut;
     }
 
@@ -144,4 +79,5 @@ public class CoursSuivie {
         this.appreciation = appreciation;
     }
     
+
 }

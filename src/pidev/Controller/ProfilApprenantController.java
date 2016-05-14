@@ -5,6 +5,8 @@
  */
 package pidev.Controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import pidev.dao.classes.DAOApprenant;
 import pidev.entities.Apprenant;
 
@@ -48,29 +52,26 @@ public class ProfilApprenantController implements Initializable {
     private Button btnRechCours;
     
     @FXML
-    private Hyperlink btnEditProfil;
+    private Button btnEditProfil;
     @FXML
     private Button btnDeconnecter;
+    
     public static Apprenant apprenant;
-     public static String inf;
+     
     private String info;
-    @FXML
-    public ImageView imageView;
+    
     @FXML
     private Button btnEnvoyerMail;
-    //public static Apprenant apprenant1;
+    
+    @FXML
+    private ImageView imageView;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        
-//        txtCin.setText(ControllerAthentification.apprenant.getCin());
-//        txtNom.setText(ControllerAthentification.apprenant.getNom());
-//        txtPrenom.setText(ControllerAthentification.apprenant.getPrenom());
- //       txtEmail.setText(ControllerAthentification.apprenant.getEmail());
-//        txtLogin.setText(ControllerAthentification.apprenant.getLogin());        
+      
     } 
 
 
@@ -78,14 +79,18 @@ public class ProfilApprenantController implements Initializable {
     private void btnListCoursSuivisAction(ActionEvent event) throws IOException { 
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
-        //loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
-        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursSuiviApprenant.fxml")); 
+        
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
+        //loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursSuiviApprenant.fxml")); 
         loader.load();
         Parent p = loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
-        AfficherCoursEtChapitreApprenantController ACCA  = loader.getController();
-        ACCA.setInfoApprenant(inf);
+        
+        AfficheListCoursSuivisController ALCS = loader.getController();
+        ALCS.setApprenant(apprenant);
+//        AfficherCoursEtChapitreApprenantController ACCA  = loader.getController();
+//        ACCA.setInfoApprenant(inf);
         stage.setTitle("List Cours Suivis");
         stage.show();
 
@@ -111,10 +116,11 @@ public class ProfilApprenantController implements Initializable {
         DAOApprenant da = new DAOApprenant();
        
         apprenant = da.getApprenantByLogin(info);
-        //apprenant1 = da.getApprenantByLogin(info);
-        String filename = apprenant.getNom(); 
-        inf=apprenant.getCin();
-        //imageView.setImage(new Image(getClass().getResourceAsStream("pidev/gui/img/"+filename+".jpg")));
+
+        File file = new File("C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/"+apprenant.getAvatar());
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
+
         txtCin.setText(apprenant.getCin());
         
         txtNom.setText(apprenant.getNom());
@@ -144,13 +150,6 @@ public class ProfilApprenantController implements Initializable {
 
     @FXML
     private void btnDeconnecterAction(ActionEvent event) throws IOException {
-//        ((Node) (event.getSource())).getScene().getWindow().hide();
-//        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(parent);
-//        stage.setScene(scene);
-//        stage.setTitle("Authentification");
-//        stage.show();
         Stage stage = (Stage) btnDeconnecter.getScene().getWindow();
         stage.close();
         
@@ -164,6 +163,9 @@ public class ProfilApprenantController implements Initializable {
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
         txtLogin.setText(apprenant.getLogin());
+        File file = new File("C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/"+apprenant.getAvatar());
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
        
         this.apprenant = apprenant;
     }
