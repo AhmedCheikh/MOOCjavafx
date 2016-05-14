@@ -89,6 +89,16 @@ public class Cours {
         this.cinFormateur = cinFormateur;
         this.video = video;
     }
+    
+    public Cours(int idCours,String nomCours, String description,String difficulte,String objectif, String cinFormateur, String video) {
+        this.idCours=idCours;
+        this.nomCours = nomCours;
+        this.description = description;
+        this.difficulte = difficulte ; 
+        this.objectif = objectif ; 
+        this.cinFormateur = cinFormateur;
+        this.video = video;
+    }
 
     public Cours() {
 

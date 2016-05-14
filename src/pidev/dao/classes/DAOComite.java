@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -168,7 +169,7 @@ public class DAOComite implements IDAOComite{
                 formateur.setMail(resultat.getString(4));
                 formateur.setEtat(resultat.getInt(5));
                 formateur.setAvatar(null);
-                formateur.setCv(null);
+                formateur.setCv(resultat.getString(7));
                 formateur.setLogin(null);
                 formateur.setPassword(null);
                 listeformateur.add(formateur);
@@ -210,25 +211,32 @@ public class DAOComite implements IDAOComite{
 
     @Override
     public void downloadCV(Formateur f) {
-      String requete = "select cv from formateur where cin=?";
-        try {
+      try {
+            String requete = "select cv from formateur where cin=?";
+            
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, f.getCinFormateur());
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                File cv = new File("D:\\CV"+f.getNom()+""+f.getPrenom()+".docx");
-                try (FileOutputStream fos = new FileOutputStream(cv)) {
-                    byte[] buffer = new byte[1];
-                    InputStream is = resultat.getBinaryStream(1);
-                    while (is.read(buffer) > 0) {
-                        fos.write(buffer);
-                    }         
-                }
+               File pdfFile = new File("src/pidev/gui/pdf/"+f.getCv());
+                System.out.println(pdfFile.getAbsolutePath());
+                pdfFile.getAbsolutePath();
+               if (pdfFile.exists()) {
+
+			if (Desktop.isDesktopSupported()) {
+				Desktop.getDesktop().open(pdfFile);
+			} else {
+				System.out.println("Awt Desktop is not supported!");
+			}
+
+		} else {
+			System.out.println("File is not exists!");
+		}
+
+		System.out.println("Done");
+
             }
-            System.out.println("Téléchargement effectué avec succès!");
         } catch (SQLException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
             Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);

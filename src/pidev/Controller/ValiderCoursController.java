@@ -88,7 +88,7 @@ public class ValiderCoursController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       IDaoCours coursDAO = new DAOCours();
       data = FXCollections.observableArrayList();
-      List<Cours> listCours = coursDAO.findAll();
+      List<Cours> listCours = coursDAO.findAllNonValide();
       
         for (Cours cours : listCours) {
             data.add(cours);

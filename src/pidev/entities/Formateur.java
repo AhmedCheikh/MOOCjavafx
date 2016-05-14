@@ -17,7 +17,7 @@ public class Formateur {
     private String login;
     private String password;
     private String avatar;
-    private File cv;
+    private String cv;
     private int etat = 0;
 
     public Formateur() {
@@ -43,7 +43,7 @@ public class Formateur {
         this.password = password;
         this.avatar = avatar;
     }
-public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar, File cv, int etat) {
+public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar, String cv, int etat) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -118,11 +118,11 @@ public Formateur(String cinFormateur, String nom, String prenom, String mail, St
         this.avatar = avatar;
     }
 
-    public File getCv() {
+    public String getCv() {
         return cv;
     }
 
-    public void setCv(File cv) {
+    public void setCv(String cv) {
         this.cv = cv;
     }
 

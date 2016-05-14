@@ -33,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -63,8 +64,9 @@ public class ValiderVideoController implements Initializable {
     private TableColumn formateur;
     @FXML
     private TableView<Cours> table ;
-    @FXML private Button approuver ; 
+    @FXML private Button approuver,refresh ; 
     @FXML private Button video ;
+    @FXML private Label labelNom, labelPrenom, labelDescription, labelDifficulte, labelObjectif ; 
     public static String pathFile ;
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;  
@@ -80,6 +82,15 @@ public class ValiderVideoController implements Initializable {
         pathFile=c.getVideo();
     }
     
+    
+    
+    private void showCoursDetails(Cours cours) {
+        labelDescription.setText(cours.getDescription());
+        labelDifficulte.setText(cours.getDifficulte());
+        labelObjectif.setText(cours.getObjectif());
+        
+    }
+    
     public ValiderVideoController()
    {
     connection = (DataSource.getInstance()).getConnection();
@@ -93,7 +104,7 @@ public class ValiderVideoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
 
-        String requete = "select c.idcours, c.nom_cours,c.description, f.nom,c.video from cours c,formateur f where c.cinformateur=f.cin ";
+        String requete = "select c.idcours, c.nom_cours,c.description,c.difficulte,c.objectif, f.nom,c.video from cours c,formateur f where c.cinformateur=f.cin and c.etat=0 ";
         PreparedStatement ps;
         ps = connection.prepareStatement(requete);
         ResultSet rs = ps.executeQuery();
@@ -101,7 +112,7 @@ public class ValiderVideoController implements Initializable {
         Cours c;
         while (rs.next()) {
 
-            c=new Cours(rs.getInt("idcours"),rs.getString("nom_cours"),rs.getString("description") ,rs.getString("nom"),rs.getNString("video"));
+            c=new Cours(rs.getInt("idcours"),rs.getString("nom_cours"),rs.getString("description"),rs.getString("difficulte"),rs.getString("objectif") ,rs.getString("nom"),rs.getNString("video"));
             System.out.println(c.getIdCours()+"--"+c.getNomCours()+"--"+c.getDescription()+"--"+c.getCinFormateur()+"--"+c.getVideo());
             temp.add(c);
             
@@ -111,11 +122,13 @@ public class ValiderVideoController implements Initializable {
         cours.setCellValueFactory(new PropertyValueFactory("nomCours"));
         formateur.setCellValueFactory(new PropertyValueFactory("cinFormateur"));
         table.setItems(list);
+        table.getColumns().get(0).setVisible(false);
+        table.getColumns().get(0).setVisible(true);
         table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cours>() {
             
             @Override
             public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
-                Cours cours=table.getSelectionModel().getSelectedItem();
+                showCoursDetails(newValue);
                 approuver.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -128,6 +141,8 @@ public class ValiderVideoController implements Initializable {
                alert.setHeaderText(null);
                alert.setContentText("Validation du cours effectuée avec succès!");
                alert.showAndWait();
+               table.getColumns().get(0).setVisible(false);
+               table.getColumns().get(0).setVisible(true);
                
             }
         });
@@ -220,4 +235,6 @@ if (result.get() == ButtonType.OK){
 
         stage.show();
     }
+    
+    
 }

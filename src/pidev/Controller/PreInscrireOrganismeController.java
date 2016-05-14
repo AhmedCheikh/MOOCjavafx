@@ -73,6 +73,10 @@ public class PreInscrireOrganismeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    /*******   Ceci a été commenté par Ahmed :) 
+     * 
+     * 
+     * 
     public void btnValiderAction(ActionEvent event) {
 
         if (txtNom.getText().isEmpty()) {
@@ -119,17 +123,12 @@ public class PreInscrireOrganismeController implements Initializable {
        DAOOrganisme d1 = new DAOOrganisme();
        d1.addOrganisme(o1);
 
-//         ((Node) (event.getSource())).getScene().getWindow().hide();
-//            Parent parent;
-//     
-//            parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
-//      
-//            Stage stage =  new Stage();
-//            Scene scene = new Scene(parent);
-//            stage.setScene(scene);
-//            stage.setTitle("Profil Organisme");
-//            stage.show();
+
     }
+    
+    * 
+    * 
+    */
 
     public void btnAnullerAction(ActionEvent event) {
         txtNom.setText("");
@@ -149,29 +148,32 @@ public class PreInscrireOrganismeController implements Initializable {
 
     }
 
-    public void btnChoisireAction() {
-        
-        FileChooser fileChooser = new FileChooser();
-
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        if (selectedFile != null) {
-
-            fileChooser.setTitle("Open resource file");
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
-            Organisme o = new Organisme();
-            if (selectedFile != null) {
-                File path = selectedFile.getAbsoluteFile();
-                document=path;
-                l7.setText("File selected: " + selectedFile.getName());
-               o.setDocument(path);
-            }
-            else {
-
-    l7.setText("File selection cancelled.");
-
+    //  Ceci a été commenté par Ahmed
+    
+//    public void btnChoisireAction() {
+//        
+//        FileChooser fileChooser = new FileChooser();
+//
+//        File selectedFile = fileChooser.showOpenDialog(null);
+//
+//        if (selectedFile != null) {
+//
+//            fileChooser.setTitle("Open resource file");
+//            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
+//            Organisme o = new Organisme();
+//            if (selectedFile != null) {
+//                File path = selectedFile.getAbsoluteFile();
+//                document=path;
+//                l7.setText("File selected: " + selectedFile.getName());
+//               o.setDocument(path);
+//            }
+//            else {
+//
+//    l7.setText("File selection cancelled.");
+//
+//}
+//
+//        }
+//
+//    }
 }
-
-        }
-
-    }}

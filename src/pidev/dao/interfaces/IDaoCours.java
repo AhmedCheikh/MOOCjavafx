@@ -16,6 +16,7 @@ public interface IDaoCours {
 
     List<Cours> findAll();
 
+    public List<Cours> findAllNonValide();
     Cours findCoursByName(String nomCours);
 
     List<Cours> findCoursByFormateur(String cinFormateur);

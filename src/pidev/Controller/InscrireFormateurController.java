@@ -202,6 +202,8 @@ public class InscrireFormateurController implements Initializable {
 //    public void setCii(String cii) {
 //        this.cii = cii;
 //    }
+    
+    /*****************   Ceci a été commenté par Ahmed :)
     @FXML
     public void btnValiderAction(ActionEvent event) throws IOException {
         File pth = im.getAbsoluteFile();
@@ -236,6 +238,10 @@ public class InscrireFormateurController implements Initializable {
                 txtRepaet.setStyle("-fx-border-color:red");
             }
         }
+        }
+        * 
+        * Ceci a été commenté par Ahmed :)
+        **************/
 
 //        if(txtCin.getText().isEmpty()){   
 //        }else{er1.setText(" ");}
@@ -261,7 +267,7 @@ public class InscrireFormateurController implements Initializable {
 //                Formateur f1 = new Formateur(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText(), null,cv, 0);
 //                DAOFormateur daof = new DAOFormateur();
 //                daof.inscrire(f1);
-    }
+    
 
     @FXML
     public void btnAnullerAction(ActionEvent event) {
