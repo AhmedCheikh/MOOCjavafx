@@ -169,13 +169,14 @@ public class ProfilFormateurController implements Initializable {
          ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         //loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
-        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursPublierFormateur.fxml")); 
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursEtChapitreFormateur.fxml")); 
         loader.load();
         Parent p = loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
-        AfficherCoursEtChapitreFormateurController ACCA  = loader.getController();
-        ACCA.setInfoFormateur(c);
+        AfficherCoursEtChapitreFormController ACCA  = loader.getController();
+        System.out.println(f.getNom());
+        ACCA.setFormateur(f);
         stage.setTitle("List Cours Publiers");
         stage.show();
     }

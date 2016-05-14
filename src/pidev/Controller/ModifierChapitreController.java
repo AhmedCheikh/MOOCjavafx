@@ -67,17 +67,12 @@ public class ModifierChapitreController {
     private Button btnexit;
     @FXML
     private Button btnback;
-    @FXML
-    public static File presentation;
 
     private String idq;
     List l;
     List l1;
      int idlocal;
 
-    public void setPresentation(File presentation) {
-        this.presentation = presentation;
-    }
 
     @FXML
     private Label er1;
@@ -140,26 +135,27 @@ public class ModifierChapitreController {
 
     @FXML
     private void btnChoisirDocAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
+    FileChooser fileChooser = new FileChooser();
 
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
 
             fileChooser.setTitle("Open resource file");
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.MP4"));
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                presentation = path;
-                LPresentation.setText("File selected: " + selectedFile.getName());
-                c.setPresentation(path);
+
+                LPresentation.setText(path.getName());
+
             } else {
 
-                LPresentation.setText("File selection cancelled.");
+                LPresentation.setText("Video selection cancelled.");
 
             }
 
+        
         }
     }
 
@@ -276,7 +272,7 @@ public class ModifierChapitreController {
 //            idlocal = dc.FindIdbychapitre(pnomc.getTitre());
             System.out.println("ssss" + dc.FindIdbychapitre(pnomc.getTitre()));
             int q=dc.FindIdbychapitre(pnomc.getTitre());
-            Chapitre c = new Chapitre(txtTitre.getText(), presentation, txtAObjectif.getText(),z, lVideo.getText());
+            Chapitre c = new Chapitre(txtTitre.getText(), LPresentation.getText(), txtAObjectif.getText(),z, lVideo.getText());
             DAOChapitre daoc = new DAOChapitre();
             daoc.updateChapitre(c,q);
             Alert alert = new Alert(AlertType.INFORMATION);

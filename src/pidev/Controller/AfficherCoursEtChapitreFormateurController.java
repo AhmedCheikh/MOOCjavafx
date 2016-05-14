@@ -164,7 +164,7 @@ if (result.get() == ButtonType.OK){
 //                DAOFormateur daof = new DAOFormateur();
 //        formateur=daof.getFormateurByCIN(c);
     
-     String requete = "select c.nom_cours,c.description,f.nom from cours c,formateur f where c.cinformateur=f.cin and c.cinformateur="+c;
+     String requete = "select c.nom_cours,c.description,c.idcours,c.idquiz from cours c,formateur f where c.cinformateur=f.cin and c.cinformateur="+c;
        
        try {
             PreparedStatement ps = connection.prepareStatement(requete);
@@ -174,7 +174,7 @@ if (result.get() == ButtonType.OK){
          Cours co;
          
              while (rs.next()) {
-               co=new Cours(rs.getString(1),rs.getString(2),rs.getString(3));
+               co=new Cours(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
               //temp.add(rs.getString(1));
            //temp.add(rs.getString(2));
              // temp.add( new SimpleStringProperty(rs.getString(3)));
@@ -204,7 +204,7 @@ if (result.get() == ButtonType.OK){
                 Cours cours=table.getSelectionModel().getSelectedItem();
                
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreFormateur.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursEtChapitreFormateur.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
@@ -214,8 +214,8 @@ if (result.get() == ButtonType.OK){
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-                stage.setTitle("Affichage Chapitre");
-                AfficherChapitreFormateurController pac  = loader.getController();
+                stage.setTitle("Editer Cours");
+                AfficherCoursEtChapitreFormController pac  = loader.getController();
 //                pac.setInfo(cours);
                 stage.show();
             }} );

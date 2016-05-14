@@ -280,7 +280,7 @@ public class AfficherQuizChronoController implements Initializable {
                     note = note - 1;
                 }
                 else{
-                    note=note+0.5;
+                    note=note+0;
                 }
 
                 System.out.println(note);

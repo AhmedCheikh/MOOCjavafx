@@ -158,7 +158,7 @@ login.setEffect(shadow);
             DAOOrganisme org = new DAOOrganisme();
             Organisme org3 = new Organisme();
 
-            if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) == 1 && org.getComplete(login.getText()).equals("complete")) {
+            if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) == 1 && org.getComplete(login.getText()).equals("1")) {
 
 //               Organisme o = new Organisme(nom);
                 //lblmessage.setText(" vos identifiant sont correcte ");
@@ -177,7 +177,7 @@ log=login.getText();
         stage.getIcons().add(new javafx.scene.image.Image("pidev/gui/img/icone.png"));
         stage.show();
                 
-            } else if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) ==1 && org.getComplete(login.getText()).equals("pas complete")) {
+            } else if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) ==1 && org.getComplete(login.getText()).equals("0")) {
                  Organisme Org = new Organisme(login.getText());
 
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -194,6 +194,7 @@ log=login.getText();
         stage.show();
             } 
             else if(org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) ==0 ){
+                System.out.println("etat="+org.getEtat(login.getText()));
                   message.setText("Vous etes classe dans la liste d'attente");
                 login.setText("");
                 password.setText(""); 

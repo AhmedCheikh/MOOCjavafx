@@ -42,26 +42,21 @@ public class DAOChapitre implements IDAOChapitre {
 
     @Override
     public void addChapitre(Chapitre c) {
-        try {
-            InputStream isDoc;
+      
 
             try {
-                isDoc = new FileInputStream(c.getPresentation());
+               
                 String req = "insert into chapitre (idcours,idQuiz,titre,presentation,objectif,video) values (?,?,?,?,?,?)";
                 pst = connection.prepareStatement(req);
                 pst.setInt(1, c.getIdCours());
                 pst.setInt(2, c.getIdQuiz());
                 pst.setString(3, c.getTitre());
-                pst.setBlob(4, isDoc);
+                pst.setString(4, c.getPresentation());
                 pst.setString(5, c.getObjectif());
                 pst.setString(6, c.getVideo());
 
                 pst.executeUpdate();
                 System.out.println("Ajout effectuée avec succès");
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'ajout " + ex.getMessage());
         }
@@ -84,23 +79,18 @@ public class DAOChapitre implements IDAOChapitre {
     public void updateChapitre(Chapitre c ,int id) {
 
         String requete = "update chapitre set idquiz=?, titre=? ,presentation=? ,objectif=?, video=?  where id= '" + id + "'";
-        try {
-            InputStream isDoc;
 
             try {
-                isDoc = new FileInputStream(c.getPresentation());
+
                 PreparedStatement pst = connection.prepareStatement(requete);  
                 pst.setInt(1, c.getIdQuiz());
                 pst.setString(2, c.getTitre());
-                pst.setBlob(3, isDoc);
+                pst.setString(3, c.getPresentation());
                 pst.setString(4, c.getObjectif());
                 pst.setString(5, c.getVideo());
 
                 pst.executeUpdate();
                 System.out.println("Mise à jour effectuée avec succès");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -128,14 +118,8 @@ public class DAOChapitre implements IDAOChapitre {
                 c.setIdQuiz(rs.getInt(3));
                 c.setTitre(rs.getString(4));
                 String filename = rs.getString(4);
-                Blob blob = rs.getBlob(6);
-                InputStream is = blob.getBinaryStream();
-                FileOutputStream fos = new FileOutputStream("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf");
-                int b = 0;
-                while ((b = is.read()) != -1) {
-                    fos.write(b);
-                }
-                c.setPresentation(new File("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
+             
+                c.setPresentation(rs.getString(7));
 
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
@@ -144,10 +128,6 @@ public class DAOChapitre implements IDAOChapitre {
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listChapitres;
     }
@@ -169,14 +149,8 @@ public class DAOChapitre implements IDAOChapitre {
                 c.setIdQuiz(rs.getInt(3));
                 c.setTitre(rs.getString(4));
                 String filename = rs.getString(4);
-                Blob blob = rs.getBlob(6);
-                InputStream is = blob.getBinaryStream();
-                FileOutputStream fos = new FileOutputStream("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf");
-                int b = 0;
-                while ((b = is.read()) != -1) {
-                    fos.write(b);
-                }
-                c.setPresentation(new File("C:\\Users\\Nour\\Documents\\NetBeansProjects\\MOOC_3A2_Desktop\\src\\pidev\\gui\\img" + "\\" + filename + ".pdf"));
+               
+                c.setPresentation(rs.getString(7));
 
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
@@ -185,10 +159,6 @@ public class DAOChapitre implements IDAOChapitre {
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DAOChapitre.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listChapitres;
     }

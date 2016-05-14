@@ -56,8 +56,7 @@ public class AjouterChapitreController implements Initializable {
     private TextField lVideo;
     @FXML
     private TextArea txtAObjectif;
-    @FXML
-    public static File presentation;
+
     @FXML
     private ComboBox CmbQuiz;
     @FXML
@@ -71,9 +70,6 @@ public class AjouterChapitreController implements Initializable {
     int w;
     public Cours cours;
 
-    public void setPresentation(File presentation) {
-        this.presentation = presentation;
-    }
 
     public void setCours(Cours cours) {
         this.cours = cours;
@@ -127,7 +123,7 @@ public class AjouterChapitreController implements Initializable {
         if (test == 4) {
             DAOQuiz d = new DAOQuiz();
             z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-            Chapitre c = new Chapitre(1, z, txtTitre.getText(), presentation, txtAObjectif.getText(), lVideo.getText());
+            Chapitre c = new Chapitre(1, z, txtTitre.getText(), LPresentation.getText(), txtAObjectif.getText(), lVideo.getText());
 
             DAOChapitre daoc = new DAOChapitre();
             daoc.addChapitre(c);
@@ -149,6 +145,7 @@ public class AjouterChapitreController implements Initializable {
 
     @FXML
     public void btnChoisirDocAction(ActionEvent event) {
+  
         FileChooser fileChooser = new FileChooser();
 
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -156,16 +153,16 @@ public class AjouterChapitreController implements Initializable {
         if (selectedFile != null) {
 
             fileChooser.setTitle("Open resource file");
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.MP4"));
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                presentation = path;
-                LPresentation.setText("File selected: " + selectedFile.getName());
-                c.setPresentation(path);
+
+                LPresentation.setText(path.getName());
+
             } else {
 
-                LPresentation.setText("File selection cancelled.");
+                LPresentation.setText("Video selection cancelled.");
 
             }
 

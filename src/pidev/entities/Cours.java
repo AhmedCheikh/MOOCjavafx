@@ -15,20 +15,19 @@ public class Cours {
     private int idQuiz;
     private int etat;
 
- 
-
     public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idQuiz) {
-        
+
         this.nomCours = nomCours;
         this.description = description;
         this.cinFormateur = cinFormateur;
         this.difficulte = difficulte;
         this.objectif = objectif;
-       
+
         this.idQuiz = idQuiz;
-  
+
     }
-     public Cours(int idCours, String nomCours, String description, String difficulte, String objectif, String video) {
+
+    public Cours(int idCours, String nomCours, String description, String difficulte, String objectif, String video) {
         this.idCours = idCours;
         this.nomCours = nomCours;
         this.description = description;
@@ -36,6 +35,7 @@ public class Cours {
         this.objectif = objectif;
         this.video = video;
     }
+
     public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, int idQuiz) {
         this.idCours = idCours;
         this.nomCours = nomCours;
@@ -45,7 +45,8 @@ public class Cours {
         this.objectif = objectif;
         this.idQuiz = idQuiz;
     }
- public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, String video, int idQuiz, int etat) {
+
+    public Cours(int idCours, String nomCours, String description, String cinFormateur, String difficulte, String objectif, String video, int idQuiz, int etat) {
         this.idCours = idCours;
         this.nomCours = nomCours;
         this.description = description;
@@ -56,29 +57,33 @@ public class Cours {
         this.idQuiz = idQuiz;
         this.etat = etat;
     }
- public Cours(String nomCours, String description, String difficulte, String objectif, String video) {
+
+    public Cours(String nomCours, String description, String difficulte, String objectif, String video) {
         this.nomCours = nomCours;
         this.description = description;
         this.difficulte = difficulte;
         this.objectif = objectif;
         this.video = video;
     }
-public Cours(String nomCours,String description,String cinFormateur)
-{
-    this.nomCours=nomCours;
-    this.description=description;
-  this.cinFormateur=cinFormateur;
-}
 
-    public Cours(String nomCours, String description, String cinFormateur, String video) {
+    public Cours(String nomCours, String description, String cinFormateur, int idcours,int idquiz) {
+        this.nomCours = nomCours;
+        this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.idCours = idcours;
+        this.idQuiz=idquiz;
+    }
+
+    public Cours(String nomCours, String description, String cinFormateur, String video, int idQuiz) {
         this.nomCours = nomCours;
         this.description = description;
         this.cinFormateur = cinFormateur;
         this.video = video;
+        this.idQuiz = idQuiz;
     }
-    
-    public Cours(int idCours,String nomCours, String description, String cinFormateur, String video) {
-        this.idCours=idCours;
+
+    public Cours(int idCours, String nomCours, String description, String cinFormateur, String video) {
+        this.idCours = idCours;
         this.nomCours = nomCours;
         this.description = description;
         this.cinFormateur = cinFormateur;
@@ -86,7 +91,7 @@ public Cours(String nomCours,String description,String cinFormateur)
     }
 
     public Cours() {
-       
+
     }
 
     public int getIdCours() {
@@ -112,8 +117,6 @@ public Cours(String nomCours,String description,String cinFormateur)
     public String getObjectif() {
         return objectif;
     }
-
-   
 
     public int getIdQuiz() {
         return idQuiz;
@@ -143,8 +146,6 @@ public Cours(String nomCours,String description,String cinFormateur)
         this.objectif = objectif;
     }
 
-   
-
     public void setIdQuiz(int idQuiz) {
         this.idQuiz = idQuiz;
     }
@@ -169,8 +170,6 @@ public Cours(String nomCours,String description,String cinFormateur)
     public String toString() {
         return "Cours{" + "idCours=" + idCours + ", nomCours=" + nomCours + ", description=" + description + ", cinFormateur=" + cinFormateur + ", difficulte=" + difficulte + ", objectif=" + objectif + ", video=" + video + ", idQuiz=" + idQuiz + ", etat=" + etat + '}';
     }
-
-    
 
     @Override
     public int hashCode() {
@@ -197,9 +196,5 @@ public Cours(String nomCours,String description,String cinFormateur)
         }
         return true;
     }
-
-    
-    
-    
 
 }

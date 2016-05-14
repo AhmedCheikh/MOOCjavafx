@@ -142,7 +142,7 @@ public class DAOQuestion implements IDAOQuestion {
 
             while (rs.next()) {
 
-                Question e = new Question(rs.getString(3));
+                Question e = new Question(rs.getInt(1),rs.getString(2),rs.getInt(3));
 
                 listQuestion.add(e);
             }

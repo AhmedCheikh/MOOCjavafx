@@ -162,7 +162,7 @@ init(stage);
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Faire Quiz");
                 AfficherQuizChronoController pac  = loader.getController();
-//                pac.setPnomc(nom);
+                pac.setCours(info.getIdQuiz());
                 stage.show();
    }
 @FXML
@@ -222,7 +222,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
           formateur=info.getCinFormateur() ;
           nom=info.getNomCours();
           pathFile=info.getVideo();
-           String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
+           String requete = "select titre,objectif,idquiz from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
        
     
             PreparedStatement ps;
@@ -235,7 +235,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
          Chapitre c;
          
              while (rs.next()) {
-               c=new Chapitre(rs.getString(1),rs.getString(2));
+               c=new Chapitre(rs.getString(1),rs.getString(2),rs.getInt(3));
               //temp.add(rs.getString(1));
            //temp.add(rs.getString(2));
              // temp.add( new SimpleStringProperty(rs.getString(3)));

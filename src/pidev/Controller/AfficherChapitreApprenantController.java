@@ -135,16 +135,17 @@ public class AfficherChapitreApprenantController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         AfficherQuizController aq = loader.getController();
-        
-        aq.setPnomc(23);
+//        DAOChapitre dch= new DAOChapitre();
+//        int a=dch.FindIdbychapitre(ch.getTitre());
+        aq.setPnomc(ch.getIdQuiz());
         stage.show();
     }
 
     @FXML
     private void btnTelechargerAction(ActionEvent event) throws FileNotFoundException, IOException {
 
-        DAOChapitre dch = new DAOChapitre();
-        dch.FindPresentationbychapitre(ch.getIdChapitre());
+//        DAOChapitre dch = new DAOChapitre();
+//        dch.FindPresentationbychapitre(ch.getIdChapitre());
 
     }
 

@@ -47,8 +47,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import pidev.entities.Apprenant;
 import pidev.entities.Cours;
+import pidev.entities.Formateur;
 
 import pidev.techniques.DataSource;
 /**
@@ -56,7 +56,7 @@ import pidev.techniques.DataSource;
  *
  * @author Ahmed
  */
-public class AfficherCoursEtChapitreApprenantController implements Initializable {
+public class AfficherCoursEtChapitreFormController implements Initializable {
 @FXML
     private TableColumn Nom;
     @FXML
@@ -72,15 +72,15 @@ public class AfficherCoursEtChapitreApprenantController implements Initializable
     private Button btnback;
     
 private Connection connection ; 
-    private String infoApprenant ;
-  private Apprenant apprenant;
-   public AfficherCoursEtChapitreApprenantController()
+    private Formateur formateur;
+ 
+   public AfficherCoursEtChapitreFormController()
    {
     connection = (DataSource.getInstance()).getConnection();
    }
 
     @FXML
-    private void btnexitAction(ActionEvent event) throws IOException {
+    private void btnexitAction(ActionEvent event) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
 alert.setTitle("Warning");
 alert.setHeaderText("Your are leaving application !");
@@ -88,19 +88,8 @@ alert.setContentText("Are you sure to leave?");
 
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
-    
-      ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage =new Stage();
-        stage.setScene(new Scene(p));
-        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-        stage.setTitle("Authentification");
-        
-        stage.show();
-    
+    Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
 } else {
    alert.close();
 }
@@ -111,15 +100,14 @@ if (result.get() == ButtonType.OK){
     private void btnbackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
+        loader.setLocation(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
         loader.load();
         Parent p = loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(p));
-        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-        stage.setTitle("Profil Apprenant");
-        ProfilApprenantController pac  = loader.getController();
-        pac.setApprenant(apprenant);
+        stage.setTitle("Profil Formateur");
+        ProfilFormateurController pac  = loader.getController();
+       // pac.setFormateur(formateur);
         stage.show();
     }
    
@@ -144,15 +132,8 @@ if (result.get() == ButtonType.OK){
                     }
                 });
         
-       
-    }
-
-   
-
-    void setInfoApprenant(String inf) {
-         try {
-
-        String requete = "select c.idQuiz ,c.nom_cours,c.description,f.nom,c.video from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin and cs.cinapprenant="+inf;
+        try {
+        String requete = "select c.nom_cours,c.description,f.nom,c.idcours ,c.idQuiz from cours c,formateur f where c.cinformateur=f.cin and c.cinformateur=01234567";
         
         PreparedStatement ps;
         
@@ -162,7 +143,7 @@ if (result.get() == ButtonType.OK){
         List<Cours> temp=new ArrayList<>();
         Cours c;
         while (rs.next()) {
-            c=new Cours(rs.getString("nom_cours"),rs.getString("description"),rs.getString("nom"),rs.getNString("video"),rs.getInt("idQuiz"));
+            c=new Cours(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
             //temp.add(rs.getString(1));
             //temp.add(rs.getString(2));
             // temp.add( new SimpleStringProperty(rs.getString(3)));
@@ -183,32 +164,32 @@ if (result.get() == ButtonType.OK){
                 Cours cours=table.getSelectionModel().getSelectedItem();
                
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
-                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AfficherCoursEtChapitreFormController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 Parent p = loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Cours");
-                AffichageCoursController pac  = loader.getController();
+                AffichageCoursFormController pac  = loader.getController();
+                System.out.println("*************************"+cours.getNomCours());
                 pac.setInfo(cours);
-//                pac.setApprenant(apprenant);
                 stage.show();
             }} );
   
   } catch (SQLException ex) {
-            Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AfficherCoursEtChapitreFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.infoApprenant=inf;
-        
     }
- public void setApprenant(Apprenant apprenant) {
-        this.apprenant = apprenant;
+
+    public void setFormateur(Formateur formateur) {
+        this.formateur = formateur;
     }
+
     
 }
     

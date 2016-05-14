@@ -168,7 +168,7 @@ public class AfficherQuizController implements Initializable {
         for (int i = 0; i < 5; i++) {
 
             
-         int   rand=randomWithRange(0, (lsq.size())-1);
+         int   rand=randomWithRange(0, (lsq.size())+1);
             Question s = (Question) lsq.get(rand);
             tfQ[i].setText(s.getQuestion());
             int Qid = daoqe.findQuestionSelonId(s);
@@ -234,7 +234,7 @@ public class AfficherQuizController implements Initializable {
                 } else if (tfC[j].isSelected() && et == 0) {
                     note = note - 1;
                 } else {
-                    note = note + 0.5;
+                    note = note + 0;
                 }
 
                 System.out.println(note);

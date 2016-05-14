@@ -25,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import pidev.entities.Cours;
 
 /**
  * FXML Controller class
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
  * @author Ahmed
  */
 public class EditerCoursController implements Initializable {
-
+ public Cours info; 
      @FXML
     private Button btnChapitre;
     @FXML
@@ -41,6 +42,12 @@ public class EditerCoursController implements Initializable {
     private Button btnexit;
     @FXML
     private Button btnback;
+    
+    public void setInfo(Cours info) {
+        
+        this.info = info;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        DropShadow shadow = new DropShadow();
@@ -118,6 +125,8 @@ if (result.get() == ButtonType.OK){
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Ajouter Chapitre");
+        AjouterChapitreController pac  = loader.getController();
+                pac.setCours(info);
         stage.show();
     }
     
