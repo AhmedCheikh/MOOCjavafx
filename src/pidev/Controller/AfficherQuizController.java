@@ -136,7 +136,7 @@ public class AfficherQuizController implements Initializable {
     private Label Note;
     @FXML
     private Label ltitre;
-    public double note;
+    public int note;
     int f = 0;
     int pnomc;
 
@@ -230,7 +230,7 @@ public class AfficherQuizController implements Initializable {
                 int et = s.getEtat();
                 System.out.println(et);
                 if (tfC[j].isSelected() && et == 1) {
-                    note = note + 1;
+                    note = note + 4;
                 } else if (tfC[j].isSelected() && et == 0) {
                     note = note - 1;
                 } else {

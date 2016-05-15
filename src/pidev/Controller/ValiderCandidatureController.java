@@ -57,7 +57,7 @@ public class ValiderCandidatureController implements Initializable {
     @FXML
     private Button btnexit;
     @FXML
-    private Button approuver,downloadCV;
+    private Button approuver,downloadCV,refresh;
     @FXML
     private TableView<Formateur> table ; 
     @FXML
@@ -66,8 +66,6 @@ public class ValiderCandidatureController implements Initializable {
     private TableColumn Prenom;
     @FXML
     private TableColumn Email;
-    @FXML
-    private TableColumn Adresse;
     @FXML private Label labelNom, labelPrenom, labelEmail, labelAdresse, labelMsg ; 
     private Comite comite ; 
     
@@ -86,14 +84,12 @@ public class ValiderCandidatureController implements Initializable {
     }
      
      private void showFormateurDetails(Formateur formateur) {
+         
         labelNom.setText(formateur.getNom());
         labelPrenom.setText(formateur.getPrenom());
         labelEmail.setText(formateur.getMail());
-//      labelAdresse.setText(formateur.getAdresse());
         
         }
-     
-     
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -122,27 +118,11 @@ public class ValiderCandidatureController implements Initializable {
         public void handle(ActionEvent event) {
         IDAOComite comiteDAO = new DAOComite();
         comiteDAO.validerCandidature(newValue);
-        data2 = FXCollections.observableArrayList();
-        table.getItems().remove(newValue);
-        List<Formateur> listFormateur2 = comiteDAO.findAllFormateur() ; 
-        
-        for (Formateur formateur : listFormateur2) {
-            data2.add(formateur) ; 
-        }
-        
-        Nom.setCellValueFactory(new PropertyValueFactory("nom"));
-        Prenom.setCellValueFactory(new PropertyValueFactory("prenom"));
-        table.setItems(data2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validation");
         alert.setHeaderText(null);
         alert.setContentText("Validation de la candidature effectuée avec succès!");
-        alert.showAndWait();
-        
-        
-               
-                                             }
-                               });
+        alert.showAndWait();}});
         
         downloadCV.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -150,55 +130,9 @@ public class ValiderCandidatureController implements Initializable {
             public void handle(ActionEvent event) {
                 IDAOComite comiteDAO = new DAOComite();
                 comiteDAO.downloadCV(newValue);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Téléchargement");
-                alert.setHeaderText(null);
-                alert.setContentText("Téléchargement effectuée avec succès! (Allez dans D:)");
-                alert.showAndWait();
                 
-            }
-        });
-        
-        }
-            
-        }) ;
-        
-        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Formateur>() {
-
-        @Override
-        public void changed(ObservableValue<? extends Formateur> observable, Formateur oldValue, Formateur newValue) {
-        showFormateurDetails(newValue);
-        
-        approuver.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-        IDAOComite comiteDAO = new DAOComite();
-        comiteDAO.validerCandidature(newValue); 
-        table.refresh();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Validation");
-        alert.setHeaderText(null);
-        alert.setContentText("Validation de la candidature effectuée avec succès!");
-        alert.showAndWait();
-        
-               
-                                             }
-                               });
-        
-        downloadCV.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                IDAOComite comiteDAO = new DAOComite();
-                comiteDAO.downloadCV(newValue);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Téléchargement");
-                alert.setHeaderText(null);
-                alert.setContentText("Téléchargement effectuée avec succès! (Allez dans D:)");
-                alert.showAndWait();
                 
-            }
-        });
+                                                   }});
         
         }
             
@@ -250,8 +184,5 @@ if (result.get() == ButtonType.OK){
         pcc.setComite(comite);
 
         stage.show();
-    }
-    
-    
-    
+    } 
 }

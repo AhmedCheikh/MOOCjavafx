@@ -53,9 +53,6 @@ import pidev.tests.test;
 
 public class AffichageCoursFormController implements Initializable {
 
-   
-   
-
     @FXML
     private TextArea description;
 
@@ -125,35 +122,35 @@ public class AffichageCoursFormController implements Initializable {
     private void btnQuizAction(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ModifierQuiz.fxml"));
-      
+
         try {
             loader.load();
         } catch (IOException ex) {
             Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
         stage.setTitle("Modifier Quiz");
         ModifierQuizController pac = loader.getController();
-        System.out.println("&&&&&&&&&&&"+info.getIdQuiz());
+        System.out.println("&&&&&&&&&&&" + info.getIdQuiz());
         pac.setPnomc(info.getIdQuiz());
         stage.show();
     }
-    
-        @FXML
+
+    @FXML
     private void btnChapitreAction(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-      
+
         try {
             loader.load();
         } catch (IOException ex) {
             Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
@@ -163,7 +160,6 @@ public class AffichageCoursFormController implements Initializable {
         pac.setCours(info);
         stage.show();
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -177,7 +173,7 @@ public class AffichageCoursFormController implements Initializable {
         description.setText(info.getDescription());
         formateur = info.getCinFormateur();
         nom = info.getNomCours();
-        String requete = "select * from chapitre where idcours= "+info.getIdCours();
+        String requete = "select * from chapitre where idcours= " + info.getIdCours();
 
         PreparedStatement ps;
         try {
@@ -209,7 +205,7 @@ public class AffichageCoursFormController implements Initializable {
                 @Override
                 public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
                     Chapitre chapitres = table.getSelectionModel().getSelectedItem();
-
+                  
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreFormateur.fxml"));
                     try {

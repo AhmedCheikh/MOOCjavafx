@@ -63,7 +63,7 @@ public class AfficherChapitreFormateurController implements Initializable {
     @FXML
     private Button btnback;
     public Chapitre ch;
-
+    int qi;
     private Media me;
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
@@ -89,7 +89,7 @@ public class AfficherChapitreFormateurController implements Initializable {
         DAOChapitre dch = new DAOChapitre();
         Group root = new Group();
         primaryStage.setScene(new Scene(root, 480, 270));
-        String path = new File("src/pidev/gui/video/" + dch.FindVideobychapitre(ch.getIdChapitre())).getAbsolutePath();
+        String path = new File("src/pidev/gui/video/" + ch.getVideo()).getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(me);
         mediaPlayer.setAutoPlay(true);
@@ -136,7 +136,7 @@ public class AfficherChapitreFormateurController implements Initializable {
             stage.setScene(new Scene(p));
             ModifierQuizController aq = loader.getController();
             DAOChapitre daoc = new DAOChapitre();
-            int qi = daoc.FindIdQuizbychapitre(ch.getTitre());
+            qi = daoc.FindIdQuizbychapitre(ch.getTitre());
             aq.setPnomc(qi);
             stage.show();
 

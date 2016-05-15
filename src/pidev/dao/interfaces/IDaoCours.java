@@ -22,4 +22,7 @@ public interface IDaoCours {
     String findTitreCoursById(int id);
     Cours findCoursByDifficulte (String difficulte) ;
     int FindIdQuizbycours(String titre);
+    
+        int findIdQuizByIdcours (int idcours) ;
+
 }

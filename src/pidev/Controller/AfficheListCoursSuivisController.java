@@ -168,7 +168,7 @@ public class AfficheListCoursSuivisController implements Initializable {
                     try {
                         loader.load();
                     } catch (IOException ex) {
-                        Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger( AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Parent p = loader.getRoot();
                     Stage stage = new Stage();

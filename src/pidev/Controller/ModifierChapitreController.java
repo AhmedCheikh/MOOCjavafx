@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -54,7 +55,7 @@ public class ModifierChapitreController {
     @FXML
     private TextField lVideo;
     @FXML
-    private Label LPresentation;
+    private TextField lPresentation;
     @FXML
     private Button btnAjouterQuiz;
     @FXML
@@ -67,12 +68,13 @@ public class ModifierChapitreController {
     private Button btnexit;
     @FXML
     private Button btnback;
+    @FXML
+    public static File presentation;
 
     private String idq;
     List l;
     List l1;
-     int idlocal;
-
+    int idlocal;
 
     @FXML
     private Label er1;
@@ -80,6 +82,7 @@ public class ModifierChapitreController {
     private Label er2;
     int z;
     Chapitre pnomc;
+    Chapitre c;
 
     public void setPnomc(Chapitre pnomc) {
         this.pnomc = pnomc;
@@ -92,12 +95,12 @@ public class ModifierChapitreController {
         }
 //        DAOChapitre dc = new DAOChapitre();
 //        idlocal = dc.FindIdbychapitre(pnomc.getTitre());
-//        idlocal = pnomc.getIdChapitre();
-        
+       idlocal = pnomc.getIdChapitre();
+
         txtTitre.setText(pnomc.getTitre());
         txtAObjectif.setText(pnomc.getObjectif());
         lVideo.setText(pnomc.getVideo());
-//        LPresentation.setText(pnomc.getPresentation().getAbsolutePath());
+        lPresentation.setText(pnomc.getPresentation());
 
         DAOQuiz z = new DAOQuiz();
         idq = z.findTitreQuizByTitreSelonId(pnomc.getIdQuiz());
@@ -135,27 +138,27 @@ public class ModifierChapitreController {
 
     @FXML
     private void btnChoisirDocAction(ActionEvent event) {
-    FileChooser fileChooser = new FileChooser();
+
+        FileChooser fileChooser = new FileChooser();
 
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
 
             fileChooser.setTitle("Open resource file");
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.MP4"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.PDF"));
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
 
-                LPresentation.setText(path.getName());
+                lPresentation.setText(path.getName());
 
             } else {
 
-                LPresentation.setText("Video selection cancelled.");
+                lPresentation.setText("Video selection cancelled.");
 
             }
 
-        
         }
     }
 
@@ -202,6 +205,17 @@ public class ModifierChapitreController {
             alert.close();
         }
 
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreFormateur.fxml"));
+        AnchorPane frame = loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.setTitle("Affichage Cours");
+        AfficherChapitreFormateurController pac = loader.getController();
+        pac.setCh(pnomc);
+        stage.show();
     }
 
     @FXML
@@ -255,13 +269,13 @@ public class ModifierChapitreController {
             lVideo.setEffect(shadow);
             test += 1;
         }
-        if (LPresentation.getText().isEmpty()) {
+        if (lPresentation.getText().isEmpty()) {
             shadow.setColor(Color.RED);
-            btnChoisirDoc.setEffect(shadow);
+            lPresentation.setEffect(shadow);
             test -= 1;
         } else {
             shadow.setColor(Color.GREEN);
-            btnChoisirDoc.setEffect(shadow);
+            lPresentation.setEffect(shadow);
             test += 1;
         }
 
@@ -271,15 +285,15 @@ public class ModifierChapitreController {
             DAOChapitre dc = new DAOChapitre();
 //            idlocal = dc.FindIdbychapitre(pnomc.getTitre());
             System.out.println("ssss" + dc.FindIdbychapitre(pnomc.getTitre()));
-            int q=dc.FindIdbychapitre(pnomc.getTitre());
-            Chapitre c = new Chapitre(txtTitre.getText(), LPresentation.getText(), txtAObjectif.getText(),z, lVideo.getText());
+//            int q=dc.FindIdbychapitre(pnomc.getTitre());
+            c = new Chapitre(txtTitre.getText(), lPresentation.getText(), txtAObjectif.getText(), z, lVideo.getText());
             DAOChapitre daoc = new DAOChapitre();
-            daoc.updateChapitre(c,q);
+            daoc.updateChapitre(c, idlocal);}
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText("Look, an Information Dialog");
             alert.setContentText("update successfully!");
             alert.showAndWait();
-        }
+        
     }
 }

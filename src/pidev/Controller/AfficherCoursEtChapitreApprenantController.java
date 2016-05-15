@@ -152,7 +152,7 @@ if (result.get() == ButtonType.OK){
     void setInfoApprenant(String inf) {
          try {
 
-        String requete = "select c.idQuiz ,c.nom_cours,c.description,f.nom,c.video from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin and cs.cinapprenant="+inf;
+        String requete = "select c.nom_cours,c.idcours,c.description,f.nom,c.video,c.idQuiz  from cours c,coursuivi cs,apprenant a,formateur f where c.idcours=cs.id_Cours and cs.cinapprenant=a.cin and c.cinformateur=f.cin and cs.cinapprenant="+inf;
         
         PreparedStatement ps;
         
@@ -162,7 +162,7 @@ if (result.get() == ButtonType.OK){
         List<Cours> temp=new ArrayList<>();
         Cours c;
         while (rs.next()) {
-            c=new Cours(rs.getString("nom_cours"),rs.getString("description"),rs.getString("nom"),rs.getNString("video"),rs.getInt("idQuiz"));
+            c=new Cours(rs.getInt(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(8),rs.getInt(4));
             //temp.add(rs.getString(1));
             //temp.add(rs.getString(2));
             // temp.add( new SimpleStringProperty(rs.getString(3)));

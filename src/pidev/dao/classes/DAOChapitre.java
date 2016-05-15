@@ -31,21 +31,19 @@ import pidev.techniques.DataSource;
  * @author Gumus
  */
 public class DAOChapitre implements IDAOChapitre {
-
+    
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
-
+    
     public DAOChapitre() {
         connection = DataSource.getInstance().getConnection();
     }
-
+    
     @Override
     public void addChapitre(Chapitre c) {
-      
-
+            
             try {
-               
                 String req = "insert into chapitre (idcours,idQuiz,titre,presentation,objectif,video) values (?,?,?,?,?,?)";
                 pst = connection.prepareStatement(req);
                 pst.setInt(1, c.getIdCours());
@@ -54,14 +52,16 @@ public class DAOChapitre implements IDAOChapitre {
                 pst.setString(4, c.getPresentation());
                 pst.setString(5, c.getObjectif());
                 pst.setString(6, c.getVideo());
-
+                
                 pst.executeUpdate();
                 System.out.println("Ajout effectuée avec succès");
+                
+      
         } catch (SQLException ex) {
             System.out.println("erreur lors de l'ajout " + ex.getMessage());
         }
     }
-
+    
     @Override
     public void removeChapitre(Chapitre c) {
         String requete = "delete from chapitre where id=?";
@@ -72,23 +72,22 @@ public class DAOChapitre implements IDAOChapitre {
             System.out.println("Chapitre supprimé");
         } catch (SQLException ex) {
             System.out.println("erreur lors de la suppression " + ex.getMessage());
-
+            
         }
     }
-
-    public void updateChapitre(Chapitre c ,int id) {
-
+    
+    public void updateChapitre(Chapitre c, int id) {
+        
         String requete = "update chapitre set idquiz=?, titre=? ,presentation=? ,objectif=?, video=?  where id= '" + id + "'";
-
+            
             try {
-
-                PreparedStatement pst = connection.prepareStatement(requete);  
+                PreparedStatement pst = connection.prepareStatement(requete);                
                 pst.setInt(1, c.getIdQuiz());
                 pst.setString(2, c.getTitre());
                 pst.setString(3, c.getPresentation());
                 pst.setString(4, c.getObjectif());
                 pst.setString(5, c.getVideo());
-
+                
                 pst.executeUpdate();
                 System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -96,65 +95,54 @@ public class DAOChapitre implements IDAOChapitre {
         }
     }
     
-    
-       
-
-
-
     @Override
     public List<Chapitre> findChapitre() {
         String req = "select * from chapitre";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
-
+        
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-
+            
             while (rs.next()) {
-
+                
                 Chapitre c = new Chapitre();
                 c.setIdCours(rs.getInt(2));
                 c.setIdChapitre(rs.getInt(1));
                 c.setIdQuiz(rs.getInt(3));
                 c.setTitre(rs.getString(4));
-                String filename = rs.getString(4);
-             
                 c.setPresentation(rs.getString(7));
-
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
-
+                
                 listChapitres.add(c);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
-        }
+        } 
         return listChapitres;
     }
-
+    
     @Override
     public List<Chapitre> findChapitreById(int id) {
-        String req = "select * from chapitre where id= '" + id+ "'";
+        String req = "select * from chapitre where id= '" + id + "'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
-
+        
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-
+            
             while (rs.next()) {
-
+                
                 Chapitre c = new Chapitre();
                 c.setIdCours(rs.getInt(2));
                 c.setIdChapitre(rs.getInt(1));
                 c.setIdQuiz(rs.getInt(3));
                 c.setTitre(rs.getString(4));
-                String filename = rs.getString(4);
-               
                 c.setPresentation(rs.getString(7));
-
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
-
+                
                 listChapitres.add(c);
             }
         } catch (SQLException ex) {
@@ -185,51 +173,50 @@ public class DAOChapitre implements IDAOChapitre {
 //        }
 //        return listChapitres;
 //    }
-
     @Override
     public int FindIdQuizbychapitre(String titre
     ) {
         {
             String req = "select * from chapitre where titre= '" + titre + "'";
             Quiz Quiz = new Quiz();
-
+            
             try {
                 pst = connection.prepareStatement(req);
                 rs = pst.executeQuery();
-
+                
                 while (rs.next()) {
-
+                    
                     return rs.getInt(2);
                 }
-
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
             return 0;
         }
     }
-
-    public String FindVideobychapitre(int id ) {
+    
+    public String FindVideobychapitre(int id) {
         {
             String req = "select * from chapitre where id= '" + id + "'";
             Quiz Quiz = new Quiz();
-
+            
             try {
                 pst = connection.prepareStatement(req);
                 rs = pst.executeQuery();
-
+                
                 while (rs.next()) {
-
+                    
                     return rs.getString(8);
                 }
-
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
             return "";
         }
     }
-
+    
     public void FindPresentationbychapitre(int id
     ) {
         {
@@ -255,21 +242,19 @@ public class DAOChapitre implements IDAOChapitre {
             } catch (IOException ex) {
                 Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
     }
     
-    
-       @Override
+    @Override
     public boolean ChercherTitre(String titre) {
-       boolean res = false;
+        boolean res = false;
         try {
             String req = "select * from chapitre where titre =?";
-            pst=connection.prepareStatement(req);
+            pst = connection.prepareStatement(req);
             pst.setString(1, titre);
             rs = pst.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 res = true;
                 
             }
@@ -279,26 +264,25 @@ public class DAOChapitre implements IDAOChapitre {
         }
         return res;
     }
-
+    
     @Override
     public int FindIdbychapitre(String titre) {
-         String req = "select * from chapitre where titre= '" + titre + "'";
-            Quiz Quiz = new Quiz();
-
-            try {
-                pst = connection.prepareStatement(req);
-                rs = pst.executeQuery();
-
-                while (rs.next()) {
-
-                    return rs.getInt(1);
-                }
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+        String req = "select * from chapitre where titre= '" + titre + "'";
+        Quiz Quiz = new Quiz();
+        
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                
+                return rs.getInt(1);
             }
-            return 0;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+        return 0;
+    }
     
-
 }

@@ -31,6 +31,8 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -51,7 +53,7 @@ public class AjouterChapitreController implements Initializable {
     @FXML
     private Button btnexit;
     @FXML
-    private Label LPresentation;
+    private TextField lPresentation;
     @FXML
     private TextField lVideo;
     @FXML
@@ -69,13 +71,13 @@ public class AjouterChapitreController implements Initializable {
     int z;
     int w;
     public Cours cours;
-public int id;
+    public int id;
 
     public void setCours(Cours cours) {
         this.cours = cours;
-        DAOCours dc=new DAOCours();
-        id=cours.getIdCours();
-        w=dc.FindIdQuizbycours(cours.getNomCours());
+        DAOCours dc = new DAOCours();
+        id = cours.getIdCours();
+        w = dc.FindIdQuizbycours(cours.getNomCours());
     }
 
     public void btnAjouterAction(ActionEvent event) throws IOException {
@@ -111,43 +113,51 @@ public int id;
             lVideo.setEffect(shadow);
             test += 1;
         }
-        if (LPresentation.getText().isEmpty()) {
+        if (lPresentation.getText().isEmpty()) {
             shadow.setColor(Color.RED);
-            btnChoisirDoc.setEffect(shadow);
+            lPresentation.setEffect(shadow);
             test -= 1;
         } else {
             shadow.setColor(Color.GREEN);
-            btnChoisirDoc.setEffect(shadow);
+            lPresentation.setEffect(shadow);
             test += 1;
         }
 
         if (test == 4) {
             DAOQuiz d = new DAOQuiz();
             z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-            System.out.println(id+"dafdzqsd");
-            Chapitre c = new Chapitre(id, z, txtTitre.getText(), LPresentation.getText(), txtAObjectif.getText(), lVideo.getText());
+            System.out.println(id + "dafdzqsd");
+            Chapitre c = new Chapitre(id, z, txtTitre.getText(), lPresentation.getText(), txtAObjectif.getText(), lVideo.getText());
 
             DAOChapitre daoc = new DAOChapitre();
             daoc.addChapitre(c);
-
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Look, an Information Dialog");
-            alert.setContentText("Add successfully!");
-            alert.showAndWait();
         }
+
+ ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
+        AnchorPane frame = loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+ stage.setTitle("Affichage Cours");
+        AffichageCoursFormController pac = loader.getController();
+        pac.setInfo(cours);
+        stage.show();
     }
 
     @FXML
     public void btnAnullerAction(ActionEvent event) {
         txtTitre.setText("");
         txtAObjectif.setText("");
+        lPresentation.setText("");
+        lVideo.setText("");
 
     }
 
     @FXML
     public void btnChoisirDocAction(ActionEvent event) {
-  
+
         FileChooser fileChooser = new FileChooser();
 
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -160,11 +170,11 @@ public int id;
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
 
-                LPresentation.setText(path.getName());
+                lPresentation.setText(path.getName());
 
             } else {
 
-                LPresentation.setText("Video selection cancelled.");
+                lPresentation.setText("Video selection cancelled.");
 
             }
 
@@ -181,7 +191,7 @@ public int id;
         if (selectedFile != null) {
 
             fileChooser.setTitle("Open resource file");
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.MP4"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.PDF"));
             Chapitre c = new Chapitre();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
@@ -200,7 +210,7 @@ public int id;
 
     @FXML
     public void btnAjouterQuizAction(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/AjouterQuiz.fxml"));
         loader.load();
@@ -208,7 +218,6 @@ public int id;
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Ajouter Quiz");
-
         stage.show();
 
     }
@@ -222,8 +231,18 @@ public int id;
 
     @FXML
     public void btnbackAction(ActionEvent event) throws IOException {
-
-       
+    
+          ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
+        AnchorPane frame = loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+ stage.setTitle("Affichage Cours");
+        AffichageCoursFormController pac = loader.getController();
+        pac.setInfo(cours);
+        stage.show();
 
     }
 

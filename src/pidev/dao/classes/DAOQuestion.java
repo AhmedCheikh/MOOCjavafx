@@ -120,7 +120,7 @@ public class DAOQuestion implements IDAOQuestion {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
                while (rs.next()) {
-            return rs.getInt(1);}
+            return rs.getInt("id");}
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

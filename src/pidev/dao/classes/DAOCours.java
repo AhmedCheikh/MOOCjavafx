@@ -1,5 +1,5 @@
-
 package pidev.dao.classes;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,20 +14,21 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import pidev.entities.Quiz;
 
-public class DAOCours implements IDaoCours{
+public class DAOCours implements IDaoCours {
 
-Connection connection;
+    Connection connection;
     PreparedStatement pst;
     ResultSet rs;
+
     public DAOCours() {
-       connection = DataSource.getInstance().getConnection();
+        connection = DataSource.getInstance().getConnection();
     }
 
     @Override
     public void addCours(Cours cours) {
-       try {
-            String req="insert into cours (nom_cours,description,difficulte,objectif,cinformateur) values (?,?,?,?,?)";
-            pst=connection.prepareStatement(req);
+        try {
+            String req = "insert into cours (nom_cours,description,difficulte,objectif,cinformateur) values (?,?,?,?,?)";
+            pst = connection.prepareStatement(req);
             pst.setString(1, cours.getNomCours());
             pst.setString(2, cours.getDescription());
             pst.setString(3, cours.getDifficulte());
@@ -41,10 +42,10 @@ Connection connection;
 
     @Override
     public void updateCours(Cours cours) {
-       String requete = "update cours set description=?, difficulte=?, objectif=? where nom_cours=?";
+        String requete = "update cours set description=?, difficulte=?, objectif=? where nom_cours=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-           pst.setString(4, cours.getNomCours());
+            pst.setString(4, cours.getNomCours());
             pst.setString(1, cours.getDescription());
             pst.setString(2, cours.getDifficulte());
             pst.setString(3, cours.getObjectif());
@@ -83,7 +84,7 @@ Connection connection;
 
     @Override
     public List<Cours> findAll() {
-         List<Cours> listecours = new ArrayList<>();
+        List<Cours> listecours = new ArrayList<>();
         String requete = "select * from cours";
         try {
             Statement statement = connection
@@ -97,7 +98,7 @@ Connection connection;
                 cours.setCinFormateur(resultat.getString(3));
                 cours.setIdQuiz(resultat.getInt(4));
                 cours.setDescription(resultat.getString(5));
-               
+
                 cours.setDifficulte(resultat.getString(6));
                 cours.setObjectif(resultat.getString(7));
                 listecours.add(cours);
@@ -123,10 +124,10 @@ Connection connection;
                 cours.setCinFormateur(resultat.getString(3));
                 cours.setIdQuiz(resultat.getInt(4));
                 cours.setDescription(resultat.getString(5));
-                
+
                 cours.setDifficulte(resultat.getString(7));
                 cours.setObjectif(resultat.getString(8));
-                
+
             }
             return cours;
 
@@ -138,7 +139,7 @@ Connection connection;
 
     @Override
     public Cours findCoursByFormateur(String cinFormateur) {
-       Cours cours = new Cours();
+        Cours cours = new Cours();
         String requete = "select * from cours where cinformateur=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
@@ -150,10 +151,10 @@ Connection connection;
                 cours.setCinFormateur(resultat.getString(3));
                 cours.setIdQuiz(resultat.getInt(4));
                 cours.setDescription(resultat.getString(5));
-               
+
                 cours.setDifficulte(resultat.getString(7));
                 cours.setObjectif(resultat.getString(8));
-                
+
             }
             return cours;
 
@@ -177,10 +178,10 @@ Connection connection;
                 cours.setCinFormateur(resultat.getString(3));
                 cours.setIdQuiz(resultat.getInt(4));
                 cours.setDescription(resultat.getString(5));
-                
+
                 cours.setDifficulte(resultat.getString(7));
                 cours.setObjectif(resultat.getString(8));
-                
+
             }
             return cours;
 
@@ -189,23 +190,23 @@ Connection connection;
             return null;
         }
     }
-    
-     public int findIdCoursByTitre(String titre) {
+
+    public int findIdCoursByTitre(String titre) {
         String req = "select * from cours where nom_cours= '" + titre + "'";
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-               while (rs.next()) {
-            return rs.getInt(1);}
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return 0;
-       
 
-  }
-     
-         @Override
+    }
+
+    @Override
     public int FindIdQuizbycours(String titre
     ) {
         {
@@ -227,10 +228,9 @@ Connection connection;
             return 0;
         }
     }
-     
-     
-     public List<Cours> findCoursByTitle(String title) {
-         List<Cours> listecours = new ArrayList<>();
+
+    public List<Cours> findCoursByTitle(String title) {
+        List<Cours> listecours = new ArrayList<>();
         String requete = "select * from cours where nom_cours like '" + title + "%'";
         try {
             Statement statement = connection.createStatement();
@@ -241,7 +241,7 @@ Connection connection;
                 cours.setIdCours(resultat.getInt(1));
                 cours.setNomCours(resultat.getString(3));
                 cours.setCinFormateur(resultat.getString(2));
-                
+
                 cours.setDescription(resultat.getString(4));
                 cours.setDifficulte(resultat.getString(5));
                 cours.setObjectif(resultat.getString(6));
@@ -253,9 +253,9 @@ Connection connection;
             return null;
         }
     }
-     
+
     public List<Cours> findCoursByApprenant(String cin) {
-         List<Cours> listecours = new ArrayList<>();
+        List<Cours> listecours = new ArrayList<>();
         String requete = "select * from cours c,coursuivi cs where c.idcours=cs.id_cours and cs.cinapprenant= ?";
         try {
             pst = connection.prepareStatement(requete);
@@ -276,22 +276,37 @@ Connection connection;
             System.out.println("erreur lors du chargement des cours " + ex.getMessage());
             return null;
         }
-    } 
-     
-        @Override
+    }
+
+    @Override
     public String findTitreCoursById(int id) {
         String req = "select * from cours where idcours= '" + id + "'";
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-               while (rs.next()) {
-            return rs.getString(2);}
+            while (rs.next()) {
+                return rs.getString(2);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return "";
-       
 
-  }
- 
+    }
+
+    @Override
+    public int findIdQuizByIdcours(int idcours) {
+        String req = "select idquiz from cours where idcours= '" + idcours + "'";
+        try {
+            pst = connection.prepareStatement(req);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(3);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
 }

@@ -73,27 +73,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnChoisirDoc" mnemonicParsing="false" onAction="#btnChoisirDocAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir document ..." GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
                   <ComboBox fx:id="CmbQuiz" prefHeight="25.0" prefWidth="179.0" style="-fx-border-width: 2px; -fx-border-color: #77ABD6;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="LPresentation" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="244.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Times New Roman Bold" size="12.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="btnAjouterQuiz" layoutX="19.0" mnemonicParsing="false" onAction="#btnAjouterQuizAction" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #77ABD6;" text="Ajouter Quiz " textAlignment="RIGHT" translateX="40.0" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <effect>
                         <Lighting>
@@ -120,7 +100,23 @@
                         <Font name="Times New Roman Bold" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="lVideo" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" translateX="20.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="btnChoisirDoc" mnemonicParsing="false" onAction="#btnChoisirDocAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir document ..." GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="lPresentation" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="lVideo" prefHeight="25.0" prefWidth="184.0" style="-fx-border-color: #84CECC; -fx-border-width: 2px;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
