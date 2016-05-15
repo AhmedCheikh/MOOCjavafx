@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilFormateurController">
+<AnchorPane id="AnchorPane" prefHeight="592.0" prefWidth="785.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ListeFormateursController">
    <children>
       <Pane layoutX="16.0" layoutY="74.0" prefHeight="493.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
          <children>
@@ -18,32 +19,112 @@
                   <Image url="@img/bgmenu.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="309.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Formateurs" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="280.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inviter Formateur" textAlignment="CENTER">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <TableView layoutX="14.0" layoutY="139.0" prefHeight="339.0" prefWidth="717.0">
+            <TableView fx:id="tbvform" layoutX="14.0" layoutY="112.0" onMouseClicked="#clickAction" prefHeight="366.0" prefWidth="258.0">
                <columns>
-                  <TableColumn prefWidth="165.0" text="Nom " />
-                  <TableColumn prefWidth="191.0" text="Prenom" />
-                  <TableColumn prefWidth="175.0" text="Email" />
-                  <TableColumn prefWidth="187.0" text="Demmande integration" />
+                  <TableColumn fx:id="tcCin" prefWidth="75.0" text="Column X" visible="false" />
+                  <TableColumn fx:id="tcNom" prefWidth="128.0" text="Nom" />
+                  <TableColumn fx:id="tcPrenom" prefWidth="127.0" text="Prenom" />
                </columns>
             </TableView>
-            <Label layoutX="17.0" layoutY="63.0" text="Liste de toutes les Formateurs" textFill="#680c0c">
-               <font>
-                  <Font name="Elephant Italic" size="16.0" />
-               </font>
-            </Label>
-            <TextField layoutX="447.0" layoutY="67.0" prefHeight="35.0" prefWidth="183.0" style="-fx-background-color: ##FFF5EF;" />
-            <Button layoutX="638.0" layoutY="66.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #223645;" text="Chercher" textFill="WHITE">
+            <Pane layoutX="311.0" layoutY="115.0" prefHeight="360.0" prefWidth="419.0" style="-fx-border-color: black;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#110304bd" height="27.0" layoutX="10.0" layoutY="-10.0" stroke="#da8585" strokeType="INSIDE" width="251.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="26.0" layoutY="-11.0" prefHeight="21.0" prefWidth="234.0" text="Infos Formateur | Accepter Refuser" textFill="#00c8fa">
+                     <font>
+                        <Font name="Franklin Gothic Demi" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNomfor" layoutX="116.0" layoutY="51.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblprenom" layoutX="117.0" layoutY="77.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblemail" layoutX="118.0" layoutY="103.0" textFill="#793817" underline="true">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnInviter" layoutX="102.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnInviterAction" prefHeight="46.0" prefWidth="52.0" />
+                  <Label layoutX="103.0" layoutY="334.0" prefHeight="27.0" prefWidth="52.0" text="Inviter" textFill="#078631">
+                     <font>
+                        <Font name="Times New Roman Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="3.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/info.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="13.0" layoutY="102.0" text=" Email:" textFill="#2a1846">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="76.0" text="Prenom:" textFill="#2a1846">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="301.0" layoutY="215.0" text="Telecharger CV" textFill="#2a1846">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="16.0" layoutY="50.0" text="Nom:" textFill="#2a1846">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imageV" fitHeight="113.0" fitWidth="114.0" layoutX="291.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/img1/profile-avatar-1.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btntelecharger" layoutX="321.0" layoutY="157.0" mnemonicParsing="false" onAction="#btntelechargerAction" prefHeight="46.0" prefWidth="52.0" />
+                  <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="325.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/Downloads-icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="419.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/invitationicone.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblNomorg" layoutX="165.0" layoutY="70.0" text="lblNomfrm" visible="false" />
+            <Label fx:id="lblcinfrm" layoutX="230.0" layoutY="70.0" />
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="2.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/chercher.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnChercher" layoutX="234.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnChercherAction" prefHeight="23.0" prefWidth="95.0" style="-fx-background-color: #223645;" text="Chercher" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <font>
-                  <Font name="Arial Black" size="12.0" />
-               </font>
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -54,16 +135,17 @@
                      </light>
                   </Lighting>
                </effect>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
+            <TextField fx:id="txtChercher" layoutX="37.0" layoutY="55.0" prefHeight="29.0" prefWidth="183.0" style="-fx-background-color: ##FFF5EF;" />
          </children>
       </Pane>
       <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
          <effect>
             <Lighting>
                <bumpInput>
@@ -74,14 +156,39 @@
                </light>
             </Lighting>
          </effect>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </Button>
       <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+      </Button>
+      <Label fx:id="lblTelephone" layoutX="595.0" layoutY="347.0" textFill="#793817" underline="true">
+         <font>
+            <Font name="Times New Roman Italic" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="89.0" fitWidth="184.0" layoutX="285.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/moocLog3.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Actualiser" layoutX="21.0" layoutY="75.0" mnemonicParsing="false" onAction="#ActualiserAction" prefHeight="35.0" prefWidth="37.0" style="-fx-border-radius: 2px;">
          <effect>
             <Lighting>
                <bumpInput>

@@ -9,8 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-      <AnchorPane id="AnchorPane" layoutY="-6.0" prefHeight="590.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.InscrireOrganismeController">
+<AnchorPane id="AnchorPane" layoutY="-6.0" prefHeight="590.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.InscrireOrganismeController">
          <children>
             <Pane layoutX="16.0" layoutY="12.0" prefHeight="568.0" prefWidth="744.0" style="-fx-border-width: 1px; -fx-border-color: black; -fx-background-color: #E1E6FA;">
                <children>
@@ -48,12 +47,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="l3" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Label fx:id="l3" textFill="#fc0000">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="l4" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Label fx:id="l4" prefHeight="16.0" prefWidth="227.0" text="00" textFill="#00fa4e" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -139,7 +138,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnDeconnecter" layoutX="688.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: transparent;" textFill="WHITE">
+                  <Button fx:id="btnDeconnecter" layoutX="688.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: transparent;" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -173,4 +172,3 @@
             </Pane>
          </children>
       </AnchorPane>
-

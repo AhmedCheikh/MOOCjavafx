@@ -140,7 +140,6 @@ login.setEffect(shadow);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
                 stage.show();
-           
             } else {
                 message.setText(" CIN ou Password Incorrecte ");
                  login.setText("");
@@ -179,15 +178,15 @@ log=login.getText();
         stage.show();
                 
             } else if (org.authentificationOrganisme(login.getText(), password.getText()) && org.getEtat(login.getText()) ==1 && org.getComplete(login.getText()).equals("0")) {
-                 Organisme Org = new Organisme(login.getText());
-
+//                 Organisme Org = new Organisme(login.getText());
+log=login.getText();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/InscrireOrganisme.fxml"));
         loader.load();
         Parent parent = loader.getRoot();
-        InscrireOrganismeController ioc = loader.getController();
-        ioc.setOg(Org);
+//        InscrireOrganismeController ioc = loader.getController();
+//        ioc.setOg(Org);
         Stage stage = new Stage();
         stage.setTitle("Profil Organisme");
         stage.setScene(new Scene(parent));

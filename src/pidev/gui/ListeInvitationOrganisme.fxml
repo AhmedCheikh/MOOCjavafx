@@ -194,10 +194,5 @@
             </Lighting>
          </effect>
       </Button>
-      <ImageView fitHeight="176.0" fitWidth="362.0" layoutX="198.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/m2sA4uE.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

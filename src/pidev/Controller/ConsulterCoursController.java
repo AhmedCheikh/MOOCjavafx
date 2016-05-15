@@ -78,7 +78,7 @@ private Connection connection ;
     public CoursSuivie cs;
     public Apprenant apprenant;
    
-    public Cours cours; 
+//    public Cours cours; 
      public static int idc;
 
     public ConsulterCoursController() {

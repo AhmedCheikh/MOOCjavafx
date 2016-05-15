@@ -6,6 +6,7 @@
 package pidev.Controller;
 
 import com.sun.mail.handlers.image_gif;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +28,7 @@ import javafx.stage.Stage;
 import pidev.dao.classes.DAOApprenant;
 import pidev.dao.classes.DAOFormateur;
 import pidev.dao.classes.DAOOrganisme;
+import pidev.entities.Formateur;
 import pidev.entities.Organisme;
 
 /**
@@ -51,7 +53,8 @@ public class ConfirmeMailCotroller implements Initializable{
     private Button btnValider;
     @FXML
     private Label np;
-
+@FXML
+    private ImageView imageV;
     
 //    public void setOrg(Organisme org) {
 //        np.setText(org.getLogin());
@@ -108,7 +111,16 @@ codetxt.setEffect(shadow);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
         np.setText(RetrouverCompteController.log);
+//         DAOOrganisme daf = new DAOOrganisme();
+//            Organisme or = new Organisme();
+//            or = daf.getOrganisme(np.getText());
+//           
+//            System.out.println("avatar="+or.getLogo());
+//           File file = new File("src/pidev/gui/img/"+or.getLogo());
+//        Image image = new Image(file.toURI().toString());
+//        imageV.setImage(image);
+//		
+        
     }
 }

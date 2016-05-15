@@ -7,15 +7,24 @@ package pidev.Controller;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import pidev.dao.classes.DAOOrganisme;
 import pidev.entities.Organisme;
@@ -36,9 +45,9 @@ public class InscrireOrganismeController implements Initializable {
     @FXML
     private Label l4;
     @FXML
-    public File logo;
+    public String logo;
 
-    public void setLogo(File logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
     @FXML
@@ -56,12 +65,16 @@ public class InscrireOrganismeController implements Initializable {
     DAOOrganisme daoO = new DAOOrganisme();
     Organisme o1 = new Organisme();
     
-    
+  
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ControllerAthentification ca=new ControllerAthentification();
+  
+        o1 = daoO.getOrganisme(ca.log);
+        System.out.println("-------"+o1.getLogin());
     }
 
-    public void btnValiderAction(ActionEvent event) {
+    public void btnValiderAction(ActionEvent event) throws IOException {
 
         if (txtTel.getText().isEmpty()) {
             l1.setText("Vous devez Renseigez ce champs");
@@ -80,24 +93,24 @@ public class InscrireOrganismeController implements Initializable {
             l3.setText(" ");
         }
 
-        System.out.println(txtTel.getText());
+       
 
-        Organisme o1 = new Organisme(nom.getText(), txtSite.getText(), txtTel.getText(), txtDesc.getText(), selectedFile);
+        Organisme o5 = new Organisme( txtSite.getText(), txtTel.getText(), txtDesc.getText(), logo);
         DAOOrganisme d1 = new DAOOrganisme();
         System.out.println(selectedFile.getAbsolutePath());
 
-        d1.updateOrganismeInscription(o1);
+        d1.updateOrganismeInscription(o5,o1.getLogin());
 
-//         ((Node) (event.getSource())).getScene().getWindow().hide();
-//            Parent parent;
-//     
-//            parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
-//      
-//            Stage stage =  new Stage();
-//            Scene scene = new Scene(parent);
-//            stage.setScene(scene);
-//            stage.setTitle("Profil Organisme");
-//            stage.show();
+         ((Node) (event.getSource())).getScene().getWindow().hide();
+            Parent parent;
+     
+            parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
+      
+            Stage stage =  new Stage();
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+            stage.setTitle("Profil Organisme");
+            stage.show();
     }
     
     private Organisme og;
@@ -118,7 +131,7 @@ public class InscrireOrganismeController implements Initializable {
 
     }
 
-    public void btnChoisireImgAction() {
+    public void btnChoisireImgAction() throws IOException {
         FileChooser fileChooser = new FileChooser();
 
         selectedFile = fileChooser.showOpenDialog(null);
@@ -130,9 +143,15 @@ public class InscrireOrganismeController implements Initializable {
             Organisme o = new Organisme();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                logo = path;
+                logo = selectedFile.getName();
                 l4.setText("File selected: " + selectedFile.getName());
-                o.setLogo(path);
+                o.setLogo(l4.getText());
+                
+                
+                  String url = "src/pidev/gui/img/"+ selectedFile.getName();
+                Path des = Paths.get(url);
+                Path source = Paths.get(selectedFile.getAbsolutePath());
+                Files.copy(source , des);
             } else {
 
                 l4.setText("File selection cancelled.");
@@ -143,11 +162,7 @@ public class InscrireOrganismeController implements Initializable {
 
     }
 
-    public void setOg(Organisme og) {
-        nom.setText(og.getLogin());
-        this.og = og;
-       
-    }
+  
     
     
     

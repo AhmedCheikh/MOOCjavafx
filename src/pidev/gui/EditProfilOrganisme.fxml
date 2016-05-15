@@ -24,7 +24,7 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="btnModifier" layoutX="216.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
+            <Button fx:id="btnModifier" layoutX="200.0" layoutY="508.0" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Modifier" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -32,7 +32,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnAnuller" layoutX="359.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnAnullerAction" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Anuller" textFill="WHITE">
+            <Button fx:id="btnAnnuler" layoutX="403.0" layoutY="508.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #040317;" text="Vider" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <GridPane layoutX="65.0" layoutY="51.0" prefHeight="379.0" prefWidth="624.0">
+            <GridPane layoutX="65.0" layoutY="51.0" prefHeight="441.0" prefWidth="696.0">
                <children>
                   <Label text="Nom:">
                      <font>
@@ -80,9 +80,9 @@
                   <TextField fx:id="txtNom" prefHeight="25.0" prefWidth="184.0" promptText="Organisme" style=": 2px;" GridPane.columnIndex="1" />
                   <TextField fx:id="txtAdresse" prefHeight="25.0" prefWidth="184.0" promptText="Rue 18 janvier-Tunis" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="184.0" promptText="Organisme@esxemple.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtLogin" prefHeight="25.0" prefWidth="184.0" promptText="votre pseudo" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtLogin" editable="false" prefHeight="25.0" prefWidth="184.0" promptText="votre pseudo" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <PasswordField fx:id="txtRepaet" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <PasswordField fx:id="txtPassword2" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label fx:id="er21" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
@@ -140,7 +140,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir image ..." GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <Button fx:id="btnChoisire" mnemonicParsing="false" onAction="#btnChoisireAction" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir image ..." GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <effect>
                         <Lighting>
                            <bumpInput>
@@ -155,38 +155,13 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Organisme créé en ..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label text="Video:" GridPane.rowIndex="10">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #77ABD6;" text="Choisir video ..." GridPane.columnIndex="1" GridPane.rowIndex="10">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
+                  <TextArea fx:id="txtDesc" prefHeight="132.0" prefWidth="289.0" promptText="Organisme créé en ..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label fx:id="er9113" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er9112" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="er9111" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                  <Label fx:id="lblogo" textFill="#00fa4e" GridPane.columnIndex="2" GridPane.rowIndex="9">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -208,7 +183,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
             <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="252.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -216,36 +190,58 @@
                   <Image url="@img/edit.png" />
                </image>
             </ImageView>
-                  <Button fx:id="btnDeconnecter" layoutX="689.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: transparent;" textFill="WHITE">
+                  <Button fx:id="btnDeconnecter" layoutX="689.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: transparent;" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
-               <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/deco.png" />
-                           </image>
-                        </ImageView>
-               </graphic>
                   </Button>
-            <Button fx:id="btnback" layoutX="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="39.0" prefWidth="35.0" style="-fx-background-color: transparent;" textFill="WHITE">
+            <Button fx:id="btnback" layoutX="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="35.0" style="-fx-background-color: transparent;" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
-               <graphic>
-                        <ImageView fitHeight="27.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/fleche.png" />
-                           </image>
-                        </ImageView>
-               </graphic>
                   </Button>
+            <Button fx:id="btnexit" layoutX="642.0" layoutY="-3.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="44.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnback1" layoutX="-3.0" layoutY="-3.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="44.0" prefWidth="104.0" style="-fx-background-color: #77ABD6; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

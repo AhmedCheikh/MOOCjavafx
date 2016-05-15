@@ -68,11 +68,11 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nom" GridPane.columnIndex="1" />
-                  <Label fx:id="adresse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="tel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="site" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextArea fx:id="desc" editable="false" prefHeight="44.0" prefWidth="402.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label id="nom" fx:id="nom" text="xx" GridPane.columnIndex="1" />
+                  <Label id="adresse" fx:id="adresse" text="cc" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label id="tel" fx:id="tel" text="cc" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label id="site" fx:id="site" text="ww" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextArea id="desc" fx:id="desc" editable="false" prefHeight="44.0" prefWidth="402.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="163.0" />
@@ -95,13 +95,14 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="listeFormateur" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="328.0" lineSpacing="2.0" mnemonicParsing="false" onAction="#btnListeFormateurAction" prefHeight="91.0" prefWidth="183.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Inviter Formateur" textAlignment="JUSTIFY" textOverrun="LEADING_WORD_ELLIPSIS" GridPane.rowIndex="2">
+            <Button fx:id="listeFormateur" layoutX="21.0" layoutY="328.0" lineSpacing="2.0" mnemonicParsing="false" onAction="#btnListeFormateurAction" prefHeight="66.0" prefWidth="182.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Inviter Formateur" textAlignment="JUSTIFY" textOverrun="LEADING_WORD_ELLIPSIS" GridPane.rowIndex="2">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -119,7 +120,7 @@
                   </Lighting>
                </effect>
             </Button>
-            <Button alignment="CENTER_RIGHT" layoutX="20.0" layoutY="399.0" lineSpacing="10.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="183.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Liste des invitation" GridPane.rowIndex="3">
+            <Button fx:id="BtnlisteInvit" layoutX="20.0" layoutY="399.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#BtnlisteInvitAction" prefHeight="62.0" prefWidth="180.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes invitation" wrapText="true" GridPane.rowIndex="3">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -165,7 +166,7 @@
                   <Image url="@img/formateur.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnModifier" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="100.0" prefWidth="180.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Modifier Profile">
+            <Button fx:id="btnModifier" mnemonicParsing="false" onAction="#btnModifierAction" prefHeight="66.0" prefWidth="180.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Modifier Profile">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -190,11 +191,31 @@
                   <Image url="@img/conversation-speech-bubbles-.png" />
                </image>
             </ImageView>
-            <Label fx:id="notif" prefHeight="35.0" prefWidth="31.0" text="  1" textFill="WHITE" GridPane.rowIndex="3">
+            <Label fx:id="notif" prefHeight="35.0" prefWidth="46.0" text=" 1" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <Button fx:id="btnConcurents" mnemonicParsing="false" onAction="#btnConcurentsAction" prefHeight="66.0" prefWidth="180.0" style="-fx-background-color: #E1E6FA; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Mes concurents" GridPane.rowIndex="4">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@img/school.png" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#508ec9" height="35.0" layoutX="14.0" layoutY="213.0" stroke="BLACK" strokeType="INSIDE" width="183.0">
@@ -225,7 +246,7 @@
       </Text>
       <BorderPane layoutX="6.0" layoutY="36.0" prefHeight="136.0" prefWidth="387.0" style="-fx-border-color: grey; -fx-border-width: 3;">
          <right>
-            <ImageView fitHeight="195.0" fitWidth="439.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 2;" BorderPane.alignment="CENTER">
+            <ImageView fx:id="imageV" fitHeight="195.0" fitWidth="439.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-width: 2;" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@img/logo.jpg" />
                </image>

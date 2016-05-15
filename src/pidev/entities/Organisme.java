@@ -16,6 +16,18 @@ import java.util.logging.Logger;
 public class Organisme  {
 
     private int id;
+
+    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, String logo) {
+        this.nom = nom;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.siteweb = siteweb;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.description = description;
+        this.logo = logo;
+    }
     public String nom;
     private String login;
     private String password;
@@ -25,11 +37,12 @@ public class Organisme  {
     private String telephone;
     private String description;
     private String document;
-    private File logo;
+    private String logo;
     private int etat;
     private String complete;
     public Organisme() {
     }
+    
 public Organisme(String nom, String email, String siteweb, String adresse, String telephone, String description) {
         this.nom = nom;
         this.email = email;
@@ -48,7 +61,6 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.document = document;
         this.etat = etat;
     }
-    
 
     public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description) {
         this.nom = nom;
@@ -59,6 +71,13 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.adresse = adresse;
         this.telephone = telephone;
         this.description = description;
+    }
+
+    public Organisme(String siteweb, String telephone, String description, String logo) {
+        this.siteweb = siteweb;
+        this.telephone = telephone;
+        this.description = description;
+        this.logo = logo;
     }
 
     public Organisme(int id, String nom, String login, String password, String email, String document, int etat) {
@@ -82,7 +101,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
 
    
 
-    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, String document, File logo) {
+    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, String document, String logo) {
       
         this.nom = nom;
         this.login = login;
@@ -106,12 +125,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
   
  
 
-    public Organisme(String nom, String email, String adresse, String telephone) {
-        this.nom = nom;
-        this.email = email;
-        this.adresse = adresse;
-        this.telephone = telephone;
-    }
+  
 
     public Organisme(int id, String siteweb, String telephone, String description) {
         this.id = id;
@@ -121,13 +135,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
       
     }
 
-    public Organisme(String login, String siteweb, String telephone, String description, File logo) {
-        this.login = login;
-        this.siteweb = siteweb;
-        this.telephone = telephone;
-        this.description = description;
-        this.logo = logo;
-    }
+
     
     
 
@@ -245,11 +253,11 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.document = document;
     }
 
-    public File getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(File logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 

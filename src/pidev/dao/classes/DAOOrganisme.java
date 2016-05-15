@@ -5,10 +5,14 @@
  */
 package pidev.dao.classes;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +20,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -44,31 +50,51 @@ public class DAOOrganisme implements IDAOOrganisme {
 
     @Override
     public void addOrganisme(Organisme organisme) {
+
         try {
-            InputStream is;
-            try {
-                is = new FileInputStream(organisme.getDocument());
 
 //       String req1="insert into orga (nom) values (?)";
-                //     String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
-                String req1 = "insert into organisme (nom,login,password,email,adresse,document,complete,etat) values (?,?,?,?,?,?,?,?)";
+            //     String req1="insert into organisme (id_organisme,nom,login,password,email,adresse) values (?,?,?,?,?,?)";
+            String req1 = "insert into organisme (nom,login,password,email,adresse,document,complete,etat) values (?,?,?,?,?,?,?,?)";
 
-                pst = connection.prepareStatement(req1);
+            pst = connection.prepareStatement(req1);
 
-                pst.setString(1, organisme.getNom());
-                pst.setString(2, organisme.getLogin());
-                pst.setString(3, organisme.getPassword());
-                pst.setString(4, organisme.getEmail());
-                pst.setString(5, organisme.getAdresse());
-                pst.setBlob(6, is);
-                pst.setString(7, "pas compele");
-                pst.setInt(8, 0);
-                pst.executeUpdate();
-                //rs = pst.executeUpdate();
+            pst.setString(1, organisme.getNom());
+            pst.setString(2, organisme.getLogin());
+            pst.setString(3, organisme.getPassword());
+            pst.setString(4, organisme.getEmail());
+            pst.setString(5, organisme.getAdresse());
+            pst.setString(6, organisme.getDocument());
+            pst.setString(7, "0");
+            pst.setInt(8, 0);
+            pst.executeUpdate();
+            //rs = pst.executeUpdate();
 
-            } catch (FileNotFoundException ex) {
-                System.out.println("erreur lors de l'insertion " + ex.getMessage());
-            }
+        } //           System.out.println(rs.getRow());
+        catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public void updateOrganismeInscription(Organisme organisme, String login) {
+
+        try {
+
+            String req2 = "update  organisme set  siteweb=?, telephone=?, description=? ,logo=? ,complete=?  where login =?";
+
+            PreparedStatement pst2;
+
+            pst2 = connection.prepareStatement(req2);
+            pst2.setString(1, organisme.getSiteweb());
+            pst2.setString(2, organisme.getTelephone());
+            pst2.setString(3, organisme.getDescription());
+            pst2.setString(4, organisme.getLogo());
+            pst2.setString(5, "1");
+            pst2.setString(6, login);
+            pst2.executeUpdate();
+
 //           System.out.println(rs.getRow());
         } catch (SQLException ex) {
             Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,39 +103,9 @@ public class DAOOrganisme implements IDAOOrganisme {
     }
 
     @Override
-    public void updateOrganismeInscription(Organisme organisme) {
+    public void updateOrganisme(Organisme organisme, String login) {
         try {
-
-            try {
-
-                String req2 = "update  organisme set  siteweb=?, telephone=?, description=? ,logo=? ,complete=?  where login =?";
-
-                PreparedStatement pst2;
-
-                pst2 = connection.prepareStatement(req2);
-                pst2.setString(1, organisme.getSiteweb());
-                pst2.setString(2, organisme.getTelephone());
-                pst2.setString(3, organisme.getDescription());
-                pst2.setBlob(4, new FileInputStream(organisme.getLogo()));
-                pst2.setString(5, "complete");
-                pst2.setString(6, organisme.getLogin());
-                pst2.executeUpdate();
-
-//           System.out.println(rs.getRow());
-            } catch (FileNotFoundException ex) {
-                System.out.println("erreur lors de la mise à jour " + ex.getMessage());
-            }
-//           System.out.println(rs.getRow());
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    @Override
-    public void updateOrganisme(Organisme organisme) {
-        try {
-            String req1 = "update  organisme set nom=?,login=?,password=?,email=?,adresse=?,siteweb=?,telephone=?,description=?  where nom=?";
+            String req1 = "update  organisme set nom=?,login=?,password=?,email=?,adresse=?,siteweb=?,telephone=?,description=?,logo=?  where login=?";
             PreparedStatement pst3;
             pst3 = connection.prepareStatement(req1);
             pst3.setString(1, organisme.getNom());
@@ -120,7 +116,8 @@ public class DAOOrganisme implements IDAOOrganisme {
             pst3.setString(6, organisme.getSiteweb());
             pst3.setString(7, organisme.getTelephone());
             pst3.setString(8, organisme.getDescription());
-            pst3.setString(9, organisme.getNom());
+            pst3.setString(9, organisme.getLogo());
+            pst3.setString(10, login);
             pst3.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
@@ -155,95 +152,255 @@ public class DAOOrganisme implements IDAOOrganisme {
     }
 
     @Override
-    public void removeFormateurFromOrganisme(int cin) {
-//      try {
-//          String req1="update  Formateur set (idOrganisme) values (null) where cin=?";
-//          PreparedStatement ps = connection.prepareStatement(req1);
-//          ps.setInt(1,cin);
-//          ps.executeUpdate();
-//      } catch (SQLException ex) {
-//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-//      }
+    public void removeFormateurFromOrganisme(String cin) {
+      try {
+          String req1="update  Formateur set organisme_id =? where cin=?";
+          PreparedStatement ps = connection.prepareStatement(req1);
+          ps.setString(1,null);
+           ps.setString(2,cin);
+          ps.executeUpdate();
+      } catch (SQLException ex) {
+          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
     }
 
     @Override
-    public void envoyerInvitation(String nom1, String nom2) {
-//      try {
-//          String req1="insert into invitation (nom_exp,nom_des,date_invit,etat) values (?,?,?,?)";
-//          
-//          PreparedStatement ps = connection.prepareStatement(req1);
-//          ps.setString(1,nom1);
-//           ps.setString(2,nom2);
-//          // ps.setDate(i, 1/22/2012);
-//          ps.executeUpdate();
-//      } catch (SQLException ex) {
-//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-//      }
-    }
-
-    @Override
-    public void accepterInvitation(int idorganisme) {
-//      try {
-//          String req1="update  invitation set (etat) values (?) where cin=?";
-//          PreparedStatement ps = connection.prepareStatement(req1);
-//          ps.setString(1,"lu");
-//          ps.executeUpdate();
-//          try {
-//              String req2="update  Formateur set (idOrganisme) values (?) where cin=?";
-//              PreparedStatement ps2 = connection.prepareStatement(req2);
-//              ps2.setInt(1,idorganisme);
-//              ps2.executeUpdate();
-//          } catch (SQLException ex) {
-//              Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-//          }
-//      } catch (SQLException ex) {
-//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-//      }
-//      //ne3lmou el formateur
-    }
-
-    @Override
-    public void refuserInvitation() {
-
+    public void envoyerInvitation(Invitation invit) {
+        PreparedStatement ps = null;
         try {
-            String req1 = "update  invitation set (etat) values (?) where cin=?";
-            PreparedStatement ps = connection.prepareStatement(req1);
-            ps.setString(1, "lu");
+
+            String req = "insert into invitation (id,nom_exp,nom_des,date_invit,date_confi,date_vue,etat) values (?,?,?,?,?,?,?)";
+            ps = connection.prepareStatement(req);
+
+            ps.setInt(1, invit.getId());
+            ps.setString(2, invit.getNom_exp());
+            ps.setString(3, invit.getNom_des());
+            ps.setDate(4, (Date) invit.getDate_invit());
+            ps.setDate(5, (Date) invit.getDate_confi());
+            ps.setDate(6, (Date) invit.getDate_vue());
+            ps.setInt(7, invit.getEtat());
             ps.executeUpdate();
+
         } catch (SQLException ex) {
-            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }
 
     @Override
-    public void findFormateurByOrganisme(String nom) {
-//      try {
-//          String req1="select * from  formateur where idorganisme=?";
-//          PreparedStatement ps = connection.prepareStatement(req1);
-//          
-//         // ps.setint(1,id);
-//          ps.executeUpdate();
-//      } catch (SQLException ex) {
-//          Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-//      }
+    public void AccepterInvit(String nom) {
+        String requete = "update invitation set etat = 1 where nom_exp = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, nom);
+            ps.executeUpdate();
+            System.out.println("invitation Accepté");
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la suppression " + ex.getMessage());
+        }
     }
 
     @Override
-    public List<Organisme> findAll() {
-        return null;
+    public Formateur AllInfoFormateur(String nomexp) {
+        String requete = "select * from formateur where nom = ?";
+        Formateur f = new Formateur();
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nomexp);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                f.setCinFormateur(resultat.getString(1));
+                f.setNom(resultat.getString(2));
+                f.setPrenom(resultat.getString(3));
+                f.setMail(resultat.getString(4));
+                 f.setAvatar(resultat.getString(10));
+                  f.setCv(resultat.getString(5));
 
+            }
+            return f;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
-    public void getIdOrganismeByName(String nom) {
-        String req1 = "select idorgansme from  Organisme where nom=?";
+    public void refuserInvitation(String nom) {
+
+        String requete = "delete from invitation where nom_exp = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, nom);
+            ps.executeUpdate();
+            System.out.println("invitation refusé");
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la suppression " + ex.getMessage());
+        }
     }
 
     @Override
-    public void removeOrganismeById(int id) {
+    public ObservableList<Formateur> findFormateurs() {
+        String requete = "SELECT * FROM formateur WHERE Organisme_id is null and etat=?";
+        PreparedStatement ps = null;
+        ObservableList<Formateur> lst1 = FXCollections.observableArrayList();
+        try {
+            int x = 1;
+            ps = connection.prepareStatement(requete);
 
+            ps.setInt(1, x);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst1.add(new Formateur(
+                        resultat.getString("cin"),
+                        resultat.getString("nom"),
+                        resultat.getString("prenom")
+                ));
+            }
+            return lst1;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public ObservableList<Formateur> findFormateurs1Organisme(int id) {
+        String requete = "SELECT * FROM formateur WHERE Organisme_id =? and etat=?";
+        PreparedStatement ps = null;
+        ObservableList<Formateur> lst1 = FXCollections.observableArrayList();
+        try {
+            int x = 1;
+            ps = connection.prepareStatement(requete);
+            ps.setInt(1, id);
+            ps.setInt(2, x);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst1.add(new Formateur(
+                        resultat.getString("cin"),
+                        resultat.getString("nom"),
+                        resultat.getString("prenom")
+                ));
+            }
+            return lst1;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+public ObservableList<Organisme> ListeOrganisme(String login) {
+        String requete = "select * from organisme where login <> ? and etat=?";
+        PreparedStatement ps = null;
+        ObservableList<Organisme> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setInt(1, 1);
+            ps.setString(2, login);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Organisme(
+                        resultat.getString("nom"),
+                        resultat.getString("email"),
+                        resultat.getString("siteweb"),
+                        resultat.getString("adresse"),
+                        resultat.getString("telephone"),
+                        resultat.getString("description")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public ObservableList<Organisme> chercherOrganisme(String nom) {
+        String requete = "select * from organisme where nom like? and etat=?";
+        PreparedStatement ps = null;
+        ObservableList<Organisme> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nom);
+            ps.setInt(2, 1);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Organisme(
+                        resultat.getString("nom"),
+                        resultat.getString("email"),
+                        resultat.getString("siteweb"),
+                        resultat.getString("adresse"),
+                        resultat.getString("telephone"),
+                        resultat.getString("description")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public ObservableList<Formateur> chercherFormateurs(String nom) {
+        String requete = "select * from formateur where nom like? and etat=?";
+        PreparedStatement ps = null;
+        ObservableList<Formateur> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nom);
+            ps.setInt(2, 1);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Formateur(resultat.getString("cin"),
+                        resultat.getString("nom"), resultat.getString("prenom"))
+                );
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
@@ -257,7 +414,7 @@ public class DAOOrganisme implements IDAOOrganisme {
             pst.setString(2, password);
             rs = pst.executeQuery();
             if (rs.next()) {
-                System.out.println("Authentification reussie");
+                System.out.println("Authentification reussite");
                 res = true;
 
             }
@@ -298,14 +455,16 @@ public class DAOOrganisme implements IDAOOrganisme {
 
             rs = pst.executeQuery();
             while (rs.next()) {
-                o.setNom(rs.getString(2));
-                o.setLogin(rs.getString(3));
-                o.setPassword(rs.getString(4));
-                o.setEmail(rs.getString(5));
-                o.setAdresse(rs.getString(6));
-                o.setSiteweb(rs.getString(7));
-                o.setTelephone(rs.getString(8));
-                o.setDescription(rs.getString(9));
+                o.setId(rs.getInt("idorganisme"));
+                o.setNom(rs.getString("nom"));
+                o.setLogin(rs.getString("login"));
+                o.setPassword(rs.getString("password"));
+                o.setEmail(rs.getString("email"));
+                o.setAdresse(rs.getString("adresse"));
+                o.setSiteweb(rs.getString("siteweb"));
+                o.setTelephone(rs.getString("telephone"));
+                o.setDescription(rs.getString("description"));
+                 o.setLogo(rs.getString("logo"));
 
             }
             return o;
@@ -401,4 +560,129 @@ public class DAOOrganisme implements IDAOOrganisme {
         }
     }
 
+    @Override
+    public ObservableList<Invitation> FindInvitationByNom(String nomdes) {
+        String requete = "SELECT * FROM invitation WHERE nom_des = ? and etat=?";
+        PreparedStatement ps = null;
+        ObservableList<Invitation> lst = FXCollections.observableArrayList();
+        try {
+            int x = 0;
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nomdes);
+            ps.setInt(2, x);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Invitation(
+                        resultat.getString("nom_exp"),
+                        resultat.getString("nom_des"),
+                        resultat.getDate("date_invit"),
+                        resultat.getInt("etat")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public void removeOrganismeById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getIdOrganismeByName(String nom) {
+           Organisme o2 = new Organisme();
+        String s = null;
+        String req2 = "select idorganisme from  Organisme where nom='" + nom + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
+
+                return rs.getInt("idorganisme");
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la selection du idorganisme " + ex.getMessage());
+        }
+        return 0;
+
+    }
+
+    @Override
+    public ObservableList<Formateur> chercherFormateurs1Organisme(String nom,int id) {
+ String requete = "select * from formateur where nom like? and etat=? and Organisme_id=?";
+        PreparedStatement ps = null;
+        ObservableList<Formateur> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nom);
+            int x=1;
+            ps.setInt(2, x);
+            ps.setInt(3, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Formateur(resultat.getString("cin"),
+                        resultat.getString("nom"), resultat.getString("prenom"))
+                );
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    
+    @Override
+public void downloadCV(Formateur f) {
+try {
+String requete = "select cv from formateur where cin=?";
+
+PreparedStatement ps = connection.prepareStatement(requete);
+ps.setString(1, f.getCinFormateur());
+ResultSet resultat = ps.executeQuery();
+while (resultat.next()) {
+File pdfFile = new File("src/pidev/gui/pdf/"+f.getCv());
+System.out.println(pdfFile.getAbsolutePath());
+pdfFile.getAbsolutePath();
+if (pdfFile.exists()) {
+
+if (Desktop.isDesktopSupported()) {
+Desktop.getDesktop().open(pdfFile);
+} else {
+System.out.println("Awt Desktop is not supported!");
+}
+
+} else {
+System.out.println("File is not exists!");
+}
+
+System.out.println("Done");
+
+}
+} catch (SQLException ex) {
+Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+} catch (IOException ex) {
+Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+}
+
+}
+
+  
 }
