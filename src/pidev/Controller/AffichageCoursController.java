@@ -86,6 +86,7 @@ public class AffichageCoursController implements Initializable {
     private RadioButton radioBien;
 
     public CoursSuivie cs;
+    @FXML
     private ToggleGroup appreciation;
     public Apprenant apprenant;
     @FXML
@@ -106,6 +107,8 @@ public class AffichageCoursController implements Initializable {
     private TextField txtDateDebut;
     @FXML
     private TextField txtDateFin;
+    @FXML
+    private Button btnCommenter;
 
     public AffichageCoursController() {
         connection = (DataSource.getInstance()).getConnection();
@@ -179,7 +182,6 @@ public class AffichageCoursController implements Initializable {
         stage.show();
     }
 
-    @FXML
     private void Formateur1Action(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
 

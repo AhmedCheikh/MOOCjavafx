@@ -17,15 +17,15 @@ public class CoursSuivie {
     public CoursSuivie() {
     }
 
+    public CoursSuivie(int id_cours, String appreciation) {
+        this.id_cours = id_cours;
+        this.appreciation = appreciation;
+    }
+
     public CoursSuivie(int id_cours, String cinapprenant, String date_debut) {
         this.id_cours = id_cours;
         this.cinapprenant = cinapprenant;
         this.date_debut = date_debut;
-    }
-
-    public CoursSuivie(int idCoursuivi, String appreciation) {
-        this.idCoursuivi = idCoursuivi;
-        this.appreciation = appreciation;
     }
 
     public int getIdCoursuivi() {
