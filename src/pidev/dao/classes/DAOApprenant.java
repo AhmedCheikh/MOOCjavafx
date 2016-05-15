@@ -255,5 +255,27 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
           System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
         }
     }
+    
+    @Override
+    public Boolean verifExistanceApprenant(String login ,String cin) {
+         
+        try {
+            Apprenant a = new Apprenant();
+            String req = "select * from apprenant where cin = ? or login = ?";
+            
+            
+            pst=connection.prepareStatement(req);
+            pst.setString(1, cin);
+            pst.setString(2, login);
+            rs = pst.executeQuery();
+            
+            return rs.first();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOApprenant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    
+    }
 }
 

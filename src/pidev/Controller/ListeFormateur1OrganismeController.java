@@ -106,7 +106,7 @@ String log=ca.log;
                         
                         @Override
                         public void handle(ActionEvent event) {
-                            DAOFormateur formDAO = new DAOFormateur();
+                            DAOComite formDAO = new DAOComite();
                             formDAO.downloadCV(newValue);
                         }
                     });

@@ -67,6 +67,7 @@
                 </image>
               
             </ImageView>
+            <Label fx:id="lblCinFrm" layoutX="600.0" layoutY="455.0" />
          </children>
       </Pane>
    </children>

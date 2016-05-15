@@ -17,8 +17,8 @@ public class Formateur {
     private String login;
     private String password;
     private String avatar;
-    private File cv;
-    private int etat = 0;
+    private String cv;
+    private int etat;
 
     public Formateur() {
     }
@@ -30,20 +30,17 @@ public class Formateur {
         this.mail = mail;
     }
 
+    public Formateur(String nom, String prenom, String mail) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+    }
+
     public Formateur(String cinFormateur) {
         this.cinFormateur = cinFormateur;
     }
 
-    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar) {
-        this.cinFormateur = cinFormateur;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mail = mail;
-        this.login = login;
-        this.password = password;
-        this.avatar = avatar;
-    }
-public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar, File cv, int etat) {
+    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar, String cv, int etat) {
         this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -55,13 +52,27 @@ public Formateur(String cinFormateur, String nom, String prenom, String mail, St
         this.etat = etat;
     }
 
-    public Formateur(String nom, String prenom, String mail) {
+    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar) {
+        this.cinFormateur = cinFormateur;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
+        this.login = login;
+        this.password = password;
+        this.avatar = avatar;
     }
 
-    
+    public Formateur(String cinFormateur, String nom, String prenom, String mail, String login, String password, String avatar, String cv) {
+        this.cinFormateur = cinFormateur;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.login = login;
+        this.password = password;
+        this.avatar = avatar;
+        this.cv = cv;
+    }
+
     public String getCinFormateur() {
         return cinFormateur;
     }
@@ -118,11 +129,11 @@ public Formateur(String cinFormateur, String nom, String prenom, String mail, St
         this.avatar = avatar;
     }
 
-    public File getCv() {
+    public String getCv() {
         return cv;
     }
 
-    public void setCv(File cv) {
+    public void setCv(String cv) {
         this.cv = cv;
     }
 
@@ -133,6 +144,8 @@ public Formateur(String cinFormateur, String nom, String prenom, String mail, St
     public void setEtat(int etat) {
         this.etat = etat;
     }
+
+    
 
     @Override
     public int hashCode() {

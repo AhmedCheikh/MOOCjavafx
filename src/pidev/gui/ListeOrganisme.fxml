@@ -147,5 +147,10 @@
             <Image url="@img/moocLog3.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="176.0" fitWidth="362.0" layoutX="197.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/m2sA4uE.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

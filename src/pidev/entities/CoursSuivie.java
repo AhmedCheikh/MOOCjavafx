@@ -23,6 +23,11 @@ public class CoursSuivie {
         this.date_debut = date_debut;
     }
 
+    public CoursSuivie(int idCoursuivi, String appreciation) {
+        this.idCoursuivi = idCoursuivi;
+        this.appreciation = appreciation;
+    }
+
     public int getIdCoursuivi() {
         return idCoursuivi;
     }

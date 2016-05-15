@@ -72,12 +72,13 @@ public class Chapitre {
         this.idCours = idCours;
     }
 
-    public Chapitre(int idChapitre, int idQuiz, String titre,String presentation, String objectif,  String Video) {
+    public Chapitre(int idCours, int idQuiz, String titre,String presentation, String objectif,  String Video) {
         this.titre = titre;
         this.objectif = objectif;
         this.idQuiz = idQuiz;
          this.presentation = presentation;
         this.Video = Video;
+        this.idCours=idCours;
     }
 
     public Chapitre(String titre, String objectif) {

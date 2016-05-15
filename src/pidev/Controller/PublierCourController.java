@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Random;
 
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -34,6 +36,7 @@ import javafx.stage.Stage;
 import pidev.dao.classes.DAOFormateur;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
+import pidev.entities.Quiz;
 
 /**
  * FXML Controller class
@@ -67,6 +70,10 @@ public class PublierCourController implements Initializable {
     private Label lblcheminvideo;
 
     public static String video;
+    @FXML
+    private ComboBox<Integer> cmbQuiz;
+
+    ArrayList<Quiz> lstquiz = new ArrayList<>();
 
     public void setVideo(String video) {
         this.video = video;
@@ -106,20 +113,34 @@ public class PublierCourController implements Initializable {
     }
 
     @FXML
-    public void btnChoisirVedioAction(ActionEvent event) {
+    public void btnChoisirVedioAction(ActionEvent event) throws IOException {
+        Random rd = new Random();
+        int nomrandom = rd.nextInt(100) + 1;
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open resource file");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Text Files", "*.mp4"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
+
             String path = selectedFile.getName();
             lblcheminvideo.setText(selectedFile.getAbsolutePath());
             String ur = selectedFile.getAbsolutePath();
-            String nomvid = "C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/video/" + selectedFile.getName();
-            setCheminVid(nomvid);
-            setUrl(ur);
-            setVideo(path);
+            Path nomdos = Paths.get("src/pidev/video");
+            //C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/video/"
+            if (!Files.exists(nomdos)) {
+                Files.createDirectories(nomdos);
+                String nomvid = nomdos + "/" + selectedFile.getName();
+                setCheminVid(nomvid);
+                setUrl(ur);
+                setVideo(path);
+            } else {
+                String nomvid = nomdos + "/" + selectedFile.getName();
+                setCheminVid(nomvid);
+                setUrl(ur);
+                setVideo(path);
+            }
         } else {
             lblcheminvideo.setText("File Invalide");
         }
@@ -128,6 +149,12 @@ public class PublierCourController implements Initializable {
     private Formateur f;
     DAOFormateur daof = new DAOFormateur();
     Formateur f2 = new Formateur();
+
+    public void setfrm(Formateur f) {
+        lblcinf.setText(f.getCinFormateur());
+        this.f = f;
+
+    }
 
     @FXML
     public void cmbDifficultéAction(ActionEvent event) {
@@ -186,12 +213,13 @@ public class PublierCourController implements Initializable {
             alert4.showAndWait();
         } else {
             Alert alert5 = new Alert(Alert.AlertType.CONFIRMATION);
-            alert5.setTitle("mrigla ye zayda");
+            alert5.setTitle("succès");
             alert5.setHeaderText(null);
-            alert5.setContentText("sa7it si zied ^_^");
+            alert5.setContentText("chargement cour réussi");
             alert5.showAndWait();
 
-            Cours c = new Cours(txtNomCour.getText(), txtDescription.getText(), cmbDifficulté.getValue().toString(), txtObjectif.getText(), video);
+            Cours c = new Cours(txtNomCour.getText(),txtDescription.getText(),f.getCinFormateur(),cmbDifficulté.getValue().toString(), txtObjectif.getText(), video,cmbQuiz.getValue());
+            //txtNomCour.getText(), txtDescription.getText(), cmbDifficulté.getValue().toString(), txtObjectif.getText(), video);
             daof.publierCour(c);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             Path source = Paths.get(url);
@@ -226,12 +254,11 @@ public class PublierCourController implements Initializable {
                 "Intermédiaire");
         cmbDifficulté.getItems().add(
                 "Avancé");
-    }
+        lstquiz = daof.listQuiz();
 
-    public void setfrm(Formateur f) {
-        lblcinf.setText(f.getCinFormateur());
-        this.f = f;
-
+        for (Quiz qz : lstquiz) {
+            cmbQuiz.getItems().add(qz.getIdQuiz());
+        }
     }
 
 }

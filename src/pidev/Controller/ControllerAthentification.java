@@ -140,6 +140,7 @@ login.setEffect(shadow);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
                 stage.show();
+           
             } else {
                 message.setText(" CIN ou Password Incorrecte ");
                  login.setText("");

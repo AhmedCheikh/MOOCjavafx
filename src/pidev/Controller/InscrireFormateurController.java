@@ -8,8 +8,11 @@ package pidev.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +58,8 @@ public class InscrireFormateurController implements Initializable {
     private TextField txtPassword;
     @FXML
     private TextField txtRepaet;
+
+    public static String cv;
     //declation des labels
     @FXML
     private Label er1;
@@ -79,7 +84,7 @@ public class InscrireFormateurController implements Initializable {
     @FXML
     private Pane paneImg2;
     Alert alert = new Alert(Alert.AlertType.WARNING);
-    public static File im = new File("C:\\Users\\akoubi\\Documents\\NetBeansProjects\\MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e\\src\\pidev\\gui\\img\\defaut.jpg");
+    //public static File im = new File("C:\\Users\\akoubi\\Documents\\NetBeansProjects\\MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e\\src\\pidev\\gui\\img\\defaut.jpg");
 
     public static String AvatarDefault = "defaut.jpg";
 
@@ -96,15 +101,23 @@ public class InscrireFormateurController implements Initializable {
     @FXML
     private Hyperlink hpCv;
 
-    public void setIm(File im) {
-        this.im = im;
-    }
-
-    public static File cv;
-
-    public void setCv(File cv) {
+    //********************* bloc copie cv ******************
+    public void setCv(String cv) {
         this.cv = cv;
     }
+
+    public static String CheminCv;
+
+    public void setCheminCv(String CheminCv) {
+        this.CheminCv = CheminCv;
+    }
+
+    public static String url;
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    //********************* bloc copie cv ******************
 
     public boolean textFieldEmpty(TextField i) {
         boolean r = false;
@@ -179,21 +192,36 @@ public class InscrireFormateurController implements Initializable {
     }
 
     @FXML
-    public void btnChoisirCvAction(ActionEvent event) {
+    public void btnChoisirCvAction(ActionEvent event) throws IOException {
+        Random rd = new Random();
+        int n = rd.nextInt(100000) + 1;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open resource file");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            File path = selectedFile.getAbsoluteFile();
+            String path = selectedFile.getName();
             er8.setText(selectedFile.getAbsolutePath());
-
-            //mpth = path;
-            setCv(path);
+            String ur = selectedFile.getAbsolutePath();
+            Path nomdos = Paths.get("src/pidev/cv");
+//            C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/avatar/          
+            if (!Files.exists(nomdos)) {
+                Files.createDirectories(nomdos);
+                String nomimg = nomdos + "/" +n+selectedFile.getName();
+                setCheminCv(nomimg);
+                setUrl(ur);
+                setCv(n+path);
+            } else {
+                String nomimg = nomdos + "/" +n+selectedFile.getName();
+                setCheminCv(nomimg);
+                setUrl(ur);
+                setCv(n+path);
+            }
         } else {
             er8.setText("File Invalide");
         }
+        //*************************************************************
         //Formateur f2 = new Formateur("12345678","zied","agoubi","zou","zou","12345",null,pth, 0);
         //DAOFormateur daof2 = new DAOFormateur();
         //daof2.inscrire(f2);
@@ -204,8 +232,6 @@ public class InscrireFormateurController implements Initializable {
 //    }
     @FXML
     public void btnValiderAction(ActionEvent event) throws IOException {
-        File pth = im.getAbsoluteFile();
-        setIm(pth);
         boolean nom = textFieldEmpty(txtNom, er2, "Ce champs doit etre remplie");
         boolean prenom = textFieldEmpty(txtPrenom, er3, "Ce champs doit etre remplie");
         boolean login = textFieldEmpty(txtLogin, er5, "Ce champs doit etre remplie");
@@ -218,7 +244,15 @@ public class InscrireFormateurController implements Initializable {
                 Formateur f1 = new Formateur(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText(), AvatarDefault, cv, 0);
                 DAOFormateur daof = new DAOFormateur();
                 daof.inscrire(f1);
-
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                Path source = Paths.get(url);
+                System.out.println(source.toRealPath(LinkOption.NOFOLLOW_LINKS));
+                Path destination = Paths.get(CheminCv);
+                Files.copy(source, destination);
+                alert.setTitle("Inscription");
+                alert.setHeaderText(null);
+                alert.setContentText("Inscription effectué avec succée");
+                alert.showAndWait();
                 try {
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                     Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/FXMLAuthentification.fxml"));

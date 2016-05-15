@@ -69,11 +69,12 @@ public class AjouterChapitreController implements Initializable {
     int z;
     int w;
     public Cours cours;
-
+public int id;
 
     public void setCours(Cours cours) {
         this.cours = cours;
         DAOCours dc=new DAOCours();
+        id=cours.getIdCours();
         w=dc.FindIdQuizbycours(cours.getNomCours());
     }
 
@@ -123,7 +124,8 @@ public class AjouterChapitreController implements Initializable {
         if (test == 4) {
             DAOQuiz d = new DAOQuiz();
             z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
-            Chapitre c = new Chapitre(1, z, txtTitre.getText(), LPresentation.getText(), txtAObjectif.getText(), lVideo.getText());
+            System.out.println(id+"dafdzqsd");
+            Chapitre c = new Chapitre(id, z, txtTitre.getText(), LPresentation.getText(), txtAObjectif.getText(), lVideo.getText());
 
             DAOChapitre daoc = new DAOChapitre();
             daoc.addChapitre(c);

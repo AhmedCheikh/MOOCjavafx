@@ -19,6 +19,11 @@ public class Invitation {
     public Invitation() {
     }
 
+    public Invitation(String nom_des, int etat) {
+        this.nom_des = nom_des;
+        this.etat = etat;
+    }
+    
     public Invitation(String nom_exp, String nom_des, Date date_invit, int etat) {
         this.nom_exp = nom_exp;
         this.nom_des = nom_des;

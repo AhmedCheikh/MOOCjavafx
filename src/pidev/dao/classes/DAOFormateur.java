@@ -1,28 +1,27 @@
 package pidev.dao.classes;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pidev.Controller.InscrireFormateurController;
 import pidev.dao.interfaces.IDaoFormateur;
 import pidev.entities.Cours;
+import pidev.entities.CoursSuivie;
 import pidev.entities.Formateur;
 import pidev.entities.Invitation;
 import pidev.entities.Organisme;
+import pidev.entities.Quiz;
 import pidev.techniques.DataSource;
-import javafx.collections.FXCollections;
 
 /**
  *
@@ -38,26 +37,34 @@ public class DAOFormateur implements IDaoFormateur {
 
     @Override
     public void inscrire(Formateur f) {
+        PreparedStatement ps = null;
         try {
 
             String req = "insert into formateur (cin,nom,prenom,email,login,password,avatar,cv,etat) values (?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = connection.prepareStatement(req);
+            ps = connection.prepareStatement(req);
 
-            InputStream is = new FileInputStream(InscrireFormateurController.cv);
-            InputStream is2 = new FileInputStream(InscrireFormateurController.im);
-
+            //InputStream is = new FileInputStream(InscrireFormateurController.cv);
+            //InputStream is2 = new FileInputStream(InscrireFormateurController.im);
+            String ava = InscrireFormateurController.AvatarDefault;
             ps.setString(1, f.getCinFormateur());
             ps.setString(2, f.getNom());
             ps.setString(3, f.getPrenom());
             ps.setString(4, f.getMail());
             ps.setString(5, f.getLogin());
             ps.setString(6, f.getPassword());
-            ps.setBlob(7, is2);
-            ps.setBlob(8, is);
+            ps.setString(7, ava);  
+            ps.setString(8, f.getCv());      
             ps.setInt(9, f.getEtat());
             ps.executeUpdate();
-        } catch (SQLException | FileNotFoundException ex) {
+
+        } catch (SQLException ex) {
             Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -70,8 +77,9 @@ public class DAOFormateur implements IDaoFormateur {
     public Formateur getFormateurByCIN(String cin) {
         String requete = "select * from formateur where cin = ?";
         Formateur formateur = new Formateur();
+        PreparedStatement ps = null;
         try {
-            PreparedStatement ps = connection.prepareStatement(requete);
+            ps = connection.prepareStatement(requete);
             ps.setString(1, cin);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
@@ -79,12 +87,19 @@ public class DAOFormateur implements IDaoFormateur {
                 formateur.setNom(resultat.getString(2));
                 formateur.setPrenom(resultat.getString(3));
                 formateur.setMail(resultat.getString(4));
+                formateur.setAvatar(resultat.getString(6));
                 formateur.setLogin(resultat.getString(8));
             }
             return formateur;
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("erreur lors du chargement" + ex.getMessage());
             return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -131,7 +146,7 @@ public class DAOFormateur implements IDaoFormateur {
 
     @Override
     public void DemmandeIntegration(Invitation invit) {
-       PreparedStatement ps = null;
+        PreparedStatement ps = null;
         try {
 
             String req = "insert into invitation (id,nom_exp,nom_des,date_invit,date_confi,date_vue,etat) values (?,?,?,?,?,?,?)";
@@ -157,11 +172,9 @@ public class DAOFormateur implements IDaoFormateur {
         }
     }
 
-    
-
     @Override
     public void AccepterOrganisme(String nom) {
-String requete = "update invitation set etat = 1 where nom_exp = ?";
+        String requete = "update invitation set etat = 1 where nom_exp = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, nom);
@@ -174,7 +187,7 @@ String requete = "update invitation set etat = 1 where nom_exp = ?";
 
     @Override
     public void RefuserOrganisme(String nom) {
-     String requete = "delete from invitation where nom_exp = ?";
+        String requete = "delete from invitation where nom_exp = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, nom);
@@ -188,157 +201,22 @@ String requete = "update invitation set etat = 1 where nom_exp = ?";
     @Override
     public void EditerProfil(Formateur f) {
         String requete = "update formateur set nom=? ,prenom = ?, email = ?, login = ?, avatar = ? , password = ? where cin = ?";
+        PreparedStatement ps = null;
         try {
             //InputStream is = new FileInputStream(EditProfilFormateurController.avatar);
-            PreparedStatement ps = connection.prepareStatement(requete);
+            ps = connection.prepareStatement(requete);
             ps.setString(1, f.getNom());
             ps.setString(2, f.getPrenom());
             ps.setString(3, f.getMail());
             ps.setString(4, f.getLogin());
-            ps.setBlob(5, new FileInputStream(f.getAvatar()));
+            ps.setString(5, f.getAvatar());
             ps.setString(6, f.getPassword());
             ps.setString(7, f.getCinFormateur());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
+
         } catch (SQLException ex) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-@Override
-    public String getEmailByLogin(String login) {
-       
-        String req2 = "select email from  formateur where login='" + login + "'";
-        try {
-            PreparedStatement pst2 = connection.prepareStatement(req2);
-            ResultSet rs = pst2.executeQuery();
-            while (rs.next()) {
-
-                return rs.getString("email");
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-
-    }
-      @Override
-    public void setPwd(String login, String pwd) {
- try {    
-        String req1 = "update  Formateur set password='" + pwd + "' where login='" + login + "'";
-
-            PreparedStatement pst2 = connection.prepareStatement(req1);
-            pst2.executeUpdate();
-
-        } catch (SQLException ex) {
-          System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
-        }
-    }
-    @Override
-    public void downloadCV(Formateur f) {
-      String requete = "select cv from formateur where cin=?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setString(1, f.getCinFormateur());
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next()) {
-                File cv = new File("D:\\CV"+f.getNom()+""+f.getPrenom()+".docx");
-                try (FileOutputStream fos = new FileOutputStream(cv)) {
-                    byte[] buffer = new byte[1];
-                    InputStream is = resultat.getBinaryStream(1);
-                    while (is.read(buffer) > 0) {
-                        fos.write(buffer);
-                    }         
-                }
-            }
-            System.out.println("Téléchargement effectué avec succès!");
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
-    public void publierCour(Cours c) {
-       try {
-
-            String req = "insert into cours (idcours,nom_cours,description,difficulte,objectif,video) values (?,?,?,?,?,?)";
-            PreparedStatement pst = connection.prepareStatement(req);
-            pst = connection.prepareStatement(req);
-            pst.setInt(1, c.getIdCours());
-            pst.setString(2, c.getNomCours());
-            pst.setString(3, c.getDescription());
-            pst.setString(4, c.getDifficulte());
-            pst.setString(5, c.getObjectif());
-            pst.setString(6, c.getVideo());
-            pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOCours.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
-    public Cours getCoursById(int id) {
-       String requete = "select * from cours where idcours = ?";
-        Cours c = new Cours();
-        PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(requete);
-            ps.setInt(1, id);
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next()) {
-                c.setIdCours(resultat.getInt(1));
-                c.setNomCours(resultat.getString(2));
-                c.setDescription(resultat.getString(5));
-                c.setDifficulte(resultat.getString(6));
-                c.setObjectif(resultat.getString(7));
-                c.setVideo(resultat.getString(8));
-            }
-            return c;
-        } catch (SQLException ex) {
-            System.out.println("erreur lors du chargement" + ex.getMessage());
-            return null;
-        } finally {
-            try {
-                ps.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-    }
-
-    @Override
-    public int nbrInvit(String cin) {
-      String requete = "SELECT * FROM invitation WHERE nom_des = ?";
-        PreparedStatement ps = null;
-        int nbr = 0;
-        ObservableList<Invitation> lst = FXCollections.observableArrayList();
-        try {
-            ps = connection.prepareStatement(requete);
-            ps.setString(1, cin);
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next()) {
-                lst.add(new Invitation(
-                        resultat.getInt("id"),
-                        resultat.getString("nom_exp"),
-                        resultat.getString("nom_des"),
-                        resultat.getDate("date_invit"),
-                        resultat.getDate("date_confi"),
-                        resultat.getDate("date_vue"),
-                        resultat.getInt("etat")
-                ));
-                nbr = resultat.getRow();
-            }
-            return nbr;
-        } catch (SQLException ex) {
-            System.out.println("erreur lors du chargement" + ex.getMessage());
-            return 0;
         } finally {
             try {
                 ps.close();
@@ -378,7 +256,103 @@ String requete = "update invitation set etat = 1 where nom_exp = ?";
     }
 
     @Override
+    public ObservableList<Organisme> FindOrganismeByName(String nom) {
+        String requete = "select * from organisme where nom = ?";
+        PreparedStatement ps = null;
+        ObservableList<Organisme> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nom);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Organisme(
+                        resultat.getString("nom"),
+                        resultat.getString("email"),
+                        resultat.getString("adresse"),
+                        resultat.getString("telephone")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public int nbrInvit(String cin) {
+        String requete = "SELECT * FROM invitation WHERE nom_des = ? and etat = 0 ";
+        PreparedStatement ps = null;
+        int nbr = 0;
+        ObservableList<Invitation> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, cin);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Invitation(
+                        resultat.getInt("id"),
+                        resultat.getString("nom_exp"),
+                        resultat.getString("nom_des"),
+                        resultat.getDate("date_invit"),
+                        resultat.getDate("date_confi"),
+                        resultat.getDate("date_vue"),
+                        resultat.getInt("etat")
+                ));
+                nbr = resultat.getRow();
+            }
+            return nbr;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return 0;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public ObservableList<Invitation> FindInvitationByNom(String nomdes) {
+        String requete = "SELECT * FROM invitation WHERE nom_des = ? and etat = 0";
+        PreparedStatement ps = null;
+        ObservableList<Invitation> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, nomdes);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Invitation(
+                        resultat.getString("nom_exp"),
+                        resultat.getString("nom_des"),
+                        resultat.getDate("date_invit"),
+                        resultat.getInt("etat")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
     public Organisme AllInfoOrganisme(String nomexp) {
+
         String requete = "select * from organisme where nom = ?";
         Organisme org = new Organisme();
         PreparedStatement ps = null;
@@ -408,20 +382,131 @@ String requete = "update invitation set etat = 1 where nom_exp = ?";
     }
 
     @Override
-    public ObservableList<Organisme> FindOrganismeByName(String nom) {
-       String requete = "select * from organisme where nom = ?";
+    public void publierCour(Cours c) {
+        try {
+
+            String req = "insert into cours (idcours,nom_cours,cinformateur,idQuiz,description,difficulte,objectif,video) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst = connection.prepareStatement(req);
+            pst.setInt(1, c.getIdCours());
+            pst.setString(2, c.getNomCours());
+            pst.setString(3, c.getCinFormateur());
+            pst.setInt(4, c.getIdQuiz());
+            pst.setString(5, c.getDescription());
+            pst.setString(6, c.getDifficulte());
+            pst.setString(7, c.getObjectif());
+            pst.setString(8, c.getVideo());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOCours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public Cours getCoursById(int id) {
+        String requete = "select * from cours where idcours = ?";
+        Cours c = new Cours();
         PreparedStatement ps = null;
-        ObservableList<Organisme> lst = FXCollections.observableArrayList();
         try {
             ps = connection.prepareStatement(requete);
-            ps.setString(1, nom);
+            ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                lst.add(new Organisme(
-                        resultat.getString("nom"),
-                        resultat.getString("email"),
-                        resultat.getString("adresse"),
-                        resultat.getString("telephone")
+                c.setIdCours(resultat.getInt(1));
+                c.setNomCours(resultat.getString(2));
+                c.setDescription(resultat.getString(5));
+                c.setDifficulte(resultat.getString(6));
+                c.setObjectif(resultat.getString(7));
+                c.setVideo(resultat.getString(8));
+            }
+            return c;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    @Override
+    public ObservableList<Cours> listCoursFormateurbyCin(String cin) {
+        String requete = "select * from cours where cinformateur = ?";
+        PreparedStatement ps = null;
+        ObservableList<Cours> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, cin);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Cours(
+                        resultat.getInt("idcours"),
+                        resultat.getString("cinformateur")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    @Override
+    public ArrayList<CoursSuivie> listCrSuivieFormateurbyCin() {
+        String requete = "select * from coursuivi";
+        PreparedStatement ps = null;
+        ArrayList<CoursSuivie> lst = new ArrayList<>();
+        try {
+            ps = connection.prepareStatement(requete);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new CoursSuivie(
+                        resultat.getInt("id_cours"),
+                        resultat.getString("appreciation")
+                ));
+            }
+            return lst;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement" + ex.getMessage());
+            return null;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+//    select m from MoocMoocBundle
+//    :Invitation m where m
+//    .nomDes  = $var and m
+//    .etat  = 1
+
+    @Override
+    public ObservableList<Invitation> listeMesOrganismesbyCin(String cin) {
+        String requete = "select * from invitation where nom_des = ? and etat = 1 ";
+        PreparedStatement ps = null;
+         ObservableList<Invitation> lst = FXCollections.observableArrayList();
+        try {
+            ps = connection.prepareStatement(requete);
+            ps.setString(1, cin);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                lst.add(new Invitation(
+                        resultat.getString("nom_exp"),
+                        resultat.getInt("etat")
                 ));
             }
             return lst;
@@ -438,23 +523,19 @@ String requete = "update invitation set etat = 1 where nom_exp = ?";
     }
 
     @Override
-    public ObservableList<Invitation> FindInvitationByNom(String nomdes) {
-        String requete = "SELECT * FROM invitation WHERE nom_des = ?";
+    public ArrayList<Quiz> listQuiz() {
+     String requete = "select * from quiz";
         PreparedStatement ps = null;
-        ObservableList<Invitation> lst = FXCollections.observableArrayList();
+        ArrayList<Quiz> lstQuiz = new ArrayList<>();
         try {
             ps = connection.prepareStatement(requete);
-            ps.setString(1, nomdes);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                lst.add(new Invitation(
-                        resultat.getString("nom_exp"),
-                        resultat.getString("nom_des"),
-                        resultat.getDate("date_invit"),
-                        resultat.getInt("etat")
+                lstQuiz.add(new Quiz(
+                        resultat.getInt("id")
                 ));
             }
-            return lst;
+            return lstQuiz;
         } catch (SQLException ex) {
             System.out.println("erreur lors du chargement" + ex.getMessage());
             return null;
@@ -465,5 +546,38 @@ String requete = "update invitation set etat = 1 where nom_exp = ?";
                 Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    
+    @Override
+    public void setPwd(String login, String pwd) {
+ try {    
+        String req1 = "update  formateur set password='" + pwd + "' where login='" + login + "'";
+
+            PreparedStatement pst2 = connection.prepareStatement(req1);
+            pst2.executeUpdate();
+
+        } catch (SQLException ex) {
+          System.out.println("erreur lors de la mise à jour du mot de passe " + ex.getMessage());
+        }
+    }
+    
+    @Override
+    public String getEmailByLogin(String login) {
+       
+        String req2 = "select email from  formateur where login='" + login + "'";
+        try {
+            PreparedStatement pst2 = connection.prepareStatement(req2);
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
+
+                return rs.getString("email");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 }

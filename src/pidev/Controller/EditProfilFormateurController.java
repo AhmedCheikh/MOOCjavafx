@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -81,6 +82,7 @@ public class EditProfilFormateurController implements Initializable {
     private Button btnback;
     @FXML
     private Button btnChoisirAvatar;
+    
     Alert alert = new Alert(Alert.AlertType.WARNING);
 
     public void setAvatar(String avatar) {
@@ -181,7 +183,9 @@ public class EditProfilFormateurController implements Initializable {
     Formateur f2 = new Formateur();
 
     @FXML
-    public void btnChoisirAvatarAction() {
+    public void btnChoisirAvatarAction() throws IOException {
+        Random rd = new Random();
+        int n = rd.nextInt(100000) + 1;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open resource file");
         fileChooser.getExtensionFilters().addAll(
@@ -191,10 +195,20 @@ public class EditProfilFormateurController implements Initializable {
             String path = selectedFile.getName();
             er8.setText(selectedFile.getAbsolutePath());
             String ur = selectedFile.getAbsolutePath();
-            String nomimg = "C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/avatar/" + selectedFile.getName();
+            Path nomdos = Paths.get("src/pidev/avatar");
+//            C:/Users/akoubi/Documents/NetBeansProjects/MOOC_3A2-master-0325060b914cc6125f9059397e5f87da2754141e/src/pidev/avatar/          
+            if(!Files.exists(nomdos)){
+            Files.createDirectories(nomdos);
+            String nomimg = nomdos+"/" +n+selectedFile.getName();
             setCheminAv(nomimg);
             setUrl(ur);
-            setAvatar(path);
+            setAvatar(n+path);
+            }else{
+            String nomimg = nomdos+"/" +n+selectedFile.getName();
+            setCheminAv(nomimg);
+            setUrl(ur);
+            setAvatar(n+path);
+            }
         } else {
             er8.setText("File Invalide");
         }

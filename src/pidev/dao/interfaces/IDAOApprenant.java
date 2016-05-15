@@ -24,4 +24,5 @@ public interface IDAOApprenant<T> {
     public void setPwd(String login, String pwd);
     public String getEmailByLogin(String login);
     public Apprenant getApprenantByCin(String cin);
+    Boolean verifExistanceApprenant(String login ,String cin);
 }

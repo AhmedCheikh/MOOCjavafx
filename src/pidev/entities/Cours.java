@@ -27,6 +27,22 @@ public class Cours {
 
     }
 
+    public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, String video, int idQuiz) {
+        this.nomCours = nomCours;
+        this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.difficulte = difficulte;
+        this.objectif = objectif;
+        this.video = video;
+        this.idQuiz = idQuiz;
+      
+    }
+
+    public Cours(int idCours, String cinFormateur) {
+        this.idCours = idCours;
+        this.cinFormateur = cinFormateur;
+    }
+
     public Cours(int idCours, String nomCours, String description, String difficulte, String objectif, String video) {
         this.idCours = idCours;
         this.nomCours = nomCours;

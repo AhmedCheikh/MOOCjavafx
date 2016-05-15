@@ -1,8 +1,11 @@
 package pidev.dao.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import pidev.entities.Cours;
+import pidev.entities.CoursSuivie;
 import pidev.entities.Formateur;
 import pidev.entities.Invitation;
 import pidev.entities.Organisme;
@@ -25,8 +28,6 @@ public interface IDaoFormateur {
     Formateur getFormateurByCIN(String cin);
   
     void DemmandeIntegration(Invitation invit);
-    
-   
 
     void AccepterOrganisme(String nom);
 
@@ -34,12 +35,6 @@ public interface IDaoFormateur {
     
     void EditerProfil(Formateur f);
     
-    String getEmailByLogin(String login);
-     public void setPwd(String login, String pwd);
-     void downloadCV(Formateur f);
-       void publierCour(Cours c);
-    
-    Cours getCoursById(int id);
     int nbrInvit(String cin);
     
     ObservableList<Organisme> ListeOrganisme();
@@ -49,4 +44,20 @@ public interface IDaoFormateur {
     ObservableList<Organisme> FindOrganismeByName(String nom);
     
     ObservableList<Invitation> FindInvitationByNom(String nomdes);
+            
+    void publierCour(Cours c);
+    
+    Cours getCoursById(int id);
+    
+    ObservableList<Cours> listCoursFormateurbyCin(String cin);
+    
+    ArrayList<CoursSuivie> listCrSuivieFormateurbyCin();
+    
+    ObservableList<Invitation> listeMesOrganismesbyCin(String cin);
+    
+    ArrayList<Quiz> listQuiz();
+  
+    void setPwd(String login, String pwd);
+    String getEmailByLogin(String login);
+    
 }

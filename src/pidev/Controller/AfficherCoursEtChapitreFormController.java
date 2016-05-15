@@ -37,6 +37,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.*;
 
 
@@ -47,6 +48,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import pidev.dao.classes.DAOFormateur;
 import pidev.entities.Cours;
 import pidev.entities.Formateur;
 
@@ -72,8 +74,74 @@ public class AfficherCoursEtChapitreFormController implements Initializable {
     private Button btnback;
     
 private Connection connection ; 
-    private Formateur formateur;
- 
+    public Formateur formateur;
+     Formateur f2 = new Formateur();
+ public String cin;
+ DAOFormateur daof = new DAOFormateur();
+ @FXML
+    private Label lblCinFrm;
+  public void setFrm(Formateur frm) {
+        lblCinFrm.setText(frm.getCinFormateur());
+        cin = frm.getCinFormateur();
+//        f2 = daof.getFormateurByCIN(frm.getCinFormateur());
+    
+        try {
+        String requete = "select c.nom_cours,c.description,f.nom,c.idcours ,c.idQuiz from cours c,formateur f where c.cinformateur=f.cin and c.cinformateur="+cin;
+        
+        PreparedStatement ps;
+        
+            ps = connection.prepareStatement(requete);
+       
+        ResultSet rs = ps.executeQuery();
+        List<Cours> temp=new ArrayList<>();
+        Cours c;
+        while (rs.next()) {
+            c=new Cours(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
+            //temp.add(rs.getString(1));
+            //temp.add(rs.getString(2));
+            // temp.add( new SimpleStringProperty(rs.getString(3)));
+            
+            temp.add(c);
+            
+        }
+        final ObservableList<Cours> list=FXCollections.<Cours>observableList(temp);
+        Nom.setCellValueFactory(new PropertyValueFactory("nomCours"));
+        Description.setCellValueFactory(new PropertyValueFactory("description"));
+        Formateur.setCellValueFactory(new PropertyValueFactory("cinFormateur"));
+        table.setItems(list);
+        
+        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cours>() {
+            
+            @Override
+            public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
+                Cours cours=table.getSelectionModel().getSelectedItem();
+               
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException ex) {
+                    Logger.getLogger(AfficherCoursEtChapitreFormController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Parent p = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                stage.setTitle("Affichage Cours");
+                AffichageCoursFormController pac  = loader.getController();
+                System.out.println("*************************"+cours.getNomCours());
+                pac.setInfo(cours);
+                stage.show();
+            }} );
+  
+  } catch (SQLException ex) {
+            Logger.getLogger(AfficherCoursEtChapitreFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+
+        this.formateur = frm;
+        
+    }
    public AfficherCoursEtChapitreFormController()
    {
     connection = (DataSource.getInstance()).getConnection();
@@ -131,66 +199,9 @@ if (result.get() == ButtonType.OK){
                         btnexit.setEffect(null);
                     }
                 });
-        
-        try {
-        String requete = "select c.nom_cours,c.description,f.nom,c.idcours ,c.idQuiz from cours c,formateur f where c.cinformateur=f.cin and c.cinformateur=01234567";
-        
-        PreparedStatement ps;
-        
-            ps = connection.prepareStatement(requete);
-       
-        ResultSet rs = ps.executeQuery();
-        List<Cours> temp=new ArrayList<>();
-        Cours c;
-        while (rs.next()) {
-            c=new Cours(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
-            //temp.add(rs.getString(1));
-            //temp.add(rs.getString(2));
-            // temp.add( new SimpleStringProperty(rs.getString(3)));
-            
-            temp.add(c);
-            
-        }
-        final ObservableList<Cours> list=FXCollections.<Cours>observableList(temp);
-        Nom.setCellValueFactory(new PropertyValueFactory("nomCours"));
-        Description.setCellValueFactory(new PropertyValueFactory("description"));
-        Formateur.setCellValueFactory(new PropertyValueFactory("cinFormateur"));
-        table.setItems(list);
-        
-        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cours>() {
-            
-            @Override
-            public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
-                Cours cours=table.getSelectionModel().getSelectedItem();
-               
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
-                try {
-                    loader.load();
-                } catch (IOException ex) {
-                    Logger.getLogger(AfficherCoursEtChapitreFormController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Parent p = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(p));
-                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-                stage.setTitle("Affichage Cours");
-                AffichageCoursFormController pac  = loader.getController();
-                System.out.println("*************************"+cours.getNomCours());
-                pac.setInfo(cours);
-                stage.show();
-            }} );
-  
-  } catch (SQLException ex) {
-            Logger.getLogger(AfficherCoursEtChapitreFormController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+          
 
-    public void setFormateur(Formateur formateur) {
-        this.formateur = formateur;
     }
-
-    
 }
     
     
