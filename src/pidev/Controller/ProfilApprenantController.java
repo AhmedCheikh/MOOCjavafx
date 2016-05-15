@@ -117,7 +117,7 @@ public class ProfilApprenantController implements Initializable {
        
         apprenant = da.getApprenantByLogin(info);
 
-        File file = new File("C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/"+apprenant.getAvatar());
+        File file = new File("src/pidev/gui/img/"+apprenant.getAvatar());
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
 

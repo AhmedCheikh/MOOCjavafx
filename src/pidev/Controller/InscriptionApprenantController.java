@@ -80,13 +80,13 @@ public class InscriptionApprenantController implements Initializable {
     @FXML
     public void btnValiderAction(ActionEvent event) throws IOException {
         
-        
+        DAOApprenant da =new DAOApprenant();
         int test = 0;
         
         Pattern p = Pattern.compile("[0-9]{8}");
         Matcher m = p.matcher(txtCin.getText());
         boolean b = m.matches();
-        if(b == false){
+        if(b == false || da.verifExistanceApprenant(txtLogin.getText(), txtCin.getText()) == true){
         er1.setText("Cin non valide");
             test -=1;
         } else {
@@ -119,7 +119,7 @@ public class InscriptionApprenantController implements Initializable {
             er4.setText("");
             test +=1;
         }
-        if (txtLogin.getText().isEmpty()|| (txtLogin.getText().matches("[a-zA-Z0-9]+")==false)) {
+        if (txtLogin.getText().isEmpty()|| (txtLogin.getText().matches("[a-zA-Z0-9]+")==false || da.verifExistanceApprenant(txtLogin.getText(), txtCin.getText()) == true)) {
             er5.setText("Login non valide");
             test -=1;
         } else {
@@ -166,7 +166,7 @@ public class InscriptionApprenantController implements Initializable {
         
         if( test == 9 ){
             Apprenant a = new Apprenant(txtCin.getText(), txtNom.getText(), txtPrenom.getText(), txtMail.getText(), txtLogin.getText(), txtPassword.getText());
-            DAOApprenant da = new DAOApprenant();
+           
             da.add(a);
             
             ((Node) (event.getSource())).getScene().getWindow().hide();

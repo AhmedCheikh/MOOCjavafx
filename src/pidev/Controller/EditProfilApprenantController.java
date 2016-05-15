@@ -81,12 +81,14 @@ public class EditProfilApprenantController implements Initializable {
     @FXML
     private Button btnAnnuller;
     
-    private Apprenant apprenant;
+    public Apprenant apprenant;
     public Apprenant newApprenant;
     @FXML
     private Button btnChoisirImage;
     
     public File file;
+    @FXML
+    private TextField txtEmail;
 
     /**
      * Initializes the controller class.
@@ -133,6 +135,7 @@ public class EditProfilApprenantController implements Initializable {
         txtNom.setText(apprenant.getNom());
         txtPrenom.setText(apprenant.getPrenom());
         txtPassword.setText(apprenant.getPassword());
+        txtEmail.setText(apprenant.getEmail());
         txtLogin.setText(apprenant.getLogin());
         this.apprenant = apprenant;
     }
@@ -159,8 +162,12 @@ public class EditProfilApprenantController implements Initializable {
             test +=1;
         }
         
-        if (txtLogin.getText().isEmpty()|| (txtLogin.getText().matches("[a-zA-Z0-9]+")==false)) {
-            er4.setText("Login non valide");
+        Pattern p1 = Pattern.compile("^[A-Z0-9._-]+@[A-Z0-9]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = p1.matcher(txtEmail.getText());
+        boolean mail = matcher.find();
+        
+        if (txtEmail.getText().isEmpty()|| (mail == false)) {
+            er4.setText("Email non valide");
             test -=1;
         } else {
             er4.setText("");
@@ -190,11 +197,11 @@ public class EditProfilApprenantController implements Initializable {
                 String fileName = nom.toString() +file.getName();
 
                 
-                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),apprenant.getEmail(), fileName , txtLogin.getText(), txtPassword.getText());
+                newApprenant = new Apprenant(apprenant.getCin(), txtNom.getText(), txtPrenom.getText(),txtEmail.getText(), fileName , apprenant.getLogin(), txtPassword.getText());
                 da.update(newApprenant , apprenant.getCin());
                 apprenant = newApprenant;
                 String url;
-                url = "C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/"+ fileName;
+                url = "src/pidev/gui/img/"+ fileName;
                 Path des = Paths.get(url);
                 Path source = Paths.get(file.getAbsolutePath());
                 Files.copy(source , des);
@@ -202,7 +209,7 @@ public class EditProfilApprenantController implements Initializable {
                 
                 apprenant.setNom(txtNom.getText());
                 apprenant.setPrenom(txtPrenom.getText());
-                apprenant.setLogin(txtLogin.getText());
+                apprenant.setEmail(txtEmail.getText());
                 apprenant.setPassword(txtPassword.getText());
                 da.updateWithoutAvatarChange(apprenant , apprenant.getCin());
                 

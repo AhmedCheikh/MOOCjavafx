@@ -25,7 +25,7 @@
             <TableView fx:id="tableCourSuivi" layoutX="14.0" layoutY="47.0" prefHeight="431.0" prefWidth="717.0">
                <columns>
                   <TableColumn fx:id="nomCour" prefWidth="219.0" text="Nom Cour" />
-                  <TableColumn fx:id="difficulteCours" prefWidth="252.0" text="Difficulte" />
+                  <TableColumn fx:id="difficulteCours" prefWidth="252.0" text="Difficulte */5" />
                   <TableColumn fx:id="objectifCours" prefWidth="245.0" text="Objectif" />
                </columns>
             </TableView>

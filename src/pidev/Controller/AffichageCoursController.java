@@ -347,6 +347,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     });
           
         }
+
     
 
    

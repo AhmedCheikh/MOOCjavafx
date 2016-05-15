@@ -27,7 +27,7 @@
                   <TableColumn fx:id="nomCourColumn" prefWidth="165.0" text="Nom cour" />
                   <TableColumn fx:id="descriptionColumn" prefWidth="191.0" text="Description" />
                   <TableColumn fx:id="objectifColumn" prefWidth="175.0" text="Objectif" />
-                  <TableColumn fx:id="difficulteColumn" prefWidth="187.0" text="Difficulté" />
+                  <TableColumn fx:id="difficulteColumn" prefWidth="187.0" text="Difficulté */5" />
                </columns>
             </TableView>
             <TextField fx:id="txtAChercher" layoutX="447.0" layoutY="67.0" prefHeight="35.0" prefWidth="183.0" style="-fx-background-color: ##FFF5EF;" />
