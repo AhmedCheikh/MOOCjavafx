@@ -147,7 +147,7 @@ public class AfficherQuizChronoController implements Initializable {
     private Label ltitre;
     @FXML
     private Label LTime;
-    public double note;
+    public int note;
     int f = 0;
     int info;
     public int q;
@@ -158,7 +158,10 @@ public class AfficherQuizChronoController implements Initializable {
         //q = daoc1.FindIdQuizbycours(info.getNomCours());
         System.out.println("ddddd"+info);
         //System.out.println(q);
-
+        DAOQuestion daoqe = new DAOQuestion();
+        System.out.println("***************************");
+        List lsq = daoqe.FindIdQuestionbyQuiz(info);
+        System.out.println("les questions:" + lsq);
         
            Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -208,9 +211,7 @@ public class AfficherQuizChronoController implements Initializable {
 
         ltitre.setText(t);
 
-        DAOQuestion daoqe = new DAOQuestion();
-        List lsq = daoqe.FindIdQuestionbyQuiz(info);
-        System.out.println("les questions:" + lsq);
+
 
         for (int i = 0; i < 5; i++) {
 
@@ -229,7 +230,7 @@ public class AfficherQuizChronoController implements Initializable {
                 tfR[f].setText(s1.getReponse());
                 f++;
             }
-
+//
         }
     }
     
@@ -275,7 +276,7 @@ public class AfficherQuizChronoController implements Initializable {
                 int et = s.getEtat();
                 System.out.println(et);
                 if (tfC[j].isSelected() && et == 1) {
-                    note = note + 1;
+                    note = note + 4;
                 } else if (tfC[j].isSelected() && et == 0) {
                     note = note - 1;
                 }

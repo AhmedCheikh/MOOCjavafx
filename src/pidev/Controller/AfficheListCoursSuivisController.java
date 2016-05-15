@@ -41,7 +41,6 @@ import pidev.dao.classes.DAOCours;
 import pidev.entities.Apprenant;
 import pidev.entities.Cours;
 
-
 /**
  * FXML Controller class
  *
@@ -61,16 +60,13 @@ public class AfficheListCoursSuivisController implements Initializable {
     private TableColumn difficulteCours;
     @FXML
     private TableColumn objectifCours;
-    
+
     private Apprenant apprenant;
-  
-
-
 
     public AfficheListCoursSuivisController() {
 
     }
- 
+
     /**
      * Initializes the controller class.
      */
@@ -80,38 +76,41 @@ public class AfficheListCoursSuivisController implements Initializable {
 
         btnExit.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 new EventHandler<MouseEvent>() {
-                    @Override public void handle(MouseEvent e) {
-                        shadow.setColor(Color.RED);
-                        btnExit.setEffect(shadow);
-                    }
-                });
+            @Override
+            public void handle(MouseEvent e) {
+                shadow.setColor(Color.RED);
+                btnExit.setEffect(shadow);
+            }
+        });
 
         btnExit.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
-                    @Override public void handle(MouseEvent e) {
-                        
-                        btnExit.setEffect(null);
-                    }
-                });
-               
+            @Override
+            public void handle(MouseEvent e) {
+
+                btnExit.setEffect(null);
+            }
+        });
 
         btnBack.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 new EventHandler<MouseEvent>() {
-                    @Override public void handle(MouseEvent e) {
-                        shadow.setColor(Color.DODGERBLUE);
-                        btnBack.setEffect(shadow);
-                    }
-                });
+            @Override
+            public void handle(MouseEvent e) {
+                shadow.setColor(Color.DODGERBLUE);
+                btnBack.setEffect(shadow);
+            }
+        });
 
         btnBack.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
-                    @Override public void handle(MouseEvent e) {
-                        
-                        btnBack.setEffect(null);
-                    }
-                });
+            @Override
+            public void handle(MouseEvent e) {
 
-    } 
+                btnBack.setEffect(null);
+            }
+        });
+
+    }
 
     @FXML
     private void btnExitAction(ActionEvent event) {
@@ -121,25 +120,25 @@ public class AfficheListCoursSuivisController implements Initializable {
         alert.setContentText("Are you sure to leave?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-         Stage stage = (Stage) btnExit.getScene().getWindow();
-        stage.close();
+        if (result.get() == ButtonType.OK) {
+            Stage stage = (Stage) btnExit.getScene().getWindow();
+            stage.close();
         } else {
-        alert.close();
+            alert.close();
         }
     }
 
     @FXML
-    private void btnBackAction(ActionEvent event) throws IOException {      
+    private void btnBackAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ProfilApprenant.fxml"));
         loader.load();
         Parent p = loader.getRoot();
-        Stage stage =new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Profil Apprenant");
-        ProfilApprenantController pac  = loader.getController();
+        ProfilApprenantController pac = loader.getController();
         pac.setApprenant(apprenant);
         stage.show();
     }
@@ -147,45 +146,46 @@ public class AfficheListCoursSuivisController implements Initializable {
     public void setApprenant(Apprenant apprenant) {
 
         DAOCours dc = new DAOCours();
-        List<Cours> temp=new ArrayList<>();
+        List<Cours> temp = new ArrayList<>();
         temp = dc.findCoursByApprenant(apprenant.getCin());
 
-        final ObservableList<Cours> list=FXCollections.<Cours>observableList(temp);
+        final ObservableList<Cours> list = FXCollections.<Cours>observableList(temp);
+
         nomCour.setCellValueFactory(new PropertyValueFactory("nomCours"));
         difficulteCours.setCellValueFactory(new PropertyValueFactory("difficulte"));
         objectifCours.setCellValueFactory(new PropertyValueFactory("objectif"));
         tableCourSuivi.setItems(list);
-        
+
         tableCourSuivi.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cours>() {
-            
+
             @Override
             public void changed(ObservableValue<? extends Cours> observable, Cours oldValue, Cours newValue) {
                 try {
-                    Cours cours=tableCourSuivi.getSelectionModel().getSelectedItem();
-                    
+                    Cours cours = tableCourSuivi.getSelectionModel().getSelectedItem();
+
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
                     try {
                         loader.load();
                     } catch (IOException ex) {
-                        Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Parent p = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(p));
                     stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                     stage.setTitle("Affichage Cours");
-                    AffichageCoursController pac  = loader.getController();
+                    AffichageCoursController pac = loader.getController();
                     pac.setCours(cours);
                     pac.setApprenant(apprenant);
                     stage.show();
                 } catch (SQLException ex) {
                     Logger.getLogger(AfficheListCoursSuivisController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }} );
-  
-        
+            }
+        });
+
         this.apprenant = apprenant;
     }
-    
+
 }

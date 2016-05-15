@@ -76,16 +76,17 @@ public class ModifierQuestionController {
     List lr;
     int id;
     int etat = 0;
-
+    String s;
     List lmodifidrep;
     List l;
     int z;
+    Question qe;
 
     public void setId(int id) {
         this.id = id;
         DAOQuestion daoqe = new DAOQuestion();
         l = daoqe.FindIdQuestionbyQuiz(id);
-        System.out.println("aaaaaaaaa"+l);
+        System.out.println("aaaaaaaaa" + l);
         for (int i = 0; i < l.size(); i++) {
             Question ques = (Question) l.get(i);
             CmbQuestions.getItems().add(ques.getQuestion());
@@ -101,16 +102,16 @@ public class ModifierQuestionController {
         CheckBox[] tfC = {
             C11, C12, C13, C14};
         DAOQuestion d = new DAOQuestion();
+        s = (String) CmbQuestions.getValue();
+        z = d.findQuestionSelonId(s);
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + s);
+//        Q1.setText((String) CmbQuestions.getValue());
+        DAOReponse rd = new DAOReponse();
+        List Lr = rd.FindIdReponsebyQuestion(z);
 
-        z = d.findQuestionSelonId((String) CmbQuestions.getValue());
-
-        Q1.setText((String) CmbQuestions.getValue());
-        DAOReponse r = new DAOReponse();
-        List Lr = r.FindIdReponsebyQuestion(z);
-
-        Question qe = new Question(Q1.getText());
         DAOQuestion daoqe = new DAOQuestion();
-        daoqe.updateQuestion(z, qe);
+        System.out.println(Q1.getText());
+        daoqe.updateQuestion(z, Q1.getText());
 
         for (int j = 0; j < 4; j++) {
             if (tfC[j].isSelected()) {
@@ -130,7 +131,7 @@ public class ModifierQuestionController {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText("Look, an Information Dialog");
-        alert.setContentText("update successfully!");
+        
         alert.showAndWait();
     }
 
@@ -174,7 +175,7 @@ public class ModifierQuestionController {
         int et = 0;
         int f = 0;
         z = d.findQuestionSelonId((String) CmbQuestions.getValue());
-        System.out.println("aaaa"+z);
+        System.out.println("aaaa" + z);
         TextField[] tfR = {
             R11, R12, R13, R14};
         CheckBox[] tfC = {

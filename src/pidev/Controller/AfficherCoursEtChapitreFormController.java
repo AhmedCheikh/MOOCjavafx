@@ -129,7 +129,7 @@ private Connection connection ;
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Cours");
                 AffichageCoursFormController pac  = loader.getController();
-                System.out.println("*************************"+cours.getNomCours());
+                System.out.println("*************************"+cours.getNomCours()+cours.getIdQuiz());
                 pac.setInfo(cours);
                 stage.show();
             }} );

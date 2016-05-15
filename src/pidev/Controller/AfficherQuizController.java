@@ -136,7 +136,7 @@ public class AfficherQuizController implements Initializable {
     private Label Note;
     @FXML
     private Label ltitre;
-    public double note;
+    public int note;
     int f = 0;
     int pnomc;
 
@@ -168,7 +168,7 @@ public class AfficherQuizController implements Initializable {
         for (int i = 0; i < 5; i++) {
 
             
-         int   rand=randomWithRange(0, (lsq.size())+1);
+         int   rand=randomWithRange(0, (lsq.size())-1);
             Question s = (Question) lsq.get(rand);
             tfQ[i].setText(s.getQuestion());
             int Qid = daoqe.findQuestionSelonId(s);
@@ -230,7 +230,7 @@ public class AfficherQuizController implements Initializable {
                 int et = s.getEtat();
                 System.out.println(et);
                 if (tfC[j].isSelected() && et == 1) {
-                    note = note + 1;
+                    note = note + 4;
                 } else if (tfC[j].isSelected() && et == 0) {
                     note = note - 1;
                 } else {

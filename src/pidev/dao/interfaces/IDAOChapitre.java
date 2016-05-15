@@ -15,13 +15,14 @@ public interface IDAOChapitre {
 
     void removeChapitre(Chapitre c);
 
-    void updateChapitre(Chapitre c,int id);
+    void updateChapitre(Chapitre c, int id);
 
     List<Chapitre> findChapitre();
 
     List<Chapitre> findChapitreById(int id);
 
     int FindIdQuizbychapitre(String titre);
+
     int FindIdbychapitre(String titre);
 
     String FindVideobychapitre(int id);
@@ -29,5 +30,7 @@ public interface IDAOChapitre {
     void FindPresentationbychapitre(int id);
 
     boolean ChercherTitre(String titre);
+
+    void downloadPresentation(Chapitre c);
 
 }

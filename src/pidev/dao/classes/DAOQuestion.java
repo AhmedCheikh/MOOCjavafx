@@ -60,13 +60,12 @@ public class DAOQuestion implements IDAOQuestion {
     }
 
     @Override
-    public void updateQuestion(int id,Question q) {
+    public void updateQuestion(int id,String q) {
 
-        String requete = "update question set question=? where id=?";
+        String requete = "update question set question=? where id= '" + id + "'";
         try {
             PreparedStatement pst = connection.prepareStatement(requete);
-            pst.setInt(2, id);
-            pst.setString(1, q.getQuestion());
+            pst.setString(1, q);
             System.out.println(pst);
             pst.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
@@ -120,7 +119,7 @@ public class DAOQuestion implements IDAOQuestion {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
                while (rs.next()) {
-            return rs.getInt(1);}
+            return rs.getInt("id");}
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -142,7 +141,7 @@ public class DAOQuestion implements IDAOQuestion {
 
             while (rs.next()) {
 
-                Question e = new Question(rs.getInt(1),rs.getString(2),rs.getInt(3));
+                Question e = new Question(rs.getInt("id"),rs.getString("question"),rs.getInt("idquiz"));
 
                 listQuestion.add(e);
             }

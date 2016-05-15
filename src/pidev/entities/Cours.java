@@ -38,6 +38,15 @@ public class Cours {
       
     }
 
+    public Cours(int idCours, String nomCours, String description, String cinFormateur, String video, int idQuiz) {
+        this.idCours = idCours;
+        this.nomCours = nomCours;
+        this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.video = video;
+        this.idQuiz = idQuiz;
+    }
+
     public Cours(int idCours, String cinFormateur) {
         this.idCours = idCours;
         this.cinFormateur = cinFormateur;

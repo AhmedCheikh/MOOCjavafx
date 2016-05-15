@@ -17,7 +17,7 @@ public class NoteController {
 
     @FXML
     private Label lnote;
-    public double note;
+    public int note;
 
     /**
      * Initializes the controller class.
@@ -27,7 +27,7 @@ public class NoteController {
      *
      * @param note
      */
-    public void setNote(double note) {
+    public void setNote(int note) {
         this.note = note;
         lnote.setText(note + "/20");
 

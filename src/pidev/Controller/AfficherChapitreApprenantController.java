@@ -76,7 +76,7 @@ public class AfficherChapitreApprenantController implements Initializable {
         DAOCours dc = new DAOCours();
         hpChapitre1.setText(ch.getTitre());
         txtObjectives.setText(ch.getObjectif());
-        System.out.println("ssssssss"+ch);
+        System.out.println("ssssssss************"+ch.getIdChapitre());
     }
 
     /**
@@ -144,8 +144,8 @@ public class AfficherChapitreApprenantController implements Initializable {
     @FXML
     private void btnTelechargerAction(ActionEvent event) throws FileNotFoundException, IOException {
 
-//        DAOChapitre dch = new DAOChapitre();
-//        dch.FindPresentationbychapitre(ch.getIdChapitre());
+        DAOChapitre dch = new DAOChapitre();
+        dch.downloadPresentation(ch);
 
     }
 

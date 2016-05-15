@@ -140,7 +140,7 @@ public class DAOReponse implements IDAOReponse{
          
             while (rs.next()) {
 
-                Reponse r = new Reponse(rs.getInt("id"),rs.getInt("etat"),rs.getString("rep"));
+                Reponse r = new Reponse(rs.getInt("id"),rs.getInt("etat"),rs.getString("rep"),rs.getInt("idquestion"));
                
                 listReponse.add(r);
                 

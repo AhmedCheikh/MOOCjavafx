@@ -79,11 +79,10 @@ public class ModifierQuizController {
     int pnomc;
     static List lmodifidquestion;
     static List lmodifidrep;
+    Quiz q;
 
     public void setPnomc(int pnomc) {
         this.pnomc = pnomc;
-
-       
 
         DAOQuiz daoq1 = new DAOQuiz();
         String t = daoq1.findTitreQuizByTitreSelonId(pnomc);
@@ -109,10 +108,10 @@ public class ModifierQuizController {
             etatquiz = 0;
         }
         System.out.println("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§");
-        Quiz q = new Quiz(txtTitre.getText(), etatquiz);
+        q = new Quiz(txtTitre.getText(), etatquiz);
         DAOQuiz daoq1 = new DAOQuiz();
         System.out.println("ssssssssssssssssssss" + q);
-        daoq1.updateQuiz(qi, q);
+        daoq1.updateQuiz(pnomc, q);
 
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
@@ -160,7 +159,7 @@ public class ModifierQuizController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             DAOChapitre daoc1 = new DAOChapitre();
-            
+
             DAOQuiz daoq1 = new DAOQuiz();
             daoq1.removeQuiz(pnomc);
 

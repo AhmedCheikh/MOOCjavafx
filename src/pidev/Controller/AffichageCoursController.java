@@ -5,7 +5,6 @@
  */
 package pidev.Controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -52,26 +51,30 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import pidev.dao.classes.*;
-import pidev.entities.* ;
+import pidev.entities.*;
 import pidev.techniques.DataSource;
 import pidev.gui.video.*;
 import pidev.tests.test;
-public class AffichageCoursController  implements Initializable{
 
-@FXML
-private TextArea description ;
+public class AffichageCoursController implements Initializable {
 
-  @FXML
-  private Label labelCours;
-  @FXML private TableView<Chapitre> table;
-  @FXML private TableColumn chapitre ;
-  @FXML private TableColumn objectif ;
-    public String nom ;
-    public Cours cours; 
-    public String formateur ;
-private Connection connection ; 
-private Media me ;
-   @FXML
+    @FXML
+    private TextArea description;
+
+    @FXML
+    private Label labelCours;
+    @FXML
+    private TableView<Chapitre> table;
+    @FXML
+    private TableColumn chapitre;
+    @FXML
+    private TableColumn objectif;
+    public String nom;
+    public Cours cours;
+    public String formateur;
+    private Connection connection;
+    private Media me;
+    @FXML
     private RadioButton radioExcellent;
     @FXML
     private RadioButton radioMoyen;
@@ -81,7 +84,7 @@ private Media me ;
     private RadioButton radioTresBien;
     @FXML
     private RadioButton radioBien;
-    
+
     public CoursSuivie cs;
     private ToggleGroup appreciation;
     public Apprenant apprenant;
@@ -91,7 +94,7 @@ private Media me ;
     private Button faireQuiz;
     @FXML
     private Button Formateur1;
-    
+
     @FXML
     private TextField txtNote;
     @FXML
@@ -99,38 +102,41 @@ private Media me ;
     @FXML
     private Label txtJour;
 
-        @FXML
+    @FXML
     private TextField txtDateDebut;
     @FXML
     private TextField txtDateFin;
+    public static int idc;
 
     public AffichageCoursController() {
-            connection = (DataSource.getInstance()).getConnection();
-    
+        connection = (DataSource.getInstance()).getConnection();
+
     }
 //   private String MEDIA_URL ="http://download.oracle.com/otndocs/javafx/JavaRap_ProRes_H264_768kbit_Widescreen.mp4";
-   public static String pathFile ;
-  
+    public static String pathFile;
+
     private MediaPlayer mediaPlayer;
-    final double mediaWidth = 480;  
-    final double mediaHeight = 270;  
- 
+    final double mediaWidth = 480;
+    final double mediaHeight = 270;
+    int idquiz;
+
     public void init(Stage primaryStage) {
         Group root = new Group();
-        primaryStage.setScene(new Scene(root,480,270));
-         String path = new File("src/pidev/gui/video/"+pathFile).getAbsolutePath();
+        primaryStage.setScene(new Scene(root, 480, 270));
+        String path = new File("src/pidev/gui/video/" + pathFile).getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(me);
-        
+
         mediaPlayer.setAutoPlay(true);
         VideoFXDemo.PlayerPane playerPane = new VideoFXDemo.PlayerPane(mediaPlayer);
-        playerPane.setMinSize(mediaWidth, mediaHeight);  
+        playerPane.setMinSize(mediaWidth, mediaHeight);
         playerPane.setPrefSize(mediaWidth, mediaHeight);
         playerPane.setMaxSize(mediaWidth, mediaHeight);
-        
+
         root.getChildren().add(playerPane);
     }
-     public void play() {
+
+    public void play() {
         MediaPlayer.Status status = mediaPlayer.getStatus();
         if (status == MediaPlayer.Status.UNKNOWN || status == MediaPlayer.Status.HALTED) {
             return;
@@ -139,63 +145,64 @@ private Media me ;
             mediaPlayer.play();
         }
     }
- 
+
 //    @Override public void stop() {
 //        mediaPlayer.stop();
 //    }
-          @FXML
-   private void btnVideoAction(ActionEvent event)  {
-       
-           
-            Stage stage = new Stage();
-init(stage);
-            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-            stage.setTitle("VIDEO");
-            stage.show();
-               play();
-   }
-   @FXML
-   private void faireQuizAction(ActionEvent event)  {
-        FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuizChrono.fxml"));
-                try {
-                    loader.load();
-                } catch (IOException ex) {
-                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Parent p = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(p));
-                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-                stage.setTitle("Faire Quiz");
-                AfficherQuizChronoController pac  = loader.getController();
-                pac.setCours(cours.getIdQuiz());
-                stage.show();
-   }
-@FXML
-private void Formateur1Action(ActionEvent event) throws IOException  {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-            
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
-                    try {
-                        loader.load();
-                    } catch (IOException ex) {
-                        Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            Parent p = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(p));
-            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-            stage.setTitle("Profil Formateur");
-            ProfilFormateurController pac  = loader.getController();
-//            pac.setFormateur(formateur);
-            stage.show();
-   }
+    @FXML
+    private void btnVideoAction(ActionEvent event) {
 
+        Stage stage = new Stage();
+        init(stage);
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("VIDEO");
+        stage.show();
+        play();
+    }
+
+    @FXML
+    private void faireQuizAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuizChrono.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Faire Quiz");
+        AfficherQuizChronoController pac = loader.getController();
+        System.out.println("idddddddquizz" + cours.getIdQuiz());
+        pac.setCours(1);
+        stage.show();
+    }
+
+    @FXML
+    private void Formateur1Action(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ProfilFormateur.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Profil Formateur");
+        ProfilFormateurController pac = loader.getController();
+//            pac.setFormateur(formateur);
+        stage.show();
+    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)  {
+    public void initialize(URL location, ResourceBundle resources) {
 //        DAOCoursSuivie dcs = new DAOCoursSuivie();
 //        cs = new CoursSuivie();
 //    try {
@@ -222,69 +229,75 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     }
 
     public void setCours(Cours cours) throws SQLException {
-        
+
         this.cours = cours;
-          labelCours.setText(cours.getNomCours());
-          description.setText(cours.getDescription());
-          formateur=cours.getCinFormateur() ;
-          nom=cours.getNomCours();
-          pathFile=cours.getVideo();
-           String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
-       
-    
-            PreparedStatement ps;
-    try {
-        ps = connection.prepareStatement(requete);
-    
+        labelCours.setText(cours.getNomCours());
+        description.setText(cours.getDescription());
+        formateur = cours.getCinFormateur();
+        nom = cours.getNomCours();
+        DAOCours dc=new DAOCours();
+        
+        idc=cours.getIdCours();
+         idquiz = dc.findIdQuizByIdcours(cours.getIdCours());
+        System.out.println("nouuuuuuur" + cours.getIdCours());
+        pathFile = cours.getVideo();
+      
+        String requete = "select titre,objectif,id from chapitre  where idcours='" + idc + "'";
+
+
+        PreparedStatement ps;
+        try {
+            ps = connection.prepareStatement(requete);
+
             ResultSet rs = ps.executeQuery();
-         
-         List<Chapitre> temp=new ArrayList<>();
-         Chapitre c;
-         
-             while (rs.next()) {
-                
-                 c=new Chapitre(rs.getString(1),rs.getString(2));
-                 temp.add(c);
-               
+
+            List<Chapitre> temp = new ArrayList<>();
+            Chapitre c;
+
+            while (rs.next()) {
+
+                c = new Chapitre(rs.getString("titre"), rs.getString("objectif"),rs.getInt("id"));
+                temp.add(c);
+
             }
-           final ObservableList<Chapitre> list=FXCollections.<Chapitre>observableList(temp);
-             
-             
-          
-             chapitre.setCellValueFactory(new PropertyValueFactory("titre"));
-             
+            final ObservableList<Chapitre> list = FXCollections.<Chapitre>observableList(temp);
+
+            chapitre.setCellValueFactory(new PropertyValueFactory("titre"));
+
             objectif.setCellValueFactory(new PropertyValueFactory("objectif"));
             table.setItems(list);
             table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Chapitre>() {
-            
-            @Override
-            public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
-                Chapitre ch=table.getSelectionModel().getSelectedItem();
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreApprenant.fxml"));
-                try {
-                    loader.load();
-                } catch (IOException ex) {
-                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+
+                @Override
+                public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
+                    Chapitre ch = table.getSelectionModel().getSelectedItem();
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreApprenant.fxml"));
+                    try {
+                        loader.load();
+                    } catch (IOException ex) {
+                        Logger.getLogger(AfficherChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Parent p = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(p));
+                    stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+                    stage.setTitle("Affichage Chapitre");
+                    AfficherChapitreApprenantController pac = loader.getController();
+                    pac.setCh(ch);
+                    stage.show();
                 }
-                Parent p = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(p));
-                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-                stage.setTitle("Affichage Chapitre");
-                AfficherChapitreApprenantController pac  = loader.getController();
-                pac.setCh(ch);
-                stage.show();
-            }} );
+            });
         } catch (SQLException ex) {
-        Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AffichageCoursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-          
-    }
+
     @FXML
     private void btnCommenterAction(ActionEvent event) {
         DAOCoursSuivie dcs = new DAOCoursSuivie();
-        
+
         String c = txtCommentaire.getText();
         dcs.laisserCommentaire(c, cs.getIdCoursuivi());
     }
@@ -297,58 +310,52 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
         txtDateDebut.setText(cs.getDate_debut());
         txtCommentaire.setText(cs.getCommentaire());
         txtNote.setText(Double.toString(cs.getNote()));
-        if(cs.getAppreciation() == null){
+        if (cs.getAppreciation() == null) {
             //rien a faire
-        }
-        else if(cs.getAppreciation().equals("1")){
+        } else if (cs.getAppreciation().equals("1")) {
             radioMauvais.setSelected(true);
-        } else if(cs.getAppreciation().equals("2") ){
+        } else if (cs.getAppreciation().equals("2")) {
             radioMoyen.setSelected(true);
-        }else if(cs.getAppreciation().equals("3") ){
+        } else if (cs.getAppreciation().equals("3")) {
             radioBien.setSelected(true);
-        }else if(cs.getAppreciation().equals("4") ){
+        } else if (cs.getAppreciation().equals("4")) {
             radioTresBien.setSelected(true);
-        }
-        else{
+        } else {
             radioExcellent.setSelected(true);
         }
-        
+
         this.apprenant = apprenant;
     }
-    
-    
-   @FXML
+
+    @FXML
     private void changerAppreciation(MouseEvent event) {
         DAOCoursSuivie dcs = new DAOCoursSuivie();
-        
+
         radioMauvais.setToggleGroup(appreciation);
         radioMoyen.setToggleGroup(appreciation);
         radioBien.setToggleGroup(appreciation);
         radioTresBien.setToggleGroup(appreciation);
         radioExcellent.setToggleGroup(appreciation);
-        
+
         appreciation.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-        @Override
-        public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1) {
 
-            RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle();
-            if(chk.getText().equals("Mauvais")){
-                dcs.donnerAppreciation("1", cs.getIdCoursuivi());
-            } else if(chk.getText().equals("Moyen")){
-                dcs.donnerAppreciation("2", cs.getIdCoursuivi());
-            }else if(chk.getText().equals("Bien")){
-                dcs.donnerAppreciation("3", cs.getIdCoursuivi());
-            }else if(chk.getText().equals("TresBien")){
-                dcs.donnerAppreciation("4", cs.getIdCoursuivi());
-            }else{
-                dcs.donnerAppreciation("5", cs.getIdCoursuivi());
+                RadioButton chk = (RadioButton) t1.getToggleGroup().getSelectedToggle();
+                if (chk.getText().equals("Mauvais")) {
+                    dcs.donnerAppreciation("1", cs.getIdCoursuivi());
+                } else if (chk.getText().equals("Moyen")) {
+                    dcs.donnerAppreciation("2", cs.getIdCoursuivi());
+                } else if (chk.getText().equals("Bien")) {
+                    dcs.donnerAppreciation("3", cs.getIdCoursuivi());
+                } else if (chk.getText().equals("TresBien")) {
+                    dcs.donnerAppreciation("4", cs.getIdCoursuivi());
+                } else {
+                    dcs.donnerAppreciation("5", cs.getIdCoursuivi());
+                }
             }
-        }
-    });
-          
-        }
+        });
 
-    
+    }
 
-   
 }

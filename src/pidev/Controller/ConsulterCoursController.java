@@ -50,6 +50,7 @@ import javafx.scene.control.ToggleGroup;
 
 
 import javafx.stage.Stage;
+import static pidev.Controller.AffichageCoursController.idc;
 
 
 import pidev.dao.classes.*;
@@ -103,7 +104,8 @@ private Connection connection ;
     public Apprenant apprenant;
    
     public Cours cours; 
-   
+     public static int idc;
+
     public ConsulterCoursController() {
             connection = (DataSource.getInstance()).getConnection();
     
@@ -209,8 +211,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
           formateur=cours.getCinFormateur() ;
           nom=cours.getNomCours();
           pathFile=cours.getVideo();
-           String requete = "select titre,objectif from chapitre ch where ch.idcours=(select idcours from cours where nom_cours='"+nom+"')";
-       
+     String requete = "select titre,objectif,id from chapitre  where idcours='" + idc + "'";       
     
             PreparedStatement ps;
     try {
@@ -249,7 +250,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
             public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
                 Chapitre ch=table.getSelectionModel().getSelectedItem();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitre.fxml"));
+                loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreApprenant.fxml"));
                 try {
                     loader.load();
                 } catch (IOException ex) {
@@ -260,7 +261,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
                 stage.setScene(new Scene(p));
                 stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
                 stage.setTitle("Affichage Chapitre");
-                AfficherChapitreFormateurController pac  = loader.getController();
+                AfficherChapitreApprenantController pac  = loader.getController();
 //                pac.setCh(ch);
                 stage.show();
             }} );
