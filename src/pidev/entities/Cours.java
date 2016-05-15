@@ -26,6 +26,8 @@ public class Cours {
         this.idQuiz = idQuiz;
 
     }
+    
+    
 
     public Cours(String nomCours, String description, String cinFormateur, String difficulte, String objectif, String video, int idQuiz) {
         this.nomCours = nomCours;
@@ -36,6 +38,15 @@ public class Cours {
         this.video = video;
         this.idQuiz = idQuiz;
       
+    }
+
+    public Cours(int idCours, String nomCours, String description, String cinFormateur, String video, int idQuiz) {
+        this.idCours = idCours;
+        this.nomCours = nomCours;
+        this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.video = video;
+        this.idQuiz = idQuiz;
     }
 
     public Cours(int idCours, String nomCours, String description, String cinFormateur, String video, int idQuiz) {
@@ -111,6 +122,16 @@ public class Cours {
         this.idCours = idCours;
         this.nomCours = nomCours;
         this.description = description;
+        this.cinFormateur = cinFormateur;
+        this.video = video;
+    }
+    
+    public Cours(int idCours,String nomCours, String description,String difficulte,String objectif, String cinFormateur, String video) {
+        this.idCours=idCours;
+        this.nomCours = nomCours;
+        this.description = description;
+        this.difficulte = difficulte ; 
+        this.objectif = objectif ; 
         this.cinFormateur = cinFormateur;
         this.video = video;
     }

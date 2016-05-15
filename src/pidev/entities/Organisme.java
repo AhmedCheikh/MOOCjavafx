@@ -24,7 +24,7 @@ public class Organisme  {
     private String adresse;
     private String telephone;
     private String description;
-    private File document;
+    private String document;
     private File logo;
     private int etat;
     private String complete;
@@ -38,7 +38,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.telephone = telephone;
         this.description = description;
     }
-    public Organisme(int id, String nom, String login, String password, String email, String adresse, File document, int etat) {
+    public Organisme(int id, String nom, String login, String password, String email, String adresse, String document, int etat) {
         this.id = id;
         this.nom = nom;
         this.login = login;
@@ -48,6 +48,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.document = document;
         this.etat = etat;
     }
+    
 
     public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description) {
         this.nom = nom;
@@ -60,7 +61,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.description = description;
     }
 
-    public Organisme(int id, String nom, String login, String password, String email, File document, int etat) {
+    public Organisme(int id, String nom, String login, String password, String email, String document, int etat) {
         this.id = id;
         this.nom = nom;
         this.login = login;
@@ -81,7 +82,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
 
    
 
-    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, File document, File logo) {
+    public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description, String document, File logo) {
       
         this.nom = nom;
         this.login = login;
@@ -130,7 +131,7 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
     
     
 
-    public Organisme(String nom, String login, String password, String email ,String adresse,File document,int etat) {
+    public Organisme(String nom, String login, String password, String email ,String adresse,String document,int etat) {
         this.id=id;
         this.nom = nom;
         this.login = login;
@@ -236,11 +237,11 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.description = description;
     }
 
-    public File getDocument() {
+    public String getDocument() {
         return document;
     }
 
-    public void setDocument(File document) {
+    public void setDocument(String document) {
         this.document = document;
     }
 

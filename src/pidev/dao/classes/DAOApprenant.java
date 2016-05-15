@@ -60,12 +60,12 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     
     @Override
     public void update(Apprenant a, String cin ) {
-         String requete = "update apprenant set  nom = ?, prenom = ?, login = ? , password = ? , avatar = ? where cin = ?";
+         String requete = "update apprenant set  nom = ?, prenom = ?, email = ? , password = ? , avatar = ? where cin = ?";
         try {
             pst = connection.prepareStatement(requete);
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
-            pst.setString(3, a.getLogin());
+            pst.setString(3, a.getEmail());
             pst.setString(4, a.getPassword());
             pst.setString(5, a.getAvatar());
             pst.setString(6, a.getCin());
@@ -79,12 +79,12 @@ public class DAOApprenant implements IDAOApprenant<Apprenant>{
     
     @Override
     public void updateWithoutAvatarChange(Apprenant a, String cin ) {
-         String requete = "update apprenant set  nom = ?, prenom = ?, login = ? , password = ?  where cin = ?";
+         String requete = "update apprenant set  nom = ?, prenom = ?, email = ? , password = ?  where cin = ?";
         try {
             pst = connection.prepareStatement(requete);
             pst.setString(1, a.getNom());
             pst.setString(2, a.getPrenom());
-            pst.setString(3, a.getLogin());
+            pst.setString(3, a.getEmail());
             pst.setString(4, a.getPassword());                                     
             pst.setString(5, a.getCin());
             

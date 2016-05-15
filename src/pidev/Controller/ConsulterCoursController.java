@@ -44,9 +44,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 
 
 import javafx.stage.Stage;
@@ -57,6 +54,7 @@ import pidev.dao.classes.*;
 import pidev.entities.* ;
 import pidev.techniques.DataSource;
 import pidev.gui.video.*;
+
 public class ConsulterCoursController  implements Initializable{
 
 @FXML
@@ -68,39 +66,16 @@ private TextArea description ;
   @FXML private TableColumn chapitre ;
   @FXML private TableColumn objectif ;
     public String nom ;
-   
+    public Cours cours; 
     public String formateur ;
 private Connection connection ; 
     @FXML
     private Button btnVideo;
-    @FXML
-    private TextField txtNote;
-    @FXML
-    private TextArea txtCommentaire;
-    @FXML
-    private Label txtJour;
 
     @FXML
-    private Button faireQuiz;
-    @FXML
     private Button Formateur1;
-    @FXML
-    private TextField txtDateDebut;
-    @FXML
-    private TextField txtDateFin;
-   
-    @FXML
-    private RadioButton radioExcellent;
-    @FXML
-    private RadioButton radioMoyen;
-    @FXML
-    private RadioButton radioMauvais;
     
     public CoursSuivie cs;
-    @FXML
-    private ToggleGroup appreciation;
-    @FXML
-    private Button btnCommenter;
     public Apprenant apprenant;
    
     public Cours cours; 
@@ -153,24 +128,7 @@ init(stage);
             stage.show();
                play();
    }
-   @FXML
-   private void faireQuizAction(ActionEvent event)  {
-        FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/pidev/gui/AfficherQuizChrono.fxml"));
-                try {
-                    loader.load();
-                } catch (IOException ex) {
-                    Logger.getLogger(AfficherCoursEtChapitreApprenantController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Parent p = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(p));
-                stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-                stage.setTitle("Faire Quiz");
-                AfficherQuizChronoController pac  = loader.getController();
-//                pac.setPnomc(nom);
-                stage.show();
-   }
+   
 private void Formateur1Action(ActionEvent event) throws IOException  {
         ((Node) (event.getSource())).getScene().getWindow().hide();
             
@@ -203,7 +161,7 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
     }
     
 
-     public void setCours(Cours cours) {
+    public void setCours(Cours cours) {
         
         this.cours = cours;
           labelCours.setText(cours.getNomCours());
@@ -316,6 +274,12 @@ private void Formateur1Action(ActionEvent event) throws IOException  {
         }
         
     }
+
+    @FXML
+    private void faireQuizAction(ActionEvent event) {
+    }
+
+
 
 }   
 

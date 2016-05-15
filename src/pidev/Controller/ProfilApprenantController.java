@@ -163,7 +163,7 @@ public class ProfilApprenantController implements Initializable {
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
         txtLogin.setText(apprenant.getLogin());
-        File file = new File("C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/"+apprenant.getAvatar());
+        File file = new File("src/pidev/gui/img/"+apprenant.getAvatar());
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
        

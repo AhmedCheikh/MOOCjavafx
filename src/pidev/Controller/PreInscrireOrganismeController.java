@@ -9,6 +9,9 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,8 +54,8 @@ public class PreInscrireOrganismeController implements Initializable {
     private Image tick1;
 
     @FXML
-    public static File document;
-    public void setCv(File dacument) {
+    public static String document;
+    public void setDoc(String document) {
         this.document = document;
     }
 
@@ -73,7 +76,7 @@ public class PreInscrireOrganismeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    public void btnValiderAction(ActionEvent event) {
+    public void btnValiderAction(ActionEvent event) throws IOException {
 
         if (txtNom.getText().isEmpty()) {
             l1.setText("Vous devez Renseigez ce champs");
@@ -119,16 +122,17 @@ public class PreInscrireOrganismeController implements Initializable {
        DAOOrganisme d1 = new DAOOrganisme();
        d1.addOrganisme(o1);
 
-//         ((Node) (event.getSource())).getScene().getWindow().hide();
-//            Parent parent;
-//     
-//            parent = FXMLLoader.load(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
-//      
-//            Stage stage =  new Stage();
-//            Scene scene = new Scene(parent);
-//            stage.setScene(scene);
-//            stage.setTitle("Profil Organisme");
-//            stage.show();
+          ((Node) (event.getSource())).getScene().getWindow().hide();
+        Parent parent = FXMLLoader.load(getClass().getResource("/pidev/gui/validationMsg.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(parent);
+        st.setScene(sc);
+        st.setTitle("validationMsg");
+        st.show();
+        
+        
+         
+                
     }
 
     public void btnAnullerAction(ActionEvent event) {
@@ -149,7 +153,7 @@ public class PreInscrireOrganismeController implements Initializable {
 
     }
 
-    public void btnChoisireAction() {
+    public void btnChoisireAction() throws IOException {
         
         FileChooser fileChooser = new FileChooser();
 
@@ -162,9 +166,17 @@ public class PreInscrireOrganismeController implements Initializable {
             Organisme o = new Organisme();
             if (selectedFile != null) {
                 File path = selectedFile.getAbsoluteFile();
-                document=path;
+                document=selectedFile.getName();
                 l7.setText("File selected: " + selectedFile.getName());
-               o.setDocument(path);
+               o.setDocument(l7.getText());
+               
+               
+               
+               
+                  String url = "src/pidev/gui/pdf/"+ selectedFile.getName();
+                Path des = Paths.get(url);
+                Path source = Paths.get(selectedFile.getAbsolutePath());
+                Files.copy(source , des);
             }
             else {
 

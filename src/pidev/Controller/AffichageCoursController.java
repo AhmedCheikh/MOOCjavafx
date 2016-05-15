@@ -86,6 +86,7 @@ public class AffichageCoursController implements Initializable {
     private RadioButton radioBien;
 
     public CoursSuivie cs;
+    @FXML
     private ToggleGroup appreciation;
     public Apprenant apprenant;
     @FXML

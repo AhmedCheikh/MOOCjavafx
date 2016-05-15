@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pidev.dao.classes;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -216,6 +217,7 @@ public class DAOAdministrateur implements IDAOAdministrateur{
                 organisme.setAdresse(resultat.getString(5));
                 organisme.setTelephone(resultat.getString(6));
                 organisme.setDescription(resultat.getString(7));
+                organisme.setDocument(resultat.getString(8));
                 listeorganisme.add(organisme);
             }
             return listeorganisme;
@@ -227,30 +229,36 @@ public class DAOAdministrateur implements IDAOAdministrateur{
     
     @Override
     public void downloadDocument(Organisme o) {
-      String requete = "select document from organisme where idorganisme=?";
-        try {
+      try {
+            String requete = "select document from organisme where idorganisme=?";
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, o.getId());
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                File doc = new File("D:\\Document"+o.getNom()+".docx");
-                try (FileOutputStream fos = new FileOutputStream(doc)) {
-                    byte[] buffer = new byte[1];
-                    InputStream is = resultat.getBinaryStream(1);
-                    while (is.read(buffer) > 0) {
-                        fos.write(buffer);
-                    }         
+                File pdfFile = new File("src/pidev/gui/pdf/"+o.getDocument());
+                System.out.println(pdfFile.getAbsolutePath());
+                pdfFile.getAbsolutePath();
+                if (pdfFile.exists()) {
+                    
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else {
+                        System.out.println("Awt Desktop is not supported!");
+                    }
+                    
+                } else {
+                    System.out.println("File is not exists!");
                 }
+                
+                System.out.println("Done");
+                
             }
-            System.out.println("Téléchargement effectué avec succès!");
         } catch (SQLException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOAdministrateur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOAdministrateur.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-    }
+        
+    }  
            
 }

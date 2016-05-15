@@ -99,11 +99,6 @@ public class ProfilAdministrateurController implements Initializable {
                     public void handle(ActionEvent event) {
                         IDAOAdministrateur adminDAO = new DAOAdministrateur();
                         adminDAO.downloadDocument(newValue);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Téléchargement");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Téléchargement effectuée avec succès! (Allez dans D:)");
-                        alert.showAndWait();
                     }
                 });
             }

@@ -32,15 +32,15 @@ import pidev.techniques.DataSource;
  * @author Gumus
  */
 public class DAOChapitre implements IDAOChapitre {
-
+    
     Connection connection;
     PreparedStatement pst;
     ResultSet rs;
-
+    
     public DAOChapitre() {
         connection = DataSource.getInstance().getConnection();
     }
-
+    
     @Override
     public void addChapitre(Chapitre c) {
 
@@ -54,7 +54,7 @@ public class DAOChapitre implements IDAOChapitre {
                 pst.setString(4, c.getPresentation());
                 pst.setString(5, c.getObjectif());
                 pst.setString(6, c.getVideo());
-
+                
                 pst.executeUpdate();
                 System.out.println("Ajout effectuée avec succès");
 
@@ -62,7 +62,7 @@ public class DAOChapitre implements IDAOChapitre {
             System.out.println("erreur lors de l'ajout " + ex.getMessage());
         }
     }
-
+    
     @Override
     public void removeChapitre(Chapitre c) {
         String requete = "delete from chapitre where id=?";
@@ -73,7 +73,7 @@ public class DAOChapitre implements IDAOChapitre {
             System.out.println("Chapitre supprimé");
         } catch (SQLException ex) {
             System.out.println("erreur lors de la suppression " + ex.getMessage());
-
+            
         }
     }
 
@@ -100,13 +100,13 @@ public class DAOChapitre implements IDAOChapitre {
     public List<Chapitre> findChapitre() {
         String req = "select * from chapitre";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
-
+        
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-
+            
             while (rs.next()) {
-
+                
                 Chapitre c = new Chapitre();
                 c.setIdCours(rs.getInt(2));
                 c.setIdChapitre(rs.getInt(1));
@@ -115,26 +115,26 @@ public class DAOChapitre implements IDAOChapitre {
                 c.setPresentation(rs.getString(7));
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
-
+                
                 listChapitres.add(c);
             }
         } catch (SQLException ex) {
             System.out.println("erreur lors de la recherche " + ex.getMessage());
-        }
+        } 
         return listChapitres;
     }
-
+    
     @Override
     public List<Chapitre> findChapitreById(int id) {
         String req = "select * from chapitre where id= '" + id + "'";
         List<Chapitre> listChapitres = new ArrayList<Chapitre>();
-
+        
         try {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
-
+            
             while (rs.next()) {
-
+                
                 Chapitre c = new Chapitre();
                 c.setIdCours(rs.getInt(2));
                 c.setIdChapitre(rs.getInt(1));
@@ -143,7 +143,7 @@ public class DAOChapitre implements IDAOChapitre {
                 c.setPresentation(rs.getString(7));
                 c.setObjectif(rs.getString(6));
                 c.setVideo(rs.getString(8));
-
+                
                 listChapitres.add(c);
             }
         } catch (SQLException ex) {
@@ -180,16 +180,16 @@ public class DAOChapitre implements IDAOChapitre {
         {
             String req = "select * from chapitre where titre= '" + titre + "'";
             Quiz Quiz = new Quiz();
-
+            
             try {
                 pst = connection.prepareStatement(req);
                 rs = pst.executeQuery();
-
+                
                 while (rs.next()) {
-
+                    
                     return rs.getInt(2);
                 }
-
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -201,16 +201,16 @@ public class DAOChapitre implements IDAOChapitre {
         {
             String req = "select * from chapitre where id= '" + id + "'";
             Quiz Quiz = new Quiz();
-
+            
             try {
                 pst = connection.prepareStatement(req);
                 rs = pst.executeQuery();
-
+                
                 while (rs.next()) {
 
                     return rs.getString("video");
                 }
-
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -270,7 +270,7 @@ public class DAOChapitre implements IDAOChapitre {
         }
         return res;
     }
-
+    
     @Override
     public int FindIdbychapitre(String titre) {
         String req = "select * from chapitre where titre= '" + titre + "'";

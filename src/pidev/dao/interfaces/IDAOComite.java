@@ -14,6 +14,7 @@ import pidev.entities.* ;
  * @author WiKi
  */
 public interface IDAOComite {
+     public List<Formateur> findFormateurValide() ; 
     void validerCandidature(Formateur formateur) ; 
     void validerVideo(Cours cours) ; 
     void validerDescription(Cours cours) ;
