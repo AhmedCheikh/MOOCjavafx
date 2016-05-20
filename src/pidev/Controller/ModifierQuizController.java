@@ -76,7 +76,7 @@ public class ModifierQuizController {
     int r;
     int qu;
     List lr;
-    int pnomc;
+    public int pnomc;
     static List lmodifidquestion;
     static List lmodifidrep;
     Quiz q;
@@ -134,7 +134,7 @@ public class ModifierQuizController {
     private void btnModifierQuestionsAction(ActionEvent event
     ) throws IOException {
 
-        ((Node) (event.getSource())).getScene().getWindow();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ModifierQuestion.fxml"));
         loader.load();
@@ -161,11 +161,14 @@ public class ModifierQuizController {
             DAOChapitre daoc1 = new DAOChapitre();
 
             DAOQuiz daoq1 = new DAOQuiz();
+            System.out.println("idquiiie"+pnomc);
             daoq1.removeQuiz(pnomc);
+            ((Node) (event.getSource())).getScene().getWindow().hide();
 
         } else {
             alert.close();
         }
+
     }
 
     @FXML

@@ -26,7 +26,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import static pidev.Controller.ProfilFormateurController.c;
-import static pidev.Controller.ProfilFormateurController.f2;
 import pidev.dao.classes.DAOOrganisme;
 import pidev.entities.Formateur;
 import pidev.entities.Invitation;

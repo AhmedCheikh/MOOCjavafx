@@ -70,9 +70,12 @@ public class AfficherChapitreApprenantController implements Initializable {
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
     final double mediaHeight = 270;
-
+    public static String v;
+    public static int q;
     public void setCh(Chapitre ch) {
         this.ch = ch;
+        v=ch.getVideo();
+        q=ch.getIdQuiz();
         DAOCours dc = new DAOCours();
         hpChapitre1.setText(ch.getTitre());
         txtObjectives.setText(ch.getObjectif());
@@ -91,8 +94,7 @@ public class AfficherChapitreApprenantController implements Initializable {
         DAOChapitre dch = new DAOChapitre();
         Group root = new Group();
         primaryStage.setScene(new Scene(root, 480, 270));
-        System.out.println("kkkk"+ch.getVideo());
-        String path = new File("src/pidev/gui/video/" +ch.getVideo()).getAbsolutePath();
+        String path = new File("src/pidev/gui/video/" +v).getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(me);
         mediaPlayer.setAutoPlay(true);
@@ -135,9 +137,7 @@ public class AfficherChapitreApprenantController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         AfficherQuizController aq = loader.getController();
-//        DAOChapitre dch= new DAOChapitre();
-//        int a=dch.FindIdbychapitre(ch.getTitre());
-        aq.setPnomc(ch.getIdQuiz());
+        aq.setPnomc(q);
         stage.show();
     }
 

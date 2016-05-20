@@ -219,7 +219,7 @@ public class DAOCours implements IDaoCours {
 
                 while (rs.next()) {
 
-                    return rs.getInt(4);
+                    return rs.getInt("idquiz");
                 }
 
             } catch (SQLException ex) {
@@ -239,12 +239,12 @@ public class DAOCours implements IDaoCours {
             while (resultat.next()) {
                 Cours cours = new Cours();
                 cours.setIdCours(resultat.getInt(1));
-                cours.setNomCours(resultat.getString(3));
-                cours.setCinFormateur(resultat.getString(2));
+                cours.setNomCours(resultat.getString(2));
+                cours.setCinFormateur(resultat.getString(3));
 
-                cours.setDescription(resultat.getString(4));
-                cours.setDifficulte(resultat.getString(5));
-                cours.setObjectif(resultat.getString(6));
+                cours.setDescription(resultat.getString(5));
+                cours.setDifficulte(resultat.getString(6));
+                cours.setObjectif(resultat.getString(7));
                 listecours.add(cours);
             }
             return listecours;
@@ -264,11 +264,11 @@ public class DAOCours implements IDaoCours {
             while (rs.next()) {
                 Cours cours = new Cours();
                 cours.setIdCours(rs.getInt(1));
-                cours.setNomCours(rs.getString(3));
-                cours.setCinFormateur(rs.getString(2));
-                cours.setDescription(rs.getString(4));
-                cours.setDifficulte(rs.getString(5));
-                cours.setObjectif(rs.getString(6));
+                cours.setNomCours(rs.getString(2));
+                cours.setCinFormateur(rs.getString(3));
+                cours.setDescription(rs.getString(5));
+                cours.setDifficulte(rs.getString(6));
+                cours.setObjectif(rs.getString(7));
                 listecours.add(cours);
             }
             return listecours;
@@ -285,7 +285,7 @@ public class DAOCours implements IDaoCours {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
             while (rs.next()) {
-                return rs.getString(2);
+                return rs.getString("nom_cours");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -301,12 +301,37 @@ public class DAOCours implements IDaoCours {
             pst = connection.prepareStatement(req);
             rs = pst.executeQuery();
             while (rs.next()) {
-                return rs.getInt(3);
+                return rs.getInt("idquiz");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return 0;
+    }
+
+     @Override
+    public Cours findCoursByID(int id) {
+        Cours cours = new Cours();
+        String requete = "select * from cours where idcours= '" + id + "'";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                cours.setIdCours(resultat.getInt("idcours"));
+                cours.setNomCours(resultat.getString("nom_cours"));
+                cours.setCinFormateur(resultat.getString("cinformateur"));
+                cours.setIdQuiz(resultat.getInt("idquiz"));
+                cours.setDescription(resultat.getString("description"));
+                cours.setVideo(resultat.getString("video"));
+                cours.setDifficulte(resultat.getString("difficulte"));
+                cours.setObjectif(resultat.getString("objectif"));
+            }
+            return cours;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche du cours " + ex.getMessage());
+            return null;
+        }
     }
 
 }

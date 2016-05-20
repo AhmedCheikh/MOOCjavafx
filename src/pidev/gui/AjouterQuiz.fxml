@@ -48,12 +48,12 @@
                  
                   
                   
-                        <RadioButton fx:id="btrChronometre"  mnemonicParsing="false" onAction="#btrChronometreAction" prefHeight="25.0" prefWidth="174.0" text="Quiz Chronométré" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <RadioButton fx:id="btrChronometre" mnemonicParsing="false" onAction="#btrChronometreAction" prefHeight="25.0" prefWidth="174.0" text="Quiz Chronométré" GridPane.columnIndex="2" GridPane.rowIndex="1">
                             <toggleGroup>
                                 <ToggleGroup fx:id="type" />
                             </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="btrNonChronometre"   mnemonicParsing="false" onAction="#btrNonChronometreAction" prefHeight="58.0" prefWidth="231.0" selected="true" text="Quiz Non Chronométré" GridPane.columnIndex="1" GridPane.rowIndex="1" toggleGroup="$type" />
+                        <RadioButton fx:id="btrNonChronometre" mnemonicParsing="false" onAction="#btrNonChronometreAction" prefHeight="58.0" prefWidth="231.0" selected="true" text="Quiz Non Chronométré" toggleGroup="$type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         
                    
                         
@@ -98,12 +98,6 @@
             </children>
         </Pane>
         <Button fx:id="btnexit" layoutX="657.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Exit" textFill="WHITE">
-
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
-        <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
 
             <font>
                 <Font name="System Bold" size="15.0" />

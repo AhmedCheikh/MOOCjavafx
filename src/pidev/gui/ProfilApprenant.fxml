@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilApprenantController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="775.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.ProfilApprenantController">
    <children>
       <Region layoutX="14.0" layoutY="130.0" prefHeight="438.0" prefWidth="214.0" style="-fx-background-color: #EEEEC6; -fx-border-color: black; -fx-border-width: 1px;" />
       <Button fx:id="btnListCoursSuivis" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="267.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnListCoursSuivisAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="List Cours Suivis" textFill="#5b0a0a">
@@ -120,17 +125,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="imageView" fitHeight="125.0" fitWidth="137.0" pickOnBounds="true" GridPane.columnIndex="1">
-                     <image>
-                        <Image url="@img/default-profile-pic.png" />
-                     </image></ImageView>
+                  <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <ImageView fitHeight="29.0" fitWidth="108.0" layoutX="26.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/bienvenue.gif" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
       <Button fx:id="btnEnvoyerMail" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="403.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnEnvoyerMailAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Envoyer Mail" textFill="#5b0a0a">
@@ -174,7 +171,7 @@
             <Image url="@img/formateur.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnDeconnecter" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="469.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Se Deconnecter" textFill="#5b0a0a">
+      <Button fx:id="btnDeconnecter" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="511.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnDeconnecterAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Se Deconnecter" textFill="#5b0a0a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -182,9 +179,22 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="174.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="173.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/logout.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnNews" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="458.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#btnNewsAction" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: CODE COULEUR &gt; PALETTES DE COULEUR [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ]#729179#2F574D#4C767A#6B979C#EFFBFF#006D80#BDA44D#3C2000#84CECC#78A419#D9EFF5#040317#1F2A36#667882#C3D9E0#573E39#FF456A#F4FF3A#999087#FFFAF4#444739#B5B276#2E2B20#524633#BDB55A#2F332E#FF483D#FC7F3C#453832#C4FCCA#D0E09D; -fx-border-color: #052B30; -fx-border-radius: 3px; -fx-border-width: 2px;" text="Les actualités" textFill="#5b0a0a">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="45.0" fitWidth="70.0" layoutX="162.0" layoutY="436.0" preserveRatio="true">
+         <image>
+            <Image url="@img/news.gif" />
          </image>
       </ImageView>
    </children>

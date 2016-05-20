@@ -68,7 +68,9 @@ public class AffichageCoursFormController implements Initializable {
     private TableColumn objectif;
     public String nom;
     public Cours info;
-    public String formateur;
+    public  Formateur forma;
+    public static String formateur;
+
     private Connection connection;
     public static int id;
 
@@ -143,15 +145,15 @@ public class AffichageCoursFormController implements Initializable {
 
     @FXML
     private void btnChapitreAction(ActionEvent event) {
+
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-
         try {
             loader.load();
         } catch (IOException ex) {
             Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
@@ -160,10 +162,16 @@ public class AffichageCoursFormController implements Initializable {
         AjouterChapitreController pac = loader.getController();
         pac.setCours(info);
         stage.show();
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void setFormateur(Formateur forma) {
+        this.forma = forma;
 
     }
 
@@ -174,7 +182,7 @@ public class AffichageCoursFormController implements Initializable {
         description.setText(info.getDescription());
         formateur = info.getCinFormateur();
         nom = info.getNomCours();
-        id=info.getIdQuiz();
+        id = info.getIdQuiz();
         String requete = "select * from chapitre where idcours= " + info.getIdCours();
 
         PreparedStatement ps;
@@ -187,7 +195,7 @@ public class AffichageCoursFormController implements Initializable {
             Chapitre c;
 
             while (rs.next()) {
-                c = new Chapitre(rs.getInt("id"), rs.getInt("idcours"), rs.getInt("idquiz"),rs.getString("titre"),rs.getString("presentation"), rs.getString("objectif"),rs.getString("video"));
+                c = new Chapitre(rs.getInt("id"), rs.getInt("idcours"), rs.getInt("idquiz"), rs.getString("titre"), rs.getString("presentation"), rs.getString("objectif"), rs.getString("video"));
                 //temp.add(rs.getString(1));
                 //temp.add(rs.getString(2));
                 // temp.add( new SimpleStringProperty(rs.getString(3)));
@@ -207,7 +215,7 @@ public class AffichageCoursFormController implements Initializable {
                 @Override
                 public void changed(ObservableValue<? extends Chapitre> observable, Chapitre oldValue, Chapitre newValue) {
                     Chapitre chapitres = table.getSelectionModel().getSelectedItem();
-                  
+
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreFormateur.fxml"));
                     try {
@@ -222,6 +230,8 @@ public class AffichageCoursFormController implements Initializable {
                     stage.setTitle("Affichage Chapitre");
                     AfficherChapitreFormateurController pac = loader.getController();
                     pac.setCh(chapitres);
+                    pac.setFormateur(forma);
+                    System.out.println("page2forma" + forma);
                     stage.show();
                 }
             });

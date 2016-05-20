@@ -49,7 +49,7 @@ public class AjouterQuizController {
     @FXML
     private Label ltitre;
     int etatquiz = 0;
-
+    public Quiz q;
     @FXML
     private void btnAjouterQuizAction(ActionEvent event) throws IOException {
 
@@ -74,9 +74,9 @@ public class AjouterQuizController {
                 etatquiz = 0;
             }
 
-            Quiz q = new Quiz(txtTitre.getText(), etatquiz);
+             q = new Quiz(txtTitre.getText(), etatquiz);
             DAOQuiz dq = new DAOQuiz();
-            dq.addQuiz(q);
+            dq.addQuiz(q);}
             System.out.println(""+q.getIdQuiz());
             ((Node) (event.getSource())).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
@@ -89,11 +89,7 @@ public class AjouterQuizController {
             System.out.println("QQQQQQQQ"+q);
             pac.setQuiz(q);
             stage.show();
-            
-            
-            
-
-        }
+          
     }
 
     @FXML
@@ -106,29 +102,9 @@ public class AjouterQuizController {
 
     @FXML
     private void btnexitAction(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        AjouterChapitreController pac = loader.getController();
-
-        stage.show();
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
 
-    @FXML
-    private void btnbackAction(ActionEvent event) throws IOException {
-    ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        AjouterChapitreController pac = loader.getController();
-
-        stage.show();
-    }
+    
 }

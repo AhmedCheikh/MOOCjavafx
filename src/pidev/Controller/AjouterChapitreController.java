@@ -71,13 +71,13 @@ public class AjouterChapitreController implements Initializable {
     int z;
     int w;
     public Cours cours;
-    public int id;
+    public static int id;
 
     public void setCours(Cours cours) {
         this.cours = cours;
         DAOCours dc = new DAOCours();
         id = cours.getIdCours();
-        w = dc.FindIdQuizbycours(cours.getNomCours());
+//        w = dc.FindIdQuizbycours(cours.getNomCours());
     }
 
     public void btnAjouterAction(ActionEvent event) throws IOException {
@@ -133,14 +133,14 @@ public class AjouterChapitreController implements Initializable {
             daoc.addChapitre(c);
         }
 
- ((Node) (event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
         AnchorPane frame = loader.load();
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
- stage.setTitle("Affichage Cours");
+        stage.setTitle("Affichage Cours");
         AffichageCoursFormController pac = loader.getController();
         pac.setInfo(cours);
         stage.show();
@@ -231,15 +231,15 @@ public class AjouterChapitreController implements Initializable {
 
     @FXML
     public void btnbackAction(ActionEvent event) throws IOException {
-    
-          ((Node) (event.getSource())).getScene().getWindow().hide();
+
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
         AnchorPane frame = loader.load();
         Parent p = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
- stage.setTitle("Affichage Cours");
+        stage.setTitle("Affichage Cours");
         AffichageCoursFormController pac = loader.getController();
         pac.setInfo(cours);
         stage.show();

@@ -86,7 +86,6 @@ public class AffichageCoursController implements Initializable {
     private RadioButton radioBien;
 
     public CoursSuivie cs;
-    @FXML
     private ToggleGroup appreciation;
     public Apprenant apprenant;
     @FXML
@@ -243,7 +242,7 @@ public class AffichageCoursController implements Initializable {
         System.out.println("nouuuuuuur" + cours.getIdCours());
         pathFile = cours.getVideo();
       
-        String requete = "select titre,objectif,id from chapitre  where idcours='" + idc + "'";
+        String requete = "select * from chapitre  where idcours='" + idc + "'";
 
 
         PreparedStatement ps;
@@ -257,7 +256,7 @@ public class AffichageCoursController implements Initializable {
 
             while (rs.next()) {
 
-                c = new Chapitre(rs.getString("titre"), rs.getString("objectif"),rs.getInt("id"));
+                c = new Chapitre(rs.getInt("id"), rs.getInt("idcours"), rs.getInt("idquiz"),rs.getString("titre"),rs.getString("presentation"), rs.getString("objectif"),rs.getString("video"));
                 temp.add(c);
 
             }

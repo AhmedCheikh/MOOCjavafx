@@ -1,11 +1,10 @@
-
 package pidev.dao.interfaces;
 
 import java.util.List;
 import pidev.entities.Cours;
 
 public interface IDaoCours {
-    
+
     void addCours(Cours cours);
 
     void updateCours(Cours cours);
@@ -19,10 +18,15 @@ public interface IDaoCours {
     Cours findCoursByName(String nomCours);
 
     Cours findCoursByFormateur(String cinFormateur);
+
     String findTitreCoursById(int id);
-    Cours findCoursByDifficulte (String difficulte) ;
+
+  
+  Cours findCoursByID(int id);
+    Cours findCoursByDifficulte(String difficulte);
+
     int FindIdQuizbycours(String titre);
-    
-        int findIdQuizByIdcours (int idcours) ;
+
+    int findIdQuizByIdcours(int idcours);
 
 }

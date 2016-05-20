@@ -28,6 +28,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import pidev.dao.classes.DAOApprenant;
 import pidev.entities.Apprenant;
+import pidev.gui.TestRSS;
 
 /**
  * FXML Controller class
@@ -50,19 +51,20 @@ public class ProfilApprenantController implements Initializable {
     private Button btnListCoursSuivis;
     @FXML
     private Button btnRechCours;
-    
+    @FXML
+    private Button btnNews;
     @FXML
     private Button btnEditProfil;
     @FXML
     private Button btnDeconnecter;
-    
+
     public static Apprenant apprenant;
-     
+
     private String info;
-    
+
     @FXML
     private Button btnEnvoyerMail;
-    
+
     @FXML
     private ImageView imageView;
 
@@ -71,22 +73,21 @@ public class ProfilApprenantController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
-    } 
 
+    }
 
     @FXML
-    private void btnListCoursSuivisAction(ActionEvent event) throws IOException { 
+    private void btnListCoursSuivisAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
-        
+
         loader.setLocation(getClass().getResource("/pidev/gui/AfficheListCoursSuivis.fxml"));
         //loader.setLocation(getClass().getResource("/pidev/gui/AfficherCoursSuiviApprenant.fxml")); 
         loader.load();
         Parent p = loader.getRoot();
-        Stage stage =new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(p));
-        
+
         AfficheListCoursSuivisController ALCS = loader.getController();
         ALCS.setApprenant(apprenant);
 //        AfficherCoursEtChapitreApprenantController ACCA  = loader.getController();
@@ -97,65 +98,63 @@ public class ProfilApprenantController implements Initializable {
     }
 
     @FXML
-    private void btnRechCoursAction(ActionEvent event) throws IOException {       
+    private void btnRechCoursAction(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/RechercherCour.fxml"));
         loader.load();
         Parent p = loader.getRoot();
-        Stage stage =new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(p));
-        RechercherCourController RCC  = loader.getController();
+        RechercherCourController RCC = loader.getController();
         RCC.setApprenant(apprenant);
         stage.setTitle("Rechercher Cours");
         stage.show();
     }
 
     public void setInfo(String info) throws IOException {
-        
+
         DAOApprenant da = new DAOApprenant();
-       
+
         apprenant = da.getApprenantByLogin(info);
 
-        File file = new File("src/pidev/gui/img/"+apprenant.getAvatar());
+        File file = new File("src/pidev/gui/img/" + apprenant.getAvatar());
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
 
         txtCin.setText(apprenant.getCin());
-        
+
         txtNom.setText(apprenant.getNom());
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
         txtLogin.setText(apprenant.getLogin());
-        
+
         this.info = info;
     }
 
     @FXML
     private void btnEditProfilAction(ActionEvent event) throws IOException {
-           
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/pidev/gui/EditProfilApprenant.fxml"));
-            loader.load();
-            Parent p = loader.getRoot();
-            Stage stage =new Stage();
-            stage.setScene(new Scene(p));
-            EditProfilApprenantController epac  = loader.getController();
-            epac.setApprenant(apprenant);
-            stage.setTitle("Editer Mon Profil");
-            stage.show();
-        
+
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/EditProfilApprenant.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        EditProfilApprenantController epac = loader.getController();
+        epac.setApprenant(apprenant);
+        stage.setTitle("Editer Mon Profil");
+        stage.show();
+
     }
 
     @FXML
     private void btnDeconnecterAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnDeconnecter.getScene().getWindow();
         stage.close();
-        
+
     }
-
-
 
     public void setApprenant(Apprenant apprenant) {
         txtCin.setText(apprenant.getCin());
@@ -163,26 +162,35 @@ public class ProfilApprenantController implements Initializable {
         txtPrenom.setText(apprenant.getPrenom());
         txtEmail.setText(apprenant.getEmail());
         txtLogin.setText(apprenant.getLogin());
-        File file = new File("src/pidev/gui/img/"+apprenant.getAvatar());
+        File file = new File("C:/Users/Khoubaib/Documents/NetBeansProjects/MOOC_3A2-master-java/src/pidev/gui/img/" + apprenant.getAvatar());
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
-       
+
         this.apprenant = apprenant;
     }
 
     @FXML
     private void btnEnvoyerMailAction(ActionEvent event) throws IOException {
-        
+
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/SendMailApprenant.fxml"));
         loader.load();
         Parent p = loader.getRoot();
-        Stage stage =new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Envoyer Mail");
-        stage.show();   
-        
+        stage.show();
+
+    }
+
+    @FXML
+    private void btnNewsAction(ActionEvent event) throws IOException, Exception {
+
+        TestRSS test = new TestRSS();
+        Stage stage = new Stage();
+        test.start(stage);
+
     }
 
 }

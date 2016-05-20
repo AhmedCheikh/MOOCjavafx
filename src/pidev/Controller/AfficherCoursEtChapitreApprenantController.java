@@ -162,7 +162,7 @@ if (result.get() == ButtonType.OK){
         List<Cours> temp=new ArrayList<>();
         Cours c;
         while (rs.next()) {
-            c=new Cours(rs.getInt(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(8),rs.getInt(4));
+            c=new Cours(rs.getInt(2),rs.getString(1),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
             //temp.add(rs.getString(1));
             //temp.add(rs.getString(2));
             // temp.add( new SimpleStringProperty(rs.getString(3)));

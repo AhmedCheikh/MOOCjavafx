@@ -67,6 +67,8 @@ public class AjouterQuestionController {
     private Button btnSupprimerQuestion;
     @FXML
     private Button btnback;
+    @FXML
+    private Button btnPlus;
 
     public void setQuiz(Quiz q) {
         this.q = q;
@@ -122,6 +124,7 @@ public class AjouterQuestionController {
 
     }
 
+    @FXML
     private void btnPlusAction(ActionEvent event) throws IOException {
         TextField[] tfR = {
             R11, R12, R13, R14};
@@ -169,35 +172,11 @@ public class AjouterQuestionController {
     }
 
     @FXML
-    public void btnexitAction(ActionEvent event) throws IOException {
-       ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AjouterQuestion.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        AjouterQuestionController pac = loader.getController();
-        pac.setQuiz(q);
-        stage.show();
-
+    private void btnexitAction(ActionEvent event) {
+        Stage stage = (Stage) btnexit.getScene().getWindow();
+        stage.close();
     }
 
-    @FXML
-    public void btnbackAction(ActionEvent event) throws IOException {
-
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AjouterChapitre.fxml"));
-        loader.load();
-        Parent p = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        AjouterChapitreController pac = loader.getController();
-
-        stage.show();
-
-    }
 
     @FXML
     private void CmbQuestionsAction(ActionEvent event) {
@@ -207,7 +186,4 @@ public class AjouterQuestionController {
     private void btnModifierQuestionAction(ActionEvent event) {
     }
 
-    @FXML
-    private void btnSupprimerQuestionAction(ActionEvent event) {
-    }
 }

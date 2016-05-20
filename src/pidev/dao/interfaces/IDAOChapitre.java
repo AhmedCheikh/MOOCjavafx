@@ -13,7 +13,7 @@ public interface IDAOChapitre {
 
     void addChapitre(Chapitre c);
 
-    void removeChapitre(Chapitre c);
+    void removeChapitre(int id);
 
     void updateChapitre(Chapitre c, int id);
 

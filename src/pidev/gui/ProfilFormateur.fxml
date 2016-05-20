@@ -297,7 +297,7 @@
       </ImageView>
       <ImageView fitHeight="99.0" fitWidth="293.0" layoutX="187.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/log.png" />
+            <Image url="@img/log1.png" />
          </image>
       </ImageView>
       <Hyperlink fx:id="hpEditerProfil" layoutX="648.0" layoutY="83.0" onAction="#hpEditerProfilAction" prefHeight="23.0" prefWidth="59.0" style="-fx-font-style: 16px; -fx-font-family: bold;" text="Edit Profil" textFill="#ad1323" underline="true">

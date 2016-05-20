@@ -13,7 +13,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -95,7 +99,7 @@ public class ModifierQuestionController {
     }
 
     @FXML
-    private void btnModifierQuestionAction(ActionEvent event) {
+    private void btnModifierQuestionAction(ActionEvent event) throws IOException {
         TextField[] tfR = {
             R11, R12, R13, R14};
 
@@ -131,8 +135,17 @@ public class ModifierQuestionController {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText("Look, an Information Dialog");
-        
-        alert.showAndWait();
+        alert.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ModifierQuiz.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        ModifierQuizController aq = loader.getController();
+        aq.setPnomc(id);
+        stage.show();
     }
 
     @FXML
@@ -147,7 +160,7 @@ public class ModifierQuestionController {
 
     @FXML
     private void btnSupprimerQuestionAction(ActionEvent event
-    ) {
+    ) throws IOException {
 
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Do you want to delete");
@@ -162,6 +175,17 @@ public class ModifierQuestionController {
             z = d.findQuestionSelonId((String) CmbQuestions.getValue());
 
             d.removeQuestion(z);
+
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/ModifierQuiz.fxml"));
+            loader.load();
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            ModifierQuizController aq = loader.getController();
+            aq.setPnomc(id);
+            stage.show();
 
         } else {
             alert.close();
@@ -204,6 +228,17 @@ public class ModifierQuestionController {
 
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
+
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/ModifierQuiz.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        ModifierQuizController aq = loader.getController();
+        aq.setPnomc(id);
+        stage.show();
 
     }
 }

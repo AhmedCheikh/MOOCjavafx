@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,13 +29,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static pidev.Controller.ProfilFormateurController.f;
 import pidev.dao.classes.DAOChapitre;
+import pidev.dao.classes.DAOCours;
+import pidev.dao.classes.DAOFormateur;
 import pidev.dao.classes.DAOQuiz;
 import pidev.entities.Chapitre;
+import pidev.entities.Cours;
+import pidev.entities.Formateur;
 
 /**
  * FXML Controller class
@@ -74,8 +82,8 @@ public class ModifierChapitreController {
     private String idq;
     List l;
     List l1;
-    public static int idlo;
-
+    public static int idlo, idc;
+    public static Formateur formateur;
     @FXML
     private Label er1;
     @FXML
@@ -83,25 +91,28 @@ public class ModifierChapitreController {
     int z;
     Chapitre pnomc;
     Chapitre c;
+    Cours cs;
+    public Formateur form;
+
+    public void setFormateur(Formateur form) {
+        this.form = form;
+    }
 
     public void setPnomc(Chapitre pnomc) {
         this.pnomc = pnomc;
-
+        idc = pnomc.getIdCours();
         DAOQuiz daoQuiz = new DAOQuiz();
         l1 = daoQuiz.findQuizByType(1);
         for (int i = 0; i < l1.size(); i++) {
             CmbQuiz.getItems().add(l1.get(i));
 
         }
-//        DAOChapitre dc = new DAOChapitre();
-//        idlocal = dc.FindIdbychapitre(pnomc.getTitre());
-//       idlocal = pnomc.getIdChapitre();
 
         txtTitre.setText(pnomc.getTitre());
         txtAObjectif.setText(pnomc.getObjectif());
         lVideo.setText(pnomc.getVideo());
         lPresentation.setText(pnomc.getPresentation());
-
+        idlo = pnomc.getIdChapitre();
         DAOQuiz z = new DAOQuiz();
         idq = z.findTitreQuizByTitreSelonId(pnomc.getIdQuiz());
         System.out.println(idq);
@@ -188,34 +199,33 @@ public class ModifierChapitreController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             DAOChapitre dc = new DAOChapitre();
-            List l = dc.findChapitreById(pnomc.getIdChapitre());
-            Chapitre s = (Chapitre) l.get(0);
-            dc.removeChapitre(s);
+            dc.removeChapitre(idlo);
+
             ((Node) (event.getSource())).getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCours.fxml"));
-            loader.load();
+            loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
+            try {
+                loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Parent p = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(p));
-            stage.setTitle("Afficher cours");
-            ProfilApprenantController pac = loader.getController();
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+            stage.setTitle("Affichage Cours");
+            AffichageCoursFormController ACCA = loader.getController();
+            System.out.println("page4" + form);
+            ACCA.setFormateur(form);
+            DAOCours dcc=new DAOCours();
+            cs=dcc.findCoursByID(idc);
+            System.out.println("couuuuuuuuuurs"+cs);
+            ACCA.setInfo(cs);
             stage.show();
         } else {
             alert.close();
         }
 
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreFormateur.fxml"));
-        AnchorPane frame = loader.load();
-        Parent p = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(p));
-        stage.setTitle("Affichage Cours");
-        AfficherChapitreFormateurController pac = loader.getController();
-        pac.setCh(pnomc);
-        stage.show();
     }
 
     @FXML
@@ -234,9 +244,10 @@ public class ModifierChapitreController {
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.setTitle("Afficher chapitre");
-        ProfilApprenantController pac = loader.getController();
+        AfficherChapitreFormateurController pac = loader.getController();
+        pac.setCh(pnomc);
+        pac.setFormateur(form);
         stage.show();
-
     }
 
     @FXML
@@ -283,17 +294,36 @@ public class ModifierChapitreController {
             DAOQuiz d = new DAOQuiz();
             z = d.findQuizByTitreSelonId((String) CmbQuiz.getValue());
             DAOChapitre dc = new DAOChapitre();
-            idlo = dc.FindIdbychapitre(pnomc.getTitre());
-            System.out.println("ssss" + dc.FindIdbychapitre(pnomc.getTitre()));
+//            idlo = dc.FindIdbychapitre(pnomc.getTitre());
+            System.out.println("ssss" + z);
 //            int q=dc.FindIdbychapitre(pnomc.getTitre());
             c = new Chapitre(txtTitre.getText(), lPresentation.getText(), txtAObjectif.getText(), z, lVideo.getText());
             DAOChapitre daoc = new DAOChapitre();
-            daoc.updateChapitre(c, idlo);}
+            daoc.updateChapitre(c, idlo);
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText("Look, an Information Dialog");
             alert.setContentText("update successfully!");
             alert.showAndWait();
-        
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/AfficherChapitreFormateur.fxml"));
+            try {
+                loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+            stage.setTitle("Affichage Chapitre");
+            AfficherChapitreFormateurController pac = loader.getController();
+            pac.setCh(c);
+            pac.setFormateur(form);
+            stage.show();
+
+        }
+
     }
 }

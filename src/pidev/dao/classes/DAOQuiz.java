@@ -50,10 +50,9 @@ public class DAOQuiz implements IDAOQuiz{
     @Override
     public void removeQuiz(int id) {
 
-        String requete = "delete from quiz where id=?";
+        String requete = "delete from quiz where id='" + id + "'";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, id);
             ps.executeUpdate();
             System.out.println("Quiz supprimé");
         } catch (SQLException ex) {

@@ -89,11 +89,5 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
-        <Button fx:id="btnback" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnbackAction" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #6B979C; -fx-border-color: #78A419; -fx-border-radius: 3px;" text="Back" textFill="WHITE">
-
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
     </children>
 </AnchorPane>

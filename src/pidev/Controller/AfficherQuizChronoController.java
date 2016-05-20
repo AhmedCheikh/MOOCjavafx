@@ -48,7 +48,6 @@ import pidev.entities.Reponse;
  */
 public class AfficherQuizChronoController implements Initializable {
 
- 
     @FXML
     private Label Q1;
     @FXML
@@ -147,23 +146,23 @@ public class AfficherQuizChronoController implements Initializable {
     private Label ltitre;
     @FXML
     private Label LTime;
-    public int note;
+    public int note = 0;
     int f = 0;
-    int info;
+    int info, et;
     public int q;
 
     public void setCours(int info) {
         this.info = info;
         DAOCours daoc1 = new DAOCours();
         //q = daoc1.FindIdQuizbycours(info.getNomCours());
-        System.out.println("ddddd"+info);
+        System.out.println("ddddd" + info);
         //System.out.println(q);
         DAOQuestion daoqe = new DAOQuestion();
         System.out.println("***************************");
         List lsq = daoqe.FindIdQuestionbyQuiz(info);
         System.out.println("les questions:" + lsq);
-        
-           Timer timer = new Timer();
+
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             int M = 60;
 
@@ -211,12 +210,9 @@ public class AfficherQuizChronoController implements Initializable {
 
         ltitre.setText(t);
 
-
-
         for (int i = 0; i < 5; i++) {
 
-            
-          int   rand=randomWithRange(0, (lsq.size())-1);
+            int rand = randomWithRange(0, (lsq.size()) - 1);
             Question s = (Question) lsq.get(rand);
             tfQ[i].setText(s.getQuestion());
             int Qid = daoqe.findQuestionSelonId(s);
@@ -233,8 +229,8 @@ public class AfficherQuizChronoController implements Initializable {
 //
         }
     }
-    
-        int randomWithRange(int min, int max) {
+
+    int randomWithRange(int min, int max) {
         int range = (max - min) + 1;
         return (int) (Math.random() * range) + min;
     }
@@ -245,7 +241,6 @@ public class AfficherQuizChronoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-     
     }
 
     @FXML
@@ -273,18 +268,18 @@ public class AfficherQuizChronoController implements Initializable {
             for (int j = 0; j < 4; j++) {
                 DAOReponse daor = new DAOReponse();
                 Reponse s = (Reponse) Lr.get(j);
-                int et = s.getEtat();
-                System.out.println(et);
-                if (tfC[j].isSelected() && et == 1) {
-                    note = note + 4;
-                } else if (tfC[j].isSelected() && et == 0) {
-                    note = note - 1;
-                }
-                else{
-                    note=note+0;
-                }
+                et = s.getEtat();
+                System.out.println("etat" + j + "est" + et);
+                System.out.println("selected or not" + tfC[j].isSelected());
+                System.out.println("note" + j + "est" + note);
 
-                System.out.println(note);
+                if (tfC[j].isSelected() == true && et == 1) {
+                    note = note + 4;
+                } else if (tfC[j].isSelected() == true && et == 0) {
+                    note = note - 1;
+                } else {
+                    note = note + 0;
+                }
             }
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();

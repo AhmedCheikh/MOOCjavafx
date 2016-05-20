@@ -15,6 +15,8 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,9 +36,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static pidev.Controller.ModifierChapitreController.idc;
 import pidev.dao.classes.DAOChapitre;
 import pidev.dao.classes.DAOCours;
 import pidev.entities.Chapitre;
+import pidev.entities.Cours;
+import pidev.entities.Formateur;
 import pidev.gui.video.VideoFXDemo;
 
 /**
@@ -63,22 +68,31 @@ public class AfficherChapitreFormateurController implements Initializable {
     @FXML
     private Button btnback;
     public Chapitre ch;
+    public Cours cs;
     int qi;
-    int a;
+    public static int a,idc;
     private Media me;
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
     final double mediaHeight = 270;
-     public String v;
+    public static String v;
+    public  Formateur form;
+
     public void setCh(Chapitre ch) {
         this.ch = ch;
+        idc=ch.getIdCours();
         hpChapitre.setText(ch.getTitre());
         txtObjectives.setText(ch.getObjectif());
-        DAOChapitre dc=new DAOChapitre();
-        a=dc.FindIdbychapitre(ch.getTitre());
-        v=dc.FindVideobychapitre(a);
-        System.out.println("videoooooooooo"+v);
+        idc=ch.getIdCours();
+        DAOChapitre dc = new DAOChapitre();
+        a = ch.getIdChapitre();
+        v = ch.getVideo();
+        System.out.println("videoooooooooo" + a);
+        System.out.println("videoooooooooo" + v);
+    }
 
+    public void setFormateur(Formateur form) {
+        this.form = form;
     }
 
     /**
@@ -94,7 +108,7 @@ public class AfficherChapitreFormateurController implements Initializable {
         DAOChapitre dch = new DAOChapitre();
         Group root = new Group();
         primaryStage.setScene(new Scene(root, 480, 270));
-        String path = new File("src/pidev/gui/video/"+v).getAbsolutePath();
+        String path = new File("src/pidev/gui/video/" + v).getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(me);
         mediaPlayer.setAutoPlay(true);
@@ -156,7 +170,7 @@ public class AfficherChapitreFormateurController implements Initializable {
 
     @FXML
     private void btnModifierChapitreAction(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ModifierChapitre.fxml"));
         loader.load();
@@ -165,6 +179,8 @@ public class AfficherChapitreFormateurController implements Initializable {
         stage.setScene(new Scene(p));
         ModifierChapitreController aq = loader.getController();
         aq.setPnomc(ch);
+        aq.setFormateur(form);
+        System.out.println("page3Form"+form);
         stage.show();
     }
 
@@ -177,6 +193,26 @@ public class AfficherChapitreFormateurController implements Initializable {
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
 
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
+            try {
+                loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Parent p = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(p));
+            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+            stage.setTitle("Affichage Cours");
+            AffichageCoursFormController ACCA = loader.getController();
+            System.out.println("page4" + form);
+            ACCA.setFormateur(form);
+            DAOCours dcc=new DAOCours();
+            cs=dcc.findCoursByID(idc);
+            ACCA.setInfo(cs);
+            stage.show();
     }
 
 }
