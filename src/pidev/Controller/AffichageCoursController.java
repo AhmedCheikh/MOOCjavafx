@@ -86,6 +86,7 @@ public class AffichageCoursController implements Initializable {
     private RadioButton radioBien;
 
     public CoursSuivie cs;
+    @FXML
     private ToggleGroup appreciation;
     public Apprenant apprenant;
     @FXML
@@ -107,6 +108,8 @@ public class AffichageCoursController implements Initializable {
     @FXML
     private TextField txtDateFin;
     public static int idc;
+    @FXML
+    private Button btnCommenter;
 
     public AffichageCoursController() {
         connection = (DataSource.getInstance()).getConnection();
@@ -180,7 +183,6 @@ public class AffichageCoursController implements Initializable {
         stage.show();
     }
 
-    @FXML
     private void Formateur1Action(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
 
@@ -348,7 +350,7 @@ public class AffichageCoursController implements Initializable {
                     dcs.donnerAppreciation("2", cs.getIdCoursuivi());
                 } else if (chk.getText().equals("Bien")) {
                     dcs.donnerAppreciation("3", cs.getIdCoursuivi());
-                } else if (chk.getText().equals("TresBien")) {
+                } else if (chk.getText().equals("Tres Bien")) {
                     dcs.donnerAppreciation("4", cs.getIdCoursuivi());
                 } else {
                     dcs.donnerAppreciation("5", cs.getIdCoursuivi());
