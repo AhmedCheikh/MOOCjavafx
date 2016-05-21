@@ -36,6 +36,8 @@ public class Formateur {
         this.mail = mail;
     }
 
+   
+
     public Formateur(String cinFormateur) {
         this.cinFormateur = cinFormateur;
     }

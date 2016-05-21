@@ -48,6 +48,8 @@ public class ListeFormateursController implements Initializable {
     private TableColumn<Formateur, String> tcNom;
     @FXML
     private TableColumn<Formateur, String> tcCin;
+        @FXML
+    private TableColumn<Formateur, String> tcMail;
     
     @FXML
         private TableColumn<Formateur, String> tcPrenom;
@@ -79,22 +81,23 @@ public class ListeFormateursController implements Initializable {
     Organisme o2 = new Organisme();
     @FXML
     private Button Actualiser;
-
+public ObservableList<Formateur> listform;
     public void setO(Organisme o) {
-       
+       listform = FXCollections.observableArrayList();
         o2 = daoO.getOrganisme(o.getLogin());
         lblNomorg.setText(o2.getNom());
         System.out.println("-----"+lblNomorg.getText());
         tcNom.setCellValueFactory(new PropertyValueFactory<Formateur, String>("nom"));
         tcPrenom.setCellValueFactory(new PropertyValueFactory<Formateur, String>("prenom"));
         tcCin.setCellValueFactory(new PropertyValueFactory<Formateur, String>("cin"));
+        tcMail.setCellValueFactory(new PropertyValueFactory<Formateur, String>("email"));
         DAOOrganisme daoo = new DAOOrganisme();
         listform = daoo.findFormateurs();
         System.out.println("iiiiiiiiiiiiiiiiiii= "+listform.size());
         tbvform.setItems(listform);
         this.t = o;
     }
-    public ObservableList<Formateur> listform = FXCollections.observableArrayList();
+    
     public ObservableList<Formateur> listform2 = FXCollections.observableArrayList();
 
     @Override

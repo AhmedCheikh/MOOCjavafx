@@ -1,0 +1,26 @@
+6. Ecrire une procédure stockée « PROC_ANNEE_DEMBAUCHE » permettant d’afficher les 
+années au cours desquelles plus de 10 salariés ont été embauché.  
+
+7. Ecrire une procédure stockée « PROC_JOBHISTORY » permettant d’afficher la liste des 
+employés qui ont changé de poste au minimum une fois. 
+ 
+8. Ecrire une procédure stockée « PROC_LISTE_DES_EMP » permettant d’afficher la liste de 
+tous employés. 
+9. Ecrire une procédure stockée « PROC_LISTE_EMP_DEPT » permettant d’afficher pour 
+chaque département la liste de ces employés. Afficher leur nom et prénom. 
+10. Ecrire une procédure stockée « PROC_LISTE_EMP » permettant d’afficher la liste des 
+employés dirigés par le manager dont l’identifiant est donné comme paramètre d’entrée. 
+Affichez leurs noms et prénoms et leurs salaires. 
+ 11. Ecrire une procédure stockée  « PROC_LISTE_EMP2 » permettant d’afficher les noms des 
+employés, l’année de leur embauche seulement s’ils ont été embauchés avant leur 
+manager. 
+12. Ecrire une fonction stockée « FN_MOY_SALAIRE » qui retourne le salaire moyen du 
+département auquel appartient l’employé dont l’identifiant est donné comme paramètre 
+d’entrée.
+ 13. Ecrire une procédure stockée « PROC_SAL_SUP » qui permet d’afficher la liste des 
+employés qui ont un salaire supérieur à celui dont l’identifiant est donné en paramètre.  
+Utilisez cette procédure pour afficher ceux qui ont un salaire supérieur à l’employé 121. 
+14. Ecrire une fonction stockée « FN_TRIMESTRE » permettant de retourner le numéro du 
+trimestre d’une date passée en paramètre.  
+Utilisez cette fonction pour afficher ceux qui ont été embauché le troisième semestre de 
+l’année 1980.  

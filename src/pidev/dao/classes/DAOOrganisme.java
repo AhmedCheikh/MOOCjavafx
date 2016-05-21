@@ -220,8 +220,8 @@ public class DAOOrganisme implements IDAOOrganisme {
                 f.setNom(resultat.getString(2));
                 f.setPrenom(resultat.getString(3));
                 f.setMail(resultat.getString(4));
-                 f.setAvatar(resultat.getString(10));
-                  f.setCv(resultat.getString(5));
+                 f.setAvatar(resultat.getString(6));
+                  f.setCv(resultat.getString(7));
 
             }
             return f;
@@ -254,19 +254,25 @@ public class DAOOrganisme implements IDAOOrganisme {
     @Override
     public ObservableList<Formateur> findFormateurs() {
         String requete = "SELECT * FROM formateur WHERE Organisme_id is null and etat=?";
-        PreparedStatement ps = null;
+        try {
+            pst = connection.prepareStatement(requete);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrganisme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
         ObservableList<Formateur> lst1 = FXCollections.observableArrayList();
         try {
-            int x = 1;
-            ps = connection.prepareStatement(requete);
+            
+            pst = connection.prepareStatement(requete);
 
-            ps.setInt(1, x);
-            ResultSet resultat = ps.executeQuery();
+            pst.setInt(1, 1);
+            ResultSet resultat = pst.executeQuery();
             while (resultat.next()) {
                 lst1.add(new Formateur(
                         resultat.getString("cin"),
                         resultat.getString("nom"),
-                        resultat.getString("prenom")
+                        resultat.getString("prenom"),
+                            resultat.getString("email")
                 ));
             }
             return lst1;
@@ -275,7 +281,7 @@ public class DAOOrganisme implements IDAOOrganisme {
             return null;
         } finally {
             try {
-                ps.close();
+                pst.close();
             } catch (SQLException ex) {
                 Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -297,7 +303,8 @@ public class DAOOrganisme implements IDAOOrganisme {
                 lst1.add(new Formateur(
                         resultat.getString("cin"),
                         resultat.getString("nom"),
-                        resultat.getString("prenom")
+                        resultat.getString("prenom"),
+                        resultat.getString("email")
                 ));
             }
             return lst1;
@@ -563,17 +570,18 @@ public ObservableList<Organisme> ListeOrganisme(String login) {
     @Override
     public ObservableList<Invitation> FindInvitationByNom(String nomdes) {
         String requete = "SELECT * FROM invitation WHERE nom_des = ? and etat=?";
-        PreparedStatement ps = null;
+
         ObservableList<Invitation> lst = FXCollections.observableArrayList();
         try {
-            int x = 0;
-            ps = connection.prepareStatement(requete);
-            ps.setString(1, nomdes);
-            ps.setInt(2, x);
-            ResultSet resultat = ps.executeQuery();
+            pst = connection.prepareStatement(requete);
+            pst.setString(1, nomdes);
+            pst.setInt(2, 0);
+            ResultSet resultat = pst.executeQuery();
+            DAOFormateur daof =new DAOFormateur();
             while (resultat.next()) {
+                
                 lst.add(new Invitation(
-                        resultat.getString("nom_exp"),
+                        daof.getFormateurByCIN( resultat.getString("nom_exp")).getNom(),
                         resultat.getString("nom_des"),
                         resultat.getDate("date_invit"),
                         resultat.getInt("etat")
@@ -585,7 +593,7 @@ public ObservableList<Organisme> ListeOrganisme(String login) {
             return null;
         } finally {
             try {
-                ps.close();
+                pst.close();
             } catch (SQLException ex) {
                 Logger.getLogger(DAOFormateur.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -62,6 +62,8 @@ public class ListeFormateur1OrganismeController implements Initializable {
     
     @FXML
         private TableColumn<Formateur, String> tcPrenom;
+        @FXML
+    private TableColumn<Formateur, String> tcMail;
  @FXML
   private  ImageView  imageV;
     @FXML
@@ -97,13 +99,15 @@ public class ListeFormateur1OrganismeController implements Initializable {
         o2 = daoO.getOrganisme(o.getLogin());
         lblNomorg.setText(o2.getNom());
         System.out.println("-----"+lblNomorg.getText());
+        tcCin.setCellValueFactory(new PropertyValueFactory<Formateur, String>("cin"));
         tcNom.setCellValueFactory(new PropertyValueFactory<Formateur, String>("nom"));
         tcPrenom.setCellValueFactory(new PropertyValueFactory<Formateur, String>("prenom"));
-        tcCin.setCellValueFactory(new PropertyValueFactory<Formateur, String>("cin"));
+        tcMail.setCellValueFactory(new PropertyValueFactory<Formateur, String>("mail"));
+//        
         DAOOrganisme daoo = new DAOOrganisme();
         int id=o2.getId();
         listform = daoo.findFormateurs1Organisme(id);
-        System.out.println("iiiiiiiiiiiiiiiiiii= "+listform.size());
+//        System.out.println("iiiiiiiiiiiiiiiiiii= "+listform.size());
         tbvform.setItems(listform);
         this.t = o;
     }

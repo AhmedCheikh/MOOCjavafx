@@ -83,15 +83,15 @@ public class listeInvitationFormateursController implements Initializable {
 
     public void setO(Organisme o) {
        
-        o2 = daoO.getOrganisme(o.getLogin());
         lblNomorg.setText(o2.getNom());
-
+        System.out.println(o2.getNom());
         tcNomExp.setCellValueFactory(new PropertyValueFactory<Invitation, String>("nom_exp"));
         //tcNomDes.setCellValueFactory(new PropertyValueFactory<Invitation, String>("nom_des"));
         tcDateInvit.setCellValueFactory(new PropertyValueFactory<Invitation, String>("date_invit"));
         //tcEtat.setCellValueFactory(new PropertyValueFactory<Invitation, Integer>("etat"));
         DAOOrganisme daoo = new DAOOrganisme();
-        listInvit = daoo.FindInvitationByNom(lblNomorg.getText());
+        listInvit = daoo.FindInvitationByNom("esprit");
+        System.out.println(listInvit.size());
         tbvInvit.setItems(listInvit);
         this.t = o;
     }
@@ -183,7 +183,15 @@ public class listeInvitationFormateursController implements Initializable {
            
         }
     }
-
+ @FXML
+   private void btntelechargerAction(ActionEvent event) {
+//             DAOOrganisme dao = new DAOOrganisme();
+//     Formateur fr = new Formateur();
+//            fr = dao.AllInfoFormateur(lblNomfor.getText());
+//            System.out.println("cv="+fr.getCv());
+//            System.out.println("cin="+fr.getCinFormateur());
+//            dao.downloadCV(fr);
+    }
     @FXML
     private void ActualiserAction(ActionEvent event) {
 //        tcNomExp.setCellValueFactory(new PropertyValueFactory<Invitation, String>("nom_exp"));
