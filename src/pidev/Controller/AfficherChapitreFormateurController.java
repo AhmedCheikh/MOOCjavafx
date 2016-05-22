@@ -70,20 +70,20 @@ public class AfficherChapitreFormateurController implements Initializable {
     public Chapitre ch;
     public Cours cs;
     int qi;
-    public static int a,idc;
+    public static int a, idc;
     private Media me;
     private MediaPlayer mediaPlayer;
     final double mediaWidth = 480;
     final double mediaHeight = 270;
     public static String v;
-    public  Formateur form;
+    public Formateur form;
 
     public void setCh(Chapitre ch) {
         this.ch = ch;
-        idc=ch.getIdCours();
+        idc = ch.getIdCours();
         hpChapitre.setText(ch.getTitre());
         txtObjectives.setText(ch.getObjectif());
-        idc=ch.getIdCours();
+        idc = ch.getIdCours();
         DAOChapitre dc = new DAOChapitre();
         a = ch.getIdChapitre();
         v = ch.getVideo();
@@ -155,8 +155,7 @@ public class AfficherChapitreFormateurController implements Initializable {
             stage.setScene(new Scene(p));
             ModifierQuizController aq = loader.getController();
             DAOChapitre daoc = new DAOChapitre();
-            qi = daoc.FindIdQuizbychapitre(ch.getTitre());
-            aq.setPnomc(qi);
+            aq.setPnomc(ch.getIdQuiz());
             stage.show();
 
         } else {
@@ -180,7 +179,7 @@ public class AfficherChapitreFormateurController implements Initializable {
         ModifierChapitreController aq = loader.getController();
         aq.setPnomc(ch);
         aq.setFormateur(form);
-        System.out.println("page3Form"+form);
+        System.out.println("page3Form" + form);
         stage.show();
     }
 
@@ -193,26 +192,26 @@ public class AfficherChapitreFormateurController implements Initializable {
     @FXML
     private void btnbackAction(ActionEvent event) throws IOException {
 
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
-            try {
-                loader.load();
-            } catch (IOException ex) {
-                Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Parent p = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(p));
-            stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
-            stage.setTitle("Affichage Cours");
-            AffichageCoursFormController ACCA = loader.getController();
-            System.out.println("page4" + form);
-            ACCA.setFormateur(form);
-            DAOCours dcc=new DAOCours();
-            cs=dcc.findCoursByID(idc);
-            ACCA.setInfo(cs);
-            stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev/gui/FXMLAffichageCoursForm.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(AffichageCoursFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.getIcons().add(new Image("pidev/gui/img/icone.png"));
+        stage.setTitle("Affichage Cours");
+        AffichageCoursFormController ACCA = loader.getController();
+        System.out.println("page4" + form);
+        ACCA.setFormateur(form);
+        DAOCours dcc = new DAOCours();
+        cs = dcc.findCoursByID(idc);
+        ACCA.setInfo(cs);
+        stage.show();
     }
 
 }

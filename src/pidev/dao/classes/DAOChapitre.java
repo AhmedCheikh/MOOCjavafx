@@ -225,7 +225,7 @@ public class DAOChapitre implements IDAOChapitre {
             ps.setInt(1, c.getIdChapitre());
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                File pdfFile = new File("src/pidev/gui/img/" + c.getPresentation());
+                File pdfFile = new File("src/pidev/gui/pdf/" + c.getPresentation());
                 System.out.println(pdfFile.getAbsolutePath());
                 pdfFile.getAbsolutePath();
                 if (pdfFile.exists()) {
@@ -239,9 +239,6 @@ public class DAOChapitre implements IDAOChapitre {
                 } else {
                     System.out.println("File is not exists!");
                 }
-
-                System.out.println("Done");
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOComite.class.getName()).log(Level.SEVERE, null, ex);
