@@ -53,7 +53,7 @@ private Button dec;
 private ImageView imageV;
 
 
-private  Organisme o;
+  Organisme o;
     
     DAOOrganisme daoO = new DAOOrganisme();
     Organisme o1 = new Organisme();
@@ -99,6 +99,7 @@ public void btnDeconnecterAction(ActionEvent event) throws IOException{
         loader.load();
         Parent p = loader.getRoot();
         listeInvitationFormateursController lstinvitFor = loader.getController();
+        System.out.println("nom organisme envoyé="+o5.getLogin());
         lstinvitFor.setO(o5);
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
@@ -124,13 +125,14 @@ public void btnDeconnecterAction(ActionEvent event) throws IOException{
                 @FXML
     public void btnConcurentsAction(ActionEvent event) throws IOException{
        Organisme o5 = new Organisme(nom.getText());
+                    System.out.println("nom org env= "+o.getLogin());
         ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ListeConcurrents.fxml"));
         loader.load();
         Parent p = loader.getRoot();
         ListeConcurrentsController ListeConcurrents = loader.getController();
-        ListeConcurrents.setO(o5);
+        ListeConcurrents.setO(o);
         Stage stage = new Stage();
         stage.setScene(new Scene(p));
         stage.show();
@@ -162,9 +164,9 @@ public  void btnDecAction(ActionEvent event) throws IOException{
 } 
 
     public void setO(Organisme o) {
-        Organisme o2=new Organisme();
-        o2 = daoO.getOrganisme(o.getLogin());
-        
+//        Organisme o2=new Organisme();
+//        o2 = daoO.getOrganisme(o.getLogin());
+//        
       
         this.o = o;
 
@@ -179,10 +181,10 @@ public  void btnDecAction(ActionEvent event) throws IOException{
    ControllerAthentification ca=new ControllerAthentification();
   
         o1 = daoO.getOrganisme(ca.log);
-        System.out.println(""+o1.getDescription());
-         System.out.println(""+o1.getAdresse());
-          System.out.println(""+o1.getTelephone());
-           System.out.println(""+o1.getSiteweb());
+        System.out.println("desc= "+o1.getDescription());
+         System.out.println("adresse "+o1.getAdresse());
+          System.out.println("tel "+o1.getTelephone());
+           System.out.println("site "+o1.getSiteweb());
         nom.setText(o1.getNom());
         desc.setText(o1.getDescription());
         adresse.setText(o1.getAdresse());

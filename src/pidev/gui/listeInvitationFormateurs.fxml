@@ -124,6 +124,7 @@
                               <Image url="@img/Downloads-icon.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="cin" layoutX="16.0" layoutY="138.0" text="Label" visible="false" />
                      </children>
                   </Pane>
                   <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="419.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">

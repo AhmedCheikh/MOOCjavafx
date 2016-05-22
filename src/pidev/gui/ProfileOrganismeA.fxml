@@ -191,7 +191,7 @@
                   <Image url="@img/conversation-speech-bubbles-.png" />
                </image>
             </ImageView>
-            <Label fx:id="notif" prefHeight="35.0" prefWidth="46.0" text=" 1" textFill="WHITE" GridPane.rowIndex="3">
+            <Label fx:id="notif" prefHeight="35.0" prefWidth="46.0" text="1" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>

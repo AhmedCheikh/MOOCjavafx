@@ -162,15 +162,16 @@ login.setEffect(shadow);
 
 //               Organisme o = new Organisme(nom);
                 //lblmessage.setText(" vos identifiant sont correcte ");
-                        Organisme Org = new Organisme(login.getText());
-log=login.getText();
+                        //Organisme Org = new Organisme(login.getText());
+                DAOOrganisme dao =new DAOOrganisme();
+                    log=login.getText();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/pidev/gui/ProfileOrganismeA.fxml"));
         loader.load();
         Parent parent = loader.getRoot();
         ProfileOrganismeAController poc = loader.getController();
-        
+        poc.setO(dao.getOrganisme(login.getText()));
         Stage stage = new Stage();
         stage.setTitle("Profil Organisme");
         stage.setScene(new Scene(parent));

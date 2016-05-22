@@ -72,6 +72,8 @@ public class listeInvitationFormateursController implements Initializable {
     private Label lblTelephone;
     @FXML
     private Label lblNomorg;
+       @FXML
+    private Label cin;
  
  @FXML
   private  ImageView  imageV;
@@ -83,15 +85,15 @@ public class listeInvitationFormateursController implements Initializable {
 
     public void setO(Organisme o) {
        
-        lblNomorg.setText(o2.getNom());
-        System.out.println(o2.getNom());
+        lblNomorg.setText(o.getLogin());
+        System.out.println("nom organisme="+o.getLogin());
         tcNomExp.setCellValueFactory(new PropertyValueFactory<Invitation, String>("nom_exp"));
         //tcNomDes.setCellValueFactory(new PropertyValueFactory<Invitation, String>("nom_des"));
         tcDateInvit.setCellValueFactory(new PropertyValueFactory<Invitation, String>("date_invit"));
         //tcEtat.setCellValueFactory(new PropertyValueFactory<Invitation, Integer>("etat"));
         DAOOrganisme daoo = new DAOOrganisme();
-        listInvit = daoo.FindInvitationByNom("esprit");
-        System.out.println(listInvit.size());
+        listInvit = daoo.FindInvitationByNom(o.getLogin());
+        System.out.println("size="+listInvit.size());
         tbvInvit.setItems(listInvit);
         this.t = o;
     }
@@ -109,7 +111,12 @@ public class listeInvitationFormateursController implements Initializable {
     @FXML
     private void brnAccepterAction(ActionEvent event) {
         if (!lblNomfor.getText().isEmpty()) {
-            daoO.AccepterInvit(lblNomfor.getText());
+           
+            System.out.println("cin formateur="+cin.getText());
+            DAOOrganisme daoo=new DAOOrganisme();
+            Organisme o1=daoo.getOrganisme(lblNomorg.getText());
+            System.out.println("id organisme="+o1.getId());
+            daoO.AccepterInvit(cin.getText(),o1.getId());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -128,7 +135,7 @@ public class listeInvitationFormateursController implements Initializable {
     @FXML
     private void brnRefuserAction(ActionEvent event) {
         if (!lblNomfor.getText().isEmpty()) {
-            daoO.refuserInvitation(lblNomfor.getText());
+            daoO.refuserInvitation(cin.getText());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Information");
             alert.setHeaderText(null);
@@ -175,6 +182,8 @@ public class listeInvitationFormateursController implements Initializable {
             lblNomfor.setText(fr.getNom());
             lblprenom.setText(fr.getPrenom());
             lblemail.setText(fr.getMail());
+            cin.setText(fr.getCinFormateur());
+            System.out.println("cin formateur ="+fr.getCinFormateur());
             
                System.out.println("avatar="+fr.getAvatar());
            File file = new File("src/pidev/gui/img/"+fr.getAvatar());
@@ -185,12 +194,12 @@ public class listeInvitationFormateursController implements Initializable {
     }
  @FXML
    private void btntelechargerAction(ActionEvent event) {
-//             DAOOrganisme dao = new DAOOrganisme();
-//     Formateur fr = new Formateur();
-//            fr = dao.AllInfoFormateur(lblNomfor.getText());
-//            System.out.println("cv="+fr.getCv());
-//            System.out.println("cin="+fr.getCinFormateur());
-//            dao.downloadCV(fr);
+             DAOOrganisme dao = new DAOOrganisme();
+     Formateur fr = new Formateur();
+            fr = dao.AllInfoFormateur(lblNomfor.getText());
+            System.out.println("cv="+fr.getCv());
+            System.out.println("cin="+fr.getCinFormateur());
+            dao.downloadCV(fr);
     }
     @FXML
     private void ActualiserAction(ActionEvent event) {

@@ -58,20 +58,35 @@ public class ListeConcurrentsController implements Initializable {
     @FXML
     private Label lblNomOrg;
 
-      private Organisme t;
+       Organisme t;
     DAOOrganisme daoO = new DAOOrganisme();
    public Organisme o2 = new Organisme();
 
 
         public void setO(Organisme o) {
-       
-        o2 = daoO.getOrganisme(o.getLogin());
-        lblNomOrg.setText(o2.getNom());
-        o2.toString();
+        this.t = o;
+        //o2 = daoO.getOrganisme(o.getLogin());
+            System.out.println("******"+o.getNom());
+            System.out.println("******"+o.getLogin());
+        lblNomOrg.setText(o.getNom());
+        o.toString();
         System.out.println("-----"+lblNomOrg.getText());
          DAOOrganisme daoo = new DAOOrganisme();
+         //DAOOrganisme daoo = new DAOOrganisme();
+     
+        System.out.println("id="+o.getId());
+         listOrg = daoo.ListeOrganisme(o.getId());
+        Actualiser.setStyle("-fx-background-image: url('/pidev/gui/img/actualiser.png');-fx-background-position: center center; -fx-background-repeat:stretch;-fx-background-size:30 30; -fx-effect: dropshadow(three-pass-box, #AEEE00, 10, 0.5, 0, 0);");
+        tcNomOrg.setCellValueFactory(new PropertyValueFactory<Organisme, String>("nom"));
+        tcEmail.setCellValueFactory(new PropertyValueFactory<Organisme, String>("email"));
+        tcAdresse.setCellValueFactory(new PropertyValueFactory<Organisme, String>("adresse"));
+        tctelephone.setCellValueFactory(new PropertyValueFactory<Organisme, String>("telephone"));
+      
+       
+       
+        tbvOrganisme.setItems(listOrg);
         
-        this.t = o;
+        
     }
 
     public ObservableList<Organisme> listOrg = FXCollections.observableArrayList();
@@ -85,17 +100,7 @@ public class ListeConcurrentsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Actualiser.setStyle("-fx-background-image: url('/pidev/gui/img/actualiser.png');-fx-background-position: center center; -fx-background-repeat:stretch;-fx-background-size:30 30; -fx-effect: dropshadow(three-pass-box, #AEEE00, 10, 0.5, 0, 0);");
-        tcNomOrg.setCellValueFactory(new PropertyValueFactory<Organisme, String>("nom"));
-        tcEmail.setCellValueFactory(new PropertyValueFactory<Organisme, String>("email"));
-        tcAdresse.setCellValueFactory(new PropertyValueFactory<Organisme, String>("adresse"));
-        tctelephone.setCellValueFactory(new PropertyValueFactory<Organisme, String>("telephone"));
-        DAOOrganisme daoo = new DAOOrganisme();
-      int id=daoo.getIdOrganismeByName(""+lblNomOrg.getText());
-        System.out.println("id="+id);
-       
-        listOrg = daoo.ListeOrganisme(lblNomOrg.getText());
-        tbvOrganisme.setItems(listOrg);
+          
     }
 
     @FXML

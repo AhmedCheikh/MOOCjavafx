@@ -16,6 +16,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -194,15 +196,29 @@ public class DAOOrganisme implements IDAOOrganisme {
     }
 
     @Override
-    public void AccepterInvit(String nom) {
-        String requete = "update invitation set etat = 1 where nom_exp = ?";
+    public void AccepterInvit(String nom,int id) {
+      java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        String requete = "update invitation set etat = 1,date_confi=? where nom_exp = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setString(1, nom);
+            ps.setDate(1, sqlDate);
+            ps.setString(2, nom);
             ps.executeUpdate();
             System.out.println("invitation Accepté");
         } catch (SQLException ex) {
-            System.out.println("erreur lors de la suppression " + ex.getMessage());
+            System.out.println("erreur lors de l'acceptation " + ex.getMessage());
+        }
+        
+            String requete2 = "update formateur set Organisme_id = ? where cin = ?";
+        try {
+            PreparedStatement ps2 = connection.prepareStatement(requete2);
+            ps2.setInt(1, id);
+               ps2.setString(2, nom);
+            ps2.executeUpdate();
+            System.out.println("invitation Accepté");
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de l'update formateur" + ex.getMessage());
         }
     }
 
@@ -319,14 +335,14 @@ public class DAOOrganisme implements IDAOOrganisme {
             }
         }
     }
-public ObservableList<Organisme> ListeOrganisme(String login) {
-        String requete = "select * from organisme where login <> ? and etat=?";
+public ObservableList<Organisme> ListeOrganisme(int id) {
+        String requete = "select * from organisme where etat=1 and idorganisme<> '" + id + "'";
         PreparedStatement ps = null;
         ObservableList<Organisme> lst = FXCollections.observableArrayList();
         try {
             ps = connection.prepareStatement(requete);
-            ps.setInt(1, 1);
-            ps.setString(2, login);
+//            ps.setInt(2, 1);
+//            ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
                 lst.add(new Organisme(
@@ -463,6 +479,7 @@ public ObservableList<Organisme> ListeOrganisme(String login) {
             rs = pst.executeQuery();
             while (rs.next()) {
                 o.setId(rs.getInt("idorganisme"));
+                System.out.println("id mel requette="+o.getId());
                 o.setNom(rs.getString("nom"));
                 o.setLogin(rs.getString("login"));
                 o.setPassword(rs.getString("password"));
@@ -609,9 +626,11 @@ public ObservableList<Organisme> ListeOrganisme(String login) {
     public int getIdOrganismeByName(String nom) {
            Organisme o2 = new Organisme();
         String s = null;
-        String req2 = "select idorganisme from  Organisme where nom='" + nom + "'";
+        String req2 = "select idorganisme from  Organisme where nom=?";
         try {
-            PreparedStatement pst2 = connection.prepareStatement(req2);
+            PreparedStatement pst2 ;
+            pst2 = connection.prepareStatement(req2);
+            pst2.setString(1, nom);
             ResultSet rs = pst2.executeQuery();
             while (rs.next()) {
 

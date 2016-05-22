@@ -83,37 +83,37 @@
                   <TextField fx:id="txtLogin" editable="false" prefHeight="25.0" prefWidth="184.0" promptText="votre pseudo" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <PasswordField fx:id="txtPassword2" prefHeight="25.0" prefWidth="184.0" promptText="******************" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="er21" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2">
+                  <Label fx:id="er21" textFill="#fc0000" GridPane.columnIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er31" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="er31" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er61" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label fx:id="er61" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er71" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label fx:id="er71" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er81" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Label fx:id="er81" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er92" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Label fx:id="er92" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="er91" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <Label fx:id="er91" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -125,7 +125,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtSite" prefHeight="25.0" prefWidth="184.0" promptText="www.organisme.com" style="-fx-border-width: 2px;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label fx:id="er911" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <Label fx:id="er911" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -156,7 +156,7 @@
                      </font>
                   </Button>
                   <TextArea fx:id="txtDesc" prefHeight="132.0" prefWidth="289.0" promptText="Organisme créé en ..." GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label fx:id="er9113" text="Vous devez renseigner ce champ" textFill="#fc0000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                  <Label fx:id="er9113" textFill="#fc0000" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>

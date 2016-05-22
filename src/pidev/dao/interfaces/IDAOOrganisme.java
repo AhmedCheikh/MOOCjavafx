@@ -31,7 +31,7 @@ public interface IDAOOrganisme {
 
     void envoyerInvitation(Invitation i);
 
-    void AccepterInvit(String nom);
+    void AccepterInvit(String nom,int cin);
 
     public void refuserInvitation(String nom);
 
@@ -55,7 +55,7 @@ public interface IDAOOrganisme {
 
     ObservableList<Formateur> chercherFormateurs1Organisme(String nom, int id);
 
-    ObservableList<Organisme> ListeOrganisme(String login);
+    ObservableList<Organisme> ListeOrganisme(int id);
 
     void envoyerMsg(String emailExp, String objet, String msg);
 
