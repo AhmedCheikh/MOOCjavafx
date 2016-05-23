@@ -12,6 +12,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -141,11 +142,21 @@ public class InscrireOrganismeController implements Initializable {
             fileChooser.setTitle("Open resource file");
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.png"));
             Organisme o = new Organisme();
-            if (selectedFile != null) {
+            if (selectedFile != null) 
+            {    
+                 Random r;
+                String letters;
+                r = new Random();
+                letters = "abcdefghijklmnopqrstuvwxyz";
+                 StringBuilder nom = new StringBuilder("") ;
+                for(int i = 0; i < 5; i++)
+                {
+                    nom.append(letters.charAt(r.nextInt(letters.length())));
+                }
                 File path = selectedFile.getAbsoluteFile();
                 logo = selectedFile.getName();
                 l4.setText("File selected: " + selectedFile.getName());
-                o.setLogo(l4.getText());
+                o.setLogo(nom+l4.getText());
                 
                 
                   String url = "src/pidev/gui/img/"+ selectedFile.getName();

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DCDCDC; -fx-border-color: #50468C; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.Controller.validationMsgController">
+   <children>
+      <Pane layoutX="56.0" layoutY="120.0" prefHeight="172.0" prefWidth="489.0" style="-fx-border-color: #50468C; -fx-border-width: 3px; -fx-background-color: #e6f7ff;">
+         <children>
+            <Label layoutX="14.0" layoutY="39.0" prefHeight="94.0" prefWidth="468.0" text="Votre Compte sera validé dans 24h , merci de patienter">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label layoutX="98.0" layoutY="112.0" prefHeight="27.0" prefWidth="391.0" text="Un mail sera envoyé pour vous informer.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="80.0" fitWidth="59.0" layoutX="14.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/demmandeInteg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="261.0" layoutY="27.0">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnexit" layoutX="261.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnexitAction" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #50468C;" text="Exit" textFill="WHITE" />
+      <ImageView fitHeight="84.0" fitWidth="200.0" layoutX="208.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/moocimg.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

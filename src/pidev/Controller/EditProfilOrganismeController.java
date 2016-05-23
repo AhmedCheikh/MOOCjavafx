@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -221,8 +222,18 @@ public class EditProfilOrganismeController implements Initializable {
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.pdf"));
             Organisme o = new Organisme();
             if (selectedFile != null) {
+                
+                 Random r;
+                String letters;
+                r = new Random();
+                letters = "abcdefghijklmnopqrstuvwxyz";
+                 StringBuilder nom = new StringBuilder("") ;
+                for(int i = 0; i < 5; i++)
+                {
+                    nom.append(letters.charAt(r.nextInt(letters.length())));
+                }
                 File path = selectedFile.getAbsoluteFile();
-                logo = selectedFile.getName();
+                logo = nom+selectedFile.getName();
                 lblogo.setText("File selected: " + selectedFile.getName());
                 String url = "src/pidev/gui/img/" + selectedFile.getName();
                 Path des = Paths.get(url);

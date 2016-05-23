@@ -62,6 +62,14 @@ public Organisme(String nom, String email, String siteweb, String adresse, Strin
         this.etat = etat;
     }
 
+    public Organisme(int id, String nom, String email, String adresse, String telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.email = email;
+        this.adresse = adresse;
+        this.telephone = telephone;
+    }
+
     public Organisme(String nom, String login, String password, String email, String siteweb, String adresse, String telephone, String description) {
         this.nom = nom;
         this.login = login;

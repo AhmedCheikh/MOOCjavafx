@@ -236,6 +236,7 @@ public class DAOFormateur implements IDaoFormateur {
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
                 lst.add(new Organisme(
+                         resultat.getInt("idorganisme"),
                         resultat.getString("nom"),
                         resultat.getString("email"),
                         resultat.getString("adresse"),
